@@ -1,0 +1,18 @@
+{
+  "name": "easy-md-doc",
+  "version": "1.0.0",
+  "description": "Simple markdown to HTML generator",
+  "main": "index.js",
+  "scripts": {
+    "build": "node index.js"
+  },
+  "author": "Grandgeorg Websolutions, Viktor Grandgeorg <viktor@grandgeorg.de>",
+  "license": "GPL-3.0-or-later",
+  "dependencies": {
+    "front-matter": "^4.0.2",
+    "markdown-it": "^11.0.1",
+    "markdown-it-container": "^3.0.0",
+    "markdown-it-deflist": "^2.1.0",
+    "pug": "^3.0.0"
+  }
+}

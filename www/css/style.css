@@ -1,0 +1,122 @@
+body, html {
+    padding: 0;
+    margin: 0;
+    background-color: #000;
+}
+body {
+    color: #eee;
+    font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 16px;
+}
+
+*, *:before, *:after {
+    box-sizing: border-box;
+}
+
+a, article, aside, blockquote, body, code, dd, div, dl, dt, fieldset, figcaption, figure, footer, form, h1, h2, h3, h4, h5, h6, header, legend, li, main, nav, ol, p, pre, section, table, td, textarea, th, tr, ul {
+    box-sizing: border-box;
+}
+
+hr {
+    border-top-color: hsla(0,0%,100%,.1)
+}
+
+dt {
+    font-weight: bold;
+    margin-top: 1rem;
+}
+
+code {
+    color: #dd6efd;
+}
+a code {
+    color: #2196f3;
+}
+
+.page {
+    display: block;
+    /* padding-bottom: 2rem; */
+}
+.mtime {
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: #1a1a1a;
+    padding: 0.7rem 1.5rem 0;
+    font-size: 0.6rem;
+    line-height: 1;
+    text-align: right;
+    color: #999;
+}
+.content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 1rem;
+    background-color: #1a1a1a;
+}
+.content>h1:first-child {
+    margin: 0;
+    padding: 1rem 0;
+}
+
+@media (min-width: 480px) {
+    .content {
+        padding: 2rem 2.5rem 1rem;
+    }
+    .mtime {
+        padding: 0.7rem 2.5rem 0;
+    }
+}
+
+.content img {
+    max-width: 100%
+}
+
+.content pre[class*=language-] {
+    border-radius: 6px;
+    padding-top: 2.5rem;
+    font-size: 0.85rem;
+}
+.content code[class*=language-], .content pre[class*=language-] .content pre, .content pre code {
+    white-space: pre-wrap;
+}
+
+.content a code, .content a, .content p a code {
+    color: #2196f3;
+}
+
+
+/* custom container */
+
+.danger, .tip, .warning {
+    padding: .1rem 1.5rem;
+    border-left-width: .5rem;
+    border-left-style: solid;
+    margin: 1rem 0;
+}
+.tip {
+    color: #a0ddc1;
+    background-color: rgba(66,185,131,.25);
+    border-color: #42b983;
+}
+.tip a {
+    color: #42b983
+}
+
+.warning {
+    background-color: rgba(255,229,100,.25);
+    border-color: #e7c000;
+    color: #ffefa2;
+}
+.warning a {
+    color: #ffdf41
+}
+.danger {
+    color: #f66;
+    background-color: rgba(204,0,0,.25);
+    border-color: #c00;
+}
+.danger a {
+    color: #ff0a0a
+}
