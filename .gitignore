@@ -5,3 +5,4 @@
 /www/*.html
 !/www/example-1.html
 !/www/example-2.html
+__notes.txt

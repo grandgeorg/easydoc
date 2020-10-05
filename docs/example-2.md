@@ -3,8 +3,52 @@ title: Example 2
 lang: de
 ---
 
+# Beispielseite 2
+
 Diese Seite ist auf deutsch.
 Zurück zum [Beispiel 1](example-1.html)
+
+---
+
+## Nützliche UTF-8 Chars
+
+### Für Checklisten
+
+☐ nothing so far  
+🔳 nothing so far  
+
+☑ all OK  
+✓ all OK  
+✔ all OK  
+✅ all OK  
+❎ all OK  
+☒ all OK (?)  
+
+✕ bad  
+✖ bad  
+✗ bad  
+✘ bad  
+❌bad  
+
+### Diverse
+
+⛭ just a cog  
+⚠ Attention  
+⛔ Do not enter  
+🌐 Earth
+
+### Beispiel
+
+- 🔳 implement feature foo
+- ❌ implement feature bar
+- ✅ implement feature baz
+- 🔳 implement feature bat
+- 🔳 write tests
+- ✅ compile package
+- 🔳 deploy package
+- ⛔ fail to meet the deadline
+
+---
 
 Hier noch ein diff als Beispiel
 
