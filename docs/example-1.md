@@ -9,7 +9,7 @@ title: Example 1
 ##### h5 Heading
 ###### h6 Heading
 
-### Horizontal Rules
+## Horizontal Rules
 
 ___
 
@@ -18,7 +18,7 @@ ___
 ***
 
 
-### Typographic replacements
+## Typographic replacements
 
 (c) (C) (r) (R) (tm) (TM) (p) (P) +-
 
@@ -29,7 +29,7 @@ ellipsis .. ellipsis ... ellipsis ..... ellipsis ..... ellipsis ....
 "Smartypants, double quotes" and 'single quotes'
 
 
-### Emphasis
+## Emphasis
 
 **This is bold text**
 
@@ -42,16 +42,16 @@ _This is italic text_
 ~~Strikethrough~~
 
 
-### Blockquotes
+## Blockquotes
 
 > Blockquotes can also be nested...
 >> ...by using additional greater-than signs right next to each other...
 > > > ...or with spaces between arrows.
 
 
-### Lists
+## Lists
 
-#### Unordered
+### Unordered
 
 + Create a list by starting a line with `+`, `-`, or `*`
 + Sub-lists are made by indenting 2 spaces:
@@ -75,7 +75,7 @@ Start numbering with offset:
 57. foo
 58. bar
 
-#### Definition lists
+### Definition lists
 
 Lorem ipsum dolor sed amet.
 
@@ -112,7 +112,7 @@ Term 2
   ~ Definition 2b
 
 
-### Tables
+## Tables
 
 | Option | Description |
 | ------ | ----------- |
@@ -129,7 +129,7 @@ Right aligned columns
 | ext    | extension to be used for dest files. |
 
 
-### Links
+## Links
 
 [metager](https://metager.de/)
 
@@ -140,7 +140,7 @@ Autoconverted link https://grandgeorg.de
 [Local link to example 2](example-2.html "Example 2")
 
 
-### Images
+## Images
 
 Fullsize 
 
@@ -155,10 +155,10 @@ Like links, Images also have a footnote style syntax
 ![Alt text][img-id]
 
 
-### Plugins
+## Plugins
 
 
-#### Custom containers
+### Custom containers
 
 ::: tip
 FYI - so that you know ...
@@ -173,7 +173,43 @@ FYI - so that you know ...
 ... just kidding!
 :::
 
-#### Code blocks with prismjs
+### flowchart.js
+
+#### Example 1
+
+@flowstart
+st=>start: Start
+e=>end: The End
+op1=>operation: My Operation|current
+sub1=>subroutine: My Subroutine
+cond=>condition: Has option?
+io=>inputoutput: catch something...
+st->op1->cond
+cond(yes)->io->e
+cond(no)->sub1(right)->op1
+@flowend
+
+#### Example 1
+
+@flowstart
+st=>start: Start:>https://grandgeorg.de[blank]
+e=>end:>https://grandgeorg.de
+op1=>operation: My Operation
+sub1=>subroutine: My Subroutine
+cond=>condition: Yes
+or No?:>https://grandgeorg.de
+io=>inputoutput: catch something...
+para=>parallel: parallel tasks
+
+st->op1->cond
+cond(yes)->io->e
+cond(no)->para
+para(path1, bottom)->sub1(right)->op1
+para(path2, top)->op1
+@flowend
+
+
+### Code blocks with prismjs
 
 Some examples below. The current configuration is:
 
@@ -220,7 +256,7 @@ __plugins__
 To get your own configuration go to: 
 [prismjs](https://prismjs.com/download.html#themes=prism-tomorrow&languages=markup+css+clike+javascript)
 
-##### HTML
+#### HTML
 
 ```html
 <!DOCTYPE html>
@@ -295,7 +331,7 @@ fs.readdir(docsDir, (err, files) => {
 });
 ```
 
-##### CSS
+#### CSS
 ```css
 body, html {
     padding: 0;
@@ -336,7 +372,7 @@ tr:nth-child(2n) {
 
 ```
 
-#### PHP
+### PHP
 
 ```php
 declare(strict_types=1);

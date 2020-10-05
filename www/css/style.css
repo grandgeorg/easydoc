@@ -150,3 +150,24 @@ a code {
 .danger a {
     color: #ff0a0a
 }
+
+/* flowchart */
+
+.flowchart {
+    text-align: center;
+    font-size: 0px;
+    min-height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 1s;
+    padding: 10px;
+
+}
+.flowchart > svg {
+    max-width: 100%;
+    height: auto;
+
+}
+
+/* clean-css ignore:start */.operation-element,.parallel-element,.subroutine-element{rx:5;ry:5;}/* clean-css ignore:end */

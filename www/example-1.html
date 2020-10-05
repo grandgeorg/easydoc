@@ -1,25 +1,25 @@
-<!DOCTYPE html><html lang="en"><head><title>Example 1</title><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="stylesheet" href="css/style.min.css"><link rel="stylesheet" href="css/prism.min.css"><script src="js/clipboard.min.js"></script><script src="js/prism.js"></script></head><body><main class="page"><div class="mtime">Last Update Fri Oct 02 2020 12:42:30 GMT+0200 (GMT+02:00)</div><div class="content"><h1>h1 Heading</h1>
+<!DOCTYPE html><html lang="en"><head><title>Example 1</title><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="stylesheet" href="css/style.min.css"><link rel="stylesheet" href="css/prism.min.css"><script src="js/clipboard.min.js"></script><script src="js/prism.js"></script><script src="js/raphael.min.js"></script><script src="js/flowchart.min.js"></script><script src="js/app.js"></script></head><body><main class="page"><div class="mtime">Last Update Mon Oct 05 2020 11:25:27 GMT+0200 (GMT+02:00)</div><div class="content"><h1>h1 Heading</h1>
 <h2>h2 Heading</h2>
 <h3>h3 Heading</h3>
 <h4>h4 Heading</h4>
 <h5>h5 Heading</h5>
 <h6>h6 Heading</h6>
-<h3>Horizontal Rules</h3>
+<h2>Horizontal Rules</h2>
 <hr>
 <hr>
 <hr>
-<h3>Typographic replacements</h3>
+<h2>Typographic replacements</h2>
 <p>© © ® ® ™ ™ § § ±</p>
 <p>ellipsis … ellipsis … ellipsis … ellipsis … ellipsis …</p>
 <p>!!! ??? ,  – —</p>
 <p>“Smartypants, double quotes” and ‘single quotes’</p>
-<h3>Emphasis</h3>
+<h2>Emphasis</h2>
 <p><strong>This is bold text</strong></p>
 <p><strong>This is bold text</strong></p>
 <p><em>This is italic text</em></p>
 <p><em>This is italic text</em></p>
 <p><s>Strikethrough</s></p>
-<h3>Blockquotes</h3>
+<h2>Blockquotes</h2>
 <blockquote>
 <p>Blockquotes can also be nested…</p>
 <blockquote>
@@ -29,8 +29,8 @@
 </blockquote>
 </blockquote>
 </blockquote>
-<h3>Lists</h3>
-<h4>Unordered</h4>
+<h2>Lists</h2>
+<h3>Unordered</h3>
 <ul>
 <li>Create a list by starting a line with <code>+</code>, <code>-</code>, or <code>*</code></li>
 <li>Sub-lists are made by indenting 2 spaces:
@@ -64,7 +64,7 @@
 <li>foo</li>
 <li>bar</li>
 </ol>
-<h4>Definition lists</h4>
+<h3>Definition lists</h3>
 <p>Lorem ipsum dolor sed amet.</p>
 <dl>
 <dt>Some Definition Title 1</dt>
@@ -99,7 +99,7 @@ with lazy continuation.</p>
 <dd>Definition 2a</dd>
 <dd>Definition 2b</dd>
 </dl>
-<h3>Tables</h3>
+<h2>Tables</h2>
 <table>
 <thead>
 <tr>
@@ -145,20 +145,20 @@ with lazy continuation.</p>
 </tr>
 </tbody>
 </table>
-<h3>Links</h3>
+<h2>Links</h2>
 <p><a href="https://metager.de/">metager</a></p>
 <p><a href="https://metager.de/" title="MetaGer">metager with title</a></p>
 <p>Autoconverted link <a href="https://grandgeorg.de">https://grandgeorg.de</a></p>
 <p><a href="example-2.html" title="Example 2">Local link to example 2</a></p>
-<h3>Images</h3>
+<h2>Images</h2>
 <p>Fullsize</p>
 <p><img src="https://source.unsplash.com/1920x1080/?cityscape,landscape,nature/__random__" alt="Random Image"></p>
 <p>Small</p>
 <p><img src="https://source.unsplash.com/320x180/?cityscape,landscape,nature/__random__" alt="Random Image small" title="Random Image small"></p>
 <p>Like links, Images also have a footnote style syntax</p>
 <p><img src="https://source.unsplash.com/480x270/?cityscape,landscape,nature/__random__" alt="Alt text" title="The Dojocat"></p>
-<h3>Plugins</h3>
-<h4>Custom containers</h4>
+<h2>Plugins</h2>
+<h3>Custom containers</h3>
 <div class="tip">
 <p>FYI - so that you know …</p>
 </div>
@@ -169,7 +169,33 @@ with lazy continuation.</p>
 <h3>⚠ You are going to die</h3>
 <p>… just kidding!</p>
 </div>
-<h4>Code blocks with prismjs</h4>
+<h3>flowchart.js</h3>
+<h4>Example 1</h4>
+<div class="flowchart" id="flowchart_409">st=>start: Start
+e=>end: The End
+op1=>operation: My Operation|current
+sub1=>subroutine: My Subroutine
+cond=>condition: Has option?
+io=>inputoutput: catch something...
+st->op1->cond
+cond(yes)->io->e
+cond(no)->sub1(right)->op1</div>
+<h4>Example 1</h4>
+<div class="flowchart" id="flowchart_413">st=>start: Start:>https://grandgeorg.de[blank]
+e=>end:>https://grandgeorg.de
+op1=>operation: My Operation
+sub1=>subroutine: My Subroutine
+cond=>condition: Yes
+or No?:>https://grandgeorg.de
+io=>inputoutput: catch something...
+para=>parallel: parallel tasks
+
+st->op1->cond
+cond(yes)->io->e
+cond(no)->para
+para(path1, bottom)->sub1(right)->op1
+para(path2, top)->op1</div>
+<h3>Code blocks with prismjs</h3>
 <p>Some examples below. The current configuration is:</p>
 <p><strong>languages</strong></p>
 <ul>
@@ -213,7 +239,7 @@ with lazy continuation.</p>
 </ul>
 <p>To get your own configuration go to:
 <a href="https://prismjs.com/download.html#themes=prism-tomorrow&amp;languages=markup+css+clike+javascript">prismjs</a></p>
-<h5>HTML</h5>
+<h4>HTML</h4>
 <pre><code class="language-html">&lt;!DOCTYPE html&gt;
 &lt;html lang=&quot;en&quot;&gt;
 &lt;head&gt;
@@ -282,7 +308,7 @@ fs.readdir(docsDir, (err, files) =&gt; {
   });
 });
 </code></pre>
-<h5>CSS</h5>
+<h4>CSS</h4>
 <pre><code class="language-css">body, html {
     padding: 0;
     margin: 0;
@@ -321,7 +347,7 @@ tr:nth-child(2n) {
 }
 
 </code></pre>
-<h4>PHP</h4>
+<h3>PHP</h3>
 <pre><code class="language-php">declare(strict_types=1);
 /*
  * This file is part of the Gws package.
