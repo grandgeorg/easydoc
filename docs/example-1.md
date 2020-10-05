@@ -157,28 +157,33 @@ Like links, Images also have a footnote style syntax
 
 ## Plugins
 
-
+---
 ### Custom containers
 
+#### tip
 ::: tip
 FYI - so that you know ...
 :::
 
+#### warning
 ::: warning
 *here be dragons 🦎*
 :::
 
+#### danger
 ::: danger
 ### ⚠ You are going to die
 ... just kidding!
 :::
 
+#### checklist
 ::: checklist
 - ✅ foo
 - ✅ bar
 - 🔳 baz
 - 🔳 bat
 :::
+---
 
 ### flowchart.js
 
@@ -216,7 +221,7 @@ para(path1, bottom)->sub1(right)->op1
 para(path2, top)->op1
 @flowend
 
-
+---
 ### Code blocks with prismjs
 
 Some examples below. The current configuration is:
