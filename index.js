@@ -14,6 +14,7 @@ md.use(require('markdown-it-deflist'));
 md.use(require('markdown-it-container'), 'tip');
 md.use(require('markdown-it-container'), 'warning');
 md.use(require('markdown-it-container'), 'danger');
+md.use(require('markdown-it-container'), 'checklist');
 md.use(require('markdown-it-flowchart'));
 
 const docsDir = path.join(__dirname, 'docs');

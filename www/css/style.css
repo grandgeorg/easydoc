@@ -171,3 +171,13 @@ a code {
 }
 
 /* clean-css ignore:start */.operation-element,.parallel-element,.subroutine-element{rx:5;ry:5;}/* clean-css ignore:end */
+
+/* checklists */
+
+.checklist ul {
+    list-style: none;
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 0;
+    padding-right: 0;
+}

@@ -39,14 +39,16 @@ Zurück zum [Beispiel 1](example-1.html)
 
 ### Beispiel
 
+::: checklist
 - 🔳 implement feature foo
-- ❌ implement feature bar
+- ❌ implement feature bar - this will not be implemented because reason xyz
 - ✅ implement feature baz
 - 🔳 implement feature bat
 - 🔳 write tests
 - ✅ compile package
 - 🔳 deploy package
 - ⛔ fail to meet the deadline
+:::
 
 ---
 

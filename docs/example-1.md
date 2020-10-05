@@ -173,6 +173,13 @@ FYI - so that you know ...
 ... just kidding!
 :::
 
+::: checklist
+- ✅ foo
+- ✅ bar
+- 🔳 baz
+- 🔳 bat
+:::
+
 ### flowchart.js
 
 #### Example 1
