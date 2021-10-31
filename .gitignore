@@ -2,7 +2,9 @@
 /docs/*.md
 !/docs/example-1.md
 !/docs/example-2.md
+!/docs/sample-markdown.md
 /www/*.html
 !/www/example-1.html
 !/www/example-2.html
+!/www/sample-markdown.html
 __notes.txt
