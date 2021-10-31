@@ -16,6 +16,14 @@ md.use(require('markdown-it-container'), 'warning');
 md.use(require('markdown-it-container'), 'danger');
 md.use(require('markdown-it-container'), 'checklist');
 md.use(require('markdown-it-flowchart'));
+md.use(require('markdown-it-task-lists'));
+md.use(require('markdown-it-footnote'));
+md.use(require('markdown-it-attrs'), {
+    // optional, these are default options
+    leftDelimiter: '{',
+    rightDelimiter: '}',
+    allowedAttributes: []  // empty array = all attributes are allowed
+});
 
 const docsDir = path.join(__dirname, 'docs');
 const templateDir = path.join(__dirname, 'templates');
