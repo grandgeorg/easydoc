@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "build": "node index.js",
-    "minify-css": "postcss www/css/style.css > www/css/style.min.css"
+    "minify-css": "postcss www/css/style.css > www/css/style.min.css",
+    "minify-prism-css": "postcss www/css/prism.css > www/css/prism.min.css"
   },
   "author": "Grandgeorg Websolutions, Viktor Grandgeorg <viktor@grandgeorg.de>",
   "license": "GPL-3.0-or-later",
