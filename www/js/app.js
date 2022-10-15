@@ -1,7 +1,6 @@
 (function () {
   "use strict";
   document.addEventListener("DOMContentLoaded", function () {
-
     function addFlowcharts(params) {
       const flowcharts = document.querySelectorAll(".flowchart");
       let chart;
@@ -86,9 +85,63 @@
       });
     }
 
+    function addLightBox() {
+      const images = document.querySelectorAll('img');
+      images.forEach(image => {
+        // image.setAttribute('data-lightbox', 'image');
+        // add event handler to open lightbox
+        image.addEventListener('click', function (e) {
+          e.preventDefault();
+          // copy image to lightbox
+          // const lightbox = document.querySelector('#lightbox');
+          // lightbox.innerHTML = '';
+          // lightbox.appendChild(img);
+
+          const img = document.createElement('img');
+          img.setAttribute('src', image.getAttribute('src'));
+          addModal(img);
+        });
+      });
+    }
+
+    // add modal
+    function addModal(content) {
+      // add modal to body
+      const modal = document.createElement('div');
+      // modal.setAttribute('id', 'modal');
+      modal.setAttribute('class', 'modal');
+      document.body.appendChild(modal);
+      // add modal content
+      const modalContent = document.createElement('div');
+      modalContent.setAttribute('class', 'modal-content');
+      modal.appendChild(modalContent);
+
+      // // add close button
+      // const close = document.createElement('div');
+      // close.setAttribute('class', 'close');
+      // close.innerHTML = '&times;';
+      // modal.appendChild(close);
+
+      // add content
+      modalContent.appendChild(content);
+      // add event handler to close modal
+      modal.addEventListener('click', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        // add willclose class to modal
+        modal.classList.add('willclose');
+        // remove modal after animation
+        setTimeout(function () {
+            modal.remove();
+        }, 250);
+      });
+    }
+
+
     function main() {
       addIdsToHeadings();
       addFlowcharts();
+      addLightBox();
     }
 
     main();
