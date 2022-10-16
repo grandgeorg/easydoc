@@ -1,3 +1,8 @@
+// ------------------------------------------------
+// Grandgeorg Websolutions
+// Package: EasyDoc
+// License: MIT
+// ------------------------------------------------
 (function () {
   "use strict";
   document.addEventListener("DOMContentLoaded", function () {
@@ -88,28 +93,30 @@
     function addLightBox() {
       const images = document.querySelectorAll('img');
       images.forEach(image => {
-        // image.setAttribute('data-lightbox', 'image');
-        // add event handler to open lightbox
         image.addEventListener('click', function (e) {
           e.preventDefault();
-          // copy image to lightbox
-          // const lightbox = document.querySelector('#lightbox');
-          // lightbox.innerHTML = '';
-          // lightbox.appendChild(img);
-
           const img = document.createElement('img');
           img.setAttribute('src', image.getAttribute('src'));
-          addModal(img);
+          img.setAttribute('alt', image.getAttribute('alt'));
+          // add caption container div
+          const caption = document.createElement('div');
+          caption.setAttribute('class', 'caption');
+          caption.innerHTML = image.getAttribute('alt');
+          // concat image and caption
+          const lightBox = document.createElement('div');
+          lightBox.setAttribute('class', 'lightbox');
+          lightBox.appendChild(img);
+          lightBox.appendChild(caption);
+          addModal(lightBox);
         });
       });
     }
 
-    // add modal
     function addModal(content) {
       // add modal to body
       const modal = document.createElement('div');
       // modal.setAttribute('id', 'modal');
-      modal.setAttribute('class', 'modal');
+      modal.setAttribute('class', 'modal open');
       document.body.appendChild(modal);
       // add modal content
       const modalContent = document.createElement('div');
@@ -124,17 +131,23 @@
 
       // add content
       modalContent.appendChild(content);
-      // add event handler to close modal
-      modal.addEventListener('click', function (e) {
-        e.preventDefault();
-        e.stopPropagation();
-        // add willclose class to modal
-        modal.classList.add('willclose');
-        // remove modal after animation
-        setTimeout(function () {
-            modal.remove();
-        }, 250);
-      });
+
+      setTimeout(function () {
+        // remove class open
+        modal.classList.remove('open');
+        // add event handler to close modal
+        modal.addEventListener('click', function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          // add willclose class to modal
+          modal.classList.add('willclose');
+          // remove modal after animation
+          setTimeout(function () {
+              modal.remove();
+          }, 250);
+        });
+      }, 250);
+
     }
 
 
