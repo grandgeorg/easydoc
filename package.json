@@ -4,9 +4,7 @@
   "description": "Simple markdown to HTML generator",
   "main": "index.js",
   "scripts": {
-    "build": "node index.js",
-    "minify-css": "postcss www/css/style.css > www/css/style.min.css",
-    "minify-prism-css": "postcss www/css/prism.css > www/css/prism.min.css"
+    "build": "node index.js"
   },
   "author": "Grandgeorg Websolutions, Viktor Grandgeorg <viktor@grandgeorg.de>",
   "license": "GPL-3.0-or-later",
@@ -20,9 +18,5 @@
     "markdown-it-footnote": "^3.0.3",
     "markdown-it-task-lists": "^2.1.1",
     "pug": "^3.0.0"
-  },
-  "devDependencies": {
-    "cssnano": "^5.1.13",
-    "postcss-cli": "^10.0.0"
   }
 }

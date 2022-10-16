@@ -1,0 +1,20 @@
+{
+    "liveSassCompile.settings.formats":[
+       {
+           "format": "compressed",
+           "extensionName": ".min.css",
+           "savePath": "/www/css"
+       }
+   ],
+   "liveSassCompile.settings.excludeList": [
+      "**/node_modules/**",
+      ".vscode/**"
+   ],
+   "liveSassCompile.settings.generateMap": false,
+   "liveSassCompile.settings.autoprefix": null,
+   "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true
+    },
+    "eslint.format.enable": true,
+    "liveServer.settings.root": "/www/",
+}
