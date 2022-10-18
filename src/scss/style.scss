@@ -40,6 +40,7 @@ $navbar-height: 41px;
   --clr-base-d400-lw: #171e26;
   --clr-base-d420: #141a21;
   --clr-base-d450: #12181e;
+  --clr-base-d480: #11151c;
   --clr-base-d500: #0e1117;
   --clr-base-d600: #0b0e12;
   --clr-base-d700: #000;
@@ -489,24 +490,32 @@ a code {
   }
   details {
     margin: 1.5rem auto 1rem auto;
-    background-color: var(--clr-base-d400);
-    border-radius: 8px;
+    background-color: var(--clr-base-d480);
+    // background-color: #11151c;
+    border-radius: 6px;
     padding: 1px;
+    border: 1px solid var(--clr-base-d400);
+    // select all not summary
+    padding: 0 1rem;
   }
   summary {
     cursor: pointer;
-    background-color: var(--clr-base-d600);
+    background-color: var(--clr-base-d500);
     padding: 0.5rem 0.75rem;
-    border-radius: 8px;
+    border-radius: 6px;
     font-size: 1rem;
     font-size: clamp(0.75rem, 2.6667vw, 1rem);
-    border-bottom: 1px solid var(--clr-base-d600);
+    margin: 0 -1rem;
+    // border-bottom: 1px solid var(--clr-base-d400);
   }
   details[open] {
-    background-color: var(--clr-base-d300) summary {
-      border-radius: 8px 8px 0 0;
-      background-color: var(--clr-base-d400);
-      border-bottom-color: var(--clr-base-d300);
+    // background-color: var(--clr-base-d300);
+    border: 1px solid var(--clr-base-d400);
+    summary {
+      border-bottom: 1px solid var(--clr-base-d400);
+      // border-radius: 6px 6px 0 0;
+      // background-color: var(--clr-base-d400);
+      // border-bottom-color: var(--clr-base-d300);
     }
   }
 
