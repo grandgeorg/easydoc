@@ -3,6 +3,7 @@
 !/docs/example-1.md
 !/docs/example-2.md
 !/docs/sample-markdown.md
+!/docs/easydoc.md
 /www/*.html
 !/www/example-1.html
 !/www/example-2.html

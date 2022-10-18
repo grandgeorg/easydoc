@@ -2,8 +2,8 @@
   "verbose": true,
   "restartable": "r",
   "ignore": [".git", "node_modules/**/node_modules"],
-  "watch": ["docs/", "www/css/", "www/img/", "www/fonts/", "www/js"],
-  "ext": "md, css, js, html, json, jpg, png, gif, svg, eot, ttf, woff, woff2",
+  "watch": ["docs/", "www/css/", "www/img/", "www/fonts/", "www/js", "templates/", ".env"],
+  "ext": "md, css, js, html, json, jpg, png, gif, svg, eot, ttf, woff, woff2, env",
   "env": {
     "NODE_ENV": "development"
   },
