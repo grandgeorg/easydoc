@@ -12,10 +12,22 @@ html(lang=attributes.lang)
     script(src="js/flowchart.min.js")
     script(src="js/app.js")
   body
+    .navbar
+      a.navbar__brand(href=attributes.brandURL)
+        span.brand #{attributes.brand}
+        span.brand-second #{attributes.brandSecondary}
+      .navbar__controls
+        button.burger(aria-expanded="false" aria-label="navigation menu")
+          span.burger__line.burger__line-1(aria-hidden="true" focusable="false")
+          span.burger__line.burger__line-2(aria-hidden="true" focusable="false")
+          span.burger__line.burger__line-3(aria-hidden="true" focusable="false")
+    nav.navigation-drawer(aria-label="Main menu")
+      h3.nav-title.text-center #{t.toc}
+      .toc !{toc}
     main.page
-        .mtime Last Update #{attributes.mtime}
-        .content !{content}
-        .footer
-          a(href="https:grandgeorg.de" class="brand-link")
-            .brand Grandgeorg
-            .brand-second Websolutions
+      .mtime #{t.mtime} #{attributes.mtime}
+      .content !{content}
+      .footer
+        a(href=attributes.brandURL class="brand-link")
+          span.brand #{attributes.brand}
+          span.brand-second #{attributes.brandSecondary}

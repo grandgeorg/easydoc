@@ -8,6 +8,16 @@ modified: '2021-10-31 10:20:45'
 
 # Sample Markdown
 
+<svg width="416" height="224" viewBox="0 0 52 28" class="logo gw-logo">
+<path style="fill:#ff3300;stroke:#bf2600;stroke-width:0.75px;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1" d="M 24,4 H 4 V 24 H 24 V 12 h -8 v 4 h 4 v 4 H 8 V 8 h 16 z"/>
+<path style="fill:#267dff;stroke:#1d5ebf;stroke-width:0.75px;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1" d="M 48,4 V 24 H 28 V 4 h 4 v 16 h 4 V 8 h 4 v 12 h 4 V 4 Z" />
+</svg>
+
+<svg width="156" height="84" viewBox="0 0 52 28" class="logo gw-logo">
+<path style="fill:#ff3300;stroke:#bf260066;stroke-width:2px;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1" d="M 24,4 H 4 V 24 H 24 V 12 h -8 v 4 h 4 v 4 H 8 V 8 h 16 z"/>
+<path style="fill:#267dff;stroke:#1d5ebf66;stroke-width:2px;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1" d="M 48,4 V 24 H 28 V 4 h 4 v 16 h 4 V 8 h 4 v 12 h 4 V 4 Z" />
+</svg>
+
 ## Images
 
 ![Grandgeorg Websolutions](img/logo.png)

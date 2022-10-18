@@ -2,6 +2,12 @@
 title: Example 1
 ---
 
+# Reference
+
+[[toc]]
+
+--- 
+
 # h1 Heading
 ## h2 Heading
 ### h3 Heading
@@ -161,7 +167,15 @@ Like links, Images also have a footnote style syntax
 ### Custom containers
 
 #### tip
+
 ::: tip
+
+FYI - so that you know ...
+
+:::
+
+#### info
+::: info
 FYI - so that you know ...
 :::
 
@@ -172,7 +186,8 @@ FYI - so that you know ...
 
 #### danger
 ::: danger
-### ⚠ You are going to die
+**⚠ You are going to die**
+
 ... just kidding!
 :::
 
@@ -182,6 +197,16 @@ FYI - so that you know ...
 - ✅ bar
 - 🔳 baz
 - 🔳 bat
+- [x] yes
+- [ ] no
+:::
+
+#### details 
+::: details Click on this summary to see the details
+Here are some **funny** details.
+- Detail 1
+- Detail 2
+- Detail 3
 :::
 ---
 

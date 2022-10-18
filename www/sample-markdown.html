@@ -1,7 +1,15 @@
-<!DOCTYPE html><html lang="en"><head><title>Sample Markdown</title><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="stylesheet" href="css/style.min.css"><link rel="stylesheet" href="css/prism.min.css"><script src="js/clipboard.min.js"></script><script src="js/prism.js"></script><script src="js/raphael.min.js"></script><script src="js/flowchart.min.js"></script><script src="js/app.js"></script></head><body><main class="page"><div class="mtime">Last Update Sun Oct 31 2021 13:44:52 GMT+0100 (Mitteleuropäische Normalzeit)</div><div class="content"><h1>Sample Markdown</h1>
-<h2>Images</h2>
+<!DOCTYPE html><html lang="en"><head><title>Sample Markdown</title><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="stylesheet" href="css/style.min.css"><link rel="stylesheet" href="css/prism.min.css"><script src="js/clipboard.min.js"></script><script src="js/prism.js"></script><script src="js/raphael.min.js"></script><script src="js/flowchart.min.js"></script><script src="js/app.js"></script></head><body><div class="navbar"><a class="navbar__brand" href="https://grandgeorg.de"><span class="brand">Grandgeorg</span><span class="brand-second">Websolutions</span></a><div class="navbar__controls"><button class="burger" aria-expanded="false" aria-label="navigation menu"><span class="burger__line burger__line-1" aria-hidden="true" focusable="false"></span><span class="burger__line burger__line-2" aria-hidden="true" focusable="false"></span><span class="burger__line burger__line-3" aria-hidden="true" focusable="false"></span></button></div></div><nav class="navigation-drawer" aria-label="Main menu"><h3 class="nav-title text-center">Table of Contents</h3><div class="toc"><div class="table-of-contents"><ul><li><a href="#sample-markdown">Sample Markdown</a><ul><li><a href="#images">Images</a></li><li><a href="#a-table">A Table</a></li><li><a href="#emphasis">Emphasis</a></li><li><a href="#lists">Lists</a></li><li><a href="#blockquotes">Blockquotes</a></li><li><a href="#custom-blocks">Custom blocks</a></li><li><a href="#jump-to-chapter">Jump to Chapter</a><ul><li><a href="#custom-id">A Heading with custom id</a></li></ul></li><li><a href="#definition-lists">Definition Lists</a></li><li><a href="#task-lists">Task Lists</a></li><li><a href="#emojis">Emojis</a></li><li><a href="#sha-references">SHA references</a></li><li><a href="#issue-references-within-a-repository">Issue references within a repository</a><ul><li><a href="#apache-configuration-codeblock">Apache Configuration Codeblock</a></li><li><a href="#asp-codeblock">ASP Codeblock</a></li></ul></li><li><a href="#c-codeblock">C Codeblock</a></li><li><a href="#c-codeblock-1">C++ Codeblock</a></li><li><a href="#c-codeblock-2">C# Codeblock</a></li><li><a href="#clojure-codeblock">Clojure Codeblock</a></li><li><a href="#css-codeblock">CSS Codeblock</a></li><li><a href="#scss-codeblock">SCSS Codeblock</a></li><li><a href="#curl-codeblock">CURL Codeblock</a></li><li><a href="#d-codeblock">D Codeblock</a></li><li><a href="#dart-codeblock">Dart Codeblock</a></li><li><a href="#diff-codeblock">Diff Codeblock</a></li><li><a href="#docker-codeblock">Docker Codeblock</a></li><li><a href="#erlang-codeblock">Erlang Codeblock</a></li><li><a href="#go-codeblock">Go Codeblock</a></li><li><a href="#groovy-codeblock">Groovy Codeblock</a></li><li><a href="#handlebars-codeblock">Handlebars Codeblock</a></li><li><a href="#html">HTML</a></li><li><a href="#xml">XML</a></li><li><a href="#ini-codeblock">INI Codeblock</a></li><li><a href="#java-codeblock">Java Codeblock</a></li><li><a href="#javascript-codeblock">Javascript Codeblock</a></li><li><a href="#json-codeblock">JSON Codeblock</a></li><li><a href="#jsx-codeblock">JSX Codeblock</a></li><li><a href="#julia-codeblock">Julia Codeblock</a></li><li><a href="#kotlin-codeblock">Kotlin Codeblock</a></li><li><a href="#liquid-codeblock">Liquid Codeblock</a></li><li><a href="#markdown-codeblock">Markdown Codeblock</a></li><li><a href="#objective-c-codeblock">Objective-C Codeblock</a></li><li><a href="#ocaml-codeblock">OCaml Codeblock</a></li><li><a href="#perl-codeblock">Perl Codeblock</a></li><li><a href="#powershell-codeblock">Powershell Codeblock</a></li><li><a href="#php-codeblock">PHP Codeblock</a></li><li><a href="#python-codeblock">Python Codeblock</a></li><li><a href="#r-codeblock">R Codeblock</a></li><li><a href="#ruby-codeblock">Ruby Codeblock</a></li><li><a href="#rust-codeblock">Rust Codeblock</a></li><li><a href="#scala-codeblock">Scala Codeblock</a></li><li><a href="#shell-codeblock">Shell Codeblock</a></li><li><a href="#sql-codeblock">SQL Codeblock</a></li><li><a href="#swift-codeblock">Swift Codeblock</a></li><li><a href="#typescript-codeblock">TypeScript Codeblock</a></li><li><a href="#yaml-codeblock">YAML Codeblock</a></li><li><a href="#ssl-certificate-with-lets-encrypt">SSL Certificate with Let’s encrypt</a><ul><li><a href="#foo-bar">Foo Bar</a></li></ul></li></ul></li></ul></div></div></nav><main class="page"><div class="mtime">Last Update Sun Oct 16 2022 17:40:27 GMT+0200 (Mitteleuropäische Sommerzeit)</div><div class="content"><h1 id="sample-markdown" tabindex="-1"><a class="header-anchor" href="#sample-markdown">Sample Markdown</a></h1>
+<svg width="416" height="224" viewBox="0 0 52 28" class="logo gw-logo">
+<path style="fill:#ff3300;stroke:#bf2600;stroke-width:0.75px;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1" d="M 24,4 H 4 V 24 H 24 V 12 h -8 v 4 h 4 v 4 H 8 V 8 h 16 z"/>
+<path style="fill:#267dff;stroke:#1d5ebf;stroke-width:0.75px;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1" d="M 48,4 V 24 H 28 V 4 h 4 v 16 h 4 V 8 h 4 v 12 h 4 V 4 Z" />
+</svg>
+<svg width="156" height="84" viewBox="0 0 52 28" class="logo gw-logo">
+<path style="fill:#ff3300;stroke:#bf260066;stroke-width:2px;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1" d="M 24,4 H 4 V 24 H 24 V 12 h -8 v 4 h 4 v 4 H 8 V 8 h 16 z"/>
+<path style="fill:#267dff;stroke:#1d5ebf66;stroke-width:2px;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1" d="M 48,4 V 24 H 28 V 4 h 4 v 16 h 4 V 8 h 4 v 12 h 4 V 4 Z" />
+</svg>
+<h2 id="images" tabindex="-1"><a class="header-anchor" href="#images">Images</a></h2>
 <p><img src="img/logo.png" alt="Grandgeorg Websolutions"></p>
-<h2>A Table</h2>
+<h2 id="a-table" tabindex="-1"><a class="header-anchor" href="#a-table">A Table</a></h2>
 <table>
 <thead>
 <tr>
@@ -24,13 +32,13 @@
 </tr>
 </tbody>
 </table>
-<h2>Emphasis</h2>
+<h2 id="emphasis" tabindex="-1"><a class="header-anchor" href="#emphasis">Emphasis</a></h2>
 <p><em>This text will be italic</em>
 <em>This will also be italic</em></p>
 <p><strong>This text will be bold</strong>
 <strong>This will also be bold</strong></p>
 <p><em>You <strong>can</strong> combine them</em></p>
-<h2>Lists</h2>
+<h2 id="lists" tabindex="-1"><a class="header-anchor" href="#lists">Lists</a></h2>
 <p>Here are some lists:</p>
 <ul>
 <li>maindomain for the website frontend</li>
@@ -56,22 +64,22 @@
 </ol>
 </li>
 </ol>
-<h2>Blockquotes</h2>
+<h2 id="blockquotes" tabindex="-1"><a class="header-anchor" href="#blockquotes">Blockquotes</a></h2>
 <p>As Kanye West said:</p>
 <blockquote>
 <p>We’re living the future so
 the present is our past.</p>
 </blockquote>
-<h2>Custom blocks</h2>
+<h2 id="custom-blocks" tabindex="-1"><a class="header-anchor" href="#custom-blocks">Custom blocks</a></h2>
 <div class="warning">
 <p><strong>This is not supported by default markdown</strong></p>
 </div>
-<h2>Jump to Chapter</h2>
+<h2 id="jump-to-chapter" tabindex="-1"><a class="header-anchor" href="#jump-to-chapter">Jump to Chapter</a></h2>
 <p>See Chapter <a href="#ssl-certificate-with-let-s-encrypt">SSL Certificate with Let’s encrypt</a> or get wildcard certificate from ISP.</p>
 <p>Here’s a simple footnote,<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup> and here’s a longer one.<sup class="footnote-ref"><a href="#fn2" id="fnref2">[2]</a></sup></p>
-<h3 id="custom-id">A Heading with custom id</h3>
+<h3 id="custom-id" tabindex="-1"><a class="header-anchor" href="#custom-id">A Heading with custom id</a></h3>
 <p class="test" id="foobar">Just a chapter …</p>
-<h2>Definition Lists</h2>
+<h2 id="definition-lists" tabindex="-1"><a class="header-anchor" href="#definition-lists">Definition Lists</a></h2>
 <dl>
 <dt>First Term</dt>
 <dd>This is the definition of the first term.</dd>
@@ -80,24 +88,24 @@ the present is our past.</p>
 <dd>This is another definition of the second term.</dd>
 </dl>
 <p><s>The world is flat.</s> We now know that the world is round.</p>
-<h2>Task Lists</h2>
+<h2 id="task-lists" tabindex="-1"><a class="header-anchor" href="#task-lists">Task Lists</a></h2>
 <ul class="contains-task-list">
 <li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox"> Write the press release</li>
 <li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox"> Update the website</li>
 <li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox"> Contact the media</li>
 </ul>
-<h2>Emojis</h2>
+<h2 id="emojis" tabindex="-1"><a class="header-anchor" href="#emojis">Emojis</a></h2>
 <p>🔥👍:heavy_check_mark::ballot_box_with_check::white_check_mark::x::closed_book::green_book:
 :warning:
 :construction: :-1:</p>
-<h2>SHA references</h2>
+<h2 id="sha-references" tabindex="-1"><a class="header-anchor" href="#sha-references">SHA references</a></h2>
 <p>Any reference to a commit’s SHA-1 hash will be automatically converted into a link to that commit on Gitea.</p>
 <p>584eecbbfc82b193005d85ba6d905a6125317e84</p>
-<h2>Issue references within a repository</h2>
+<h2 id="issue-references-within-a-repository" tabindex="-1"><a class="header-anchor" href="#issue-references-within-a-repository">Issue references within a repository</a></h2>
 <p>#1
 Viktor/test-hello-world#1</p>
 <p>@Viktor this is a link to the gitea user.</p>
-<h3>Apache Configuration Codeblock</h3>
+<h3 id="apache-configuration-codeblock" tabindex="-1"><a class="header-anchor" href="#apache-configuration-codeblock">Apache Configuration Codeblock</a></h3>
 <pre><code class="language-apacheconf">&lt;VirtualHost *:80&gt;
     ServerAdmin webmaster@localhost
 
@@ -111,7 +119,7 @@ Viktor/test-hello-world#1</p>
     CustomLog ${APACHE_LOG_DIR}/access.log combined
 &lt;/VirtualHost&gt;
 </code></pre>
-<h3>ASP Codeblock</h3>
+<h3 id="asp-codeblock" tabindex="-1"><a class="header-anchor" href="#asp-codeblock">ASP Codeblock</a></h3>
 <pre><code class="language-asp">&lt;%
 	'check for form submission and then allow 
 	If Request.ServerVariables(&quot;REQUEST_METHOD&quot;) = &quot;POST&quot; Then
@@ -133,7 +141,7 @@ Viktor/test-hello-world#1</p>
 	end if
 %&gt;
 </code></pre>
-<h2>C Codeblock</h2>
+<h2 id="c-codeblock" tabindex="-1"><a class="header-anchor" href="#c-codeblock">C Codeblock</a></h2>
 <pre><code class="language-c">int factorialSafe(int n) {
     int result = 1;
     if(n&lt;0)
@@ -143,7 +151,7 @@ Viktor/test-hello-world#1</p>
     return result;
 }
 </code></pre>
-<h2>C++ Codeblock</h2>
+<h2 id="c-codeblock-1" tabindex="-1"><a class="header-anchor" href="#c-codeblock-1">C++ Codeblock</a></h2>
 <pre><code class="language-c++">#include &lt;boost/iterator/counting_iterator.hpp&gt;
 #include &lt;algorithm&gt;
  
@@ -153,7 +161,7 @@ int factorial(int n)
   return std::accumulate(boost::counting_iterator&lt;int&gt;(1), boost::counting_iterator&lt;int&gt;(n+1), 1, std::multiplies&lt;int&gt;());
 }
 </code></pre>
-<h2>C# Codeblock</h2>
+<h2 id="c-codeblock-2" tabindex="-1"><a class="header-anchor" href="#c-codeblock-2">C# Codeblock</a></h2>
 <pre><code class="language-c#">using System;
  
 class Program
@@ -172,7 +180,7 @@ class Program
     }
 }
 </code></pre>
-<h2>Clojure Codeblock</h2>
+<h2 id="clojure-codeblock" tabindex="-1"><a class="header-anchor" href="#clojure-codeblock">Clojure Codeblock</a></h2>
 <pre><code class="language-clojure">(defn factorial [x]
   (loop [x x
          acc 1]
@@ -180,7 +188,7 @@ class Program
         acc
         (recur (dec x) (* acc x)))))
 </code></pre>
-<h2>CSS Codeblock</h2>
+<h2 id="css-codeblock" tabindex="-1"><a class="header-anchor" href="#css-codeblock">CSS Codeblock</a></h2>
 <pre><code class="language-css">@supports (font-variation-settings: normal) {
   @font-face {
     font-family: &quot;Encode Sans&quot;;
@@ -243,7 +251,7 @@ class Program
   }
 }
 </code></pre>
-<h2>SCSS Codeblock</h2>
+<h2 id="scss-codeblock" tabindex="-1"><a class="header-anchor" href="#scss-codeblock">SCSS Codeblock</a></h2>
 <pre><code class="language-scss">@mixin scrollbars($size, $foreground-color,  $foreground-color-hover, $background-color, $border-radius, $border-width) {
 
   // For Google Chrome
@@ -332,10 +340,10 @@ $navbar-height: 41px;
   }
 }
 </code></pre>
-<h2>CURL Codeblock</h2>
+<h2 id="curl-codeblock" tabindex="-1"><a class="header-anchor" href="#curl-codeblock">CURL Codeblock</a></h2>
 <pre><code class="language-curl">curl -X POST http://www.yourwebsite.com/login/ -d 'username=yourusername&amp;password=yourpassword'
 </code></pre>
-<h2>D Codeblock</h2>
+<h2 id="d-codeblock" tabindex="-1"><a class="header-anchor" href="#d-codeblock">D Codeblock</a></h2>
 <pre><code class="language-d">uint factorial(in uint n) pure nothrow @nogc
 in {
     assert(n &lt;= 12);
@@ -356,7 +364,7 @@ void main() {
     12.factorial.writeln;
 }
 </code></pre>
-<h2>Dart Codeblock</h2>
+<h2 id="dart-codeblock" tabindex="-1"><a class="header-anchor" href="#dart-codeblock">Dart Codeblock</a></h2>
 <pre><code class="language-dart">int fact(int n) {
   if(n&lt;0) {
     throw new IllegalArgumentException('Argument less than 0');
@@ -369,12 +377,12 @@ main() {
   print(fact(-1));
 }
 </code></pre>
-<h2>Diff Codeblock</h2>
+<h2 id="diff-codeblock" tabindex="-1"><a class="header-anchor" href="#diff-codeblock">Diff Codeblock</a></h2>
 <pre><code class="language-diff">quickstatements:
 -- image: wikibase/quickstatements:latest
 ++ build: ./quickstatements/latest
 </code></pre>
-<h2>Docker Codeblock</h2>
+<h2 id="docker-codeblock" tabindex="-1"><a class="header-anchor" href="#docker-codeblock">Docker Codeblock</a></h2>
 <pre><code class="language-dockerfile">FROM ubuntu:20.04
 
 ENV APACHE_RUN_USER     www-data
@@ -442,12 +450,12 @@ RUN chmod 777 /entrypoint.sh
 ENTRYPOINT [&quot;/entrypoint.sh&quot;]
 CMD [ &quot;/usr/sbin/apache2&quot;, &quot;-DFOREGROUND&quot; ]
 </code></pre>
-<h2>Erlang Codeblock</h2>
+<h2 id="erlang-codeblock" tabindex="-1"><a class="header-anchor" href="#erlang-codeblock">Erlang Codeblock</a></h2>
 <pre><code class="language-erlang">fac(N) -&gt; fac(N-1,N).
 fac(1,N) -&gt; N;
 fac(I,N) -&gt; fac(I-1,N*I).
 </code></pre>
-<h2>Go Codeblock</h2>
+<h2 id="go-codeblock" tabindex="-1"><a class="header-anchor" href="#go-codeblock">Go Codeblock</a></h2>
 <pre><code class="language-go">package main
  
 import (
@@ -464,14 +472,14 @@ func main() {
     fmt.Println(factorial(800))
 }
 </code></pre>
-<h2>Groovy Codeblock</h2>
+<h2 id="groovy-codeblock" tabindex="-1"><a class="header-anchor" href="#groovy-codeblock">Groovy Codeblock</a></h2>
 <pre><code class="language-groovy">def rFact
 rFact = { (it &gt; 1) ? it * rFact(it - 1) : 1 as BigInteger }
 </code></pre>
-<h2>Handlebars Codeblock</h2>
+<h2 id="handlebars-codeblock" tabindex="-1"><a class="header-anchor" href="#handlebars-codeblock">Handlebars Codeblock</a></h2>
 <pre><code class="language-handlebars">{{firstname}} {{lastname}}
 </code></pre>
-<h2>HTML</h2>
+<h2 id="html" tabindex="-1"><a class="header-anchor" href="#html">HTML</a></h2>
 <pre><code class="language-html">&lt;!DOCTYPE html&gt;
 &lt;html lang=&quot;en&quot;&gt;
 &lt;head&gt;
@@ -485,7 +493,7 @@ rFact = { (it &gt; 1) ? it * rFact(it - 1) : 1 as BigInteger }
 &lt;/body&gt;
 &lt;/html&gt;
 </code></pre>
-<h2>XML</h2>
+<h2 id="xml" tabindex="-1"><a class="header-anchor" href="#xml">XML</a></h2>
 <pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
 &lt;OAI-PMH xmlns=&quot;http://www.openarchives.org/OAI/2.0/&quot;
   xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; 
@@ -523,7 +531,7 @@ rFact = { (it &gt; 1) ? it * rFact(it - 1) : 1 as BigInteger }
   &lt;/GetRecord&gt;
 &lt;/OAI-PMH&gt;
 </code></pre>
-<h2>INI Codeblock</h2>
+<h2 id="ini-codeblock" tabindex="-1"><a class="header-anchor" href="#ini-codeblock">INI Codeblock</a></h2>
 <pre><code class="language-ini"># Automatically generated for Debian scripts. DO NOT TOUCH!
 [client]
 host     = localhost
@@ -537,7 +545,7 @@ password = &lt;YOUR MYSQL ROOT PASSWORD&gt;
 socket   = /var/run/mysqld/mysqld.sock
 basedir  = /usr
 </code></pre>
-<h2>Java Codeblock</h2>
+<h2 id="java-codeblock" tabindex="-1"><a class="header-anchor" href="#java-codeblock">Java Codeblock</a></h2>
 <pre><code class="language-java">package programas;
  
 import java.math.BigInteger;
@@ -595,7 +603,7 @@ public class RecursiveFactorial {
  
 }
 </code></pre>
-<h2>Javascript Codeblock</h2>
+<h2 id="javascript-codeblock" tabindex="-1"><a class="header-anchor" href="#javascript-codeblock">Javascript Codeblock</a></h2>
 <pre><code class="language-javascript">function fancyAlert(arg) {
   if(arg) {
     $.facebox({div:'#foo'})
@@ -604,7 +612,7 @@ public class RecursiveFactorial {
 const foo =&gt; (bar) { bar?.buzz? bar.buzz : false }
 var factorial = n =&gt; (n &lt; 2) ? 1 : n * factorial(n - 1);
 </code></pre>
-<h2>JSON Codeblock</h2>
+<h2 id="json-codeblock" tabindex="-1"><a class="header-anchor" href="#json-codeblock">JSON Codeblock</a></h2>
 <pre><code class="language-json">{
   &quot;firstName&quot;: &quot;John&quot;,
   &quot;lastName&quot;: &quot;Smith&quot;,
@@ -626,14 +634,14 @@ var factorial = n =&gt; (n &lt; 2) ? 1 : n * factorial(n - 1);
   ],
 }
 </code></pre>
-<h2>JSX Codeblock</h2>
+<h2 id="jsx-codeblock" tabindex="-1"><a class="header-anchor" href="#jsx-codeblock">JSX Codeblock</a></h2>
 <pre><code class="language-jsx">const element = (
   &lt;h1&gt;
     Hello, {formatName(user)}!
   &lt;/h1&gt;
 );
 </code></pre>
-<h2>Julia Codeblock</h2>
+<h2 id="julia-codeblock" tabindex="-1"><a class="header-anchor" href="#julia-codeblock">Julia Codeblock</a></h2>
 <pre><code class="language-julia">function fact(n::Integer)
     n &lt; 0 &amp;&amp; return zero(n)
     f = one(n)
@@ -647,7 +655,7 @@ for i in 10:20
 	println(&quot;$i -&gt; &quot;, fact(i))
 end
 </code></pre>
-<h2>Kotlin Codeblock</h2>
+<h2 id="kotlin-codeblock" tabindex="-1"><a class="header-anchor" href="#kotlin-codeblock">Kotlin Codeblock</a></h2>
 <pre><code class="language-kotlin">fun facti(n: Int) = when {
     n &lt; 0 -&gt; throw IllegalArgumentException(&quot;negative numbers not allowed&quot;)
     else  -&gt; {
@@ -669,12 +677,12 @@ fun main(args: Array&lt;String&gt;) {
     println(&quot;$n! = &quot; + factr(n))
 }
 </code></pre>
-<h2>Liquid Codeblock</h2>
+<h2 id="liquid-codeblock" tabindex="-1"><a class="header-anchor" href="#liquid-codeblock">Liquid Codeblock</a></h2>
 <pre><code class="language-liquid">{% assign beatles = &quot;John, Paul, George, Ringo&quot; | split: &quot;, &quot; %}
 
 {{ beatles | join: &quot; and &quot; }}
 </code></pre>
-<h2>Markdown Codeblock</h2>
+<h2 id="markdown-codeblock" tabindex="-1"><a class="header-anchor" href="#markdown-codeblock">Markdown Codeblock</a></h2>
 <pre><code class="language-markdown">
 # Self Referencing
 
@@ -682,7 +690,7 @@ fun main(args: Array&lt;String&gt;) {
 - FooBar
 
 </code></pre>
-<h2>Objective-C Codeblock</h2>
+<h2 id="objective-c-codeblock" tabindex="-1"><a class="header-anchor" href="#objective-c-codeblock">Objective-C Codeblock</a></h2>
 <pre><code class="language-objc">-(int)factorialRecursive:(int)operand
 {
     if( operand == 1 || operand == 0) {
@@ -715,14 +723,14 @@ int factNumber = 10;
 NSLog(@&quot;%d! = %d&quot;,factNumber,[self factorialRecursive:factNumber]);
 NSLog(@&quot;%d! = %d&quot;,factNumber,[self factorialLoop:factNumber]);
 </code></pre>
-<h2>OCaml Codeblock</h2>
+<h2 id="ocaml-codeblock" tabindex="-1"><a class="header-anchor" href="#ocaml-codeblock">OCaml Codeblock</a></h2>
 <pre><code class="language-ocaml">let factorial n =
   let rec loop i accum =
     if i &gt; n then accum
     else loop (i + 1) (accum * i)
   in loop 1 1
 </code></pre>
-<h2>Perl Codeblock</h2>
+<h2 id="perl-codeblock" tabindex="-1"><a class="header-anchor" href="#perl-codeblock">Perl Codeblock</a></h2>
 <pre><code class="language-perl">use List::Util qw(reduce);
 sub factorial
 {
@@ -730,7 +738,7 @@ sub factorial
   reduce { $a * $b } 1, 1 .. $n
 }
 </code></pre>
-<h2>Powershell Codeblock</h2>
+<h2 id="powershell-codeblock" tabindex="-1"><a class="header-anchor" href="#powershell-codeblock">Powershell Codeblock</a></h2>
 <pre><code class="language-powershell">function Get-Factorial ($x) {
     if ($x -eq 0) {
         return 1
@@ -738,7 +746,7 @@ sub factorial
     return $x * (Get-Factorial ($x - 1))
 }
 </code></pre>
-<h2>PHP Codeblock</h2>
+<h2 id="php-codeblock" tabindex="-1"><a class="header-anchor" href="#php-codeblock">PHP Codeblock</a></h2>
 <pre><code class="language-php">declare(strict_types=1);
 /*
  * This file is part of the Gws package.
@@ -804,7 +812,7 @@ final class App
     }
 }
 </code></pre>
-<h2>Python Codeblock</h2>
+<h2 id="python-codeblock" tabindex="-1"><a class="header-anchor" href="#python-codeblock">Python Codeblock</a></h2>
 <pre><code class="language-python">from itertools import (accumulate, chain)
 from operator import mul
  
@@ -819,13 +827,13 @@ print(factorials(5))
  
 # -&gt; [1, 1, 2, 6, 24, 120]
 </code></pre>
-<h2>R Codeblock</h2>
+<h2 id="r-codeblock" tabindex="-1"><a class="header-anchor" href="#r-codeblock">R Codeblock</a></h2>
 <pre><code class="language-r">fact &lt;- function(n) {
   if (n &lt;= 1) 1
   else n * Recall(n - 1)
 }
 </code></pre>
-<h2>Ruby Codeblock</h2>
+<h2 id="ruby-codeblock" tabindex="-1"><a class="header-anchor" href="#ruby-codeblock">Ruby Codeblock</a></h2>
 <pre><code class="language-ruby"># Tail-recursive
 def factorial_tail_recursive(n, prod = 1)
   n.zero? ? prod : factorial_tail_recursive(n - 1, prod * n)
@@ -840,7 +848,7 @@ Benchmark.bm(16) do |b|
   b.report('tail recursive:')  {m.times {factorial_tail_recursive(n)}}
 end
 </code></pre>
-<h2>Rust Codeblock</h2>
+<h2 id="rust-codeblock" tabindex="-1"><a class="header-anchor" href="#rust-codeblock">Rust Codeblock</a></h2>
 <pre><code class="language-rust">fn factorial_recursive (n: u64) -&gt; u64 {
     match n {
         0 =&gt; 1,
@@ -861,7 +869,7 @@ fn main () {
     }
 }
 </code></pre>
-<h2>Scala Codeblock</h2>
+<h2 id="scala-codeblock" tabindex="-1"><a class="header-anchor" href="#scala-codeblock">Scala Codeblock</a></h2>
 <pre><code class="language-scala">def factorial(n: Int) = {
   @tailrec def fact(x: Int, acc: Int): Int = {
     if (x &lt; 2) acc else fact(x - 1, acc * x)
@@ -869,7 +877,7 @@ fn main () {
   fact(n, 1)
 }
 </code></pre>
-<h2>Shell Codeblock</h2>
+<h2 id="shell-codeblock" tabindex="-1"><a class="header-anchor" href="#shell-codeblock">Shell Codeblock</a></h2>
 <pre><code class="language-sh">apt update &amp;&amp; apt upgrade
 apt --assume-yes install curl vim mc htop imagemagick git nodejs npm webp
 cp /usr/lib/foo /var/www/buz
@@ -882,17 +890,17 @@ function factorial {
   echo $f
 }
 </code></pre>
-<h2>SQL Codeblock</h2>
+<h2 id="sql-codeblock" tabindex="-1"><a class="header-anchor" href="#sql-codeblock">SQL Codeblock</a></h2>
 <pre><code class="language-sql">SELECT `user` AS `usr`, `host`, `password`, `plugin` FROM mysql.user;
 UPDATE mysql.user SET plugin='' WHERE user='root';
 FLUSH PRIVILEGES;
 </code></pre>
-<h2>Swift Codeblock</h2>
+<h2 id="swift-codeblock" tabindex="-1"><a class="header-anchor" href="#swift-codeblock">Swift Codeblock</a></h2>
 <pre><code class="language-swift">func factorial(_ n: Int) -&gt; Int {
 	return n &lt; 2 ? 1 : n * factorial(n - 1)
 }
 </code></pre>
-<h2>TypeScript Codeblock</h2>
+<h2 id="typescript-codeblock" tabindex="-1"><a class="header-anchor" href="#typescript-codeblock">TypeScript Codeblock</a></h2>
 <pre><code class="language-ts">import {
   Ref,
   UnwrapRef,
@@ -942,7 +950,7 @@ type DestructureRefs&lt;T extends object&gt; = {
     : T[K]
 }
 </code></pre>
-<h2>YAML Codeblock</h2>
+<h2 id="yaml-codeblock" tabindex="-1"><a class="header-anchor" href="#yaml-codeblock">YAML Codeblock</a></h2>
 <pre><code class="language-yaml">version: '3.8'
 
 services:
@@ -988,13 +996,13 @@ networks:
   gitea:
     external: false
 </code></pre>
-<h2>SSL Certificate with Let’s encrypt</h2>
+<h2 id="ssl-certificate-with-lets-encrypt" tabindex="-1"><a class="header-anchor" href="#ssl-certificate-with-lets-encrypt">SSL Certificate with Let’s encrypt</a></h2>
 <p>This is just a sample chapter …</p>
 <ul>
 <li><strong><a href="https://certbot.eff.org/docs/">Certbot documentation</a></strong></li>
 </ul>
 <p><a href="#custom-id">Link back to cusom id</a></p>
-<h3>Foo Bar</h3>
+<h3 id="foo-bar" tabindex="-1"><a class="header-anchor" href="#foo-bar">Foo Bar</a></h3>
 <p><strong><code>certbot renew</code> command wil not work with this!</strong></p>
 <hr class="footnotes-sep">
 <section class="footnotes">
@@ -1008,4 +1016,4 @@ networks:
 </li>
 </ol>
 </section>
-</div><div class="footer"><a class="brand-link" href="https:grandgeorg.de"><div class="brand">Grandgeorg</div><div class="brand-second">Websolutions</div></a></div></main></body></html>
+</div><div class="footer"><a class="brand-link" href="https://grandgeorg.de"><span class="brand">Grandgeorg</span><span class="brand-second">Websolutions</span></a></div></main></body></html>
