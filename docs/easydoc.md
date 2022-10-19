@@ -114,6 +114,22 @@ EASYDOC_TOC_INCLUDELEVEL=[1,2,3,4]
 ; EASYDOC_DISABLE_NAVIGATION=true
 ```
 
+```md
+
+---
+title: Docker Multi-Instanz Setup
+lang: de
+brandURL: https://culture-to-go.com
+brandName: Culture
+brandSecondary: to go
+disableBrand: true
+disableNav: true
+disableToc: true
+disableNavigation: true
+---
+
+```
+
 --------------------------------------------------------------------------------
 [EasyDoc Reference](reference.html) {.text-center}
 

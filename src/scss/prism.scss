@@ -1,5 +1,5 @@
-/* PrismJS 1.21.0
-https://prismjs.com/download.html#themes=prism-tomorrow&languages=markup+css+clike+javascript+apacheconf+bash+diff+editorconfig+elm+git+ini+javadoclike+json+json5+less+makefile+markup-templating+mongodb+nginx+php+phpdoc+php-extras+python+regex+scss+sql+stylus+typoscript+yaml&plugins=line-numbers+show-language+toolbar+copy-to-clipboard+diff-highlight */
+/* PrismJS 1.29.0
+https://prismjs.com/download.html#themes=prism-tomorrow&languages=markup+css+clike+javascript+apacheconf+bash+batch+css-extras+csv+diff+docker+editorconfig+git+graphql+ini+javadoclike+json+less+markdown+markup-templating+mongodb+nginx+php+phpdoc+php-extras+powershell+pug+python+regex+sass+scss+sql+typescript+xml-doc+yaml&plugins=line-highlight+line-numbers+show-language+command-line+toolbar+copy-to-clipboard+diff-highlight */
 /**
  * prism.js tomorrow night eighties for JavaScript, CoffeeScript, CSS and HTML
  * Based on https://github.com/chriskempson/tomorrow-theme
@@ -123,6 +123,77 @@ pre[class*="language-"] {
 	color: green;
 }
 
+pre[data-line] {
+	position: relative;
+	padding: 1em 0 1em 3em;
+}
+
+.line-highlight {
+	position: absolute;
+	left: 0;
+	right: 0;
+	padding: inherit 0;
+	margin-top: 1em; /* Same as .prism’s padding-top */
+
+	background: hsla(24, 20%, 50%,.08);
+	background: linear-gradient(to right, hsla(24, 20%, 50%,.1) 70%, hsla(24, 20%, 50%,0));
+
+	pointer-events: none;
+
+	line-height: inherit;
+	white-space: pre;
+}
+
+@media print {
+	.line-highlight {
+		/*
+		 * This will prevent browsers from replacing the background color with white.
+		 * It's necessary because the element is layered on top of the displayed code.
+		 */
+		-webkit-print-color-adjust: exact;
+		color-adjust: exact;
+	}
+}
+
+	.line-highlight:before,
+	.line-highlight[data-end]:after {
+		content: attr(data-start);
+		position: absolute;
+		top: .4em;
+		left: .6em;
+		min-width: 1em;
+		padding: 0 .5em;
+		background-color: hsla(24, 20%, 50%,.4);
+		color: hsl(24, 20%, 95%);
+		font: bold 65%/1.5 sans-serif;
+		text-align: center;
+		vertical-align: .3em;
+		border-radius: 999px;
+		text-shadow: none;
+		box-shadow: 0 1px white;
+	}
+
+	.line-highlight[data-end]:after {
+		content: attr(data-end);
+		top: auto;
+		bottom: .4em;
+	}
+
+.line-numbers .line-highlight:before,
+.line-numbers .line-highlight:after {
+	content: none;
+}
+
+pre[id].linkable-line-numbers span.line-numbers-rows {
+	pointer-events: all;
+}
+pre[id].linkable-line-numbers span.line-numbers-rows > span:before {
+	cursor: pointer;
+}
+pre[id].linkable-line-numbers span.line-numbers-rows > span:hover:before {
+	background-color: rgba(128, 128, 128, .2);
+}
+
 pre[class*="language-"].line-numbers {
 	position: relative;
 	padding-left: 3.8em;
@@ -170,32 +241,32 @@ div.code-toolbar {
 
 div.code-toolbar > .toolbar {
 	position: absolute;
-	top: 0.5rem;
-	right: 0;
-	/* transition: opacity 0.3s ease-in-out; */
-	/* opacity: 0; */
-}
-/*
-div.code-toolbar:hover > .toolbar {
+	z-index: 10;
+	top: .3em;
+	right: .2em;
+	transition: opacity 0.3s ease-in-out;
 	opacity: 1;
-} */
+}
+
+// div.code-toolbar:hover > .toolbar {
+// 	opacity: 1;
+// }
 
 /* Separate line b/c rules are thrown out if selector is invalid.
    IE11 and old Edge versions don't support :focus-within. */
-div.code-toolbar:focus-within > .toolbar {
-	opacity: 1;
-}
+// div.code-toolbar:focus-within > .toolbar {
+// 	opacity: 1;
+// }
 
-div.code-toolbar > .toolbar .toolbar-item {
+div.code-toolbar > .toolbar > .toolbar-item {
 	display: inline-block;
-	margin: 0 0.5rem 0 0;
 }
 
-div.code-toolbar > .toolbar a {
+div.code-toolbar > .toolbar > .toolbar-item > a {
 	cursor: pointer;
 }
 
-div.code-toolbar > .toolbar button {
+div.code-toolbar > .toolbar > .toolbar-item > button {
 	background: none;
 	border: 0;
 	color: inherit;
@@ -208,31 +279,81 @@ div.code-toolbar > .toolbar button {
 	-ms-user-select: none;
 }
 
-div.code-toolbar > .toolbar a,
-div.code-toolbar > .toolbar button {
+// Grandgeorg Websolutions:
+
+div.code-toolbar > .toolbar > .toolbar-item > a,
+div.code-toolbar > .toolbar > .toolbar-item > button,
+div.code-toolbar > .toolbar > .toolbar-item > span {
 	color: #bbb;
-	font-size: .8em;
-	padding: 2px .5em;
-	/* background: #f5f2f0; */
+	font-size: 0.75rem;
+	padding: 0 .5em;
+}
+
+div.code-toolbar > .toolbar > .toolbar-item > a,
+div.code-toolbar > .toolbar > .toolbar-item > button {
+	margin: 0.25rem 0.25rem 0 0;
+	padding: 0.25rem .5em;
+	color: #bbb;
+	font-size: 0.75rem;
 	background: rgba(224, 224, 224, 0.2);
 	box-shadow: 0 2px 0 0 rgba(0,0,0,0.2);
-	border-radius: 4px;
+	border-radius: 6px;
 }
 
-div.code-toolbar > .toolbar span {
-	color: #999;
-	font-size: .6em;
-	padding: 2.25px .5em;
-}
+// :Grandgeorg Websolutions
 
-div.code-toolbar > .toolbar a:hover,
-div.code-toolbar > .toolbar a:focus,
-div.code-toolbar > .toolbar button:hover,
-div.code-toolbar > .toolbar button:focus,
-div.code-toolbar > .toolbar span:hover,
-div.code-toolbar > .toolbar span:focus {
+div.code-toolbar > .toolbar > .toolbar-item > a:hover,
+div.code-toolbar > .toolbar > .toolbar-item > a:focus,
+div.code-toolbar > .toolbar > .toolbar-item > button:hover,
+div.code-toolbar > .toolbar > .toolbar-item > button:focus,
+div.code-toolbar > .toolbar > .toolbar-item > span:hover,
+div.code-toolbar > .toolbar > .toolbar-item > span:focus {
 	color: inherit;
 	text-decoration: none;
+}
+
+.command-line-prompt {
+	border-right: 1px solid #999;
+	display: block;
+	float: left;
+	font-size: 100%;
+	letter-spacing: -1px;
+	margin-right: 1em;
+	pointer-events: none;
+	text-align: right;
+
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+.command-line-prompt > span:before {
+	opacity: 0.7;
+	content: ' ';
+	display: block;
+	padding-right: 0.8em;
+}
+
+.command-line-prompt > span[data-user]:before {
+	content: "[" attr(data-user) "@" attr(data-host) "] $";
+}
+
+.command-line-prompt > span[data-user="root"]:before {
+	content: "[" attr(data-user) "@" attr(data-host) "] #";
+}
+
+.command-line-prompt > span[data-prompt]:before {
+	content: attr(data-prompt);
+}
+
+.command-line-prompt > span[data-continuation-prompt]:before {
+	content: attr(data-continuation-prompt);
+}
+
+.command-line span.token.output {
+	/* Make shell output lines a bit lighter to distinguish them from shell commands */
+	opacity: 0.7;
 }
 
 pre.diff-highlight > code .token.deleted:not(.prefix),
