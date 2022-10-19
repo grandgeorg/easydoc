@@ -5,8 +5,8 @@ const path = require("path");
 const fs = require("fs");
 const pug = require("pug");
 const fm = require("front-matter");
-// get lang/langs.js file
 const t = require("./lang/langs.js");
+const nav = require("./nav.js");
 
 const md = require("markdown-it")({
   html: true,
@@ -53,8 +53,10 @@ md.use(anchor, {
   },
 });
 md.use(require("markdown-it-table-of-contents"), {
-  includeLevel: [1, 2, 3, 4],
+  includeLevel: process.env.EASYDOC_TOC_INCLUDELEVEL ? process.env.EASYDOC_TOC_INCLUDELEVEL : [1, 2, 3, 4],
 });
+
+// console.log("Building site...");
 
 const docsDir = path.join(__dirname, "docs");
 const templateDir = path.join(__dirname, "templates");
@@ -73,19 +75,34 @@ fs.readdir(docsDir, (err, files) => {
     let toc = md.render("[[toc]]\n" + fmData.body);
     toc = toc.match(/<div class="table-of-contents">(.|\s)*?<\/div>/g)[0];
     let lang = fmData.attributes.lang ? fmData.attributes.lang : process.env.EASYDOC_LANG_FALLBACK;
-    const page = pug.renderFile(layout, {
+    let disableNavigation = fmData.attributes.disableNavigation ? Boolean(fmData.attributes.disableNavigation) : Boolean(process.env.EASYDOC_DISABLE_NAVIGATION);
+    let navigation = '';
+    if (!disableNavigation) {
+      navigation = pug.renderFile(path.join(templateDir, "nav.pug"), {
+        nav: nav.nav,
+        lang: lang,
+        t: t[lang],
+        file: file.replace(rgxExt, outExt),
+      });
+    }
+    let page = pug.renderFile(layout, {
       toc: toc,
       t: t[lang],
       content: md.render(fmData.body),
+      sitenav: navigation,
       attributes: {
         title: fmData.attributes.title ? fmData.attributes.title : process.env.EASYDOC_TITLE_FALLBACK,
         lang: lang,
         mtime: stats.mtime,
         brandURL: fmData.attributes.brandURL ? fmData.attributes.brandURL : process.env.EASYDOC_BRAND_URL,
-        brand: fmData.attributes.brand ? fmData.attributes.brand : process.env.EASYDOC_BRAND,
+        brandName: fmData.attributes.brandName ? fmData.attributes.brandName : process.env.EASYDOC_BRAND_NAME,
         brandSecondary: fmData.attributes.brandSecondary
           ? fmData.attributes.brandSecondary
           : process.env.EASYDOC_BRAND_SECONDARY,
+        disableBrand: fmData.attributes.disableBrand ? Boolean(fmData.attributes.disableBrand) : Boolean(process.env.EASYDOC_DISABLE_BRAND),
+        disableNavigation: disableNavigation,
+        disableToc: fmData.attributes.disableToc ? Boolean(fmData.attributes.disableToc) : Boolean(process.env.EASYDOC_DISABLE_TOC),
+        disableNav: fmData.attributes.disableNav ? Boolean(fmData.attributes.disableNav) : Boolean(process.env.EASYDOC_DISABLE_NAV),
       },
     });
     fs.writeFileSync(path.join(distDir, file.replace(rgxExt, outExt)), page);

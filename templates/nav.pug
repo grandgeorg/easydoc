@@ -1,0 +1,9 @@
+h3.nav-title.text-center #{t.nav}
+if nav && nav.length
+  ul
+    each item in nav
+      li
+        if item.url === file
+          a(href=item.url class="active") #{item.title}
+        else
+          a(href=item.url) #{item.title}

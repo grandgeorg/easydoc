@@ -109,6 +109,9 @@
     }
 
     function dispatchNavigation() {
+      if (!elMenuToggle) {
+        return;
+      }
       elMenuToggle.addEventListener("click", toggleBurger, false);
       state.nav.ps.subscribe(toggleNavigation());
 

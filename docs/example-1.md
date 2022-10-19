@@ -170,23 +170,23 @@ Like links, Images also have a footnote style syntax
 
 ::: tip
 
-FYI - so that you know ...
+🗩 FYI - so that you know ... 🗨 🗩 🗪 🗫 🗬 🗭 🗮 🗯 🗰 🗱 🗲
 
 :::
 
 #### info
 ::: info
-FYI - so that you know ...
+🗲 FYI - so that you know ...
 :::
 
 #### warning
 ::: warning
-*here be dragons 🦎*
+*🗱 here be dragons 🦎*
 :::
 
 #### danger
 ::: danger
-**⚠ You are going to die**
+**⚠ 🕱 You are going to die**
 
 ... just kidding!
 :::

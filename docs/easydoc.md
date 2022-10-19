@@ -54,75 +54,73 @@ npm run watch
 npm run build
 ```
 
-::: details  directory structure 
+::: details 🖿 easydoc directory structure
 
 ```filetree
-█ easydoc
-│
-├🖿 .git
-├🗁.vscode
-│ └🗏 settings.json
-├🟢 docs
-│ ├🗏 easydoc.md 📌 🖤
-│ └🗏 reference.md 🖤
-├🗁 lang
-│ └🗏 langs.js 🖍️
-├🖿 node_modules
-├🗁 src
-│└🗁 scss
-│  ├🗏 prism.scss
-│  ├🗏 style.scss
-│  └🗏 _mixins.scss
-├🗁 templates
-│ └🗏 layout.pug 🖍️
-├🔵 www
-│├🗁 css
-││ ├🗏 prism.min.css
-││ └🗏 style.min.css
-│├🗁 fonts
-││ └🗏 EncodeSans.woff2
-│├🟢 img
-││ ├🗏 easydoc-banner.png 🖤
-││ └🗏 logo.png 🖤
-│├🗁 js
-││ ├🗏 app.js
-││ ├🗏 clipboard.min.js
-││ ├🗏 flowchart.min.js
-││ ├🗏 prism.js
-││ └🗏 raphael.min.js
-│├🗏 easydoc.html 📌
-│└🗏 reference.html
-├🗏 .env ✏️
-├🗏 .gitignore
-├🗏 index.js 🖍️
-├🗏 nodemon.json
-├🗏 package.json
-└🗏 package-lock.json
 
-🟢 input directories. Start creating files here.  
-🔵 output directory  
-✏️ configure EasyDoc  
-🖍️ change EasyDoc  
-📌 it's me
-🖤 Remove these documentation files for a blank start.
+🗁 easydoc
+ ├🗀 .git
+ ├🗀 .vscode
+ ├🟢 docs
+ │ ├🗏 easydoc.md 📌 🖤
+ │ └🗏 reference.md 🖤
+ ├🗀 lang 🖊️
+ ├🗀 node_modules
+ ├🗀 src 🖊️
+ ├🗀 templates 🖊️
+ ├🔵 www
+ │ ├🗀 css
+ │ ├🗀 fonts
+ │ ├🟢 img
+ │ │ └🗏 easydoc-banner.png 🖤
+ │ ├🗀 js 🖊️
+ │ ├🗏 easydoc.html 📌
+ │ └🗏 reference.html
+ ├🗏 .env ✏️
+ ├🗏 .gitignore
+ ├🗏 index.js 🖊️
+ ├🗏 nodemon.jsons
+ ├🗏 package.json
+ └🗏 package-lock.json
+
+╭──────────────────────────═━┈💬┈━═──────────────────────────╮
+│  🟢 input directories. Start creating files here.          │
+│  🔵 output directory. Html files will be generated here.   │
+│  ✏️ configure EasyDoc                                      │
+│  🖊️ change EasyDoc                                         │
+│  📌 It's me. Your reading this document right now.         │
+│  🖤 Remove these documentation files for a blank start.    │
+╰──────────────────────────═━┈💬┈━═──────────────────────────╯
+
 ```
-
-hier auch
 
 :::
 
 ## Configuration
 
+### 📜 ```.env```
+
+```ini
+EASYDOC_LANG_FALLBACK=en
+EASYDOC_TITLE_FALLBACK=Documentation
+
+EASYDOC_BRAND_URL=https://grandgeorg.de
+EASYDOC_BRAND_NAME=Grandgeorg
+EASYDOC_BRAND_SECONDARY=Websolutions
+
+EASYDOC_TOC_INCLUDELEVEL=[1,2,3,4]
+
+; EASYDOC_DISABLE_BRAND=true
+; EASYDOC_DISABLE_NAVIGATION=true
+```
+
+--------------------------------------------------------------------------------
+[EasyDoc Reference](reference.html) {.text-center}
+
 --------------------------------------------------------------------------------
 
 
-[EasyDoc Reference](reference.html) {.text-center}
 
-
-```bash
-```
-
-hier Animiertes Gif einfügen...
 
 ### Workflow
 

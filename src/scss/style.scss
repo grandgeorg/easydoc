@@ -425,6 +425,50 @@ a code {
       }
     }
   }
+
+  // sitenav
+  .sitenav {
+    padding: 1.5rem 0;
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      li {
+        margin-bottom: 0.75rem;
+        a {
+          display: inline-block;
+          width: 100%;
+          padding: 0.4rem 0.5rem;
+          font-size: 0.875rem;
+          font-weight: 400;
+          line-height: 1;
+          text-align: center;
+          text-decoration: none;
+          color: var(--clr-base-l250);
+          background-color: var(--clr-base-d400);
+          border-radius: 6px;
+          border: 1px solid var(--clr-base-d300);
+          transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+          &:hover,
+          &.active:hover {
+            background-color: var(--clr-base);
+            border-color: var(--clr-base-l100);
+            color: var(--clr-base-l500);
+          }
+          &:active {
+            background-color: var(--clr-base);
+            color: var(--clr-base-l500);
+          }
+          &.active {
+            background-color: var(--clr-base-d200);
+            border: 1px solid var(--clr-base-d100);
+            color: var(--clr-base-l250-inv);
+          }
+        }
+      }
+    }
+  }
+
 }
 
 // contents
@@ -432,6 +476,9 @@ a code {
   display: block;
   padding-top: $navbar-height + 24px;
   transition: margin 0.5s ease-out;
+}
+body>.page:first-child {
+  padding-top: 2rem;
 }
 .mtime {
   max-width: 1200px;
@@ -468,6 +515,9 @@ a code {
     // color: #2085d8;
     text-decoration: underline;
   }
+  a.brand-link:hover {
+    text-decoration: none;
+  }
   h1 + hr {
     margin-top: 0.25rem;
   }
@@ -487,6 +537,15 @@ a code {
   h6 > a {
     color: inherit;
     text-decoration: none;
+    &:hover {
+      text-decoration: none;
+    }
+    code {
+      color: #dd6efd;
+      &:hover {
+        text-decoration: none;
+      }
+    }
   }
   details {
     margin: 1.5rem auto 1rem auto;
@@ -507,6 +566,9 @@ a code {
     font-size: clamp(0.75rem, 2.6667vw, 1rem);
     margin: 0 -1rem;
     // border-bottom: 1px solid var(--clr-base-d400);
+    &:hover {
+      background-color: var(--clr-base-d480);
+    }
   }
   details[open] {
     // background-color: var(--clr-base-d300);
@@ -599,6 +661,9 @@ a code {
   padding: 0.5rem 1rem;
   font-size: 1rem;
   // font-size: clamp(0.75rem, 1.6667vw, 1rem);
+  &:hover {
+    text-decoration: none;
+  }
 }
 
 .logo {
