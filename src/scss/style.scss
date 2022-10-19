@@ -530,6 +530,16 @@ a code {
   pre code {
     white-space: pre-wrap;
   }
+
+  // language specific, language: filetree
+  code[class*=language-filetree],
+  pre[class*=language-filetree] {
+    color: #c9e1ff;
+    font-size: 0.85rem;
+    line-height: 1.25;
+  }
+
+
 }
 .content > h1:first-child {
   margin: 0;

@@ -23,7 +23,7 @@ title: EasyDoc
 
 ---
 
-## Features 123
+## Features
 
 ::: details Generates completely offline HTML Website.
 -	You can just open the resulting HTML-Files in the ```www``` directory locally in a browser. 
@@ -54,7 +54,67 @@ npm run watch
 npm run build
 ```
 
----
+::: details  directory structure 
+
+```filetree
+█ easydoc
+│
+├🖿 .git
+├🗁.vscode
+│ └🗏 settings.json
+├🟢 docs
+│ ├🗏 easydoc.md 📌 🖤
+│ └🗏 reference.md 🖤
+├🗁 lang
+│ └🗏 langs.js 🖍️
+├🖿 node_modules
+├🗁 src
+│└🗁 scss
+│  ├🗏 prism.scss
+│  ├🗏 style.scss
+│  └🗏 _mixins.scss
+├🗁 templates
+│ └🗏 layout.pug 🖍️
+├🔵 www
+│├🗁 css
+││ ├🗏 prism.min.css
+││ └🗏 style.min.css
+│├🗁 fonts
+││ └🗏 EncodeSans.woff2
+│├🟢 img
+││ ├🗏 easydoc-banner.png 🖤
+││ └🗏 logo.png 🖤
+│├🗁 js
+││ ├🗏 app.js
+││ ├🗏 clipboard.min.js
+││ ├🗏 flowchart.min.js
+││ ├🗏 prism.js
+││ └🗏 raphael.min.js
+│├🗏 easydoc.html 📌
+│└🗏 reference.html
+├🗏 .env ✏️
+├🗏 .gitignore
+├🗏 index.js 🖍️
+├🗏 nodemon.json
+├🗏 package.json
+└🗏 package-lock.json
+
+🟢 input directories. Start creating files here.  
+🔵 output directory  
+✏️ configure EasyDoc  
+🖍️ change EasyDoc  
+📌 it's me
+🖤 Remove these documentation files for a blank start.
+```
+
+hier auch
+
+:::
+
+## Configuration
+
+--------------------------------------------------------------------------------
+
 
 [EasyDoc Reference](reference.html) {.text-center}
 
