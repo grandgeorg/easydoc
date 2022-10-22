@@ -400,6 +400,9 @@
           state.meta.tags.forEach(tag => {
             const tagButton = document.createElement('button');
             tagButton.setAttribute('class', 'tag');
+            if (state.selectedTags.includes(tag.name)) {
+              tagButton.classList.add('active');
+            }
             // tagButton.setAttribute('type', 'button');
             tagButton.setAttribute('data-tag', tag.name);
             tagButton.innerHTML = `<span class="tag-name">${tag.name}</span><span class="tag-count">${tag.count}</span>`;
@@ -417,7 +420,6 @@
               }
               updateTagNavigation();
             });
-
             tagCloud.appendChild(tagButton);
           });
 
@@ -428,7 +430,10 @@
             const pageCard = document.createElement('div');
             pageCard.setAttribute('class', 'page-card');
             pageCard.setAttribute('id', 'page-' + result.file);
-            pageCard.innerHTML = `<a href="${result.file}" title="${result.file}" class="page-card-title">${result.title}</a>`;
+            pageCard.innerHTML = `
+              <a href="${result.file}" class="page-card-title">${result.title}</a>
+              <a href="${result.file}" class="page-card-filename">${result.file}</a>
+            `;
 
             if (result.tags && Array.isArray(result.tags) && result.tags.length > 0) {
 
@@ -438,6 +443,10 @@
                 const tagElement = document.createElement('button');
                 tagElement.dataset.tag = tag;
                 tagElement.setAttribute('class', 'tag');
+                // if state.selectedTags.includes(tag) add class active
+                if (state.selectedTags.includes(tag)) {
+                  tagElement.classList.add('active');
+                }
                 tagElement.innerHTML = `<svg width="20" height="20" class="bi" fill="currentColor">
                 <use xlink:href="assets/bootstrap-icons.svg#tag"></use>
                 </svg>` + tag;
@@ -482,7 +491,8 @@
           modalBodyContent.appendChild(tagCloudDetails);
           modalBodyContent.appendChild(tagNavigationDetails);
 
-          addModalDialog(modalBodyContent, state.meta.t[document.documentElement.lang].tagNav)
+          addModalDialog(modalBodyContent, state.meta.t[document.documentElement.lang].tagNav);
+          updateTagNavigation();
         });
       }
     }

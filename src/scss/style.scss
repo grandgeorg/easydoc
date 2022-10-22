@@ -34,6 +34,7 @@ $navbar-height: 41px;
   --clr-base-l500: #fff;
   --clr-base-d100: #465d80;
   --clr-base-d200: #364a69;
+  --clr-base-d230: #4c5664;
   --clr-base-d250: #353d48;
   --clr-base-d260: #272f3a;
   --clr-base-d300: #1f2733;
@@ -1021,16 +1022,29 @@ body>.page:first-child {
     }
     .page-card-title {
       display: block;
-      padding: 0 0 0.85rem;
+      padding: 0 0 0.4rem;
       text-align: center;
       font-size: 1rem;
       font-weight: 600;
       color: var(--clr-base-l200);
       line-height: 1;
       text-decoration: none;
-      border-bottom: 1px solid var(--clr-base-d300);
+      // border-bottom: 1px solid var(--clr-base-d300);
       &:hover {
         color: var(--clr-base-l500);
+      }
+    }
+    a.page-card-filename {
+      display: block;
+      border-bottom: 1px solid var(--clr-base-d300);
+      text-decoration: none;
+      text-align: center;
+      font-size: 0.85rem;
+      font-weight: 600;
+      padding: 0 0 .85rem;
+      color: var(--clr-base-d230);
+      &:hover {
+        color: var(--clr-base-l300);
       }
     }
     .tags {

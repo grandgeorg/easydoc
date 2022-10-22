@@ -82,6 +82,7 @@ fs.readdir(docsDir, (err, files) => {
     let disableNavigation = fmData.attributes.disableNavigation ? Boolean(fmData.attributes.disableNavigation) : Boolean(process.env.EASYDOC_DISABLE_NAVIGATION);
     let fileOut = file.replace(rgxExt, outExt);
     let tags = fmData.attributes.tags ? Array.isArray(fmData.attributes.tags) ? fmData.attributes.tags : [fmData.attributes.tags] : [];
+    // tags = tags.map((tag) => tag.toLowerCase());
     // iterate over tags
     tags.forEach((tag) => {
       // check if tag exists in tagCloud
@@ -109,6 +110,7 @@ fs.readdir(docsDir, (err, files) => {
     });
     let navigation = '';
     if (!disableNavigation) {
+      // console.log("Navigation rendered with t ", t[lang], " for file ", fileOut);
       navigation = pug.renderFile(path.join(templateDir, "nav.pug"), {
         nav: nav.nav,
         lang: lang,
@@ -139,6 +141,16 @@ fs.readdir(docsDir, (err, files) => {
     fs.writeFileSync(path.join(distDir, fileOut), page);
   });
 
+  // sort tagCloud alphabetically
+  tagCloud.sort((a, b) => {
+    if (a.name < b.name) {
+      return -1;
+    }
+    if (a.name > b.name) {
+      return 1;
+    }
+    return 0;
+  });
   // write meta.js
   fs.writeFileSync(path.join(distDir, "meta.js"), "const easydocMeta = " +
     "{ pages: " + JSON.stringify(meta) +
