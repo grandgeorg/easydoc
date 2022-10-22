@@ -1,5 +1,5 @@
 ---
-tags: markdown, git, gitea
+tags: [markdown, git, gitea]
 title: Sample Markdown
 lang: en
 created: '2021-10-31 10:20:27'

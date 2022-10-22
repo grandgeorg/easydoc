@@ -65,6 +65,9 @@ const distDir = path.join(__dirname, "www");
 const rgxExt = /\.(?:md)$/;
 const outExt = ".html";
 
+const meta = []; // TODO: rename to pages
+const tagCloud = [];
+
 fs.readdir(docsDir, (err, files) => {
   if (err) {
     return console.log("Unable to scan directory: " + err);
@@ -75,14 +78,42 @@ fs.readdir(docsDir, (err, files) => {
     let toc = md.render("[[toc]]\n" + fmData.body);
     toc = toc.match(/<div class="table-of-contents">(.|\s)*?<\/div>/g)[0];
     let lang = fmData.attributes.lang ? fmData.attributes.lang : process.env.EASYDOC_LANG_FALLBACK;
+    let title = fmData.attributes.title ? fmData.attributes.title : process.env.EASYDOC_TITLE_FALLBACK;
     let disableNavigation = fmData.attributes.disableNavigation ? Boolean(fmData.attributes.disableNavigation) : Boolean(process.env.EASYDOC_DISABLE_NAVIGATION);
+    let fileOut = file.replace(rgxExt, outExt);
+    let tags = fmData.attributes.tags ? Array.isArray(fmData.attributes.tags) ? fmData.attributes.tags : [fmData.attributes.tags] : [];
+    // iterate over tags
+    tags.forEach((tag) => {
+      // check if tag exists in tagCloud
+      let tagExists = tagCloud.find((item) => item.name === tag);
+      if (tagExists) {
+        // if tag exists, increment count
+        tagExists.count++;
+        tagExists.files.push(fileOut);
+      } else {
+        // if tag does not exist, add it to tagCloud
+        tagCloud.push({
+          name: tag,
+          count: 1,
+          files: [fileOut],
+        });
+      }
+    });
+    meta.push({
+      title: title,
+      lang: lang,
+      date: stats.mtime,
+      file: fileOut,
+      // toc: toc,
+      tags: tags,
+    });
     let navigation = '';
     if (!disableNavigation) {
       navigation = pug.renderFile(path.join(templateDir, "nav.pug"), {
         nav: nav.nav,
         lang: lang,
         t: t[lang],
-        file: file.replace(rgxExt, outExt),
+        file: fileOut,
       });
     }
     let page = pug.renderFile(layout, {
@@ -91,7 +122,7 @@ fs.readdir(docsDir, (err, files) => {
       content: md.render(fmData.body),
       sitenav: navigation,
       attributes: {
-        title: fmData.attributes.title ? fmData.attributes.title : process.env.EASYDOC_TITLE_FALLBACK,
+        title: title,
         lang: lang,
         mtime: stats.mtime,
         brandURL: fmData.attributes.brandURL ? fmData.attributes.brandURL : process.env.EASYDOC_BRAND_URL,
@@ -105,6 +136,16 @@ fs.readdir(docsDir, (err, files) => {
         disableNav: fmData.attributes.disableNav ? Boolean(fmData.attributes.disableNav) : Boolean(process.env.EASYDOC_DISABLE_NAV),
       },
     });
-    fs.writeFileSync(path.join(distDir, file.replace(rgxExt, outExt)), page);
+    fs.writeFileSync(path.join(distDir, fileOut), page);
   });
+
+  // write meta.js
+  fs.writeFileSync(path.join(distDir, "meta.js"), "const easydocMeta = " +
+    "{ pages: " + JSON.stringify(meta) +
+    ", t: " + JSON.stringify(t) +
+    ", tags: " + JSON.stringify(tagCloud) +
+    " };"
+  );
+
+
 });

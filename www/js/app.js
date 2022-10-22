@@ -16,13 +16,17 @@
         isOpen: false,
         ps: pubsub(),
         ignoreClickOutsideClass: ["ignore_click_outside"]
-      }
+      },
+      meta: easydocMeta,
+      selectedTags: [],
     };
 
     const elMenuToggle = document.querySelector(".burger");
     const elMain = document.querySelector("main");
     const elNavigationDrawer = document.querySelector(".navigation-drawer");
     const elContainer = document.querySelector(".content");
+    const searchInput = document.querySelector("#search-input");
+    const searchButton = document.querySelector("#search-button");
     const toggleBurger = burger();
 
     function pubsub() {
@@ -35,6 +39,9 @@
           listeners.forEach(function (listener) {
             listener(msg);
           });
+        },
+        purgeListeners: function () {
+          listeners = [];
         }
       });
     }
@@ -261,36 +268,196 @@
           lightBox.setAttribute('class', 'lightbox');
           lightBox.appendChild(img);
           lightBox.appendChild(caption);
-          addModal(lightBox);
+          addModal(lightBox, true);
         });
       });
     }
 
-    function addModal(content) {
+    function addModal(content, addClose) {
 
       const modal = document.createElement('div');
-      modal.setAttribute('class', 'modal open');
+      if (addClose) {
+        modal.setAttribute('class', 'modal open cp');
+      } else {
+        modal.setAttribute('class', 'modal open');
+      }
+      modal.appendChild(content);
       document.body.appendChild(modal);
 
-      const modalContent = document.createElement('div');
-      modalContent.setAttribute('class', 'modal-content');
-      modalContent.appendChild(content);
-      modal.appendChild(modalContent);
+      const closeModal = () => {
+        modal.classList.add('willclose');
+        // remove modal after animation
+        setTimeout(() => {
+          // document.body.removeChild(modal);
+          modal.remove();
+        }, 250);
+      };
 
       setTimeout(function () {
         modal.classList.remove('open');
-        modal.addEventListener('click', function (e) {
-          e.preventDefault();
-          e.stopPropagation();
-          modal.classList.add('willclose');
-          // remove modal after animation
-          setTimeout(function () {
-              modal.remove();
-          }, 250);
+        if (addClose) {
+          modal.addEventListener('click', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            closeModal();
+          });
+        }
+        // close on esacpe
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape') {
+            closeModal();
+          }
+        });
+        // close on closeModal event
+        document.addEventListener('closeModal', function (e) {
+          closeModal();
         });
       }, 250);
 
     }
+
+    function addModalDialog(bodyContent, headerContent) {
+
+      const dialog = document.createElement('div');
+      dialog.setAttribute('class', 'modal-dialog');
+      dialog.setAttribute('role', 'dialog');
+      dialog.setAttribute('aria-modal', 'true');
+      dialog.setAttribute('aria-labelledby', 'modal-title');
+
+      const content = document.createElement('div');
+      content.setAttribute('class', 'modal-content');
+
+      const header = document.createElement('div');
+      header.setAttribute('class', 'modal-header');
+
+      const dialogTitle = document.createElement('h2');
+      dialogTitle.setAttribute('id', 'modal-title');
+      dialogTitle.setAttribute('class', 'modal-title');
+      dialogTitle.innerHTML = headerContent;
+
+      const close = document.createElement('button');
+      close.setAttribute('type', 'button');
+      close.setAttribute('class', 'modal-close');
+      close.setAttribute('data-dismiss', 'modal');
+      close.setAttribute('aria-label', 'Close');
+      close.innerHTML = `<svg width="20" height="20" class="bi" fill="currentColor">
+      <use xlink:href="assets/bootstrap-icons.svg#x"></use>
+      </svg>`;
+      close.addEventListener('click', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        const eventClose = new Event("closeModal", {bubbles: true});
+        close.dispatchEvent(eventClose);
+      });
+
+      const body = document.createElement('div');
+      body.setAttribute('class', 'modal-body');
+      body.appendChild(bodyContent);
+
+
+      header.appendChild(dialogTitle);
+      header.appendChild(close);
+      content.appendChild(header);
+      content.appendChild(body);
+      dialog.appendChild(content);
+
+      addModal(dialog, false);
+
+    }
+
+    function registerTagNavigation() {
+
+      const openButton = document.querySelector('#open-tag-navigation');
+      if (openButton) {
+        openButton.addEventListener('click', function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          // console.log(state.meta.tags);
+          const tagNavigation = document.createElement('div');
+          tagNavigation.setAttribute('class', 'tag-navigation');
+
+          state.meta.pages.forEach(result => {
+
+            const pageCard = document.createElement('div');
+            pageCard.setAttribute('class', 'page-card');
+            pageCard.setAttribute('id', 'page-' + result.file);
+            pageCard.innerHTML = `<a href="${result.file}" title="${result.file}" class="page-card-title">${result.title}</a>`;
+
+            if (result.tags && Array.isArray(result.tags) && result.tags.length > 0) {
+
+              // const tagsTitle = document.createElement('div');
+              // tagsTitle.setAttribute('class', 'page-tags');
+              // tagsTitle.innerHTML = `<svg width="20" height="20" class="bi" fill="currentColor">
+              // <use xlink:href="assets/bootstrap-icons.svg#tags-fill"></use>
+              // </svg>`;
+              // pageCard.appendChild(tagsTitle);
+
+              const tags = document.createElement('div');
+              tags.setAttribute('class', 'tags');
+              result.tags.forEach(tag => {
+                const tagElement = document.createElement('div');
+                tagElement.dataset.tag = tag;
+                tagElement.setAttribute('class', 'tag');
+                tagElement.innerHTML = `<svg width="20" height="20" class="bi" fill="currentColor">
+                <use xlink:href="assets/bootstrap-icons.svg#tag"></use>
+                </svg>` + tag;
+                // add click event
+                tagElement.addEventListener('click', function (e) {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  // tagElement.classList.toggle('active');
+                  // select all elemants with data-tag == tag
+                  const tagElements = document.querySelectorAll(`[data-tag="${tag}"]`);
+                  tagElements.forEach(tagElement => {
+                    tagElement.classList.toggle('active');
+                  });
+                  if (tagElement.classList.contains('active')) {
+                    state.selectedTags.push(tag);
+                  } else {
+                    state.selectedTags = state.selectedTags.filter(item => item !== tag);
+                  }
+                  updateTagNavigation();
+                  // updateTagFilter();
+                });
+                tags.appendChild(tagElement);
+              });
+              pageCard.appendChild(tags);
+            }
+
+            tagNavigation.appendChild(pageCard);
+          });
+          addModalDialog(tagNavigation, state.meta.t[document.documentElement.lang].tagNav)
+        });
+      }
+    }
+
+    function updateTagNavigation() {
+      // console.log(state.selectedTags);
+      // iterate over state.pages
+      state.meta.pages.forEach(page => {
+        const pageCard = document.getElementById('page-' + page.file);
+        if (state.selectedTags.length === 0) {
+          pageCard.classList.remove('hidden');
+        } else {
+          state.meta.tags.forEach(tag => {
+            if (
+              state.selectedTags.includes(tag.name) &&
+              tag.files.includes(page.file) &&
+              pageCard.classList.contains('hidden')
+            ) {
+              pageCard.classList.remove('hidden');
+            } else if (
+              state.selectedTags.includes(tag.name) &&
+              !tag.files.includes(page.file) &&
+              !pageCard.classList.contains('hidden')
+            ) {
+              pageCard.classList.add('hidden');
+            }
+          });
+        }
+      });
+    }
+
 
 
     function main() {
@@ -298,6 +465,7 @@
       addFlowcharts();
       addLightBox();
       dispatchNavigation();
+      registerTagNavigation();
     }
 
     main();

@@ -11,6 +11,7 @@ html(lang=attributes.lang)
     script(src="js/raphael.min.js")
     script(src="js/flowchart.min.js")
     script(src="js/app.js")
+    script(src="meta.js")
   body
     if !attributes.disableNavigation
       .navbar
@@ -21,6 +22,9 @@ html(lang=attributes.lang)
             if attributes.brandSecondary
               span.brand-second #{attributes.brandSecondary}
         .navbar__controls
+          button.btn-tag-nav#open-tag-navigation(aria-label="open tag navigation")
+            svg(width="20" height="20" class="bi" fill="currentColor")
+              use(xlink:href="assets/bootstrap-icons.svg#tags")
           button.burger(aria-expanded="false" aria-label="navigation menu")
             span.burger__line.burger__line-1(aria-hidden="true" focusable="false")
             span.burger__line.burger__line-2(aria-hidden="true" focusable="false")

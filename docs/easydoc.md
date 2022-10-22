@@ -98,7 +98,7 @@ npm run build
 
 ## Configuration
 
-### 📜 ```.env```
+### 📜 ```.env``` asd
 
 ```ini
 EASYDOC_LANG_FALLBACK=en
@@ -114,7 +114,7 @@ EASYDOC_TOC_INCLUDELEVEL=[1,2,3,4]
 ; EASYDOC_DISABLE_NAVIGATION=true
 ```
 
-```md
+```frontmatter
 
 ---
 title: Docker Multi-Instanz Setup
@@ -123,7 +123,7 @@ brandURL: https://culture-to-go.com
 brandName: Culture
 brandSecondary: to go
 disableBrand: true
-disableNav: true
+disableNav: trueasd
 disableToc: true
 disableNavigation: true
 ---
@@ -136,7 +136,7 @@ disableNavigation: true
 --------------------------------------------------------------------------------
 
 
-
+![](img/001.png)
 
 ### Workflow
 

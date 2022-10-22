@@ -1,12 +1,14 @@
 // languages file for node index.js
 // Path: lang/langs.js
 exports.en = {
-  "toc": "Table of Contents",
   "mtime": "Last Update",
+  "toc": "Table of Contents",
   "nav": "Navigation",
+  "tagNav": "Tag Navigation",
 };
 exports.de = {
-  "toc": "Inhaltsverzeichnis",
   "mtime": "letzte Aktualisierung",
+  "toc": "Inhaltsverzeichnis",
   "nav": "Navigation",
+  "tagNav": "Tag Navigation",
 };
