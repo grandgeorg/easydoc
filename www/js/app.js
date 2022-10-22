@@ -350,6 +350,13 @@
         close.dispatchEvent(eventClose);
       });
 
+      document.body.addEventListener("click", function (e) {
+        if (clickOutsideModalDialog(e, dialog)) {
+          const eventClose = new Event("closeModal", {bubbles: true});
+          close.dispatchEvent(eventClose);
+        }
+      });
+
       const body = document.createElement('div');
       body.setAttribute('class', 'modal-body');
       body.appendChild(bodyContent);
@@ -363,6 +370,18 @@
 
       addModal(dialog, false);
 
+    }
+
+    function clickOutsideModalDialog(event, elements, ignoreClass) {
+      if (!Array.isArray(elements)) {
+        elements = [elements];
+      }
+      if (ignoreClass && event.target.classList.contains(ignoreClass)) {
+        return false;
+      }
+      return !elements.some(function (element) {
+        return event.target === element || element.contains(event.target);
+      });
     }
 
     function registerTagNavigation() {
