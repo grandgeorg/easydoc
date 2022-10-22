@@ -1,5 +1,10 @@
 ---
 title: EasyDoc
+tags:
+  - markdown
+  - javascript
+  - documentation
+  - tool
 ---
 
 # EasyDoc {.text-center}

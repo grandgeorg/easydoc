@@ -372,10 +372,38 @@
         openButton.addEventListener('click', function (e) {
           e.preventDefault();
           e.stopPropagation();
-          // console.log(state.meta.tags);
+
+          const modalBodyContent = document.createElement('div');
+          modalBodyContent.setAttribute('class', 'modal-body-content');
+
+          const tagCloud = document.createElement('div');
+          tagCloud.setAttribute('class', 'tag-cloud');
+          state.meta.tags.forEach(tag => {
+            const tagButton = document.createElement('button');
+            tagButton.setAttribute('class', 'tag');
+            // tagButton.setAttribute('type', 'button');
+            tagButton.setAttribute('data-tag', tag.name);
+            tagButton.innerHTML = `<span class="tag-name">${tag.name}</span><span class="tag-count">${tag.count}</span>`;
+            tagButton.addEventListener('click', function (e) {
+              e.preventDefault();
+              e.stopPropagation();
+              const tagElements = document.querySelectorAll(`[data-tag="${tag.name}"]`);
+              tagElements.forEach(tagElement => {
+                tagElement.classList.toggle('active');
+              });
+              if (tagButton.classList.contains('active')) {
+                state.selectedTags.push(tag.name);
+              } else {
+                state.selectedTags = state.selectedTags.filter(item => item !== tag.name);
+              }
+              updateTagNavigation();
+            });
+
+            tagCloud.appendChild(tagButton);
+          });
+
           const tagNavigation = document.createElement('div');
           tagNavigation.setAttribute('class', 'tag-navigation');
-
           state.meta.pages.forEach(result => {
 
             const pageCard = document.createElement('div');
@@ -385,17 +413,10 @@
 
             if (result.tags && Array.isArray(result.tags) && result.tags.length > 0) {
 
-              // const tagsTitle = document.createElement('div');
-              // tagsTitle.setAttribute('class', 'page-tags');
-              // tagsTitle.innerHTML = `<svg width="20" height="20" class="bi" fill="currentColor">
-              // <use xlink:href="assets/bootstrap-icons.svg#tags-fill"></use>
-              // </svg>`;
-              // pageCard.appendChild(tagsTitle);
-
               const tags = document.createElement('div');
               tags.setAttribute('class', 'tags');
               result.tags.forEach(tag => {
-                const tagElement = document.createElement('div');
+                const tagElement = document.createElement('button');
                 tagElement.dataset.tag = tag;
                 tagElement.setAttribute('class', 'tag');
                 tagElement.innerHTML = `<svg width="20" height="20" class="bi" fill="currentColor">
@@ -426,7 +447,23 @@
 
             tagNavigation.appendChild(pageCard);
           });
-          addModalDialog(tagNavigation, state.meta.t[document.documentElement.lang].tagNav)
+
+          const tagNavigationDetails = document.createElement('details');
+          tagNavigationDetails.setAttribute('class', 'tag-navigation-details');
+          tagNavigationDetails.setAttribute('open', 'open');
+          tagNavigationDetails.innerHTML = `<summary>Pages</summary>`;
+          tagNavigationDetails.appendChild(tagNavigation);
+
+          const tagCloudDetails = document.createElement('details');
+          tagCloudDetails.setAttribute('class', 'tag-cloud-details');
+          tagCloudDetails.setAttribute('open', 'open');
+          tagCloudDetails.innerHTML = `<summary>Tags</summary>`;
+          tagCloudDetails.appendChild(tagCloud);
+
+          modalBodyContent.appendChild(tagCloudDetails);
+          modalBodyContent.appendChild(tagNavigationDetails);
+
+          addModalDialog(modalBodyContent, state.meta.t[document.documentElement.lang].tagNav)
         });
       }
     }
@@ -439,19 +476,25 @@
         if (state.selectedTags.length === 0) {
           pageCard.classList.remove('hidden');
         } else {
+          let hidden = [];
           state.meta.tags.forEach(tag => {
             if (
               state.selectedTags.includes(tag.name) &&
               tag.files.includes(page.file) &&
+              !hidden.includes(page.file) &&
               pageCard.classList.contains('hidden')
             ) {
               pageCard.classList.remove('hidden');
+              // console.log('with', tag.name, 'show', page.file);
             } else if (
               state.selectedTags.includes(tag.name) &&
-              !tag.files.includes(page.file) &&
-              !pageCard.classList.contains('hidden')
+              !tag.files.includes(page.file)
             ) {
-              pageCard.classList.add('hidden');
+              hidden.push(page.file);
+              if (!pageCard.classList.contains('hidden')) {
+                pageCard.classList.add('hidden');
+                // console.log('with', tag.name, 'hide', page.file);
+              }
             }
           });
         }
