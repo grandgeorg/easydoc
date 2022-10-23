@@ -65,8 +65,9 @@ const distDir = path.join(__dirname, "www");
 const rgxExt = /\.(?:md)$/;
 const outExt = ".html";
 
-const meta = []; // TODO: rename to pages
+const pages = [];
 const tagCloud = [];
+let notLowercaseTags = [];
 
 fs.readdir(docsDir, (err, files) => {
   if (err) {
@@ -82,25 +83,26 @@ fs.readdir(docsDir, (err, files) => {
     let disableNavigation = fmData.attributes.disableNavigation ? Boolean(fmData.attributes.disableNavigation) : Boolean(process.env.EASYDOC_DISABLE_NAVIGATION);
     let fileOut = file.replace(rgxExt, outExt);
     let tags = fmData.attributes.tags ? Array.isArray(fmData.attributes.tags) ? fmData.attributes.tags : [fmData.attributes.tags] : [];
-    // tags = tags.map((tag) => tag.toLowerCase());
-    // iterate over tags
+
     tags.forEach((tag) => {
+      if (tag !== tag.toLowerCase()) {
+        notLowercaseTags.push(tag);
+      }
       // check if tag exists in tagCloud
       let tagExists = tagCloud.find((item) => item.name === tag);
       if (tagExists) {
-        // if tag exists, increment count
         tagExists.count++;
         tagExists.files.push(fileOut);
       } else {
-        // if tag does not exist, add it to tagCloud
         tagCloud.push({
           name: tag,
+          lcname: tag.toLowerCase(),
           count: 1,
-          files: [fileOut],
+          files: [fileOut]
         });
       }
     });
-    meta.push({
+    pages.push({
       title: title,
       lang: lang,
       date: stats.mtime,
@@ -141,23 +143,63 @@ fs.readdir(docsDir, (err, files) => {
     fs.writeFileSync(path.join(distDir, fileOut), page);
   });
 
+  if (notLowercaseTags.length > 0) {
+    notLowercaseTags.forEach((nlcName) => {
+      let nlcTag = tagCloud.find((item) => item.name === nlcName);
+      let lcTag = tagCloud.find((item) => item.name === nlcName.toLowerCase());
+      if (lcTag) {
+        let count = 0;
+        nlcTag.files.forEach((file) => {
+          if (!lcTag.files.includes(file)) {
+            lcTag.files.push(file);
+            count++;
+          }
+        });
+        // add nlcTag count to lcTag count
+        lcTag.count += count;
+        // add lcTag files to nlcTag files
+        nlcTag.files = lcTag.files;
+        // add lcTag count to nlcTag count
+        nlcTag.count = lcTag.count;
+      }
+      notLowercaseTags.forEach((nlcName2) => {
+        if (nlcName !== nlcName2 && nlcName.toLowerCase() === nlcName2.toLowerCase()) {
+          // console.log("Duplicate tag: " + nlcName);
+          let nlcTag2 = tagCloud.find((item) => item.name === nlcName2);
+          let count = 0;
+          nlcTag.files.forEach((file) => {
+            if (!nlcTag2.files.includes(file)) {
+              nlcTag2.files.push(file);
+              count++;
+            }
+          });
+          // add nlcTag count to nlcTag2 count
+          nlcTag2.count += count;
+          // add nlcTag2 files to nlcTag files
+          nlcTag.files = nlcTag2.files;
+          // add nlcTag2 count to nlcTag count
+          nlcTag.count = nlcTag2.count;
+        }
+      });
+    });
+  }
+
   // sort tagCloud alphabetically
   tagCloud.sort((a, b) => {
-    if (a.name < b.name) {
+    if (a.lcname < b.lcname) {
       return -1;
     }
-    if (a.name > b.name) {
+    if (a.lcname > b.lcname) {
       return 1;
     }
     return 0;
   });
   // write meta.js
   fs.writeFileSync(path.join(distDir, "meta.js"), "const easydocMeta = " +
-    "{ pages: " + JSON.stringify(meta) +
+    "{ pages: " + JSON.stringify(pages) +
     ", t: " + JSON.stringify(t) +
     ", tags: " + JSON.stringify(tagCloud) +
     " };"
   );
-
-
 });
+

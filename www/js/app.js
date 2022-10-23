@@ -423,25 +423,26 @@
 
           const tagCloud = document.createElement('div');
           tagCloud.setAttribute('class', 'tag-cloud');
+
           state.meta.tags.forEach(tag => {
             const tagButton = document.createElement('button');
             tagButton.setAttribute('class', 'tag');
-            if (state.selectedTags.includes(tag.name)) {
+            if (state.selectedTags.includes(tag.lcname)) {
               tagButton.classList.add('active');
             }
-            tagButton.setAttribute('data-tag', tag.name);
+            tagButton.setAttribute('data-tag', tag.lcname);
             tagButton.innerHTML = `<span class="tag-name">${tag.name}</span><span class="tag-count">${tag.count}</span>`;
             tagButton.addEventListener('click', function (e) {
               e.preventDefault();
               e.stopPropagation();
-              const tagElements = document.querySelectorAll(`[data-tag="${tag.name}"]`);
+              const tagElements = document.querySelectorAll(`[data-tag="${tag.lcname}"]`);
               tagElements.forEach(tagElement => {
                 tagElement.classList.toggle('active');
               });
               if (tagButton.classList.contains('active')) {
-                addSelectedTag(tag.name);
+                addSelectedTag(tag.lcname);
               } else {
-                state.selectedTags = state.selectedTags.filter(item => item !== tag.name);
+                state.selectedTags = state.selectedTags.filter(item => item !== tag.lcname);
               }
               updateTagNavigation();
             });
@@ -450,25 +451,29 @@
 
           const tagNavigation = document.createElement('div');
           tagNavigation.setAttribute('class', 'tag-navigation');
-          state.meta.pages.forEach(result => {
+
+          state.meta.pages.forEach(page => {
 
             const pageCard = document.createElement('div');
             pageCard.setAttribute('class', 'page-card');
-            pageCard.setAttribute('id', 'page-' + result.file);
+            pageCard.setAttribute('id', 'page-' + page.file);
             pageCard.innerHTML = `
-              <a href="${result.file}" class="page-card-title">${result.title}</a>
-              <a href="${result.file}" class="page-card-filename">${result.file}</a>
+              <a href="${page.file}" class="page-card-title">${page.title}</a>
+              <a href="${page.file}" class="page-card-filename">${page.file}</a>
             `;
 
-            if (result.tags && Array.isArray(result.tags) && result.tags.length > 0) {
+            if (page.tags && Array.isArray(page.tags) && page.tags.length > 0) {
 
               const tags = document.createElement('div');
               tags.setAttribute('class', 'tags');
-              result.tags.forEach(tag => {
+
+              page.tags.forEach(tag => {
+
+                const lcTag = tag.toLowerCase();
                 const tagElement = document.createElement('button');
-                tagElement.dataset.tag = tag;
+                tagElement.dataset.tag = lcTag;
                 tagElement.setAttribute('class', 'tag');
-                if (state.selectedTags.includes(tag)) {
+                if (state.selectedTags.includes(lcTag)) {
                   tagElement.classList.add('active');
                 }
                 tagElement.innerHTML = `
@@ -479,14 +484,14 @@
                 tagElement.addEventListener('click', function (e) {
                   e.preventDefault();
                   e.stopPropagation();
-                  const tagElements = document.querySelectorAll(`[data-tag="${tag}"]`);
+                  const tagElements = document.querySelectorAll(`[data-tag="${lcTag}"]`);
                   tagElements.forEach(tagElement => {
                     tagElement.classList.toggle('active');
                   });
                   if (tagElement.classList.contains('active')) {
-                    addSelectedTag(tag);
+                    addSelectedTag(lcTag);
                   } else {
-                    state.selectedTags = state.selectedTags.filter(item => item !== tag);
+                    state.selectedTags = state.selectedTags.filter(item => item !== lcTag);
                   }
                   updateTagNavigation();
                   // updateTagFilter();
@@ -531,7 +536,7 @@
           let hidden = [];
           state.meta.tags.forEach(tag => {
             if (
-              state.selectedTags.includes(tag.name) &&
+              state.selectedTags.includes(tag.lcname) &&
               tag.files.includes(page.file) &&
               !hidden.includes(page.file) &&
               pageCard.classList.contains('hidden')
@@ -539,7 +544,7 @@
               pageCard.classList.remove('hidden');
               // console.log('with', tag.name, 'show', page.file);
             } else if (
-              state.selectedTags.includes(tag.name) &&
+              state.selectedTags.includes(tag.lcname) &&
               !tag.files.includes(page.file)
             ) {
               hidden.push(page.file);
