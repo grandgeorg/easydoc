@@ -332,7 +332,7 @@ a code {
   transform: translateX(100%);
   background-color: var(--clr-base-d600);
   border-left: 1px solid var(--clr-base-d400);
-  @include scrollbars(6px, #555, #666, #070f17, 3px, 0px);
+  // @include scrollbars(6px, #555, #666, #070f17, 3px, 0px);
   .nav-title {
     margin: 0 0 0.75rem;
     font-weight: $font-weight-extralight;
@@ -813,6 +813,7 @@ body>.page:first-child {
   display: flex;
   align-items: center;
   justify-content: center;
+  @include scrollbars(10px, var(--clr-base-sl-d600), var(--clr-base-sl-d500), -var(--clr-base-d600), 7px, 3px);
 }
 
 @keyframes open {

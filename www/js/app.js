@@ -340,14 +340,19 @@
       close.setAttribute('class', 'modal-close');
       close.setAttribute('data-dismiss', 'modal');
       close.setAttribute('aria-label', 'Close');
-      close.innerHTML = `<svg width="20" height="20" class="bi" fill="currentColor">
-      <use xlink:href="assets/bootstrap-icons.svg#x"></use>
-      </svg>`;
+      close.setAttribute('tabindex', '0');
+      close.innerHTML = `
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+          <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+        </svg>`;
       close.addEventListener('click', function (e) {
         e.preventDefault();
         e.stopPropagation();
         const eventClose = new Event("closeModal", {bubbles: true});
         close.dispatchEvent(eventClose);
+        if (!state.global.currentInputIsMouse) {
+          state.tagNavigation.openButton.focus();
+        }
       });
 
       document.body.addEventListener("click", function (e) {
@@ -370,6 +375,10 @@
 
       addModal(dialog, false);
 
+      if (!state.global.currentInputIsMouse) {
+        close.focus();
+      }
+
     }
 
     function clickOutsideModalDialog(event, elements, ignoreClass) {
@@ -384,13 +393,30 @@
       });
     }
 
+    function addSelectedTag(tag) {
+      state.selectedTags.push(tag);
+      localStorage.setItem('selectedTags', JSON.stringify(state.selectedTags));
+    }
+
+    function setSelectedTagsFromLocalStore() {
+      const selectedTags = JSON.parse(localStorage.getItem('selectedTags'));
+      if (selectedTags) {
+        state.selectedTags = selectedTags;
+      }
+    }
+
     function registerTagNavigation() {
 
       const openButton = document.querySelector('#open-tag-navigation');
       if (openButton) {
+        state.tagNavigation = {
+          openButton: openButton,
+        };
         openButton.addEventListener('click', function (e) {
           e.preventDefault();
           e.stopPropagation();
+
+          setSelectedTagsFromLocalStore();
 
           const modalBodyContent = document.createElement('div');
           modalBodyContent.setAttribute('class', 'modal-body-content');
@@ -403,7 +429,6 @@
             if (state.selectedTags.includes(tag.name)) {
               tagButton.classList.add('active');
             }
-            // tagButton.setAttribute('type', 'button');
             tagButton.setAttribute('data-tag', tag.name);
             tagButton.innerHTML = `<span class="tag-name">${tag.name}</span><span class="tag-count">${tag.count}</span>`;
             tagButton.addEventListener('click', function (e) {
@@ -414,7 +439,7 @@
                 tagElement.classList.toggle('active');
               });
               if (tagButton.classList.contains('active')) {
-                state.selectedTags.push(tag.name);
+                addSelectedTag(tag.name);
               } else {
                 state.selectedTags = state.selectedTags.filter(item => item !== tag.name);
               }
@@ -443,25 +468,23 @@
                 const tagElement = document.createElement('button');
                 tagElement.dataset.tag = tag;
                 tagElement.setAttribute('class', 'tag');
-                // if state.selectedTags.includes(tag) add class active
                 if (state.selectedTags.includes(tag)) {
                   tagElement.classList.add('active');
                 }
-                tagElement.innerHTML = `<svg width="20" height="20" class="bi" fill="currentColor">
-                <use xlink:href="assets/bootstrap-icons.svg#tag"></use>
-                </svg>` + tag;
-                // add click event
+                tagElement.innerHTML = `
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-tag" viewBox="0 0 16 16">
+                    <path d="M6 4.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm-1 0a.5.5 0 1 0-1 0 .5.5 0 0 0 1 0z"/>
+                    <path d="M2 1h4.586a1 1 0 0 1 .707.293l7 7a1 1 0 0 1 0 1.414l-4.586 4.586a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 1 6.586V2a1 1 0 0 1 1-1zm0 5.586 7 7L13.586 9l-7-7H2v4.586z"/>
+                  </svg>` + tag;
                 tagElement.addEventListener('click', function (e) {
                   e.preventDefault();
                   e.stopPropagation();
-                  // tagElement.classList.toggle('active');
-                  // select all elemants with data-tag == tag
                   const tagElements = document.querySelectorAll(`[data-tag="${tag}"]`);
                   tagElements.forEach(tagElement => {
                     tagElement.classList.toggle('active');
                   });
                   if (tagElement.classList.contains('active')) {
-                    state.selectedTags.push(tag);
+                    addSelectedTag(tag);
                   } else {
                     state.selectedTags = state.selectedTags.filter(item => item !== tag);
                   }

@@ -12,7 +12,7 @@ tags:
 ![EasyDoc](img/easydoc-banner.png)
 
 ---
-
+  
 ##### _created by:_ {.text-center}
 
 <!-- BRAND HTML -->
