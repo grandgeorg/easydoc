@@ -20,6 +20,8 @@
       meta: easydocMeta,
       selectedTags: [],
       tagCloud: {
+        sort: "name",
+        order: "asc",
         tags: [],
       },
       pageCards: []
@@ -488,7 +490,23 @@
             <option value="name">name</option>
             <option value="count">count</option>`;
             tagCloudOrderSelect.addEventListener('change', (event) => {
-            // const sortValue = event.target.value;
+              const sortValue = event.target.value;
+              // sort state.tagCloud.tags
+              state.tagCloud.tags.sort(function (a, b) {
+                if (sortValue === 'name') {
+                  return a.tagName.localeCompare(b.tagName);
+                } else if (sortValue === 'count') {
+                  return b.tagCount - a.tagCount;
+                }
+              });
+
+
+
+              // ...
+
+              // repaint tag-cloud
+
+
             // const tagCloud = document.querySelector('.tag-cloud');
             // const tagCloudItems = tagCloud.querySelectorAll('.tag-cloud-item');
             // const tagCloudItemsArray = Array.from(tagCloudItems);
