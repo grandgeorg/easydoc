@@ -414,6 +414,7 @@
     function registerTagNavigation() {
 
       const openButton = document.querySelector('#open-tag-navigation');
+
       if (openButton) {
         state.tagNavigation = {
           openButton: openButton,
@@ -491,32 +492,20 @@
             <option value="count">count</option>`;
             tagCloudOrderSelect.addEventListener('change', (event) => {
               const sortValue = event.target.value;
-              // sort state.tagCloud.tags
-              state.tagCloud.tags.sort(function (a, b) {
-                if (sortValue === 'name') {
-                  return a.tagName.localeCompare(b.tagName);
-                } else if (sortValue === 'count') {
-                  return b.tagCount - a.tagCount;
+              state.meta.tags.sort(function (a, b) {
+                if (sortValue === 'name' && tagCloudSortOrder.value === 'asc') {
+                  return a.lcname.localeCompare(b.lcname);
+                } else if (sortValue === 'name' && tagCloudSortOrder.value === 'desc') {
+                  return b.lcname.localeCompare(a.lcname);
+                } else if (sortValue === 'count' && tagCloudSortOrder.value === 'asc') {
+                  return a.count - b.count;
+                } else if (sortValue === 'count' && tagCloudSortOrder.value === 'desc') {
+                  return b.count - a.count;
                 }
               });
-
-
-
-              // ...
-
-              // repaint tag-cloud
-
-
-            // const tagCloud = document.querySelector('.tag-cloud');
-            // const tagCloudItems = tagCloud.querySelectorAll('.tag-cloud-item');
-            // const tagCloudItemsArray = Array.from(tagCloudItems);
-            // const sortedTagCloudItems = tagCloudItemsArray.sort((a, b) => {
-            //   if (sortValue === 'name') {
-            //     return a.innerText.localeCompare(b.innerText);
-            //   } else if (sortValue === 'count') {
-            //     return b.dataset.count - a.dataset.count;
-            //   }
-            // });
+              tagCloudDetails.removeChild(tagCloud);
+              tagCloud = getTagcloud();
+              tagCloudDetails.appendChild(tagCloud);
           });
 
           const tagCloudOrderLabel = document.createElement('label');
@@ -535,17 +524,21 @@
             <option value="asc">ascending</option>
             <option value="desc">descending</option>`;
           tagCloudSortOrder.addEventListener('change', (event) => {
-            // const sortOrder = event.target.value;
-            // const tagCloud = document.querySelector('.tag-cloud');
-            // const tagCloudItems = tagCloud.querySelectorAll('.tag-cloud-item');
-            // const tagCloudItemsArray = Array.from(tagCloudItems);
-            // const sortedTagCloudItems = tagCloudItemsArray.sort((a, b) => {
-            //   if (sortOrder === 'asc') {
-            //     return a.innerText.localeCompare(b.innerText);
-            //   } else if (sortOrder === 'desc') {
-            //     return b.innerText.localeCompare(a.innerText);
-            //   }
-            // });
+            const sortOrder = event.target.value;
+            state.meta.tags.sort(function (a, b) {
+              if (tagCloudOrderSelect.value === 'name' && sortOrder === 'asc') {
+                return a.lcname.localeCompare(b.lcname);
+              } else if (tagCloudOrderSelect.value === 'name' && sortOrder === 'desc') {
+                return b.lcname.localeCompare(a.lcname);
+              } else if (tagCloudOrderSelect.value === 'count' && sortOrder === 'asc') {
+                return a.count - b.count;
+              } else if (tagCloudOrderSelect.value === 'count' && sortOrder === 'desc') {
+                return b.count - a.count;
+              }
+            });
+            tagCloudDetails.removeChild(tagCloud);
+            tagCloud = getTagcloud();
+            tagCloudDetails.appendChild(tagCloud);
           });
 
           const inputGroupSort = document.createElement('div');
@@ -565,52 +558,59 @@
 
 
           // tagcloud
-          const tagCloud = document.createElement('div');
-          tagCloud.setAttribute('class', 'tag-cloud');
+          let tagCloud = getTagcloud();
 
-          state.meta.tags.forEach(tag => {
-            const tagButton = document.createElement('button');
-            tagButton.setAttribute('class', 'tag');
-            if (state.selectedTags.includes(tag.lcname)) {
-              tagButton.classList.add('active');
-            }
-            tagButton.setAttribute('data-tag', tag.lcname);
-            tagButton.innerHTML = `<span class="tag-name">${tag.name}</span><span class="tag-count">${tag.count}</span>`;
-            tagButton.addEventListener('click', function (e) {
-              e.preventDefault();
-              e.stopPropagation();
-              const tagElements = document.querySelectorAll(`[data-tag="${tag.lcname}"]`);
-              tagElements.forEach(tagElement => {
-                tagElement.classList.toggle('active');
-              });
-              if (tagButton.classList.contains('active')) {
-                addSelectedTag(tag.lcname);
-              } else {
-                state.selectedTags = state.selectedTags.filter(item => item !== tag.lcname);
+          function getTagcloud () {
+            state.tagCloud.tags = [];
+            const tagCloud = document.createElement('div');
+            tagCloud.setAttribute('class', 'tag-cloud');
+
+            state.meta.tags.forEach(tag => {
+              const tagButton = document.createElement('button');
+              tagButton.setAttribute('class', 'tag');
+              if (state.selectedTags.includes(tag.lcname)) {
+                tagButton.classList.add('active');
               }
-              updateTagNavigation();
-            });
-            tagButton.addEventListener('filterTagcloud', function (e) {
-              console.log(e.detail.words);
-              if (e.detail.words.length === 0) {
-                tagButton.classList.remove('hidden');
-              } else {
-                let show = false;
-                e.detail.words.forEach(function (word) {
-                  if (tag.lcname.indexOf(word) !== -1) {
-                    show = true;
-                  }
+              tagButton.setAttribute('data-tag', tag.lcname);
+              tagButton.innerHTML = `<span class="tag-name">${tag.name}</span><span class="tag-count">${tag.count}</span>`;
+              tagButton.addEventListener('click', function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+                const tagElements = document.querySelectorAll(`[data-tag="${tag.lcname}"]`);
+                tagElements.forEach(tagElement => {
+                  tagElement.classList.toggle('active');
                 });
-                if (show) {
+                if (tagButton.classList.contains('active')) {
+                  addSelectedTag(tag.lcname);
+                } else {
+                  state.selectedTags = state.selectedTags.filter(item => item !== tag.lcname);
+                }
+                updateTagNavigation();
+              });
+              tagButton.addEventListener('filterTagcloud', function (e) {
+                console.log(e.detail.words);
+                if (e.detail.words.length === 0) {
                   tagButton.classList.remove('hidden');
                 } else {
-                  tagButton.classList.add('hidden');
+                  let show = false;
+                  e.detail.words.forEach(function (word) {
+                    if (tag.lcname.indexOf(word) !== -1) {
+                      show = true;
+                    }
+                  });
+                  if (show) {
+                    tagButton.classList.remove('hidden');
+                  } else {
+                    tagButton.classList.add('hidden');
+                  }
                 }
-              }
-            }, false);
-            state.tagCloud.tags.push(tagButton);
-            tagCloud.appendChild(tagButton);
-          });
+              }, false);
+              state.tagCloud.tags.push(tagButton);
+              tagCloud.appendChild(tagButton);
+            });
+
+            return tagCloud;
+          }
 
           // -------------
 
