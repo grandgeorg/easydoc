@@ -171,6 +171,10 @@ a code {
   color: var(--clr-link);
 }
 
+::placeholder {
+  color: var(--clr-base-l75);
+}
+
 // variable font settings
 @supports (font-variation-settings: normal) {
   @font-face {
@@ -984,14 +988,44 @@ body>.page:first-child {
 .tag-cloud-details {
   background-color: var(--clr-base-d550);
 }
-.tag-cloud-filter {
-  // background-color: var(--clr-base-d500);
+
+.tag-cloud-header {
+  display: flex;
+  gap: 1rem 1rem;
+  flex-wrap: wrap;
   margin: 1rem 0;
+  border-bottom: 1px solid var(--clr-base-d400);
+  padding-bottom: 1rem;
+}
+
+.tag-cloud-filter,
+.tag-cloud-sort,
+.page-filter {
+  // background-color: var(--clr-base-d500);
+  // margin: 1rem 0;
   display: flex;
 }
 
-.filter-label {
-  display: inline-block;
+.tag-cloud-filter {
+  flex-grow: 1;
+}
+
+.tag-cloud-sort {
+  // flex-grow: 1;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+}
+
+.input-group {
+  display: flex;
+  flex-grow: 1;
+}
+
+.filter-label,
+.sort-label,
+.order-label {
+  display: flex;
+  align-items: center;
   margin: 0;
   padding: 0.5rem;
   font-size: 1.25rem;
@@ -1001,6 +1035,18 @@ body>.page:first-child {
   border-bottom-left-radius: 6px;
   border: 1px solid var(--clr-base-d400);
   border-right: 0;
+  // select not first-child
+  &:not(:first-child) {
+    // border-left: 0;
+    margin-left: 1rem;
+  }
+  .description {
+    font-size: 0.85rem;
+    font-weight: 400;
+    line-height: 1;
+    margin: 0;
+    padding: 0 0 0 0.5rem;
+  }
 }
 
 .filter-input {
@@ -1013,6 +1059,24 @@ body>.page:first-child {
   background-color: var(--clr-base-d550);
   border: 1px solid var(--clr-base-d400);
   // border-left: 0;
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+  &:focus {
+    outline: 0;
+    border-color: var(--clr-base-d250);
+  }
+}
+
+.sort-select,
+.order-select {
+  flex-grow: 1;
+  margin: 0;
+  padding: 0.5rem 0.25rem 0.5rem 0.25rem;
+  font-size: 0.85rem;
+  color: var(--clr-base-l200);
+  line-height: 1;
+  background-color: var(--clr-base-d550);
+  border: 1px solid var(--clr-base-d400);
   border-top-right-radius: 6px;
   border-bottom-right-radius: 6px;
   &:focus {
@@ -1131,6 +1195,9 @@ body>.page:first-child {
       }
     }
     &.hidden {
+      display: none;
+    }
+    &.filter-hidden {
       display: none;
     }
   }
