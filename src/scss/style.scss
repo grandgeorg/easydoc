@@ -989,7 +989,8 @@ body>.page:first-child {
   background-color: var(--clr-base-d550);
 }
 
-.tag-cloud-header {
+.tag-cloud-header,
+.tag-navigation-header {
   display: flex;
   gap: 1rem 1rem;
   flex-wrap: wrap;
@@ -1000,17 +1001,20 @@ body>.page:first-child {
 
 .tag-cloud-filter,
 .tag-cloud-sort,
-.page-filter {
+.page-filter,
+.tag-navigation-sort {
   // background-color: var(--clr-base-d500);
   // margin: 1rem 0;
   display: flex;
 }
 
-.tag-cloud-filter {
+.tag-cloud-filter,
+.page-filter {
   flex-grow: 1;
 }
 
-.tag-cloud-sort {
+.tag-cloud-sort,
+.tag-navigation-sort {
   // flex-grow: 1;
   flex-wrap: wrap;
   gap: 0.5rem 1rem;
