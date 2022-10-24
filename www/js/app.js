@@ -19,6 +19,9 @@
       },
       meta: easydocMeta,
       selectedTags: [],
+      tagCloud: {
+        tags: [],
+      }
     };
 
     const elMenuToggle = document.querySelector(".burger");
@@ -421,6 +424,41 @@
           const modalBodyContent = document.createElement('div');
           modalBodyContent.setAttribute('class', 'modal-body-content');
 
+          const tagCloudFilter = document.createElement('div');
+          tagCloudFilter.setAttribute('class', 'tag-cloud-filter');
+
+          const tagCloudFilterLabel = document.createElement('label');
+          tagCloudFilterLabel.setAttribute('for', 'tag-cloud-filter-input');
+          tagCloudFilterLabel.setAttribute('class', 'filter-label');
+          tagCloudFilterLabel.innerHTML = `
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-filter-circle" viewBox="0 0 16 16">
+              <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+              <path d="M7 11.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5z"/>
+            </svg>`;
+
+          const tagCloudFilterInput = document.createElement('input');
+          tagCloudFilterInput.setAttribute('type', 'text');
+          tagCloudFilterInput.setAttribute('id', 'tag-cloud-filter-input');
+          tagCloudFilterInput.setAttribute('class', 'filter-input');
+          tagCloudFilterInput.setAttribute('placeholder', 'Filter tags, use comma to separate');
+          tagCloudFilterInput.setAttribute('autocomplete', 'off');
+          tagCloudFilterInput.setAttribute('autocorrect', 'off');
+          tagCloudFilterInput.setAttribute('autocapitalize', 'off');
+          tagCloudFilterInput.setAttribute('spellcheck', 'false');
+          tagCloudFilterInput.addEventListener('input', function (e) {
+            const filter = e.target.value.toLowerCase();
+            const words = filter.split(',');
+            for (let i = 0; i < words.length; i++) {
+              words[i] = words[i].trim();
+            }
+            state.tagCloud.tags.forEach(function (tag) {
+              tag.dispatchEvent(new CustomEvent("filterTagcloud", {detail: {words: words}}));
+            });
+          });
+
+          tagCloudFilter.appendChild(tagCloudFilterLabel);
+          tagCloudFilter.appendChild(tagCloudFilterInput);
+
           const tagCloud = document.createElement('div');
           tagCloud.setAttribute('class', 'tag-cloud');
 
@@ -446,6 +484,25 @@
               }
               updateTagNavigation();
             });
+            tagButton.addEventListener('filterTagcloud', function (e) {
+              console.log(e.detail.words);
+              if (e.detail.words.length === 0) {
+                tagButton.classList.remove('hidden');
+              } else {
+                let show = false;
+                e.detail.words.forEach(function (word) {
+                  if (tag.lcname.indexOf(word) !== -1) {
+                    show = true;
+                  }
+                });
+                if (show) {
+                  tagButton.classList.remove('hidden');
+                } else {
+                  tagButton.classList.add('hidden');
+                }
+              }
+            }, false);
+            state.tagCloud.tags.push(tagButton);
             tagCloud.appendChild(tagButton);
           });
 
@@ -514,6 +571,7 @@
           tagCloudDetails.setAttribute('class', 'tag-cloud-details');
           tagCloudDetails.setAttribute('open', 'open');
           tagCloudDetails.innerHTML = `<summary>Tags</summary>`;
+          tagCloudDetails.appendChild(tagCloudFilter);
           tagCloudDetails.appendChild(tagCloud);
 
           modalBodyContent.appendChild(tagCloudDetails);
