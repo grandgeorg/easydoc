@@ -671,7 +671,7 @@
               } else {
                 let show = false;
                 e.detail.words.forEach(function (word) {
-                  if (page.title.indexOf(word) !== -1 || page.file.indexOf(word) !== -1) {
+                  if (page.title.toLowerCase().indexOf(word) !== -1 || page.file.toLowerCase().indexOf(word) !== -1) {
                     show = true;
                   }
                 });
