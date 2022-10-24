@@ -6,9 +6,9 @@
 !/docs/easydoc.md
 /node_modules
 /www/*.html
-/www/meta.js
 !/www/example-1.html
 !/www/example-2.html
 !/www/sample-markdown.html
+/www/meta.js
 /www/img/*.png
 __notes.txt
