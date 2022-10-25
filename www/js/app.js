@@ -378,6 +378,11 @@
       localStorage.setItem("selectedTags", JSON.stringify(state.selectedTags));
     }
 
+    function updateSelectedTags(tags) {
+      state.selectedTags = tags;
+      localStorage.setItem("selectedTags", JSON.stringify(state.selectedTags));
+    }
+
     function setSelectedTagsFromLocalStore() {
       const selectedTags = JSON.parse(localStorage.getItem("selectedTags"));
       if (selectedTags) {
@@ -579,7 +584,7 @@
                 if (tagButton.classList.contains("active")) {
                   addSelectedTag(tag.lcname);
                 } else {
-                  state.selectedTags = state.selectedTags.filter((item) => item !== tag.lcname);
+                  updateSelectedTags(state.selectedTags.filter((item) => item !== tag.lcname));
                 }
                 updateTagNavigation();
               });
@@ -819,7 +824,7 @@
                     if (tagElement.classList.contains("active")) {
                       addSelectedTag(lcTag);
                     } else {
-                      state.selectedTags = state.selectedTags.filter((item) => item !== lcTag);
+                      updateSelectedTags(state.selectedTags.filter((item) => item !== lcTag));
                     }
                     updateTagNavigation();
                     // updateTagFilter();
