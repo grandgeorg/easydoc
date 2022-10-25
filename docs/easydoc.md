@@ -140,9 +140,6 @@ disableNavigation: true
 
 --------------------------------------------------------------------------------
 
-
-![](img/001.png)
-
 ### Workflow
 
 Use git if working in a team.
@@ -150,4 +147,3 @@ Use git if working in a team.
 ## Todos
 
 - make print css version.
-- multisite navigation
