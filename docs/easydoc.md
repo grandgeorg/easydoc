@@ -115,8 +115,10 @@ EASYDOC_BRAND_SECONDARY=Websolutions
 
 EASYDOC_TOC_INCLUDELEVEL=[1,2,3,4]
 
-; EASYDOC_DISABLE_BRAND=true
 ; EASYDOC_DISABLE_NAVIGATION=true
+; EASYDOC_DISABLE_BRAND=true
+; EASYDOC_DISABLE_TOC=true
+; EASYDOC_DISABLE_NAV=true
 ```
 
 ```frontmatter
@@ -128,7 +130,7 @@ brandURL: https://culture-to-go.com
 brandName: Culture
 brandSecondary: to go
 disableBrand: true
-disableNav: trueasd
+disableNav: true
 disableToc: true
 disableNavigation: true
 ---
