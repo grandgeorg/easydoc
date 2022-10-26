@@ -18,7 +18,8 @@
         ps: pubsub(),
         ignoreClickOutsideClass: ["ignore_click_outside"],
       },
-      meta: easydocMeta,
+      meta: typeof easydocMeta !== "undefined" ? easydocMeta : false,
+      // meta: document.scripts
       selectedTags: [],
       tagCloud: {
         sort: "name", // unused so far
@@ -426,13 +427,21 @@
       }
     }
 
+    // tag navigation
     function registerTagNavigation() {
       const openButton = document.querySelector("#open-tag-navigation");
       if (openButton) {
+        if (!state.meta) {
+          // alert("No meta data found");
+          // remove openButton - silently
+          openButton.remove();
+          return;
+        }
         state.tagNavigation = {
           openButton: openButton,
         };
         openButton.addEventListener("click", function (e) {
+
           e.preventDefault();
           e.stopPropagation();
 
