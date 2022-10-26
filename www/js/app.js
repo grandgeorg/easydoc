@@ -253,14 +253,31 @@
           lightBox.setAttribute("class", "lightbox");
           lightBox.appendChild(img);
           lightBox.appendChild(caption);
-          addModal(lightBox, true);
+
+          // close on escape
+          const closeModalOnEscape = (event) => {
+            if (event.key === "Escape") {
+              event.preventDefault();
+              event.stopPropagation();
+              const eventClose = new Event("closeModal", { bubbles: true });
+              lightBox.dispatchEvent(eventClose);
+              document.removeEventListener("keydown", closeModalOnEscape);
+            }
+          };
+          document.addEventListener("keydown", closeModalOnEscape);
+
+          const closeModalOnClick = () => {
+            document.removeEventListener("keydown", closeModalOnEscape);
+          };
+
+          addModal(lightBox, closeModalOnClick);
         });
       });
     }
 
-    function addModal(content, addClose) {
+    function addModal(content, closeModalOnClick) {
       const modal = document.createElement("div");
-      if (addClose) {
+      if (closeModalOnClick) {
         modal.setAttribute("class", "modal open cp");
       } else {
         modal.setAttribute("class", "modal open");
@@ -270,32 +287,35 @@
 
       const closeModal = () => {
         modal.classList.add("willclose");
+        if (closeModalOnClick) {
+          modal.removeEventListener("click", dispatchCloseModalOnClick);
+        }
+        document.removeEventListener("closeModal", closeModalOnCloseModalEvent);
         // remove modal after animation
         setTimeout(() => {
-          // document.body.removeChild(modal);
           modal.remove();
         }, 250);
       };
 
+      const dispatchCloseModalOnClick = (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        closeModal();
+        if (closeModalOnClick) {
+          closeModalOnClick(event);
+        }
+      };
+
+      const closeModalOnCloseModalEvent = (event) => {
+        closeModal();
+      };
+
       setTimeout(function () {
         modal.classList.remove("open");
-        if (addClose) {
-          modal.addEventListener("click", function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-            closeModal();
-          });
+        if (closeModalOnClick) {
+          modal.addEventListener("click", dispatchCloseModalOnClick);
         }
-        // close on esacpe
-        document.addEventListener("keydown", function (e) {
-          if (e.key === "Escape") {
-            closeModal();
-          }
-        });
-        // close on closeModal event
-        document.addEventListener("closeModal", function (e) {
-          closeModal();
-        });
+        document.addEventListener("closeModal", closeModalOnCloseModalEvent);
       }, 250);
     }
 
@@ -327,27 +347,43 @@
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
           <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
         </svg>`;
-      close.addEventListener("click", function (e) {
-        e.preventDefault();
-        e.stopPropagation();
+
+      // close on click
+      const clickEvent = (event) => {
+        event.preventDefault();
+        event.stopPropagation();
         const eventClose = new Event("closeModal", { bubbles: true });
         close.dispatchEvent(eventClose);
         if (!state.global.currentInputIsMouse) {
           state.tagNavigation.openButton.focus();
         }
-      });
+        document.removeEventListener("click", clickOutsideEvent);
+        document.removeEventListener("keydown", closeModalOnEscape);
+      };
+      close.addEventListener("click", clickEvent);
 
-      document.body.addEventListener("click", function (e) {
-        if (clickOutsideModalDialog(e, dialog)) {
-          const eventClose = new Event("closeModal", { bubbles: true });
-          close.dispatchEvent(eventClose);
+      // close on click outside
+      const clickOutsideEvent = (event) => {
+        if (clickOutsideModalDialog(event, dialog)) {
+          clickEvent(event);
         }
-      });
+      };
+      document.addEventListener("click", clickOutsideEvent);
 
+      // close on escape
+      const closeModalOnEscape = (event) => {
+        if (event.key === "Escape") {
+          clickEvent(event);
+        }
+      };
+      document.addEventListener("keydown", closeModalOnEscape);
+
+      // body
       const body = document.createElement("div");
       body.setAttribute("class", "modal-body");
       body.appendChild(bodyContent);
 
+      // layout
       header.appendChild(dialogTitle);
       header.appendChild(close);
       content.appendChild(header);
