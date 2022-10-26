@@ -194,12 +194,13 @@ fs.readdir(docsDir, (err, files) => {
     }
     return 0;
   });
-  // write meta.js
-  fs.writeFileSync(path.join(distDir, "meta.js"), "const easydocMeta = " +
-    "{ pages: " + JSON.stringify(pages) +
-    ", t: " + JSON.stringify(t) +
-    ", tags: " + JSON.stringify(tagCloud) +
-    " };"
+
+  fs.writeFileSync(path.join(distDir, "meta.js"),
+    `const easydocMeta = {
+      t: ${JSON.stringify(t)},
+      pages: ${JSON.stringify(pages)},
+      tags: ${JSON.stringify(tagCloud)}
+    };`
   );
 });
 
