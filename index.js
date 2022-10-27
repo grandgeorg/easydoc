@@ -32,7 +32,7 @@ md.use(require("markdown-it-container"), "details", {
     }
   },
 });
-md.use(require("markdown-it-flowchart"));
+md.use(require("./src/js/markdown-it-flowchart"));
 md.use(require("markdown-it-task-lists"));
 md.use(require("markdown-it-footnote"));
 md.use(require("markdown-it-attrs"), {
