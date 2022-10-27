@@ -5,6 +5,11 @@ tags:
   - javascript
   - documentation
   - tool
+# disableBrand: true
+# disableToc: true
+# disableSiteNav: true
+# disableTagNavigator: true
+# disableNavigationBar: true
 ---
 
 # EasyDoc {.text-center}
@@ -115,10 +120,11 @@ EASYDOC_BRAND_SECONDARY=Websolutions
 
 EASYDOC_TOC_INCLUDELEVEL=[1,2,3,4]
 
-; EASYDOC_DISABLE_NAVIGATION=true
-; EASYDOC_DISABLE_BRAND=true
-; EASYDOC_DISABLE_TOC=true
-; EASYDOC_DISABLE_NAV=true
+# EASYDOC_DISABLE_BRAND=true
+# EASYDOC_DISABLE_TOC=true
+# EASYDOC_DISABLE_SITE_NAV=true
+# EASYDOC_DISABLE_TAG_NAVIGATOR=true
+# EASYDOC_DISABLE_NAVIGATION=true
 ```
 
 ```frontmatter
@@ -130,8 +136,9 @@ brandURL: https://culture-to-go.com
 brandName: Culture
 brandSecondary: to go
 disableBrand: true
-disableNav: true
 disableToc: true
+disableSiteNav: true
+disableTagNavigator: true
 disableNavigation: true
 ---
 
