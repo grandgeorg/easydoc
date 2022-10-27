@@ -137,7 +137,7 @@ fs.readdir(docsDir, (err, files) => {
         disableBrand: fmData.attributes.disableBrand ? Boolean(fmData.attributes.disableBrand) : Boolean(process.env.EASYDOC_DISABLE_BRAND),
         disableNavigation: disableNavigation,
         disableToc: fmData.attributes.disableToc ? Boolean(fmData.attributes.disableToc) : Boolean(process.env.EASYDOC_DISABLE_TOC),
-        disableNav: fmData.attributes.disableNav ? Boolean(fmData.attributes.disableNav) : Boolean(process.env.EASYDOC_DISABLE_NAV),
+        disableSiteNav: fmData.attributes.disableSiteNav ? Boolean(fmData.attributes.disableSiteNav) : Boolean(process.env.EASYDOC_DISABLE_SITE_NAV),
       },
     });
     fs.writeFileSync(path.join(distDir, fileOut), page);
