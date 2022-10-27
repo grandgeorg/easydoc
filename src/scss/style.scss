@@ -19,7 +19,7 @@ $font-weight-bold: 700;
 $font-weight-extrabold: 800;
 $font-weight-black: 900;
 
-$navbar-height: 41px;
+$navbar-height: 42px;
 
 // css custom properties
 :root {
@@ -292,7 +292,7 @@ a code {
   top: 0;
   right: 0;
   left: 0;
-  // min-height: $navbar-height;
+  min-height: $navbar-height;
   // padding: 4px 2px 4px 0.4rem;
   padding: 0 0 0 0.4rem;
   z-index: 20;
