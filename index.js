@@ -80,7 +80,19 @@ fs.readdir(docsDir, (err, files) => {
     toc = toc.match(/<div class="table-of-contents">(.|\s)*?<\/div>/g)[0];
     let lang = fmData.attributes.lang ? fmData.attributes.lang : process.env.EASYDOC_LANG_FALLBACK;
     let title = fmData.attributes.title ? fmData.attributes.title : process.env.EASYDOC_TITLE_FALLBACK;
-    let disableNavigation = fmData.attributes.disableNavigation ? Boolean(fmData.attributes.disableNavigation) : Boolean(process.env.EASYDOC_DISABLE_NAVIGATION);
+    let disableBrand = fmData.attributes.disableBrand ? Boolean(fmData.attributes.disableBrand) : Boolean(process.env.EASYDOC_DISABLE_BRAND);
+    let disableToc = fmData.attributes.disableToc ? Boolean(fmData.attributes.disableToc) : Boolean(process.env.EASYDOC_DISABLE_TOC);
+    let disableSiteNav = fmData.attributes.disableSiteNav ? Boolean(fmData.attributes.disableSiteNav) : Boolean(process.env.EASYDOC_DISABLE_SITE_NAV);
+    let disableTagNavigator = fmData.attributes.disableTagNavigator ? Boolean(fmData.attributes.disableTagNavigator) : Boolean(process.env.EASYDOC_DISABLE_TAG_NAVIGATOR);
+    let disableNavigationBar = fmData.attributes.disableNavigationBar ? Boolean(fmData.attributes.disableNavigationBar) : Boolean(process.env.EASYDOC_DISABLE_NAVIGATION_BAR);
+    if (disableBrand && disableToc && disableSiteNav && disableTagNavigator) {
+      disableNavigationBar = true;
+    }
+    let disableBurger = false;
+    if (!disableBrand && disableToc && disableSiteNav && disableTagNavigator) {
+      disableBurger = true;
+    }
+
     let fileOut = file.replace(rgxExt, outExt);
     let tags = fmData.attributes.tags ? Array.isArray(fmData.attributes.tags) ? fmData.attributes.tags : [fmData.attributes.tags] : [];
 
@@ -111,7 +123,7 @@ fs.readdir(docsDir, (err, files) => {
       tags: tags,
     });
     let navigation = '';
-    if (!disableNavigation) {
+    if (!disableNavigationBar && !disableBurger && !disableSiteNav) {
       // console.log("Navigation rendered with t ", t[lang], " for file ", fileOut);
       navigation = pug.renderFile(path.join(templateDir, "nav.pug"), {
         nav: nav.nav,
@@ -134,10 +146,12 @@ fs.readdir(docsDir, (err, files) => {
         brandSecondary: fmData.attributes.brandSecondary
           ? fmData.attributes.brandSecondary
           : process.env.EASYDOC_BRAND_SECONDARY,
-        disableBrand: fmData.attributes.disableBrand ? Boolean(fmData.attributes.disableBrand) : Boolean(process.env.EASYDOC_DISABLE_BRAND),
-        disableNavigation: disableNavigation,
-        disableToc: fmData.attributes.disableToc ? Boolean(fmData.attributes.disableToc) : Boolean(process.env.EASYDOC_DISABLE_TOC),
-        disableSiteNav: fmData.attributes.disableSiteNav ? Boolean(fmData.attributes.disableSiteNav) : Boolean(process.env.EASYDOC_DISABLE_SITE_NAV),
+        disableBrand: disableBrand,
+        disableToc: disableToc,
+        disableSiteNav: disableSiteNav,
+        disableTagNavigator: disableTagNavigator,
+        disableNavigationBar: disableNavigationBar,
+        disableBurger: disableBurger,
       },
     });
     fs.writeFileSync(path.join(distDir, fileOut), page);
