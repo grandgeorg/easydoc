@@ -35,13 +35,73 @@ md.use(require("markdown-it-container"), "details", {
 md.use(require("./src/js/markdown-it-flowchart"));
 md.use(require("markdown-it-task-lists"));
 md.use(require("markdown-it-footnote"));
-md.use(require("markdown-it-attrs"), {
+const markdownItAttrs = require('markdown-it-attrs');
+md.use(markdownItAttrs, {
   // optional, these are default options
   leftDelimiter: "{",
   rightDelimiter: "}",
   allowedAttributes: [], // empty array = all attributes are allowed
 });
-// md.use(require("markdown-it-anchor").default);
+
+// custom renderer for fenced code blocks
+const defaultRenderFence = md.renderer.rules.fence;
+md.renderer.rules.fence = function (tokens, idx, options, env, slf) {
+  const token = tokens[idx];
+  const dataTokens = [];
+  // set data tokens
+  if (token.attrIndex('data-user') >= 0) {
+    dataTokens.push(['data-user', token.attrs[token.attrIndex('data-user')][1]]);
+    token.attrs.splice(token.attrIndex('data-user'), 1);
+  }
+  if (token.attrIndex('data-host') >= 0) {
+    dataTokens.push(['data-host', token.attrs[token.attrIndex('data-host')][1]]);
+    token.attrs.splice(token.attrIndex('data-host'), 1);
+  }
+  if (token.attrIndex('data-output') >= 0) {
+    dataTokens.push(['data-output', token.attrs[token.attrIndex('data-output')][1]]);
+    token.attrs.splice(token.attrIndex('data-output'), 1);
+  }
+  if (token.attrIndex('data-start') >= 0) {
+    dataTokens.push(['data-start', token.attrs[token.attrIndex('data-start')][1]]);
+    token.attrs.splice(token.attrIndex('data-start'), 1);
+  }
+
+  // if token has command-line class
+  if (token.info && token.attrIndex('class') >= 0 &&
+    token.attrs[token.attrIndex('class')][1].indexOf('command-line') >= 0) {
+    let info = "language-" + token.info;
+    if (token.attrIndex('class') >= 0) {
+      token.attrs[token.attrIndex('class')][1] += " " + info;
+    } else {
+      token.attrPush(['class', info]);
+    }
+  }
+
+  // if token has line-numbers class
+  if (token.info && token.attrIndex('class') >= 0 &&
+    token.attrs[token.attrIndex('class')][1].indexOf('line-numbers') >= 0) {
+    let info = "language-" + token.info;
+    if (token.attrIndex('class') >= 0) {
+      token.attrs[token.attrIndex('class')][1] += " " + info;
+    } else {
+      token.attrPush(['class', info]);
+    }
+  }
+
+  // render the fence
+  if (dataTokens.length > 0) {
+    // console.log("here", slf.renderAttrs(dataTokens));
+    let dt = "";
+    for (let i = 0; i < dataTokens.length; i++) {
+      dt += " " + dataTokens[i][0] + "=\"" + dataTokens[i][1] + "\"";
+    }
+    return '<pre' + dt + '>'
+        + '<code' + slf.renderAttrs(token) + '>' + token.content + '</code>'
+        + '</pre>';
+  } else {
+    return defaultRenderFence(tokens, idx, options, env, slf);
+  }
+}
 const anchor = require("markdown-it-anchor");
 md.use(anchor, {
   permalink: anchor.permalink.headerLink(),
@@ -52,13 +112,10 @@ md.use(anchor, {
       .replace(/[^a-z0-9\-]/gi, "");
   },
 });
-md.use(require("markdown-it-table-of-contents"), {
-  includeLevel: process.env.EASYDOC_TOC_INCLUDELEVEL ? process.env.EASYDOC_TOC_INCLUDELEVEL : [1, 2, 3, 4],
-});
-
-// console.log("Building site...");
-
+const tocIncludeLevel = process.env.EASYDOC_TOC_INCLUDELEVEL ? process.env.EASYDOC_TOC_INCLUDELEVEL : [1, 2, 3, 4];
+const mdItToc = require("markdown-it-table-of-contents");
 const docsDir = path.join(__dirname, "docs");
+// const docsDir = path.join(__dirname, "test");
 const templateDir = path.join(__dirname, "templates");
 const layout = path.join(templateDir, "layout.pug");
 const distDir = path.join(__dirname, "www");
@@ -69,6 +126,7 @@ const pages = [];
 const tagCloud = [];
 let notLowercaseTags = [];
 
+// console.log("Building site...");
 fs.readdir(docsDir, (err, files) => {
   if (err) {
     return console.log("Unable to scan directory: " + err);
@@ -76,6 +134,15 @@ fs.readdir(docsDir, (err, files) => {
   files.forEach((file) => {
     let fmData = fm(fs.readFileSync(path.join(docsDir, file), "utf-8"));
     let stats = fs.statSync(path.join(docsDir, file));
+    if (fmData.attributes.tocIncludeLevel && fmData.attributes.tocIncludeLevel.length > 0 && fmData.attributes.tocIncludeLevel !== tocIncludeLevel) {
+      md.use(mdItToc, {
+        includeLevel: fmData.attributes.tocIncludeLevel,
+      });
+    } else {
+      md.use(mdItToc, {
+        includeLevel: tocIncludeLevel,
+      });
+    }
     let toc = md.render("[[toc]]\n" + fmData.body);
     toc = toc.match(/<div class="table-of-contents">(.|\s)*?<\/div>/g)[0];
     let lang = fmData.attributes.lang ? fmData.attributes.lang : process.env.EASYDOC_LANG_FALLBACK;

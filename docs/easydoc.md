@@ -5,6 +5,8 @@ tags:
   - javascript
   - documentation
   - tool
+  - foo
+tocIncludeLevel: [1, 2, 3]
 # disableBrand: true
 # disableToc: true
 # disableSiteNav: true
@@ -25,9 +27,10 @@ tags:
   <div class="brand">Grandgeorg</div>
   <div class="brand-second">Websolutions</div>
 </a>
+
 <svg width="156" height="84" viewBox="0 0 52 28" class="logo gw-logo" style="margin-top:0.5rem">
-<path style="fill:#ff3300;stroke:#bf260066;stroke-width:2px;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1" d="M 24,4 H 4 V 24 H 24 V 12 h -8 v 4 h 4 v 4 H 8 V 8 h 16 z"/>
-<path style="fill:#267dff;stroke:#1d5ebf66;stroke-width:2px;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1" d="M 48,4 V 24 H 28 V 4 h 4 v 16 h 4 V 8 h 4 v 12 h 4 V 4 Z" />
+  <path style="fill:#ff3300;stroke:#bf260066;stroke-width:2px;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1" d="M 24,4 H 4 V 24 H 24 V 12 h -8 v 4 h 4 v 4 H 8 V 8 h 16 z"/>
+  <path style="fill:#267dff;stroke:#1d5ebf66;stroke-width:2px;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1" d="M 48,4 V 24 H 28 V 4 h 4 v 16 h 4 V 8 h 4 v 12 h 4 V 4 Z" />
 </svg>
 <!-- :BRAND HTML -->
 
@@ -35,9 +38,9 @@ tags:
 
 ## Features
 
-::: details Generates completely offline HTML Website.
--	You can just open the resulting HTML-Files in the ```www``` directory locally in a browser. 
--	You can also drop / push the ```www``` directory to a HTTP-Server.
+::: details Generates completely local HTML Website.
+-	You can just open the resulting HTML-files in the ```www``` directory locally in a browser. 
+-	You can also drop / push the contents of the ```www``` directory to a HTTP-Server.
 :::
 
 
@@ -108,7 +111,8 @@ npm run build
 
 ## Configuration
 
-### 📜 ```.env``` asd
+### 📄 Global Configuration 
+#### ```.env``` file
 
 ```ini
 EASYDOC_LANG_FALLBACK=en
@@ -127,14 +131,18 @@ EASYDOC_TOC_INCLUDELEVEL=[1,2,3,4]
 # EASYDOC_DISABLE_NAVIGATION=true
 ```
 
+### 📄 Overrides in front matter
+#### ```docs/*.md``` files
+
 ```frontmatter
 
 ---
-title: Docker Multi-Instanz Setup
+title: Page Title
 lang: de
-brandURL: https://culture-to-go.com
-brandName: Culture
-brandSecondary: to go
+brandURL: https://domain.tld
+brandName: My Project
+brandSecondary: Reserach
+tocIncludeLevel: [1, 2, 3, 4]
 disableBrand: true
 disableToc: true
 disableSiteNav: true

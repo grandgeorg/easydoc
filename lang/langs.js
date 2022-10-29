@@ -4,11 +4,11 @@ exports.en = {
   "mtime": "Last Update",
   "toc": "Table of Contents",
   "nav": "Navigation",
-  "tagNav": "Tag Navigation",
+  "tagNav": "Tag Navigator",
 };
 exports.de = {
   "mtime": "letzte Aktualisierung",
   "toc": "Inhaltsverzeichnis",
   "nav": "Navigation",
-  "tagNav": "Tag Navigation",
+  "tagNav": "Tag Navigator",
 };
