@@ -5,6 +5,7 @@
 # !/docs/sample-markdown.md
 !/docs/easydoc.md
 /node_modules
+/test
 /www/*.html
 # !/www/example-1.html
 # !/www/example-2.html
