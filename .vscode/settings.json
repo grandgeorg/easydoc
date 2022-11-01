@@ -17,4 +17,5 @@
     },
     "eslint.format.enable": true,
     "liveServer.settings.root": "/www/",
+    "liveServer.settings.port": 5501,
 }
