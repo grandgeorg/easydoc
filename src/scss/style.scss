@@ -753,11 +753,22 @@ body>.page:first-child {
     border-radius: 6px;
     padding-top: 2.5rem;
     font-size: 0.85rem;
+    @include scrollbars(10px, var(--clr-base-sl-d600), var(--clr-base-sl-d500), var(--clr-base-d600), 7px, 3px);
+    code {
+      display: block;
+    }
   }
   code[class*="language-"],
   pre[class*="language-"] pre,
   pre code {
     white-space: pre-wrap;
+    // display: block;
+  }
+
+  .no-line-numbers code[class*="language-"],
+  .no-line-numbers pre[class*="language-"] pre,
+  .no-line-numbers pre code {
+    white-space: pre;
   }
 
   pre[class*=language-].line-numbers {
@@ -769,6 +780,30 @@ body>.page:first-child {
     &>span:before {
       color: var(--clr-base-l150);
     }
+  }
+
+  .line-highlight {
+    position: absolute;
+    left: 0;
+    right: 0;
+    width: 100%;
+    max-width: 100%;
+    padding: 0;
+    margin-top: 2.5rem;
+    // background-color: #3e4e6640;
+    background-color: #6a85a40d;
+    // border-left: 3px solid #f6770d;
+    // border-left: 2px solid #f6770db8;
+    border-left: 2px solid #b15c15;
+    pointer-events: none;
+    line-height: inherit;
+    white-space: pre;
+  }
+
+  // command-line
+  .command-line span.token.output {
+    opacity: 0.6;
+    font-size: 0.68rem;
   }
 
   // language specific, language: filetree
