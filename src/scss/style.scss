@@ -777,9 +777,14 @@ body>.page:first-child {
 
   .line-numbers .line-numbers-rows {
     border-right: 1px solid var(--clr-base-d250);
+    pointer-events: inherit;
     &>span:before {
       color: var(--clr-base-l150);
     }
+  }
+
+  .line-numbers.linkable-line-numbers .line-numbers-rows>span {
+    cursor: pointer;
   }
 
   .line-highlight {
@@ -799,6 +804,11 @@ body>.page:first-child {
     line-height: inherit;
     white-space: pre;
   }
+  .line-highlight.temporary {
+    background-color: #6a85a40d;
+    border-left: 2px solid #15b12a;
+  }
+
 
   // command-line
   .command-line {
@@ -832,6 +842,7 @@ body>.page:first-child {
     color: #c9e1ff;
     font-size: 0.85rem;
     line-height: 1.25;
+    white-space: pre;
   }
 
   .markdown-codeblock pre code {
