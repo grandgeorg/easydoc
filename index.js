@@ -44,60 +44,36 @@ md.use(markdownItAttrs, {
 });
 
 // custom renderer for fenced code blocks
+// @see dafult render in node_modules/markdown-it/dist/markdown-it.js #L3093
 const defaultRenderFence = md.renderer.rules.fence;
 md.renderer.rules.fence = function (tokens, idx, options, env, slf) {
+  // We mimic the default renderer,
+  // but we set attributes on the pre tag instead of the code tag
+  // otherwise prism.js can not handle data attributes for plugins.
   const token = tokens[idx];
-  const dataTokens = [];
-  // set data tokens
-  if (token.attrIndex('data-user') >= 0) {
-    dataTokens.push(['data-user', token.attrs[token.attrIndex('data-user')][1]]);
-    token.attrs.splice(token.attrIndex('data-user'), 1);
-  }
-  if (token.attrIndex('data-host') >= 0) {
-    dataTokens.push(['data-host', token.attrs[token.attrIndex('data-host')][1]]);
-    token.attrs.splice(token.attrIndex('data-host'), 1);
-  }
-  if (token.attrIndex('data-output') >= 0) {
-    dataTokens.push(['data-output', token.attrs[token.attrIndex('data-output')][1]]);
-    token.attrs.splice(token.attrIndex('data-output'), 1);
-  }
-  if (token.attrIndex('data-start') >= 0) {
-    dataTokens.push(['data-start', token.attrs[token.attrIndex('data-start')][1]]);
-    token.attrs.splice(token.attrIndex('data-start'), 1);
-  }
-
-  // if token has command-line class
-  if (token.info && token.attrIndex('class') >= 0 &&
-    token.attrs[token.attrIndex('class')][1].indexOf('command-line') >= 0) {
-    let info = "language-" + token.info;
-    if (token.attrIndex('class') >= 0) {
-      token.attrs[token.attrIndex('class')][1] += " " + info;
+  const info = token.info ? md.utils.unescapeAll(token.info).trim() : "";
+  let langName = "", langAttrs = "", highlighted, infoParts, helperClass = "";
+  if (info) {
+    infoParts = info.split(/(\s+)/g);
+    langName = infoParts[0];
+    langAttrs = infoParts.slice(2).join("");
+    if (options.highlight) {
+      highlighted = options.highlight(token.content, langName, langAttrs) || md.utils.escapeHtml(token.content);
     } else {
-      token.attrPush(['class', info]);
+      highlighted = md.utils.escapeHtml(token.content);
     }
-  }
-
-  // if token has line-numbers class
-  if (token.info && token.attrIndex('class') >= 0 &&
-    token.attrs[token.attrIndex('class')][1].indexOf('line-numbers') >= 0) {
-    let info = "language-" + token.info;
-    if (token.attrIndex('class') >= 0) {
-      token.attrs[token.attrIndex('class')][1] += " " + info;
+    // if token has attribute data-line and has no class line-numbers add class .no-line-numbers
+    if (token.attrGet("data-line") && (!token.attrGet("class") || token.attrGet("class").indexOf("line-numbers") === -1)) {
+      helperClass += " no-line-numbers";
+    }
+    if (token.attrIndex("class") >= 0) {
+      token.attrs[token.attrIndex("class")][1] += " " + options.langPrefix + langName + helperClass;
     } else {
-      token.attrPush(['class', info]);
+      token.attrPush(["class", options.langPrefix + langName + helperClass]);
     }
-  }
-
-  // render the fence
-  if (dataTokens.length > 0) {
-    // console.log("here", slf.renderAttrs(dataTokens));
-    let dt = "";
-    for (let i = 0; i < dataTokens.length; i++) {
-      dt += " " + dataTokens[i][0] + "=\"" + dataTokens[i][1] + "\"";
-    }
-    return '<pre' + dt + '>'
-        + '<code' + slf.renderAttrs(token) + '>' + token.content + '</code>'
-        + '</pre>';
+    return '<pre' + slf.renderAttrs(token) + '>'
+      + '<code>' + highlighted + '</code>'
+      + '</pre>';
   } else {
     return defaultRenderFence(tokens, idx, options, env, slf);
   }
