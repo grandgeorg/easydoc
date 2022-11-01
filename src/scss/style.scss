@@ -801,10 +801,30 @@ body>.page:first-child {
   }
 
   // command-line
-  .command-line span.token.output {
-    opacity: 0.6;
-    font-size: 0.68rem;
+  .command-line {
+    code {
+      white-space: pre;
+    }
+    .command-line-prompt {
+      border-right: 1px dashed #32383e;
+      letter-spacing: -0.03em;
+    }
+    span.token.output {
+     opacity: 0.6;
+     font-size: 0.68rem;
+     padding-right: 0.25rem;
+   }
+
   }
+  // .command-line span.token.output:before {
+  //   content: "$";
+  //   opacity: 0.6;
+  //   font-size: 0.68rem;
+  //   padding-right: 0.25rem;
+  // }
+  // .command-line span.token.output:after {
+  //   content: "";
+  // }
 
   // language specific, language: filetree
   code[class*=language-filetree],
