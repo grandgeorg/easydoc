@@ -14,10 +14,41 @@ const md = require("markdown-it")({
   typographer: true,
 });
 md.use(require("markdown-it-deflist"));
-md.use(require("markdown-it-container"), "tip");
-md.use(require("markdown-it-container"), "info");
-md.use(require("markdown-it-container"), "warning");
-md.use(require("markdown-it-container"), "danger");
+
+function getCustomContainer(name) {
+  let regex = new RegExp(`^${name}(.*)$`, "i");
+  return {
+    validate: function (params) {
+      return params.trim().match(regex);
+    },
+    render: function (tokens, idx) {
+      let m = tokens[idx].info.trim().match(regex);
+      if (tokens[idx].nesting === 1) {
+        let className = tokens[idx].attrGet("class") ? " " + tokens[idx].attrGet("class") : "";
+        // opening tags
+        if (m && m[1]) {
+          return `
+            <div class="custom-conatiner ${name}${className}" tabindex="0">
+              <div class="custom-conatiner-title ${name}-title">${md.utils.escapeHtml(m[1])}</div>
+              <div class="custom-conatiner-body ${name}-body">\n`;
+        } else {
+          return `
+            <div class="custom-conatiner ${name}${className}">
+              <div class="custom-conatiner-body ${name}-body">\n`;
+        }
+      } else {
+        // closing tags
+        return '</div>\n</div>\n';
+      }
+    }
+  };
+}
+
+md.use(require("markdown-it-container"), "tip", getCustomContainer("tip"));
+md.use(require("markdown-it-container"), "info", getCustomContainer("info"));
+md.use(require("markdown-it-container"), "warning", getCustomContainer("warning"));
+md.use(require("markdown-it-container"), "danger", getCustomContainer("danger"));
+md.use(require("markdown-it-container"), "line", getCustomContainer("line"));
 md.use(require("markdown-it-container"), "checklist");
 md.use(require("markdown-it-container"), "details", {
   validate: function(params) {
@@ -70,6 +101,10 @@ md.renderer.rules.fence = function (tokens, idx, options, env, slf) {
       token.attrs[token.attrIndex("class")][1] += " " + options.langPrefix + langName + helperClass;
     } else {
       token.attrPush(["class", options.langPrefix + langName + helperClass]);
+    }
+    // add id attribute to pre tag
+    if (token.attrIndex("id") === -1) {
+      token.attrPush(["id", "codeblock-" + idx]);
     }
     return '<pre' + slf.renderAttrs(token) + '>'
       + '<code>' + highlighted + '</code>'
