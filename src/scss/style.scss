@@ -647,7 +647,7 @@ body>.page:first-child {
   border-right: 1px solid var(--clr-base-d400);
   border-left: 1px solid var(--clr-base-d400);
   font-size: 1rem;
-  p, li, dt, dd, blockquote, pre, table, details {
+  p, ul, li, dt, dd, blockquote, pre, table, details {
     font-size: 1rem;
     font-size: clamp(0.85rem, 1.3333vw, 1rem);
   }
@@ -787,6 +787,10 @@ body>.page:first-child {
 
   p {
     margin: 1em 0;
+  }
+
+  ul, ol {
+    padding-left: 1em;
   }
 
   >p:first-child,
