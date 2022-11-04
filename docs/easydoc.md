@@ -68,9 +68,7 @@ npm run build
 ```
 
 ::: details 🖿 easydoc directory structure
-
 ```filetree
-
 🗁 easydoc
  ├🗀 .git
  ├🗀 .vscode
@@ -104,56 +102,13 @@ npm run build
 │  📌 It's me. Your reading this document right now.         │
 │  🖤 Remove these documentation files for a blank start.    │
 ╰──────────────────────────═━┈💬┈━═──────────────────────────╯
-
 ```
-
 :::
 
-## Configuration
 
-### 📄 Global Configuration 
-#### ```.env``` file
-
-```ini
-EASYDOC_LANG_FALLBACK=en
-EASYDOC_TITLE_FALLBACK=Documentation
-
-EASYDOC_BRAND_URL=https://grandgeorg.de
-EASYDOC_BRAND_NAME=Grandgeorg
-EASYDOC_BRAND_SECONDARY=Websolutions
-
-EASYDOC_TOC_INCLUDELEVEL=[1,2,3,4]
-
-# EASYDOC_DISABLE_BRAND=true
-# EASYDOC_DISABLE_TOC=true
-# EASYDOC_DISABLE_SITE_NAV=true
-# EASYDOC_DISABLE_TAG_NAVIGATOR=true
-# EASYDOC_DISABLE_NAVIGATION=true
-```
-
-### 📄 Overrides in front matter
-#### ```docs/*.md``` files
-
-```frontmatter
-
----
-title: Page Title
-lang: de
-brandURL: https://domain.tld
-brandName: My Project
-brandSecondary: Reserach
-tocIncludeLevel: [1, 2, 3, 4]
-disableBrand: true
-disableToc: true
-disableSiteNav: true
-disableTagNavigator: true
-disableNavigation: true
----
-
-```
 
 --------------------------------------------------------------------------------
-[EasyDoc Reference](reference.html) {.text-center}
+For configuration and further usage refer to the [EasyDoc Reference](reference.html) {.text-center}
 
 --------------------------------------------------------------------------------
 
