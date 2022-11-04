@@ -1,0 +1,1756 @@
+<!DOCTYPE html><html lang="en"><head><title>EasyDoc Reference</title><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="stylesheet" href="assets/css/style.min.css"><link rel="stylesheet" href="assets/css/prism.min.css"><script src="assets/js/clipboard.min.js"></script><script src="assets/js/prism.js"></script><script src="assets/js/raphael.min.js"></script><script src="assets/js/flowchart.min.js"></script><script src="assets/js/app.min.js"></script><script src="meta.js"></script></head><body><div class="navbar"><a class="navbar__brand" href="https://grandgeorg.de"><span class="brand">Grandgeorg</span><span class="brand-second">Websolutions</span></a><div class="navbar__controls"><button class="btn-tag-nav navitem" id="open-tag-navigation" aria-label="open tag navigation" title="open tag navigation" role="button"><svg class="bi bi-tags" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M3 2v4.586l7 7L14.586 9l-7-7H3zM2 2a1 1 0 0 1 1-1h4.586a1 1 0 0 1 .707.293l7 7a1 1 0 0 1 0 1.414l-4.586 4.586a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 2 6.586V2z"></path><path d="M5.5 5a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1zm0 1a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zM1 7.086a1 1 0 0 0 .293.707L8.75 15.25l-.043.043a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 0 7.586V3a1 1 0 0 1 1-1v5.086z"></path></svg><span class="navitem-title">Tag Navigator</span></button><button class="burger" aria-expanded="false" aria-label="navigation menu"><span class="burger__line burger__line-1" aria-hidden="true" focusable="false"></span><span class="burger__line burger__line-2" aria-hidden="true" focusable="false"></span><span class="burger__line burger__line-3" aria-hidden="true" focusable="false"></span></button></div></div><nav class="navigation-drawer" aria-label="Main menu"><h3 class="nav-title text-center">Table of Contents</h3><div class="toc"><div class="table-of-contents"><ul><li><a href="#easydoc-reference">EasyDoc Reference</a><ul><li><a href="#configuration">Configuration</a><ul><li><a href="#-global-configuration">📄 Global Configuration</a></li><li><a href="#-per-page-overrides-in-front-matter">📄 Per page overrides in front matter</a></li></ul></li><li><a href="#markdown">Markdown</a><ul><li><a href="#typography--elements">Typography &amp; Elements</a></li><li><a href="#icons">Icons</a></li><li><a href="#markdown-plugins">Markdown Plugins</a></li></ul></li><li><a href="#syntax-highlighting">Syntax Highlighting</a><ul><li><a href="#syntax-highlighting-examples">Syntax Highlighting Examples</a></li></ul></li></ul></li></ul></div></div><div class="sitenav"><h3 class="nav-title text-center">Navigation</h3><ul><li><a href="easydoc.html">Easydoc</a></li><li><a class="active" href="reference.html">Reference</a></li><li><a href="setup.html">Example</a></li></ul></div></nav><main class="page"><div class="mtime">Last Update Fri Nov 04 2022 05:29:10 GMT+0100 (Mitteleuropäische Normalzeit)</div><div class="content"><h1 class="text-center" id="easydoc-reference" tabindex="-1"><a class="header-anchor" href="#easydoc-reference">EasyDoc Reference</a></h1>
+<p class="text-center">🔴🔵</p>
+<hr>
+<h2 id="configuration" tabindex="-1"><a class="header-anchor" href="#configuration">Configuration</a></h2>
+<h3 id="-global-configuration" tabindex="-1"><a class="header-anchor" href="#-global-configuration">📄 Global Configuration</a></h3>
+<h5 id="env-file" tabindex="-1"><a class="header-anchor" href="#env-file"><code>.env</code> file</a></h5>
+<pre class="language-ini" id="codeblock-16"><code>EASYDOC_LANG_FALLBACK=en
+EASYDOC_TITLE_FALLBACK=Documentation
+
+EASYDOC_BRAND_URL=https://grandgeorg.de
+EASYDOC_BRAND_NAME=Grandgeorg
+EASYDOC_BRAND_SECONDARY=Websolutions
+
+EASYDOC_TOC_INCLUDELEVEL=[1,2,3,4]
+
+# EASYDOC_DISABLE_BRAND=true
+# EASYDOC_DISABLE_TOC=true
+# EASYDOC_DISABLE_SITE_NAV=true
+# EASYDOC_DISABLE_TAG_NAVIGATOR=true
+# EASYDOC_DISABLE_NAVIGATION_BAR=true
+</code></pre><h3 id="-per-page-overrides-in-front-matter" tabindex="-1"><a class="header-anchor" href="#-per-page-overrides-in-front-matter">📄 Per page overrides in front matter</a></h3>
+<h5 id="docsmd-files" tabindex="-1"><a class="header-anchor" href="#docsmd-files"><code>docs/*.md</code> files</a></h5>
+<pre class="language-none" id="codeblock-23"><code>---
+title: Page Title
+lang: de
+brandURL: https://domain.tld
+brandName: My Project
+brandSecondary: Reserach
+tocIncludeLevel: [1, 2, 3, 4]
+# disableBrand: true
+# disableToc: true
+# disableSiteNav: true
+# disableTagNavigator: true
+# disableNavigationBar: true
+---
+</code></pre><h2 id="markdown" tabindex="-1"><a class="header-anchor" href="#markdown">Markdown</a></h2>
+<h3 id="typography--elements" tabindex="-1"><a class="header-anchor" href="#typography--elements">Typography &amp; Elements</a></h3>
+<details><summary>Typographic replacements</summary>
+<p>© © ® ® ™ ™ ±<br>
+ellipsis … ellipsis … ellipsis … ellipsis … ellipsis …<br>
+!!! ??? ,  – —<br>
+“Smartypants, double quotes” and ‘single quotes’</p>
+<pre class="language-markdown" id="codeblock-34"><code>(c) (C) (r) (R) (tm) (TM) +-  
+ellipsis .. ellipsis ... ellipsis ..... ellipsis ..... ellipsis ....  
+!!!!!! ???? ,,  -- ---  
+&quot;Smartypants, double quotes&quot; and 'single quotes'
+</code></pre></details>
+<details><summary>Emphasis</summary>
+<p><strong>This is bold text</strong><br>
+<strong>This is bold text</strong><br>
+<em>This is italic text</em><br>
+<em>This is italic text</em><br>
+<s>Strikethrough</s></p>
+<pre class="language-markdown" id="codeblock-40"><code>**This is bold text**  
+__This is bold text__  
+*This is italic text*  
+_This is italic text_  
+~~Strikethrough~~
+</code></pre></details>
+<details><summary>Blockquotes</summary>
+<blockquote>
+<p>Blockquotes can also be nested…</p>
+<blockquote>
+<p>…by using additional greater-than signs right next to each other…</p>
+<blockquote>
+<p>…or with spaces between arrows.</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<pre class="language-markdown" id="codeblock-58"><code>&gt; Blockquotes can also be nested...
+&gt;&gt; ...by using additional greater-than signs right next to each other...
+&gt; &gt; &gt; ...or with spaces between arrows.
+</code></pre></details>
+<h4 id="" tabindex="-1"><a class="header-anchor" href="#"></a></h4>
+<details><summary>Unordered lists</summary>
+<ul>
+<li>Create a list by starting a line with <code>+</code>, <code>-</code>, or <code>*</code></li>
+<li>Sub-lists are made by indenting 2 spaces:
+<ul>
+<li>Marker character change forces new list start:
+<ul>
+<li>Ac tristique libero volutpat at</li>
+</ul>
+<ul>
+<li>Facilisis in pretium nisl aliquet</li>
+</ul>
+<ul>
+<li>Nulla volutpat aliquam velit</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Very easy!</li>
+</ul>
+<pre class="language-markdown" id="codeblock-109"><code>+ Create a list by starting a line with `+`, `-`, or `*`
++ Sub-lists are made by indenting 2 spaces:
+  - Marker character change forces new list start:
+    - Ac tristique libero volutpat at
+    * Facilisis in pretium nisl aliquet
+    - Nulla volutpat aliquam velit
++ Very easy!
+</code></pre></details>
+<details><summary>Ordered lists</summary>
+<ol>
+<li>Lorem ipsum dolor sit amet</li>
+<li>Consectetur adipiscing elit</li>
+</ol>
+<p>Lists can be interrupted and then resumed</p>
+<ol start="3">
+<li>Integer molestie lorem at massa</li>
+<li>Ac tristique libero volutpat at
+<ol>
+<li>sub in enim justo</li>
+<li>sub venenatis vitae</li>
+<li>sub consequat vitae</li>
+</ol>
+</li>
+<li>Facilisis in pretium nisl aliquet</li>
+<li>Nulla volutpat aliquam velit</li>
+</ol>
+<p>Start numbering with offset:</p>
+<ol start="18">
+<li>scelerisque ut mollis sed</li>
+<li>faucibus orci luctus</li>
+</ol>
+</details>
+<details><summary>Definition lists</summary>
+<dl>
+<dt>Some Definition Title 1</dt>
+<dd>Type: <code>string</code></dd>
+<dd>Default: <code>empty</code></dd>
+<dd>Some description</dd>
+<dt>Some Definition Title 2</dt>
+<dd>Type: <code>bool</code></dd>
+<dd>Default: <code>true</code></dd>
+<dd>Some description<br>
+with lazy continuation.</dd>
+</dl>
+<p><em>Other style:</em></p>
+<dl>
+<dt>Term 1</dt>
+<dd>Definition 1a</dd>
+<dd>Definition 1a</dd>
+<dt>Term 2</dt>
+<dd>Definition 2a</dd>
+<dd>Definition 2b</dd>
+</dl>
+<pre class="language-markdown" id="codeblock-252"><code>Some Definition Title 1
+: Type: `string`
+: Default: `empty`
+: Some description
+
+Some Definition Title 2
+: Type: `bool`
+: Default: `true`
+: Some description  
+with lazy continuation.
+
+_Other style:_
+
+Term 1
+  ~ Definition 1a
+  ~ Definition 1b
+
+Term 2
+  ~ Definition 2a
+  ~ Definition 2b
+</code></pre></details>
+<details><summary>Tables</summary>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+<th style="text-align:center">active</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>data</td>
+<td>path to data files to supply the data that will be passed into templates.</td>
+<td style="text-align:center">✅</td>
+</tr>
+<tr>
+<td>engine</td>
+<td>engine to be used for processing templates. Handlebars is the default.</td>
+<td style="text-align:center">❌</td>
+</tr>
+<tr>
+<td>ext</td>
+<td>extension to be used for dest files.</td>
+<td style="text-align:center">✅</td>
+</tr>
+</tbody>
+</table>
+<p>Right aligned columns</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:right">Option</th>
+<th style="text-align:right">Description</th>
+<th style="text-align:center">active</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">data</td>
+<td style="text-align:right">path to data files to supply the data that will be passed into templates.</td>
+<td style="text-align:center">✅</td>
+</tr>
+<tr>
+<td style="text-align:right">engine</td>
+<td style="text-align:right">engine to be used for processing templates. Handlebars is the default.</td>
+<td style="text-align:center">❌</td>
+</tr>
+<tr>
+<td style="text-align:right">ext</td>
+<td style="text-align:right">extension to be used for dest files.</td>
+<td style="text-align:center">❌</td>
+</tr>
+</tbody>
+</table>
+<pre class="language-markdown" id="codeblock-358"><code>| Option | Description | active |
+| ------ | ----------- |:------:|
+| data   | path to data files to supply the data that will be passed into templates. | ✅ |
+| engine | engine to be used for processing templates. Handlebars is the default. | ❌ |
+| ext    | extension to be used for dest files. | ✅ |
+
+Right aligned columns
+
+| Option | Description | active |
+| ------:| -----------:|:------:|
+| data   | path to data files to supply the data that will be passed into templates. | ✅ |
+| engine | engine to be used for processing templates. Handlebars is the default. | ❌ |
+| ext    | extension to be used for dest files. | ❌ |
+</code></pre></details>
+<details><summary>Links</summary>
+<p><a href="https://metager.de/">metager</a><br>
+<a href="https://metager.de/" title="MetaGer">metager with title</a><br>
+Autoconverted link <a href="https://grandgeorg.de">https://grandgeorg.de</a></p>
+<pre class="language-markdown" id="codeblock-364"><code>[metager](https://metager.de/)  
+[metager with title](https://metager.de/ &quot;MetaGer&quot;)  
+Autoconverted link https://grandgeorg.de  
+</code></pre></details>
+<details><summary>Images</summary>
+<p>Fullsize
+<img src="https://source.unsplash.com/1920x1080/?cityscape,landscape,nature/__random__" alt="Random Image">
+Small with title
+<img src="https://source.unsplash.com/320x180/?cityscape,landscape,nature/__random__" alt="Random Image small" title="Random Image small"></p>
+<pre class="language-markdown" id="codeblock-370"><code>Fullsize 
+![Random Image](https://source.unsplash.com/1920x1080/?cityscape,landscape,nature/__random__)
+Small with title
+![Random Image small](https://source.unsplash.com/320x180/?cityscape,landscape,nature/__random__ &quot;Random Image small&quot;)
+</code></pre></details>
+<h3 id="icons" tabindex="-1"><a class="header-anchor" href="#icons">Icons</a></h3>
+<p>Here you find a curated list of unicode icon characters and emojis.</p>
+<details><summary>emojis in body</summary>
+<h4 id="files" tabindex="-1"><a class="header-anchor" href="#files">files</a></h4>
+<p class="fs-xl">📄 📝 📑 📜 📃 🧾</p>
+<h4 id="folder" tabindex="-1"><a class="header-anchor" href="#folder">folder</a></h4>
+<p class="fs-xl">📁 📂 🗂️</p>
+<h4 id="hands" tabindex="-1"><a class="header-anchor" href="#hands">hands</a></h4>
+<p class="fs-xl">✋ 👈 👉 👆 👇 ☝️ 👍 👎<br>
+✋🏻 👈🏻 👉🏻 👆🏻 👇🏻 ☝🏻 👍🏻 👎🏻<br>
+✋🏼 👈🏼 👉🏼 👆🏼 👇🏼 ☝🏼 👍🏼 👎🏼<br>
+✋🏽 👈🏽 👉🏽 👆🏽 👇🏽 ☝🏽 👍🏽 👎🏽<br>
+✋🏾 👈🏾 👉🏾 👆🏾 👇🏾 ☝🏾 👍🏾 👎🏾<br>
+✋🏿 👈🏿 👉🏿 👆🏿 👇🏿 ☝🏿 👍🏿 👎🏿</p>
+<h4 id="user" tabindex="-1"><a class="header-anchor" href="#user">user</a></h4>
+<p class="fs-xl">👩‍💼 👨‍💼 👩 🧑 👱‍♂️ 👩‍🦳<br>
+👩🏻‍💼 👨🏻‍💼 👩🏻 🧑🏻 👱🏻 👩🏻‍🦳<br>
+👩🏼‍💼 👨🏼‍💼 👩🏼 🧑🏼 👱🏼 👩🏼‍🦳<br>
+👩🏽‍💼 👨🏽‍💼 👩🏽 🧑🏽 👱🏽‍♂️ 👩🏽‍🦳<br>
+👩🏾‍💼 👨🏾‍💼 👩🏾 🧑🏾 👱🏾‍♂️ 👩🏾‍🦳<br>
+👩🏿‍💼 👨🏿‍💼 👩🏿 🧑🏿 👱🏿‍♂️ 👩🏿‍🦳<br>
+👤 👥</p>
+<h4 id="computer" tabindex="-1"><a class="header-anchor" href="#computer">computer</a></h4>
+<p class="fs-xl">🖥️ 💻<br>
+👩‍💻 👨‍💻 🧑‍💻<br>
+👩🏻‍💻 👨🏻‍💻 🧑🏻‍💻<br>
+👩🏼‍💻 👨🏼‍💻 🧑🏼‍💻<br>
+👩🏽‍💻 👨🏽‍💻 🧑🏽‍💻<br>
+👩🏾‍💻 👨🏾‍💻 🧑🏾‍💻<br>
+👩🏿‍💻 👨🏿‍💻 🧑🏿‍💻</p>
+<h4 id="phone" tabindex="-1"><a class="header-anchor" href="#phone">phone</a></h4>
+<p class="fs-xl">📱 📲 📞 ☎️ </p>
+<h4 id="symbols" tabindex="-1"><a class="header-anchor" href="#symbols">symbols</a></h4>
+<p class="fs-xl">❌ ⭕️ 🛑 ⛔️ 📛 💯 💢 ♨️<br>
+⚠️ ☢️ ☣️<br>
+❗️ ❕ ❓ ❔ ‼️ ⁉️<br>
+➕ ➖ ✖️<br>
+❎ ✳️ ❇️ ✴️<br>
+🔀 🔁 🔂 🔃 🔄<br>
+⏩ ⏪ ⏫ ⏬<br>
+🔼 🔽 </p>
+<h4 id="checkmarks" tabindex="-1"><a class="header-anchor" href="#checkmarks">checkmarks</a></h4>
+<p class="fs-xl">✔️ ✅ ☑️ </p>
+<h4 id="speach--bubbles" tabindex="-1"><a class="header-anchor" href="#speach--bubbles">speach &amp; bubbles</a></h4>
+<p class="fs-xl">📣 📢 💬 🗨️ 💭 🗯️ 👁‍🗨 👁️ </p>
+<h4 id="primitives" tabindex="-1"><a class="header-anchor" href="#primitives">primitives</a></h4>
+<p class="fs-xl">🔘 🔴 🟠 🟡 🟢 🔵 🟣 ⚫️ ⚪️ 🟤<br>
+🟥 🟧 🟨 🟩 🟦 🟪 ⬛️ ⬜️ 🟫<br>
+🔺 🔻<br>
+🔸 🔹 🔶 🔷<br>
+🔳 🔲 ▪️ ▫️ ◾️ ◽️ ◼️ ◻️</p>
+<h4 id="traffic" tabindex="-1"><a class="header-anchor" href="#traffic">traffic</a></h4>
+<p class="fs-xl">🚧 🚦 🚥 </p>
+<h4 id="time--navigation" tabindex="-1"><a class="header-anchor" href="#time--navigation">time &amp; navigation</a></h4>
+<p class="fs-xl">🧭 ⏱ ⏲ ⌛️ ⏳ </p>
+<h4 id="electricity" tabindex="-1"><a class="header-anchor" href="#electricity">electricity</a></h4>
+<p class="fs-xl">🔋 🔌 </p>
+<h4 id="mechanics" tabindex="-1"><a class="header-anchor" href="#mechanics">mechanics</a></h4>
+<p class="fs-xl">🧰 🔧 🔨 🛠️ ⚙️ 🧲 🗜️ </p>
+<h4 id="weapon" tabindex="-1"><a class="header-anchor" href="#weapon">weapon</a></h4>
+<p class="fs-xl">🔫 💣 🧨 </p>
+<h4 id="test" tabindex="-1"><a class="header-anchor" href="#test">test</a></h4>
+<p class="fs-xl">💊 🩸 🧬 🧫 🧪 ⚗️ 🌡️ </p>
+<h4 id="security" tabindex="-1"><a class="header-anchor" href="#security">security</a></h4>
+<p class="fs-xl">🔑 🗝️ 🔏 🔐 🔒 🔓 </p>
+<h4 id="search" tabindex="-1"><a class="header-anchor" href="#search">search</a></h4>
+<p class="fs-xl">🔍 🔎</p>
+<h4 id="office" tabindex="-1"><a class="header-anchor" href="#office">office</a></h4>
+<p class="fs-xl">🗑 🗃️ 📋 📥 📤 📦 </p>
+<h4 id="mail" tabindex="-1"><a class="header-anchor" href="#mail">mail</a></h4>
+<p class="fs-xl">🧧 ✉️ 📩 📨 📧
+📪 📫 📬 📭 📮 📯</p>
+<h4 id="tag" tabindex="-1"><a class="header-anchor" href="#tag">tag</a></h4>
+<p class="fs-xl">🔖🏷️</p>
+<h4 id="books" tabindex="-1"><a class="header-anchor" href="#books">books</a></h4>
+<p class="fs-xl">📓 📔 📒 📕 📗 📘 📙 📚 📖 🗒️</p>
+<h4 id="edit" tabindex="-1"><a class="header-anchor" href="#edit">edit</a></h4>
+<p class="fs-xl">📌 📍 ✂️ ✏️ 🖋️ 🖊️ 🖌️ 🖍️ ✒️</p>
+<h4 id="stars" tabindex="-1"><a class="header-anchor" href="#stars">stars</a></h4>
+<p class="fs-xl">💫 ⭐️ 🌟 ✨ ⚡️ ☀️ ☄️ 🌌</p>
+<h4 id="elements" tabindex="-1"><a class="header-anchor" href="#elements">elements</a></h4>
+<p class="fs-xl">💥 🔥 🌪 🌈 💧 💦 ❄️</p>
+<h4 id="tickets" tabindex="-1"><a class="header-anchor" href="#tickets">tickets</a></h4>
+<p class="fs-xl">🎫 🎟</p>
+<h4 id="image" tabindex="-1"><a class="header-anchor" href="#image">image</a></h4>
+<p class="fs-xl">🎨 📷 📸 📹 🎥 📽️ 🎞️ 🎬</p>
+<h4 id="audio" tabindex="-1"><a class="header-anchor" href="#audio">audio</a></h4>
+<p class="fs-xl">🎤 🎧 🎼 🎵 🎶 🔈 🔇 🔉 🔊</p>
+<h4 id="light" tabindex="-1"><a class="header-anchor" href="#light">light</a></h4>
+<p class="fs-xl">💡 🪔</p>
+<h4 id="globe--earth" tabindex="-1"><a class="header-anchor" href="#globe--earth">globe / earth</a></h4>
+<p class="fs-xl">🌐  🗺  🌎 🌍 🌏 </p>
+<h4 id="hearts" tabindex="-1"><a class="header-anchor" href="#hearts">hearts</a></h4>
+<p class="fs-xl">❤️ 🧡 💛 💚 💙 💜 🖤 🤍 🤎 💖 💞 💔</p>
+<h4 id="flags" tabindex="-1"><a class="header-anchor" href="#flags">flags</a></h4>
+<p class="fs-xl">🏳️ 🏴 🏁 🚩 🏳️‍🌈 🏳️ 🏴‍☠️</p>
+<h4 id="calendar" tabindex="-1"><a class="header-anchor" href="#calendar">calendar</a></h4>
+<p class="fs-xl">📅 📆 🗓️</p>
+<h4 id="charts" tabindex="-1"><a class="header-anchor" href="#charts">charts</a></h4>
+<p class="fs-xl">📈 📉 📊</p>
+<h4 id="misc" tabindex="-1"><a class="header-anchor" href="#misc">misc</a></h4>
+<p class="fs-xl">♻️ 🐳 🩹 🚸 🚨 👔 👽️ 💀 ⚗️ 🐞</p>
+<hr>
+</details>
+<details><summary>emojis in code</summary>
+<pre class="language-filetree" id="codeblock-592"><code>
+files
+📄 📝 📑 📜 📃 🧾
+
+folder
+📁 📂 🗂️
+
+hands
+✋ 👈 👉 👆 👇 ☝️ 👍 👎
+✋🏻 👈🏻 👉🏻 👆🏻 👇🏻 ☝🏻 👍🏻 👎🏻
+✋🏼 👈🏼 👉🏼 👆🏼 👇🏼 ☝🏼 👍🏼 👎🏼
+✋🏽 👈🏽 👉🏽 👆🏽 👇🏽 ☝🏽 👍🏽 👎🏽
+✋🏾 👈🏾 👉🏾 👆🏾 👇🏾 ☝🏾 👍🏾 👎🏾
+✋🏿 👈🏿 👉🏿 👆🏿 👇🏿 ☝🏿 👍🏿 👎🏿
+
+user
+👩‍💼 👨‍💼 👩 🧑 👱‍♂️ 👩‍🦳 👤 👥 
+👩🏻‍💼 👨🏻‍💼 👩🏻 🧑🏻 👱🏻 👩🏻‍🦳
+👩🏼‍💼 👨🏼‍💼 👩🏼 🧑🏼 👱🏼 👩🏼‍🦳
+👩🏽‍💼 👨🏽‍💼 👩🏽 🧑🏽 👱🏽‍♂️ 👩🏽‍🦳
+👩🏾‍💼 👨🏾‍💼 👩🏾 🧑🏾 👱🏾‍♂️ 👩🏾‍🦳
+👩🏿‍💼 👨🏿‍💼 👩🏿 🧑🏿 👱🏿‍♂️ 👩🏿‍🦳
+
+computer
+🖥️ 💻
+👩‍💻 👨‍💻 🧑‍💻
+👩🏻‍💻 👨🏻‍💻 🧑🏻‍💻
+👩🏼‍💻 👨🏼‍💻 🧑🏼‍💻
+👩🏽‍💻 👨🏽‍💻 🧑🏽‍💻
+👩🏾‍💻 👨🏾‍💻 🧑🏾‍💻
+👩🏿‍💻 👨🏿‍💻 🧑🏿‍💻
+⌨️ 
+
+phone
+📱 📲 📞 ☎️
+
+symbols
+❌ ⭕️ 🛑 ⛔️ 📛 💯 💢 ♨️ 
+⚠️ ☢️ ☣️
+❗️ ❕ ❓ ❔ ‼️ ⁉️
+➕ ➖ ✖️
+❎ ✳️ ❇️ ✴️
+🔀 🔁 🔂 🔃 🔄
+⏩ ⏪ ⏫ ⏬
+🔼 🔽
+
+checkmarks
+✔️ ✅ ☑️
+
+speach &amp; bubbles
+📣 📢 💬 🗨️ 💭 🗯️ 👁‍🗨 👁️
+
+primitives
+🔘 🔴 🟠 🟡 🟢 🔵 🟣 ⚫️ ⚪️ 🟤 
+🟥 🟧 🟨 🟩 🟦 🟪 ⬛️ ⬜️ 🟫
+🔺 🔻 
+🔸 🔹 🔶 🔷 
+🔳 🔲 ▪️ ▫️ ◾️ ◽️ ◼️ ◻️ 
+
+traffic
+🚧 🚦 🚥
+
+time &amp; navigation
+🧭 ⏱ ⏲ ⌛️ ⏳
+
+electricity
+🔋 🔌
+
+mechanics
+🧰 🔧 🔨 🛠️ ⚙️ 🧲 🗜️
+
+weapon
+🔫 💣 🧨
+
+test
+💊 🩸 🧬 🧫 🧪 ⚗️ 🌡️
+
+security
+🔑 🗝️ 🔏 🔐 🔒 🔓
+
+search
+🔍 🔎
+
+office
+🗑 🗃️ 📋 📥 📤 📦
+
+mail
+🧧 ✉️ 📩 📨 📧
+📪 📫 📬 📭 📮 📯
+
+tag
+🔖🏷️
+
+books
+📓 📔 📒 📕 📗 📘 📙 📚 📖 🗒️
+
+edit
+📌 📍 ✂️ ✏️ 🖋️ 🖊️ 🖌️ 🖍️ ✒️
+
+stars
+💫 ⭐️ 🌟 ✨ ⚡️ ☀️ ☄️ 🌌
+
+elements
+💥 🔥 🌪 🌈 💧 💦 ❄️
+
+tickets
+🎫 🎟
+
+image
+🎨 📷 📸 📹 🎥 📽️ 🎞️ 🎬 
+
+audio
+🎤 🎧 🎼 🎵 🎶 🔈 🔇 🔉 🔊
+
+light
+💡 🪔
+
+globe 🌐
+earth map 🗺
+earth america 🌎
+earth europe &amp; africa 🌍
+earth asia &amp; pacific 🌏
+
+hearts
+❤️ 🧡 💛 💚 💙 💜 🖤 🤍 🤎 💖 💞 💔 card: ♥️
+
+flags
+🏳️ 🏴 🏁 🚩 🏳️‍🌈 🏳️ 🏴‍☠️
+
+calendar
+📅 📆 🗓️
+
+charts
+📈 📉 📊
+
+misc
+♻️ 🐳 🩹 🚸 🚨 👔 👽️ 💀 ⚗️ 🐞
+
+</code></pre></details>
+<details><summary>unicode characters in code</summary>
+<pre class="language-filetree" id="codeblock-595"><code>unicode characters
+
+files
+🗋 🗌 🗍 · 🗎 🗏 🖹 🗐 🖺 🖻 · 🗅 🗆 🗇 · 🗈 🗉 🗊 · 🗑
+
+folders
+🖿 🗁 🗀
+
+hands
+☛ ☞
+
+computer
+🖥 🖧 🖳 🖴 🖵 🖸 🗔
+🗔 🗕 🗖 🗗 🗘 🗙 🗚 🗛 🗜 🗝
+
+phone &amp; mail
+☎ 🕻 🕼 🕽 🕾 🕿 🖀 🖁 
+🖂 🖃 🖄 🖅 🖆 
+
+speach &amp; bubbles
+🕩 🕪 🕫 🕬 🕭
+🗨 🗩 🗪 🗫 🗬 🗭 🗮 🗯 🗰 🗱 🗲 🗣
+
+edit
+🖈 🖉 🖊 🖋 🖌 🖍
+
+checkmarks
+🗸 🗹 🗴 🗵 🗶 🗷 ⌦⌧ 
+
+flags
+🏲 🏳
+
+symbols
+‼️ ⁉️ 🏵 🏶 ⋆
+⏭ ⏮ ⏯ ⏴⏵⏶⏷⏸⏹⏺
+■□▪▫ ◌○●◙◦ ▲►▼◄ 🞁🞂🞃🞀
+🞅🞅🞇🞉 🞑🞒🞓 🞔🞕🞖 
+🞤🞥🞦🞧 🞪🞫🞬🞭🞮 🞯🞰🞱🞲🞳🞴
+🞵🞶🞷🞸🞹🞺 🞻🞼🞽🞾🞿 🟈
+🟉🟊🟌🟍🟎🟐 🟒🟔
+
+arrows
+🠀🠁🠂🠃 🠄🠅🠆🠇 🠈🠉🠊🠋 🠐🠑🠒🠓 🠔🠕🠖🠗 
+🠘🠙🠚🠛 🠜🠝🠞🠟 🠠🠡🠢🠣 🠤🠥🠦🠧 🠧🠨🠩🠪🠫
+🠬🠭🠮🠯 🠰🠱🠲🠳 🠴🠵🠶🠷 🠸🠹🠺🠻 🠼🠽🠾🠿
+🡀🡁🡂🡃 🡄🡅🡆🡇 ⇦⇧⇨⇩⇳ ⇠⇡⇢⇣ 🢐🢑🢒🢓
+🡐🡑🡒🡓🡔🡕🡖🡗🡘🡙 🡠🡡🡢🡣🡤🡥🡦🡧 🡨🡩🡪🡫🡬🡭🡮🡯
+🡰🡱🡲🡳🡴🡵🡶🡷 🡸🡹🡺🡻🡼🡽🡾🡿 🢀🢁🢂🢃🢄🢅🢆🢇
+←↑→↓↔↕↨ ⇵ ⇽⇾⇿ 
+
+misc
+⌨ ⌕ ⌖ ⌘ ☺☻ ♪♫
+
+connectors
+┌───────────┐ ╔═══════════╗
+│  borders  │ ║  borders  ║
+├─────┬─────┤ ╠═════╦═════╣
+│  a  │  b  │ ║  a  ║  b  ║
+├─────┼─────┤ ╠═════╬═════╣
+│  c  │  d  │ ║  c  ║  d  ║
+└─────┴─────┘ ╚═════╩═════╝
+╒═══════════╕ ╓───────────╖
+│  borders  │ ║  borders  ║
+╞═════╤═════╡ ╟─────╥─────╢
+│  a  │  b  │ ║  a  ║  b  ║
+╞═════╪═════╡ ╟─────╫─────╢
+│  c  │  d  │ ║  c  ║  d  ║
+╘═════╧═════╛ ╙─────╨─────╜
+
+─ │ ┌ ┐ └ ┘ ├ ┤ ┬ ┴ ┼
+═ ║ ╔ ╗ ╚ ╝ ╠ ╣ ╦ ╩ ╬ 
+    ╒ ╕ ╘ ╛ ╞ ╡ ╤ ╧ ╪
+    ╓ ╖ ╙ ╜ ╟ ╢ ╥ ╨ ╫
+
+
+┏━━━━━•❃°•°❀°•°❃•━━━━━┓
+
+✧˚       🍏🍎         ˚✧
+
+┗━━━━━•❃°•°❀°•°❃•━━━━━┛
+
+</code></pre></details>
+<details><summary>example unicode characters &amp; emojis in code</summary>
+<pre class="language-filetree" id="codeblock-598"><code> 🖿 /etc/apache2/  
+  ┊
+  ├🗁 sites-available
+  │ ├🗏 subdomain-one.domain.tld.conf
+  │ └🗏 subdomain-two.domain.tld.conf    
+  ┊
+  ┊
+ 🖿 /var/www/  
+  ┊
+  ├🗁 subdomain-one.domain.tld
+  │ ├🗁 data  
+  │ │ ├🗁 database  
+  │ │ ├🗁 extensions  
+  │ │ └🟢 uploads  
+  │ └🗏 docker-compose.yml  
+  ┊
+  ├🗁 subdomain-two.domain.tld  
+  │ ├🗁 data  
+  │ │ ├🗁 database  
+  │ │ ├🗁 extensions  
+  │ │ └🗁 uploads  
+  ┊ └🗏 docker-compose.yml 
+
+╭────────═━┈☀️┈━═────────╮
+│   🟢 something here.   │
+╰────────═━┈🌙┈━═────────╯
+</code></pre></details>
+<h3 id="markdown-plugins" tabindex="-1"><a class="header-anchor" href="#markdown-plugins">Markdown Plugins</a></h3>
+<details class="closeOnLoad" open><summary>flowcharts</summary>
+<p>Refer to the documentation from <a href="https://flowchart.js.org/">flowchart.js</a></p>
+<h4 id="example-1" tabindex="-1"><a class="header-anchor" href="#example-1">Example 1</a></h4>
+<div class="flowchart" id="flowchart_610">st=>start: Start
+e=>end: The End
+op1=>operation: My Operation|current
+sub1=>subroutine: My Subroutine
+cond=>condition: Has option?
+io=>inputoutput: catch something...
+
+st->op1->cond
+cond(yes)->io->e
+cond(no)->sub1(right)->op1</div>
+<h4 id="example-2" tabindex="-1"><a class="header-anchor" href="#example-2">Example 2</a></h4>
+<div class="flowchart" id="flowchart_614">st=>start: Start:>https://grandgeorg.de[blank]
+e=>end:>https://grandgeorg.de
+op1=>operation: My Operation
+sub1=>subroutine: My Subroutine
+cond=>condition: Yes
+or No?:>https://grandgeorg.de
+io=>inputoutput: catch something...
+para=>parallel: parallel tasks
+
+st->op1->cond
+cond(yes)->io->e
+cond(no)->para
+para(path1, bottom)->sub1(right)->op1
+para(path2, top)->op1</div>
+<pre class="language-markdown" id="codeblock-615"><code>#### Example 1
+
+@flowstart
+st=&gt;start: Start
+e=&gt;end: The End
+op1=&gt;operation: My Operation|current
+sub1=&gt;subroutine: My Subroutine
+cond=&gt;condition: Has option?
+io=&gt;inputoutput: catch something...
+
+st-&gt;op1-&gt;cond
+cond(yes)-&gt;io-&gt;e
+cond(no)-&gt;sub1(right)-&gt;op1
+@flowend
+
+#### Example 2
+
+@flowstart
+st=&gt;start: Start:&gt;https://grandgeorg.de[blank]
+e=&gt;end:&gt;https://grandgeorg.de
+op1=&gt;operation: My Operation
+sub1=&gt;subroutine: My Subroutine
+cond=&gt;condition: Yes
+or No?:&gt;https://grandgeorg.de
+io=&gt;inputoutput: catch something...
+para=&gt;parallel: parallel tasks
+
+st-&gt;op1-&gt;cond
+cond(yes)-&gt;io-&gt;e
+cond(no)-&gt;para
+para(path1, bottom)-&gt;sub1(right)-&gt;op1
+para(path2, top)-&gt;op1
+@flowend
+</code></pre></details>
+<details><summary>Task lists</summary>
+<ul class="contains-task-list">
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox"> Mercury</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox"> Venus</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox"> Earth (Orbit/Moon)</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox"> Mars</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox"> Jupiter</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox"> Saturn</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox"> Uranus</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox"> Neptune</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox"> Comet Haley</li>
+</ul>
+<pre class="language-markdown" id="codeblock-665"><code>- [ ] Mercury
+- [x] Venus
+- [x] Earth (Orbit/Moon)
+- [x] Mars
+- [ ] Jupiter
+- [ ] Saturn
+- [ ] Uranus
+- [ ] Neptune
+- [ ] Comet Haley
+</code></pre></details>
+<details><summary>Footnotes</summary>
+<p>Here is a footnote reference,<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup> and another.<sup class="footnote-ref"><a href="#fn2" id="fnref2">[2]</a></sup></p>
+<pre class="language-markdown" id="codeblock-671"><code>Here is a footnote reference,[^1] and another.[^longnote]
+
+[^1]: Here is the footnote.
+[^longnote]: Here's one with multiple lines  
+  [HTML](https://en.wikipedia.org/wiki/HTML) Hyper Text Markup Language  
+  [W3C](https://www.w3.org/)  World Wide Web Consortium
+</code></pre></details>
+<details><summary>Attributes</summary>
+<p class="text-center">Place any HTML-attribute after a block</p>
+<p class="text-right" id="attributes-sample-id" tabindex="0">Here is another focusable block</p>
+<pre class="language-markdown" id="codeblock-680"><code>Place any HTML-attribute after a block {.text-center}
+
+Here is another focusable block {.text-right #attributes-sample-id tabindex=&quot;0&quot;}
+</code></pre></details>
+<h4 id="custom-containers" tabindex="-1"><a class="header-anchor" href="#custom-containers">Custom containers</a></h4>
+
+            <div class="custom-conatiner info" tabindex="0">
+              <div class="custom-conatiner-title info-title"> 💬 This is an info title</div>
+              <div class="custom-conatiner-body info-body">
+<p>🗲 FYI - so that you know …<br>
+Here is a <a href="https://grandgeorg.de">link for you</a></p>
+</div>
+</div>
+<pre class="language-markdown" id="codeblock-690"><code>::: info 💬 This is an info title
+🗲 FYI - so that you know ...  
+Here is a [link for you][def]
+:::
+</code></pre>
+            <div class="custom-conatiner tip" tabindex="0">
+              <div class="custom-conatiner-title tip-title"> 💬 This is a tip title</div>
+              <div class="custom-conatiner-body tip-body">
+<p>FYI - so that you know …<br>
+Here is a <a href="https://grandgeorg.de">link for you</a></p>
+</div>
+</div>
+<pre class="language-markdown" id="codeblock-696"><code>::: tip 💬 This is a tip title
+FYI - so that you know ...  
+Here is a [link for you][def]
+:::
+</code></pre>
+            <div class="custom-conatiner warning" tabindex="0">
+              <div class="custom-conatiner-title warning-title"> ⚠️ This is a warning title</div>
+              <div class="custom-conatiner-body warning-body">
+<p><strong>Here be dragons 🦎</strong><br>
+Here is a <a href="https://grandgeorg.de">link for you</a></p>
+</div>
+</div>
+<pre class="language-markdown" id="codeblock-702"><code>::: warning ⚠️ This is a warning title
+**Here be dragons 🦎**  
+Here is a [link for you][def]
+:::
+</code></pre>
+            <div class="custom-conatiner danger" tabindex="0">
+              <div class="custom-conatiner-title danger-title"> ❗️ This is a danger title</div>
+              <div class="custom-conatiner-body danger-body">
+<p><strong>Attention! you are going to die …</strong><br>
+… just kidding! 😉</p>
+<p>Here is a <a href="https://grandgeorg.de">link for you</a></p>
+</div>
+</div>
+<pre class="language-markdown" id="codeblock-711"><code>::: danger ❗️ This is a danger title
+**Attention! you are going to die ...**  
+... just kidding! 😉
+
+Here is a [link for you][def]
+:::
+</code></pre>
+            <div class="custom-conatiner line" tabindex="0">
+              <div class="custom-conatiner-title line-title"> 💬 This is a line title</div>
+              <div class="custom-conatiner-body line-body">
+<p>FYI - so that you know …<br>
+Here is a <a href="https://grandgeorg.de">link for you</a></p>
+</div>
+</div>
+<pre class="language-markdown" id="codeblock-717"><code>::: line 💬 This is a line title
+FYI - so that you know ...  
+Here is a [link for you][def]
+:::
+</code></pre><details><summary>Click on this summary to see the details</summary>
+<p>Here are some <strong>funny</strong> details.</p>
+<ul>
+<li>Detail 1</li>
+<li>Detail 2</li>
+<li>Detail 3</li>
+</ul>
+</details>
+<pre class="language-markdown" id="codeblock-740"><code>::: details Click on this summary to see the details
+Here are some **funny** details.
+- Detail 1
+- Detail 2
+- Detail 3
+:::
+</code></pre><h2 id="syntax-highlighting" tabindex="-1"><a class="header-anchor" href="#syntax-highlighting">Syntax Highlighting</a></h2>
+<p>EasyDoc uses <a href="https://prismjs.com/">Prism</a> to highlight syntax in code blocks.</p>
+<h4 id="supported-languages" tabindex="-1"><a class="header-anchor" href="#supported-languages">Supported languages</a></h4>
+<ul style="column-width:25ch;column-gap:1em;list-style-type:none;padding-left:0;">
+<li>✔️ <a href="#cbe-html" class="openIdInClosedDetails">Markup (HTML,XML etc.)</a></li>
+<li>✔️ <a href="#cbe-css" class="openIdInClosedDetails">CSS, CSS Extras</a></li>
+<li>✔️ <a href="#cbe-js" class="openIdInClosedDetails">JavaScript</a></li>
+<li>✔️ <a href="#cbe-apacheconf" class="openIdInClosedDetails">Apache Configuration</a></li>
+<li>✔️ <a href="#cbe-shell" class="openIdInClosedDetails">Bash + Shell</a></li>
+<li>✔️ <a href="#cbe-batch" class="openIdInClosedDetails">Batch</a></li>
+<li>✔️ <a href="#cbe-clike" class="openIdInClosedDetails">C-like</a></li>
+<li>✔️ <a href="#cbe-diff" class="openIdInClosedDetails">Diff</a></li>
+<li>✔️ <a href="#cbe-dockerfile" class="openIdInClosedDetails">Docker</a></li>
+<li>✔️ <a href="#cbe-editorconfig" class="openIdInClosedDetails">EditorConfig</a></li>
+<li>✔️ <a href="#cbe-git" class="openIdInClosedDetails">Git</a></li>
+<li>✔️ <a href="#cbe-graphql" class="openIdInClosedDetails">GraphQL</a></li>
+<li>✔️ <a href="#cbe-ini" class="openIdInClosedDetails">Ini</a></li>
+<li>✔️ <a href="#cbe-json" class="openIdInClosedDetails">JSON, Web App Mainfest</a></li>
+<li>✔️ <a href="#cbe-less" class="openIdInClosedDetails">Less</a></li>
+<li>✔️ <a href="#cbe-markdown" class="openIdInClosedDetails">Markdown</a></li>
+<li>✔️ <a href="#cbe-mongodb" class="openIdInClosedDetails">MongoDB</a></li>
+<li>✔️ <a href="#cbe-nginx" class="openIdInClosedDetails">Nginx</a></li>
+<li>✔️ <a href="#cbe-php" class="openIdInClosedDetails">PHP</a></li>
+<li>✔️ <a href="#cbe-html" class="openIdInClosedDetails">PHPDoc</a></li>
+<li>✔️ <a href="#cbe-powershell" class="openIdInClosedDetails">PowerShell</a></li>
+<li>✔️ <a href="#cbe-pug" class="openIdInClosedDetails">Pug</a></li>
+<li>✔️ <a href="#cbe-python" class="openIdInClosedDetails">Python</a></li>
+<li>✔️ <a href="#cbe-scss" class="openIdInClosedDetails">Sass (scss)</a></li>
+<li>✔️ <a href="#cbe-sql" class="openIdInClosedDetails">SQL</a></li>
+<li>✔️ <a href="#cbe-ts" class="openIdInClosedDetails">TypeScript</a></li>
+<li>✔️ <a href="#cbe-yml" class="openIdInClosedDetails">YAML</a></li>
+</ul>
+<h4 id="plugins" tabindex="-1"><a class="header-anchor" href="#plugins">Plugins</a></h4>
+<ul style="column-width:25ch;column-gap:1em;list-style-type:none;padding-left:0;">
+<li>✔️ Line Highlight</li>
+<li>✔️ Line Numbers</li>
+<li>✔️ Show Language</li>
+<li>✔️ Commad Line</li>
+<li>✔️ Toolbar</li>
+<li>✔️ Copy to Clipboard Button</li>
+</ul>
+<p>To get your own configuration go to:
+<a href="https://prismjs.com/download.html">prismjs</a></p>
+<h3 id="syntax-highlighting-examples" tabindex="-1"><a class="header-anchor" href="#syntax-highlighting-examples">Syntax Highlighting Examples</a></h3>
+<p>You can also look up <a href="https://prismjs.com/examples.html">Examples at Prism</a></p>
+<details class="closeOnLoad" open><summary>HTML</summary>
+<pre class="line-numbers linkable-line-numbers language-html" id="cbe-html"><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+  &lt;head&gt;
+	&lt;meta charset=&quot;utf-8&quot; /&gt;
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+	&lt;title&gt;My Title&lt;/title&gt;
+	&lt;style&gt;
+    @media print {
+      p { color: red !important; }
+		}
+	&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+	&lt;h1&gt;My Heading&lt;/h1&gt;
+	&lt;script&gt;
+    if (document) {
+      console.log('foo');
+	}
+	&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre></details>
+<details class="closeOnLoad" open><summary>CSS</summary>
+<pre class="line-numbers linkable-line-numbers language-css" id="cbe-css"><code>body, html {
+  padding: 0;
+  margin: 0;
+  background-color: #000;
+}
+
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+a, article, aside, blockquote, body, code, dd, div, dl, dt, fieldset,
+figcaption, figure, footer, form, h1, h2, h3, h4, h5, h6, header, legend, li,
+main, nav, ol, p, pre, section, table, td, textarea, th, tr, ul {
+  box-sizing: border-box;
+}
+
+hr {
+  border-top-color: hsla(0,0%,100%,.1)
+}
+
+table {
+  border-collapse: collapse;
+}
+
+tr:nth-child(2n) {
+  background-color: rgb(32, 34, 35);
+}
+
+@media (min-width: 480px) {
+  .content {
+    padding: 2rem 2.5rem 1rem;
+  }
+  .mtime {
+    padding: 0.7rem 2.5rem 0;
+  }
+}
+</code></pre></details>
+<details class="closeOnLoad" open><summary>JavaScript</summary>
+<pre class="line-numbers linkable-line-numbers language-js" id="cbe-js"><code>&quot;use strict&quot;;
+
+const path = require(&quot;path&quot;);
+const fs = require(&quot;fs&quot;);
+const pug = require(&quot;pug&quot;);
+const fm = require(&quot;front-matter&quot;);
+
+const md = require(&quot;markdown-it&quot;)({
+  html: true,
+  linkify: true,
+  typographer: true,
+});
+md.use(require(&quot;markdown-it-deflist&quot;));
+md.use(require(&quot;markdown-it-container&quot;), &quot;tip&quot;);
+
+const docsDir = path.join(__dirname, &quot;docs&quot;);
+const templateDir = path.join(__dirname, &quot;templates&quot;);
+const layout = path.join(templateDir, &quot;layout.pug&quot;);
+const distDir = path.join(__dirname, &quot;www&quot;);
+const rgxExt = /\.(?:md)$/;
+const outExt = &quot;.html&quot;;
+
+// iterate over files
+fs.readdir(docsDir, (err, files) =&gt; {
+  if (err) {
+    return console.log(&quot;Unable to scan directory: &quot; + err);
+  }
+  files.forEach((file) =&gt; {
+    let fmData = fm(fs.readFileSync(path.join(docsDir, file), &quot;utf-8&quot;));
+    let stats = fs.statSync(path.join(docsDir, file));
+    const page = pug.renderFile(layout, {
+      content: md.render(fmData.body),
+      attributes: {
+        title: fmData.attributes.title
+          ? fmData.attributes.title
+          : &quot;Documentation&quot;,
+        lang: fmData.attributes.lang ? fmData.attributes.lang : &quot;en&quot;,
+        mtime: stats.mtime,
+      },
+    });
+    fs.writeFileSync(path.join(distDir, file.replace(rgxExt, outExt)), page);
+  });
+});
+</code></pre></details>
+<details class="closeOnLoad" open><summary>Apache Configuration</summary>
+<pre class="line-numbers linkable-line-numbers language-apacheconf" id="cbe-apacheconf"><code>&lt;VirtualHost *:80&gt;
+    ServerAdmin webmaster@localhost
+    ServerName subdomain.domain.tld
+    Redirect permanent / https://subdomain.domain.tld/
+    ErrorLog ${APACHE_LOG_DIR}/subdomain.domain.tld.error.log
+    CustomLog ${APACHE_LOG_DIR}/subdomain.domain.tld.access.log combined
+&lt;/VirtualHost&gt;
+&lt;IfModule mod_ssl.c&gt;
+    &lt;VirtualHost *:443&gt;
+        ServerAdmin webmaster@localhost
+        ServerName subdomain.domain.tld
+        DocumentRoot /var/www/html
+
+        SSLEngine on
+        SSLProtocol All -SSLv2 -SSLv3 -TLSv1 -TLSv1.1
+        SSLCipherSuite ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES128-SHA:ECDHE-ECDSA-AES256-SHA:ECDHE-ECDSA-AES128-SHA256:ECDHE-ECDSA-AES256-SHA384:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES128-SHA:ECDHE-RSA-AES256-SHA:ECDHE-RSA-AES128-SHA256:ECDHE-RSA-AES256-SHA384:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384:DHE-RSA-AES128-SHA:DHE-RSA-AES256-SHA:DHE-RSA-AES128-SHA256:DHE-RSA-AES256-SHA256
+        SSLHonorCipherOrder on
+        SSLOptions +StrictRequire
+        SSLCertificateKeyFile /etc/letsencrypt/live/subdomain.domain.tld/privkey.pem
+        SSLCertificateFile  /etc/letsencrypt/live/subdomain.domain.tld/fullchain.pem
+
+        Header always set Strict-Transport-Security &quot;max-age=31536000; includeSubDomains; preload&quot;
+        Header set Access-Control-Allow-Origin &quot;*&quot;
+        Protocols h2 http/1.1
+
+        ProxyPass /.well-known/acme-challenge !
+
+        ProxyPass /phpmyadmin/  http://localhost:8080/
+        ProxyPassReverse /phpmyadmin/ http://localhost:8080/
+
+        ProxyPass /  http://localhost:8055/
+        ProxyPassReverse / http://localhost:8055/
+
+        ErrorLog ${APACHE_LOG_DIR}/subdomain.domain.tld.error.log
+        CustomLog ${APACHE_LOG_DIR}/subdomain.domain.tld.access.log combined
+
+        &lt;FilesMatch &quot;\.(phtml|php)$&quot;&gt;
+            SSLOptions +StdEnvVars
+        &lt;/FilesMatch&gt;
+
+    &lt;/VirtualHost&gt;
+&lt;/IfModule&gt;
+</code></pre></details>
+<details class="closeOnLoad" open><summary>Bash / Shell</summary>
+<pre class="line-numbers linkable-line-numbers language-shell" id="cbe-shell"><code>apt get update
+apt get upgrade
+cd /etc/apache2/sites-available
+ls -la
+vim ./000-default-ssl.conf
+</code></pre></details>
+<details class="closeOnLoad" open><summary>Batch</summary>
+<pre class="line-numbers linkable-line-numbers language-batch" id="cbe-batch"><code>@ECHO OFF
+IF NOT &quot;%~1&quot;==&quot;&quot; GOTO Syntax
+ 
+:: Check for WinPE first, as WMI might not be available in WinPE
+REG.EXE Query HKLM\SYSTEM\ControlSet001\Control\MiniNT &gt;NUL 2&gt;&amp;1
+IF NOT ERRORLEVEL 1 (
+	ECHO Windows PE
+	EXIT /B 3
+)
+ 
+:: Check for &quot;regular&quot; boot state
+WMIC.EXE Path Win32_ComputerSystem Get BootupState | FIND.EXE &quot;Normal boot&quot; &gt;NUL
+IF NOT ERRORLEVEL 1 (
+	ECHO Normal
+	EXIT /B 0
+)
+ 
+WMIC.EXE Path Win32_ComputerSystem Get BootupState | FIND.EXE &quot;Fail-safe boot&quot; &gt;NUL
+IF NOT ERRORLEVEL 1 (
+	ECHO Safe mode
+	EXIT /B 1
+)
+ 
+WMIC.EXE Path Win32_ComputerSystem Get BootupState | FIND.EXE &quot;Fail-safe with network boot&quot; &gt;NUL
+IF NOT ERRORLEVEL 1 (
+	ECHO Safe mode with network
+	EXIT /B 2
+)
+ 
+ECHO Unknown
+EXIT /B -1
+ 
+ 
+:Syntax
+ECHO.
+ECHO BootState.bat,  Version 1.04
+ECHO Show Windows' boot state
+ECHO.
+ECHO Usage:    BootState.bat
+ECHO.
+ECHO Notes:    Boot state is returned as string and as &quot;errorlevel&quot; ^(return code^):
+ECHO               &quot;Normal&quot;                    ^(errorlevel = 0^)
+ECHO               &quot;Safe mode&quot;                 ^(errorlevel = 1^)
+ECHO               &quot;Safe mode with network&quot;    ^(errorlevel = 2^)
+ECHO               &quot;Windows PE&quot;                ^(errorlevel = 3^)
+ECHO           In case of ^(command line^) errors, the errorlevel will be -1.
+EXIT /B -1
+</code></pre></details>
+<details class="closeOnLoad" open><summary>C-like</summary>
+<pre class="line-numbers linkable-line-numbers language-clike" id="cbe-clike"><code>int factorialSafe(int n) {
+    int result = 1;
+    if(n&lt;0)
+        return -1;
+    for (int i = 1; i &lt;= n; ++i)
+        result *= i;
+    return result;
+}
+</code></pre></details>
+<details class="closeOnLoad" open><summary>Diff</summary>
+<pre class="line-numbers linkable-line-numbers language-diff" id="cbe-diff"><code>diff --git a/docs/www/css/style.css b/docs/www/css/style.css
+index a0b00ff..d4a3c3e 100644
+--- a/docs/www/css/style.css
++++ b/docs/www/css/style.css
+@@ -15,12 +15,36 @@ body {
+     box-sizing: border-box;
+ }
+ 
+-a, article, aside, blockquote, body, code, dd, div, dl, dt, fieldset, figcaption, figure, footer, form, h1, h2, h3, h4, h5, h6, header, legend, li, main, nav, ol, p, pre, section, table, td, textarea, th, tr, ul {
++a, article, aside, blockquote, body, code, dd, div, dl, dt, fieldset,
++figcaption, figure, footer, form, h1, h2, h3, h4, h5, h6, header, legend, li,
++main, nav, ol, p, pre, section, table, td, textarea, th, tr, ul {
+     box-sizing: border-box;
+ }
+ 
+ hr {
+-    border-top-color: hsla(0,0%,100%,.1)
++    border: none;
++    border-top: 1px solid #666;
++}
++
++table {
++    border-collapse: collapse;
++}
++
++tr:nth-child(2n) {
++    background-color: rgb(32, 34, 35);
++}
++
++tr:hover {
++    background-color: rgb(44, 47, 48);
++}
++
++th, td {
++    text-align: left;
++    border: 1px solid rgb(59, 62, 64);
++    padding: 0.5rem;
++}
++th {
++    background-color: #24292d;
+ }
+ 
+ dt {
+@@ -35,9 +59,11 @@ a code {
+     color: #2196f3;
+ }
+ 
++
++/* layout */
++
+ .page {
+     display: block;
+-    /* padding-bottom: 2rem; */
+ }
+ .mtime {
+     max-width: 1200px;
+@@ -70,9 +96,13 @@ a code {
+ }
+ 
+ .content img {
+-    max-width: 100%
++    max-width: 100%;
++    border-radius: 6px;
+ }
+ 
++
++/* code blocks */
++
+ .content pre[class*=language-] {
+     border-radius: 6px;
+     padding-top: 2.5rem;
+</code></pre></details>
+<details class="closeOnLoad" open><summary>Docker</summary>
+<pre class="line-numbers linkable-line-numbers language-dockerfile" id="cbe-dockerfile"><code>FROM ubuntu:20.04
+
+ENV APACHE_RUN_USER     www-data
+ENV APACHE_RUN_GROUP    www-data
+ENV APACHE_LOG_DIR      /var/log/apache2
+ENV APACHE_PID_FILE     /var/run/apache2.pid
+ENV APACHE_RUN_DIR      /var/run/apache2
+ENV APACHE_LOCK_DIR     /var/lock/apache2
+ENV APACHE_LOG_DIR      /var/log/apache2
+
+ENV CA_PROVIDENCE_VERSION=1.7.13
+ENV CA_PROVIDENCE_DIR=/var/www/providence
+ENV CA_PAWTUCKET_VERSION=1.7.13
+ENV CA_PAWTUCKET_DIR=/var/www
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN apt-get update &amp;&amp; apt-get install -y apache2 \
+	curl \
+	wget \
+	zip \
+	php7.4 \
+	php7.4-curl \
+	php7.4-gd \
+	php7.4-xml \
+	php7.4-zip \
+	php-mysql \
+	php-ldap \
+	libapache2-mod-php7.4 \
+	mysql-client \
+	ffmpeg \
+	ghostscript \
+	imagemagick \
+	libreoffice
+
+#GMAGICK
+RUN apt-get install -y php-pear php7.4-dev graphicsmagick libgraphicsmagick1-dev \
+	&amp;&amp; pecl install gmagick-2.0.4RC1
+
+# https://github.com/collectiveaccess/providence/archive/refs/tags/$CA_PROVIDENCE_VERSION.gz
+RUN curl -SsL https://github.com/collectiveaccess/providence/archive/refs/tags/$CA_PROVIDENCE_VERSION.tar.gz | tar -C /var/www/ -xzf -
+RUN mv /var/www/providence-$CA_PROVIDENCE_VERSION /var/www/providence
+RUN cd $CA_PROVIDENCE_DIR &amp;&amp; cp setup.php-dist setup.php
+
+RUN curl -SsL https://github.com/collectiveaccess/pawtucket2/archive/refs/tags/$CA_PAWTUCKET_VERSION.tar.gz | tar -C /var/www/ -xzf -
+RUN mv $CA_PAWTUCKET_DIR/pawtucket2-$CA_PAWTUCKET_VERSION/* /var/www
+RUN cd $CA_PAWTUCKET_DIR &amp;&amp; cp setup.php-dist setup.php
+
+RUN sed -i &quot;s@DocumentRoot \/var\/www\/html@DocumentRoot \/var\/www@g&quot; /etc/apache2/sites-available/000-default.conf
+RUN rm -rf /var/www/html
+RUN ln -s /$CA_PROVIDENCE_DIR/media /$CA_PAWTUCKET_DIR/media
+
+RUN chown -R www-data:www-data /var/www
+
+# Create a backup of the default conf files in case directory is mounted
+RUN mkdir -p /var/ca/providence/conf
+RUN cp -r /$CA_PROVIDENCE_DIR/app/conf/* /var/ca/providence/conf
+
+# Copy our local files
+COPY php.ini /etc/php/7.4/apache2/php.ini
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod 777 /entrypoint.sh
+
+# Run apcache from entrypoint.sh
+ENTRYPOINT [&quot;/entrypoint.sh&quot;]
+CMD [ &quot;/usr/sbin/apache2&quot;, &quot;-DFOREGROUND&quot; ]
+</code></pre></details>
+<details class="closeOnLoad" open><summary>EditorConfig</summary>
+<pre class="line-numbers linkable-line-numbers language-editorconfig" id="cbe-editorconfig"><code># EditorConfig is awesome: https://EditorConfig.org
+
+# top-most EditorConfig file
+root = true
+
+# Unix-style newlines with a newline ending every file
+[*]
+end_of_line = lf
+insert_final_newline = true
+
+# Matches multiple files with brace expansion notation
+# Set default charset
+[*.{js,py}]
+charset = utf-8
+
+# 4 space indentation
+[*.py]
+indent_style = space
+indent_size = 4
+
+# Tab indentation (no size specified)
+[Makefile]
+indent_style = tab
+
+# Indentation override for all JS under lib directory
+[lib/**.js]
+indent_style = space
+indent_size = 2
+
+# Matches the exact files either package.json or .travis.yml
+[{package.json,.travis.yml}]
+indent_style = space
+indent_size = 2
+</code></pre></details>
+<details class="closeOnLoad" open><summary>Git</summary>
+<pre class="line-numbers linkable-line-numbers language-git" id="cbe-git"><code>$ git diff
+diff --git file.txt file.txt
+index 6214953..1d54a52 100644
+--- file.txt
++++ file.txt
+@@ -1 +1,2 @@
+-Here's my tetx file
++Here's my text file
++And this is the second line
+</code></pre></details>
+<details class="closeOnLoad" open><summary>GrapQL</summary>
+<pre class="line-numbers linkable-line-numbers language-graphql" id="cbe-graphql"><code>query withFragments {
+  user(id: 4) {
+    friends(first: 10) {
+      ...friendFields
+    }
+    mutualFriends(first: 10) {
+      ...friendFields
+    }
+  }
+}
+
+fragment friendFields on User {
+  id
+  name
+  profilePic(size: 50)
+}
+</code></pre></details>
+<details class="closeOnLoad" open><summary>INI</summary>
+<pre class="line-numbers linkable-line-numbers language-ini" id="cbe-ini"><code># Automatically generated for Debian scripts. DO NOT TOUCH!
+[client]
+host     = localhost
+user     = root
+password = &lt;YOUR MYSQL ROOT PASSWORD&gt;
+socket   = /var/run/mysqld/mysqld.sock
+[mysql_upgrade]
+host     = localhost
+user     = root
+password = &lt;YOUR MYSQL ROOT PASSWORD&gt;
+socket   = /var/run/mysqld/mysqld.sock
+basedir  = /usr
+</code></pre></details>
+<details class="closeOnLoad" open><summary>JSON</summary>
+<pre class="line-numbers linkable-line-numbers language-json" id="cbe-json"><code>{
+  &quot;firstName&quot;: &quot;John&quot;,
+  &quot;lastName&quot;: &quot;Smith&quot;,
+  &quot;age&quot;: 25,
+  &quot;categories&quot;: [
+    {
+      &quot;id&quot;: 19,
+      &quot;category&quot;: &quot;Venue&quot;,
+      &quot;comment&quot;: null,
+      &quot;pivot&quot;: {
+        &quot;address_id&quot;: 6213,
+        &quot;category_id&quot;: 19,
+        &quot;updated_by&quot;: 34,
+        &quot;created_by&quot;: 34,
+        &quot;created_at&quot;: &quot;2004-03-10T15:18:27.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2004-03-10T15:18:27.000000Z&quot;
+      }
+    }
+  ],
+}
+</code></pre></details>
+<details class="closeOnLoad" open><summary>Less</summary>
+<pre class="line-numbers linkable-line-numbers language-less" id="cbe-less"><code>.foo (@bg: #f5f5f5, @color: #900) {
+  background: @bg;
+  color: @color;
+}
+.bar {
+  .foo();
+}
+.class1 {
+  .mixin(@margin: 20px; @color: #33acfe);
+}
+.class2 {
+  .mixin(#efca44; @padding: 40px);
+}
+@mySelector: banner;
+.@{mySelector} {
+  font-weight: bold;
+}
+@property: color;
+.widget {
+  @{property}: #0ee;
+  background-@{property}: #999;
+}
+</code></pre></details>
+<details class="closeOnLoad" open><summary>Markdown</summary>
+<pre class="line-numbers linkable-line-numbers language-markdown" id="cbe-markdown"><code>Title 1
+==
+
+Title 2
+-------
+
+# Title 1 {.text-center}
+## Title 2
+### Title 3
+#### Title 4
+##### Title 5
+###### Title 6
+
+- listitem 1
+- listitem 2
+- listitem 3
+
+</code></pre></details>
+<details class="closeOnLoad" open><summary>MongoDB</summary>
+<pre class="line-numbers linkable-line-numbers language-mongodb" id="cbe-mongodb"><code>{
+	'_id': ObjectId('5ec72ffe00316be87cab3927'),
+	'code': Code('function () { return 22; }'),
+	'binary': BinData(1, '232sa3d323sd232a32sda3s2d3a2s1d23s21d3sa'),
+	'dbref': DBRef('namespace', ObjectId('5ec72f4200316be87cab3926'), 'db'),
+	'timestamp': Timestamp(0, 0),
+	'long': NumberLong(9223372036854775807),
+	'decimal': NumberDecimal('1000.55'),
+	'integer': 100,
+	'maxkey': MaxKey(),
+	'minkey': MinKey(),
+	'isodate': ISODate('2012-01-01T00:00:00.000Z'),
+	'regexp': RegExp('prism(js)?', 'i'),
+	'string': 'Hello World',
+	'numberArray': [1, 2, 3],
+	'stringArray': ['1','2','3'],
+	'randomKey': null,
+	'object': { 'a': 1, 'b': 2 },
+	'max_key2': MaxKey(),
+	'number': 1234,
+	'invalid-key': 123,
+	noQuotesKey: 'value',
+}
+db.users.find({
+	_id: { $nin: ObjectId('5ec72ffe00316be87cab3927') },
+	age: { $gte: 18, $lte: 99 },
+	field: { $exists: true }
+})
+</code></pre></details>
+<details class="closeOnLoad" open><summary>Nginx</summary>
+<pre class="line-numbers linkable-line-numbers language-nginx" id="cbe-nginx"><code>server { # simple reverse-proxy
+  listen       80;
+  server_name  domain2.com www.domain2.com;
+  access_log   logs/domain2.access.log  main;
+  
+  # serve static files
+  
+  location ~ ^/(images|javascript|js|css|flash|media|static)/  {
+    root    /var/www/virtual/big.server.com/htdocs;
+    expires 30d;
+  }
+
+  # pass requests for dynamic content to rails/turbogears/zope, et al
+  location / {
+    proxy_pass      http://127.0.0.1:8080;
+  }
+}
+</code></pre></details>
+<details class="closeOnLoad" open><summary>PHP</summary>
+<pre class="line-numbers linkable-line-numbers language-php" id="cbe-php"><code>declare(strict_types=1);
+/*
+ * This file is part of the Gws package.
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+namespace Gws\Image;
+
+use Gws\System\Msg;
+
+/**
+ * Image Compressor
+ *
+ * @author Viktor Grandgeorg &lt;viktor@grandgeorg.de&gt;
+ */
+class Compressor
+{
+    use Msg;
+
+    protected $sysconf;
+    protected $logger;
+    protected $conf;
+    protected $cFormat;
+    protected $mandatories = [
+        'input_dir',
+        'output_dir',
+        'resize',
+        'jpeg_recompress'
+    ];
+    protected $ext = array('jpg', 'jpeg');
+
+    public function __construct($sysconf, $logger, $conf)
+    {
+        $this-&gt;sysconf = $sysconf;
+        $this-&gt;logger = $logger;
+        $this-&gt;conf = $conf;
+    }
+
+    public function run(): int
+    {
+        foreach ($this-&gt;conf-&gt;get('formats') as $format) {
+            if ($this-&gt;validateFormat($format) &amp;&amp;
+                $this-&gt;validateDir($format['input_dir']) &amp;&amp;
+                $this-&gt;validateDir($format['output_dir'], true))
+            {
+                $this-&gt;cFormat = array_merge(
+                    $this-&gt;defaults,
+                    $format,
+                    [
+                        'input_dir_realpath' =&gt; realpath($format['input_dir']),
+                        'output_dir_realpath' =&gt; realpath($format['output_dir'])
+                    ]
+                );
+                $this-&gt;filterJrcMethod();
+                $this-&gt;dispatchImages();
+            } else {
+                return 1;        
+            }
+        }
+        return 0;
+    }
+
+    protected function validateFormat(array $format): bool
+    {
+        foreach ($this-&gt;mandatories as $mandatory) {
+            if (!array_key_exists($mandatory, $format)) {
+                $this-&gt;msg(
+                    sprintf($this-&gt;sysconf-&gt;get('msg'), $mandatory) . &quot;\n&quot;, 
+                    'all', 'debug', $format
+                );
+                return false;
+            }
+        }
+        return true;
+    }
+
+    // ...
+}
+</code></pre></details>
+<details class="closeOnLoad" open><summary>PHPDoc</summary>
+<pre class="line-numbers linkable-line-numbers language-phpdoc" id="cbe-phpdoc"><code>/** @var \DateTime[] An array of DateTime objects. */
+/** @var string[] An array of string objects. */
+/** @var callable[] An array of with callable functions or methods. */
+
+/** @var \ArrayObject|\DateTime[] */
+$dates = array()
+
+/**
+ * @param bool|\DateTime $foo the first argument
+ * @return string|null
+ */
+function bar($foo) { ... }
+</code></pre></details>
+<details class="closeOnLoad" open><summary>PowerShell</summary>
+<pre class="line-numbers linkable-line-numbers language-powershell" id="cbe-powershell"><code>Function SayHello([string]$name) {
+    Write-Host &quot;Hello, $name.&quot;
+}
+$Names = @(&quot;Bob&quot;, &quot;Alice&quot;)
+
+$Names | ForEach {
+    SayHello $_
+}
+</code></pre></details>
+<details class="closeOnLoad" open><summary>Pug</summary>
+<pre class="line-numbers linkable-line-numbers language-pug" id="cbe-pug"><code>doctype html
+html(lang=attributes.lang)
+  head
+    title=attributes.title
+    meta(charset=&quot;UTF-8&quot;)
+    meta(name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;)
+    link(rel='stylesheet' href='assets/css/style.min.css')
+    link(rel=&quot;stylesheet&quot; href=&quot;assets/css/prism.min.css&quot;)
+    script(src=&quot;assets/js/clipboard.min.js&quot;)
+    script(src=&quot;assets/js/prism.js&quot;)
+    script(src=&quot;assets/js/raphael.min.js&quot;)
+    script(src=&quot;assets/js/flowchart.min.js&quot;)
+    script(src=&quot;assets/js/app.min.js&quot;)
+    script(src=&quot;meta.js&quot;)
+  body
+    if !attributes.disableNavigationBar
+      .navbar
+        if !attributes.disableBrand
+          a.navbar__brand(href=attributes.brandURL)
+            if attributes.brandName
+              span.brand #{attributes.brandName}
+            if attributes.brandSecondary
+              span.brand-second #{attributes.brandSecondary}
+        .navbar__controls
+          if !attributes.disableTagNavigator
+            button.btn-tag-nav.navitem#open-tag-navigation(aria-label=&quot;open tag navigation&quot; title=&quot;open tag navigation&quot; role=&quot;button&quot;)
+              span.navitem-title #{t.tagNav}
+          if !attributes.disableBurger
+            button.burger(aria-expanded=&quot;false&quot; aria-label=&quot;navigation menu&quot;)
+              span.burger__line.burger__line-1(aria-hidden=&quot;true&quot; focusable=&quot;false&quot;)
+              span.burger__line.burger__line-2(aria-hidden=&quot;true&quot; focusable=&quot;false&quot;)
+              span.burger__line.burger__line-3(aria-hidden=&quot;true&quot; focusable=&quot;false&quot;)
+      if !attributes.disableBurger
+        nav.navigation-drawer(aria-label=&quot;Main menu&quot;)
+          if !attributes.disableToc
+            h3.nav-title.text-center #{t.toc}
+            .toc !{toc}
+          if !attributes.disableSiteNav
+            .sitenav !{sitenav}
+
+    main.page
+      .mtime #{t.mtime} #{attributes.mtime}
+      .content !{content}
+      .footer
+        if !attributes.disableBrand
+          a(href=attributes.brandURL class=&quot;brand-link&quot;)
+            if attributes.brandName
+              span.brand #{attributes.brandName}
+            if attributes.brandSecondary
+              span.brand-second #{attributes.brandSecondary}
+</code></pre></details>
+<details class="closeOnLoad" open><summary>Python</summary>
+<pre class="line-numbers linkable-line-numbers language-python" id="cbe-python"><code>from itertools import (accumulate, chain)
+from operator import mul
+
+# factorials :: [Integer]
+def factorials(n):
+    return list(
+        accumulate(chain([1], range(1, 1 + n)), mul)
+    )
+
+print(factorials(5))
+ 
+# -&gt; [1, 1, 2, 6, 24, 120]
+</code></pre></details>
+<details class="closeOnLoad" open><summary>Sass (scss)</summary>
+<pre class="line-numbers linkable-line-numbers language-scss" id="cbe-scss"><code>@mixin scrollbars($size, $foreground-color,  $foreground-color-hover, $background-color, $border-radius, $border-width) {
+
+  // For Google Chrome
+  &amp;::-webkit-scrollbar {
+    width: $size;
+  }
+
+  &amp;::-webkit-scrollbar-thumb {
+    background-color: $foreground-color;
+    border-radius: $border-radius;
+    border: $border-width solid $background-color
+  }
+
+  &amp;::-webkit-scrollbar-thumb:hover {
+    background-color: $foreground-color-hover;
+  }
+
+  &amp;::-webkit-scrollbar-track {
+    background-color: $background-color;
+  }
+
+  // For Internet Explorer
+  &amp; {
+    scrollbar-face-color: $foreground-color;
+    scrollbar-track-color: $background-color;
+  }
+
+  // For FireFox
+  &amp; {
+    scrollbar-color: $foreground-color $background-color;
+    @if $size &lt; 10px {
+      scrollbar-width: thin;
+    } @else {
+      scrollbar-width: auto;
+    }
+  }
+}
+
+$navbar-height: 41px;
+
+.navigation-drawer {
+  position: fixed;
+  top: $navbar-height;
+  right: 0;
+  bottom: 0;
+  width: 100vw;
+  max-width: 414px;
+  overflow-y: auto;
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform .5s ease-out;
+  transform: translateX(100%);
+  background-color: var(--clr-base-d600);
+  border-left: 1px solid var(--clr-base-d400);
+  @include scrollbars(6px, #555, #666, #070f17, 3px, 0px);
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    li {
+      margin-bottom: 0.5rem;
+      a {
+        display: inline-block;
+        width: 100%;
+        color: var(--clr-base-l250);
+        background-color: var(--clr-base-d400);
+        border-radius: 6px;
+        border: 1px solid var(--clr-base-d300);
+        &amp;:hover, &amp;.active:hover {
+          background-color: var(--clr-base);
+          border-color: var(--clr-base-l100);
+          color: var(--clr-base-l500);
+        }
+        &amp;:active {
+          background-color: var(--clr-base);
+          color: var(--clr-base-l500);
+        }
+        &amp;.active, &amp;.router-link-active {
+          background-color: var(--clr-base-d200);
+          border: 1px solid var(--clr-base-d100);
+          color: var(--clr-base-l250-inv);
+        }
+      }
+    }
+  }
+}
+</code></pre></details>
+<details class="closeOnLoad" open><summary>SQL</summary>
+<pre class="line-numbers linkable-line-numbers language-sql" id="cbe-sql"><code>SELECT `user` AS `usr`, `host`, `password`, `plugin` FROM mysql.user;
+UPDATE mysql.user SET plugin='' WHERE user='root';
+FLUSH PRIVILEGES;
+</code></pre></details>
+<details class="closeOnLoad" open><summary>TypeScript</summary>
+<pre class="line-numbers linkable-line-numbers language-ts" id="cbe-ts"><code>import {
+  Ref,
+  UnwrapRef,
+  ComputedRef,
+  WritableComputedOptions,
+  DebuggerOptions,
+  WritableComputedRef
+} from '@vue/runtime-dom'
+
+declare const RefType: unique symbol
+
+declare const enum RefTypes {
+  Ref = 1,
+  ComputedRef = 2,
+  WritableComputedRef = 3
+}
+
+type RefValue&lt;T&gt; = T extends null | undefined
+  ? T
+  : T &amp; { [RefType]?: RefTypes.Ref }
+
+type ComputedRefValue&lt;T&gt; = T extends null | undefined
+  ? T
+  : T &amp; { [RefType]?: RefTypes.ComputedRef }
+
+type WritableComputedRefValue&lt;T&gt; = T extends null | undefined
+  ? T
+  : T &amp; { [RefType]?: RefTypes.WritableComputedRef }
+
+type NormalObject&lt;T extends object&gt; = T &amp; { [RefType]?: never }
+
+/**
+ * Vue ref transform macro for binding refs as reactive variables.
+ */
+declare function _$&lt;T&gt;(arg: ComputedRef&lt;T&gt;): ComputedRefValue&lt;T&gt;
+declare function _$&lt;T&gt;(arg: WritableComputedRef&lt;T&gt;): WritableComputedRefValue&lt;T&gt;
+declare function _$&lt;T&gt;(arg: Ref&lt;T&gt;): RefValue&lt;T&gt;
+declare function _$&lt;T extends object&gt;(arg?: T): DestructureRefs&lt;T&gt;
+
+type DestructureRefs&lt;T extends object&gt; = {
+  [K in keyof T]: T[K] extends ComputedRef&lt;infer V&gt;
+    ? ComputedRefValue&lt;V&gt;
+    : T[K] extends WritableComputedRef&lt;infer V&gt;
+    ? WritableComputedRefValue&lt;V&gt;
+    : T[K] extends Ref&lt;infer V&gt;
+    ? RefValue&lt;V&gt;
+    : T[K]
+}
+</code></pre></details>
+<details class="closeOnLoad" open><summary>YAML</summary>
+<pre class="line-numbers linkable-line-numbers language-yml" id="cbe-yml"><code>version: '3.8'
+
+services:
+  server:
+    image: gitea/gitea:1.15.6
+    restart: always
+    container_name: gitea
+    environment:
+      USER_UID: &quot;${USER_UID}&quot;
+      USER_GID: &quot;${USER_GID}&quot;
+      GITEA__database__DB_TYPE: mysql
+      GITEA__database__HOST: db:3306
+      GITEA__database__NAME: &quot;${MYSQL_DATABASE}&quot;
+      GITEA__database__USER: &quot;${MYSQL_USER}&quot;
+      GITEA__database__PASSWD: &quot;${MYSQL_PASSWORD}&quot;
+    networks:
+      - gitea
+    volumes:
+      - ./gitea:/data
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+      - /home/git/.ssh/:/data/git/.ssh
+    ports:
+      - &quot;3000:3000&quot;
+      - &quot;127.0.0.1:2222:22&quot;
+    depends_on:
+      - db
+  db:
+    image: &quot;mariadb:${MARIADB_VERSION}&quot;
+    restart: always
+    cap_add:
+      - SYS_NICE
+    networks:
+      - gitea
+    volumes:
+      - &quot;./mysql:${MARIADB_DATA_DIR}&quot;
+    environment:
+      MYSQL_ROOT_PASSWORD: &quot;${MYSQL_ROOT_PASSWORD}&quot;
+      MYSQL_USER: &quot;${MYSQL_USER}&quot;
+      MYSQL_PASSWORD: &quot;${MYSQL_PASSWORD}&quot;
+      MYSQL_DATABASE: &quot;${MYSQL_DATABASE}&quot;
+networks:
+  gitea:
+    external: false
+</code></pre></details>
+<hr class="footnotes-sep">
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p>Here is the footnote. <a href="#fnref1" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn2" class="footnote-item"><p>Here’s one with multiple lines<br>
+<a href="https://en.wikipedia.org/wiki/HTML">HTML</a> Hyper Text Markup Language<br>
+<a href="https://www.w3.org/">W3C</a>  World Wide Web Consortium <a href="#fnref2" class="footnote-backref">↩︎</a></p>
+</li>
+</ol>
+</section>
+</div><div class="footer"><a class="brand-link" href="https://grandgeorg.de"><span class="brand">Grandgeorg</span><span class="brand-second">Websolutions</span></a></div></main></body></html>
