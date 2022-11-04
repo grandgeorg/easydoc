@@ -939,12 +939,55 @@
       });
     }
 
+    function hadleIdsInDetails() {
+      const hash = window.location.hash;
+      const closeOnLoad = document.querySelectorAll(".closeOnLoad");
+      closeOnLoad.forEach((element) => {
+        if (element.tagName === "DETAILS" && element.hasAttribute("open") && (!hash || !element.querySelector(hash))) {
+          element.removeAttribute("open");
+          element.classList.remove("closeOnLoad");
+        }
+      });
+
+      if (hash) {
+        const element = document.querySelector(hash);
+        if (element) {
+          const details = element.closest("details");
+          if (details) {
+            details.setAttribute("open", "open");
+            setTimeout(() => {
+              details.scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" });
+            }, 100);
+          } else {
+            element.scrollIntoView();
+          }
+        }
+      }
+
+      document.querySelectorAll(".openIdInClosedDetails").forEach((element) => {
+        element.addEventListener("click", function (e) {
+          e.stopPropagation();
+          e.preventDefault();
+          const href = e.target.getAttribute("href");
+          window.location.hash = href;
+          const element = document.querySelector(href);
+          const details = element.closest("details");
+          console.log(href);
+          if (element && details) {
+            details.setAttribute("open", "open");
+            details.scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" });
+          }
+        });
+      });
+    }
+
     function main() {
       // addIdsToHeadings();
       addFlowcharts();
       addLightBox();
       dispatchNavigation();
       registerTagNavigation();
+      hadleIdsInDetails();
     }
 
     main();
