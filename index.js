@@ -49,7 +49,7 @@ md.use(require("markdown-it-container"), "info", getCustomContainer("info"));
 md.use(require("markdown-it-container"), "warning", getCustomContainer("warning"));
 md.use(require("markdown-it-container"), "danger", getCustomContainer("danger"));
 md.use(require("markdown-it-container"), "line", getCustomContainer("line"));
-md.use(require("markdown-it-container"), "checklist");
+// md.use(require("markdown-it-container"), "block");
 md.use(require("markdown-it-container"), "details", {
   validate: function(params) {
     return params.trim().match(/^details\s+(.*)$/);
@@ -57,7 +57,9 @@ md.use(require("markdown-it-container"), "details", {
   render: function (tokens, idx) {
     var m = tokens[idx].info.trim().match(/^details\s+(.*)$/);
     if (tokens[idx].nesting === 1) {
-      return "<details><summary>" + md.utils.escapeHtml(m[1]) + "</summary>\n";
+      let className = tokens[idx].attrGet("class") ? ' class="' + tokens[idx].attrGet("class") + '"' : "";
+      let open = tokens[idx].attrGet("data-open") ? ' open' : "";
+      return `<details${className}${open}><summary>${md.utils.escapeHtml(m[1])}</summary>\n`;
     } else {
       return "</details>\n";
     }
