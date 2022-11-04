@@ -28,7 +28,7 @@
   // For FireFox
   & {
     scrollbar-color: $foreground-color $background-color;
-    @if $size < 10px {
+    @if $size <= 16px {
       scrollbar-width: thin;
     } @else {
       scrollbar-width: auto;
