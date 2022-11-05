@@ -856,49 +856,74 @@ EasyDoc uses [Prism](https://prismjs.com/) to highlight syntax in code blocks.
 
 #### Supported languages
 
-+ ✔️ [Markup (HTML,XML etc.)](#cbe-html){.openIdInClosedDetails}
-+ ✔️ [CSS, CSS Extras](#cbe-css){.openIdInClosedDetails}
-+ ✔️ [JavaScript](#cbe-js){.openIdInClosedDetails}
-+ ✔️ [Apache Configuration](#cbe-apacheconf){.openIdInClosedDetails}
-+ ✔️ [Bash + Shell](#cbe-shell){.openIdInClosedDetails}
-+ ✔️ [Batch](#cbe-batch){.openIdInClosedDetails}
-+ ✔️ [C-like](#cbe-clike){.openIdInClosedDetails}
-+ ✔️ [Diff](#cbe-diff){.openIdInClosedDetails}
-+ ✔️ [Docker](#cbe-dockerfile){.openIdInClosedDetails}
-+ ✔️ [EditorConfig](#cbe-editorconfig){.openIdInClosedDetails}
-+ ✔️ [Git](#cbe-git){.openIdInClosedDetails}
-+ ✔️ [GraphQL](#cbe-graphql){.openIdInClosedDetails}
-+ ✔️ [Ini](#cbe-ini){.openIdInClosedDetails}
-+ ✔️ [JSON, Web App Mainfest](#cbe-json){.openIdInClosedDetails}
-+ ✔️ [Less](#cbe-less){.openIdInClosedDetails}
-+ ✔️ [Markdown](#cbe-markdown){.openIdInClosedDetails}
-+ ✔️ [MongoDB](#cbe-mongodb){.openIdInClosedDetails}
-+ ✔️ [Nginx](#cbe-nginx){.openIdInClosedDetails}
-+ ✔️ [PHP](#cbe-php){.openIdInClosedDetails}
-+ ✔️ [PHPDoc](#cbe-html){.openIdInClosedDetails}
-+ ✔️ [PowerShell](#cbe-powershell){.openIdInClosedDetails}
-+ ✔️ [Pug](#cbe-pug){.openIdInClosedDetails}
-+ ✔️ [Python](#cbe-python){.openIdInClosedDetails}
-+ ✔️ [Sass (scss)](#cbe-scss){.openIdInClosedDetails}
-+ ✔️ [SQL](#cbe-sql){.openIdInClosedDetails}
-+ ✔️ [TypeScript](#cbe-ts){.openIdInClosedDetails}
-+ ✔️ [YAML](#cbe-yml){.openIdInClosedDetails}
++ ✅ [Markup (HTML,XML etc.)](#cbe-html){.openIdInClosedDetails}
++ ✅ [CSS, CSS Extras](#cbe-css){.openIdInClosedDetails}
++ ✅ [JavaScript](#cbe-js){.openIdInClosedDetails}
++ ✅ [Apache Configuration](#cbe-apacheconf){.openIdInClosedDetails}
++ ✅ [Bash + Shell](#cbe-shell){.openIdInClosedDetails}
++ ✅ [Batch](#cbe-batch){.openIdInClosedDetails}
++ ✅ [C-like](#cbe-clike){.openIdInClosedDetails}
++ ✅ [Diff](#cbe-diff){.openIdInClosedDetails}
++ ✅ [Docker](#cbe-dockerfile){.openIdInClosedDetails}
++ ✅ [EditorConfig](#cbe-editorconfig){.openIdInClosedDetails}
++ ✅ [Git](#cbe-git){.openIdInClosedDetails}
++ ✅ [GraphQL](#cbe-graphql){.openIdInClosedDetails}
++ ✅ [Ini](#cbe-ini){.openIdInClosedDetails}
++ ✅ [JSON, Web App Mainfest](#cbe-json){.openIdInClosedDetails}
++ ✅ [Less](#cbe-less){.openIdInClosedDetails}
++ ✅ [Markdown](#cbe-markdown){.openIdInClosedDetails}
++ ✅ [MongoDB](#cbe-mongodb){.openIdInClosedDetails}
++ ✅ [Nginx](#cbe-nginx){.openIdInClosedDetails}
++ ✅ [PHP](#cbe-php){.openIdInClosedDetails}
++ ✅ [PHPDoc](#cbe-html){.openIdInClosedDetails}
++ ✅ [PowerShell](#cbe-powershell){.openIdInClosedDetails}
++ ✅ [Pug](#cbe-pug){.openIdInClosedDetails}
++ ✅ [Python](#cbe-python){.openIdInClosedDetails}
++ ✅ [Sass (scss)](#cbe-scss){.openIdInClosedDetails}
++ ✅ [SQL](#cbe-sql){.openIdInClosedDetails}
++ ✅ [TypeScript](#cbe-ts){.openIdInClosedDetails}
++ ✅ [YAML](#cbe-yml){.openIdInClosedDetails}
 
 {style="column-width:25ch;column-gap:1em;list-style-type:none;padding-left:0;"}
 
 #### Plugins
 
-+ ✔️ Line Highlight
-+ ✔️ Line Numbers
-+ ✔️ Show Language
-+ ✔️ Commad Line
-+ ✔️ Toolbar
-+ ✔️ Copy to Clipboard Button
++ ✅ [Line Numbers](#line-numbers)
++ ✅ [Line Highlight](#line-highlight)
++ ✅ [Commad Line](#commad-line)
++ ✅ [Show Language](#show-language)
++ ✅ [Toolbar](#toolbar)
++ ✅ [Copy to Clipboard Button](#copy-to-clipboard-button)
 
 {style="column-width:25ch;column-gap:1em;list-style-type:none;padding-left:0;"}
 
 To get your own configuration go to: 
 [prismjs](https://prismjs.com/download.html)
+
+##### Line Numbers
+
+Refer to the manual at [Prism Plugins - Line Numbers](https://prismjs.com/plugins/line-numbers/)
+
+##### Line Highlight
+
+Refer to the manual at [Prism Plugins - Line Highlight](https://prismjs.com/plugins/line-highlight/)
+
+##### Commad Line
+
+Refer to the manual at [Prism Plugins - Commad Line](https://prismjs.com/plugins/command-line/)
+
+##### Show Language
+
+Refer to the manual at [Prism Plugins - Show Language](https://prismjs.com/plugins/show-language/)
+
+##### Toolbar
+
+Refer to the manual at [Prism Plugins - Toolbar](https://prismjs.com/plugins/toolbar/)
+
+##### Copy to Clipboard Button
+
+Refer to the manual at [Prism Plugins - Copy to Clipboard Button](https://prismjs.com/plugins/copy-to-clipboard)
+
 
 ### Syntax Highlighting Examples
 

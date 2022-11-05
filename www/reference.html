@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><title>EasyDoc Reference</title><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="stylesheet" href="assets/css/style.min.css"><link rel="stylesheet" href="assets/css/prism.min.css"><script src="assets/js/clipboard.min.js"></script><script src="assets/js/prism.js"></script><script src="assets/js/raphael.min.js"></script><script src="assets/js/flowchart.min.js"></script><script src="assets/js/app.min.js"></script><script src="meta.js"></script></head><body><div class="navbar"><a class="navbar__brand" href="https://grandgeorg.de"><span class="brand">Grandgeorg</span><span class="brand-second">Websolutions</span></a><div class="navbar__controls"><button class="btn-tag-nav navitem" id="open-tag-navigation" aria-label="open tag navigation" title="open tag navigation" role="button"><svg class="bi bi-tags" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M3 2v4.586l7 7L14.586 9l-7-7H3zM2 2a1 1 0 0 1 1-1h4.586a1 1 0 0 1 .707.293l7 7a1 1 0 0 1 0 1.414l-4.586 4.586a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 2 6.586V2z"></path><path d="M5.5 5a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1zm0 1a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zM1 7.086a1 1 0 0 0 .293.707L8.75 15.25l-.043.043a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 0 7.586V3a1 1 0 0 1 1-1v5.086z"></path></svg><span class="navitem-title">Tag Navigator</span></button><button class="burger" aria-expanded="false" aria-label="navigation menu"><span class="burger__line burger__line-1" aria-hidden="true" focusable="false"></span><span class="burger__line burger__line-2" aria-hidden="true" focusable="false"></span><span class="burger__line burger__line-3" aria-hidden="true" focusable="false"></span></button></div></div><nav class="navigation-drawer" aria-label="Main menu"><h3 class="nav-title text-center">Table of Contents</h3><div class="toc"><div class="table-of-contents"><ul><li><a href="#easydoc-reference">EasyDoc Reference</a><ul><li><a href="#configuration">Configuration</a><ul><li><a href="#-global-configuration">📄 Global Configuration</a></li><li><a href="#-per-page-overrides-in-front-matter">📄 Per page overrides in front matter</a></li></ul></li><li><a href="#markdown">Markdown</a><ul><li><a href="#typography--elements">Typography &amp; Elements</a></li><li><a href="#icons">Icons</a></li><li><a href="#markdown-plugins">Markdown Plugins</a></li></ul></li><li><a href="#syntax-highlighting">Syntax Highlighting</a><ul><li><a href="#syntax-highlighting-examples">Syntax Highlighting Examples</a></li></ul></li></ul></li></ul></div></div><div class="sitenav"><h3 class="nav-title text-center">Navigation</h3><ul><li><a href="easydoc.html">Easydoc</a></li><li><a class="active" href="reference.html">Reference</a></li><li><a href="setup.html">Example</a></li></ul></div></nav><main class="page"><div class="mtime">Last Update Fri Nov 04 2022 05:29:10 GMT+0100 (Mitteleuropäische Normalzeit)</div><div class="content"><h1 class="text-center" id="easydoc-reference" tabindex="-1"><a class="header-anchor" href="#easydoc-reference">EasyDoc Reference</a></h1>
+<!DOCTYPE html><html lang="en"><head><title>EasyDoc Reference</title><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="stylesheet" href="assets/css/style.min.css"><link rel="stylesheet" href="assets/css/prism.min.css"><script src="assets/js/clipboard.min.js"></script><script src="assets/js/prism.js"></script><script src="assets/js/raphael.min.js"></script><script src="assets/js/flowchart.min.js"></script><script src="assets/js/app.min.js"></script><script src="meta.js"></script></head><body><div class="navbar"><a class="navbar__brand" href="https://grandgeorg.de"><span class="brand">Grandgeorg</span><span class="brand-second">Websolutions</span></a><div class="navbar__controls"><button class="btn-tag-nav navitem" id="open-tag-navigation" aria-label="open tag navigation" title="open tag navigation" role="button"><svg class="bi bi-tags" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M3 2v4.586l7 7L14.586 9l-7-7H3zM2 2a1 1 0 0 1 1-1h4.586a1 1 0 0 1 .707.293l7 7a1 1 0 0 1 0 1.414l-4.586 4.586a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 2 6.586V2z"></path><path d="M5.5 5a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1zm0 1a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zM1 7.086a1 1 0 0 0 .293.707L8.75 15.25l-.043.043a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 0 7.586V3a1 1 0 0 1 1-1v5.086z"></path></svg><span class="navitem-title">Tag Navigator</span></button><button class="burger" aria-expanded="false" aria-label="navigation menu"><span class="burger__line burger__line-1" aria-hidden="true" focusable="false"></span><span class="burger__line burger__line-2" aria-hidden="true" focusable="false"></span><span class="burger__line burger__line-3" aria-hidden="true" focusable="false"></span></button></div></div><nav class="navigation-drawer" aria-label="Main menu"><h3 class="nav-title text-center">Table of Contents</h3><div class="toc"><div class="table-of-contents"><ul><li><a href="#easydoc-reference">EasyDoc Reference</a><ul><li><a href="#configuration">Configuration</a><ul><li><a href="#-global-configuration">📄 Global Configuration</a></li><li><a href="#-per-page-overrides-in-front-matter">📄 Per page overrides in front matter</a></li></ul></li><li><a href="#markdown">Markdown</a><ul><li><a href="#typography--elements">Typography &amp; Elements</a></li><li><a href="#icons">Icons</a></li><li><a href="#markdown-plugins">Markdown Plugins</a></li></ul></li><li><a href="#syntax-highlighting">Syntax Highlighting</a><ul><li><a href="#syntax-highlighting-examples">Syntax Highlighting Examples</a></li></ul></li></ul></li></ul></div></div><div class="sitenav"><h3 class="nav-title text-center">Navigation</h3><ul><li><a href="easydoc.html">Easydoc</a></li><li><a class="active" href="reference.html">Reference</a></li><li><a href="setup.html">Example</a></li></ul></div></nav><main class="page"><div class="mtime">Last Update Sat Nov 05 2022 10:03:46 GMT+0100 (Mitteleuropäische Normalzeit)</div><div class="content"><h1 class="text-center" id="easydoc-reference" tabindex="-1"><a class="header-anchor" href="#easydoc-reference">EasyDoc Reference</a></h1>
 <p class="text-center">🔴🔵</p>
 <hr>
 <h2 id="configuration" tabindex="-1"><a class="header-anchor" href="#configuration">Configuration</a></h2>
@@ -790,45 +790,57 @@ Here are some **funny** details.
 <p>EasyDoc uses <a href="https://prismjs.com/">Prism</a> to highlight syntax in code blocks.</p>
 <h4 id="supported-languages" tabindex="-1"><a class="header-anchor" href="#supported-languages">Supported languages</a></h4>
 <ul style="column-width:25ch;column-gap:1em;list-style-type:none;padding-left:0;">
-<li>✔️ <a href="#cbe-html" class="openIdInClosedDetails">Markup (HTML,XML etc.)</a></li>
-<li>✔️ <a href="#cbe-css" class="openIdInClosedDetails">CSS, CSS Extras</a></li>
-<li>✔️ <a href="#cbe-js" class="openIdInClosedDetails">JavaScript</a></li>
-<li>✔️ <a href="#cbe-apacheconf" class="openIdInClosedDetails">Apache Configuration</a></li>
-<li>✔️ <a href="#cbe-shell" class="openIdInClosedDetails">Bash + Shell</a></li>
-<li>✔️ <a href="#cbe-batch" class="openIdInClosedDetails">Batch</a></li>
-<li>✔️ <a href="#cbe-clike" class="openIdInClosedDetails">C-like</a></li>
-<li>✔️ <a href="#cbe-diff" class="openIdInClosedDetails">Diff</a></li>
-<li>✔️ <a href="#cbe-dockerfile" class="openIdInClosedDetails">Docker</a></li>
-<li>✔️ <a href="#cbe-editorconfig" class="openIdInClosedDetails">EditorConfig</a></li>
-<li>✔️ <a href="#cbe-git" class="openIdInClosedDetails">Git</a></li>
-<li>✔️ <a href="#cbe-graphql" class="openIdInClosedDetails">GraphQL</a></li>
-<li>✔️ <a href="#cbe-ini" class="openIdInClosedDetails">Ini</a></li>
-<li>✔️ <a href="#cbe-json" class="openIdInClosedDetails">JSON, Web App Mainfest</a></li>
-<li>✔️ <a href="#cbe-less" class="openIdInClosedDetails">Less</a></li>
-<li>✔️ <a href="#cbe-markdown" class="openIdInClosedDetails">Markdown</a></li>
-<li>✔️ <a href="#cbe-mongodb" class="openIdInClosedDetails">MongoDB</a></li>
-<li>✔️ <a href="#cbe-nginx" class="openIdInClosedDetails">Nginx</a></li>
-<li>✔️ <a href="#cbe-php" class="openIdInClosedDetails">PHP</a></li>
-<li>✔️ <a href="#cbe-html" class="openIdInClosedDetails">PHPDoc</a></li>
-<li>✔️ <a href="#cbe-powershell" class="openIdInClosedDetails">PowerShell</a></li>
-<li>✔️ <a href="#cbe-pug" class="openIdInClosedDetails">Pug</a></li>
-<li>✔️ <a href="#cbe-python" class="openIdInClosedDetails">Python</a></li>
-<li>✔️ <a href="#cbe-scss" class="openIdInClosedDetails">Sass (scss)</a></li>
-<li>✔️ <a href="#cbe-sql" class="openIdInClosedDetails">SQL</a></li>
-<li>✔️ <a href="#cbe-ts" class="openIdInClosedDetails">TypeScript</a></li>
-<li>✔️ <a href="#cbe-yml" class="openIdInClosedDetails">YAML</a></li>
+<li>✅ <a href="#cbe-html" class="openIdInClosedDetails">Markup (HTML,XML etc.)</a></li>
+<li>✅ <a href="#cbe-css" class="openIdInClosedDetails">CSS, CSS Extras</a></li>
+<li>✅ <a href="#cbe-js" class="openIdInClosedDetails">JavaScript</a></li>
+<li>✅ <a href="#cbe-apacheconf" class="openIdInClosedDetails">Apache Configuration</a></li>
+<li>✅ <a href="#cbe-shell" class="openIdInClosedDetails">Bash + Shell</a></li>
+<li>✅ <a href="#cbe-batch" class="openIdInClosedDetails">Batch</a></li>
+<li>✅ <a href="#cbe-clike" class="openIdInClosedDetails">C-like</a></li>
+<li>✅ <a href="#cbe-diff" class="openIdInClosedDetails">Diff</a></li>
+<li>✅ <a href="#cbe-dockerfile" class="openIdInClosedDetails">Docker</a></li>
+<li>✅ <a href="#cbe-editorconfig" class="openIdInClosedDetails">EditorConfig</a></li>
+<li>✅ <a href="#cbe-git" class="openIdInClosedDetails">Git</a></li>
+<li>✅ <a href="#cbe-graphql" class="openIdInClosedDetails">GraphQL</a></li>
+<li>✅ <a href="#cbe-ini" class="openIdInClosedDetails">Ini</a></li>
+<li>✅ <a href="#cbe-json" class="openIdInClosedDetails">JSON, Web App Mainfest</a></li>
+<li>✅ <a href="#cbe-less" class="openIdInClosedDetails">Less</a></li>
+<li>✅ <a href="#cbe-markdown" class="openIdInClosedDetails">Markdown</a></li>
+<li>✅ <a href="#cbe-mongodb" class="openIdInClosedDetails">MongoDB</a></li>
+<li>✅ <a href="#cbe-nginx" class="openIdInClosedDetails">Nginx</a></li>
+<li>✅ <a href="#cbe-php" class="openIdInClosedDetails">PHP</a></li>
+<li>✅ <a href="#cbe-html" class="openIdInClosedDetails">PHPDoc</a></li>
+<li>✅ <a href="#cbe-powershell" class="openIdInClosedDetails">PowerShell</a></li>
+<li>✅ <a href="#cbe-pug" class="openIdInClosedDetails">Pug</a></li>
+<li>✅ <a href="#cbe-python" class="openIdInClosedDetails">Python</a></li>
+<li>✅ <a href="#cbe-scss" class="openIdInClosedDetails">Sass (scss)</a></li>
+<li>✅ <a href="#cbe-sql" class="openIdInClosedDetails">SQL</a></li>
+<li>✅ <a href="#cbe-ts" class="openIdInClosedDetails">TypeScript</a></li>
+<li>✅ <a href="#cbe-yml" class="openIdInClosedDetails">YAML</a></li>
 </ul>
 <h4 id="plugins" tabindex="-1"><a class="header-anchor" href="#plugins">Plugins</a></h4>
 <ul style="column-width:25ch;column-gap:1em;list-style-type:none;padding-left:0;">
-<li>✔️ Line Highlight</li>
-<li>✔️ Line Numbers</li>
-<li>✔️ Show Language</li>
-<li>✔️ Commad Line</li>
-<li>✔️ Toolbar</li>
-<li>✔️ Copy to Clipboard Button</li>
+<li>✅ <a href="#line-numbers">Line Numbers</a></li>
+<li>✅ <a href="#line-highlight">Line Highlight</a></li>
+<li>✅ <a href="#commad-line">Commad Line</a></li>
+<li>✅ <a href="#show-language">Show Language</a></li>
+<li>✅ <a href="#toolbar">Toolbar</a></li>
+<li>✅ <a href="#copy-to-clipboard-button">Copy to Clipboard Button</a></li>
 </ul>
 <p>To get your own configuration go to:
 <a href="https://prismjs.com/download.html">prismjs</a></p>
+<h5 id="line-numbers" tabindex="-1"><a class="header-anchor" href="#line-numbers">Line Numbers</a></h5>
+<p>Refer to the manual at <a href="https://prismjs.com/plugins/line-numbers/">Prism Plugins - Line Numbers</a></p>
+<h5 id="line-highlight" tabindex="-1"><a class="header-anchor" href="#line-highlight">Line Highlight</a></h5>
+<p>Refer to the manual at <a href="https://prismjs.com/plugins/line-highlight/">Prism Plugins - Line Highlight</a></p>
+<h5 id="commad-line" tabindex="-1"><a class="header-anchor" href="#commad-line">Commad Line</a></h5>
+<p>Refer to the manual at <a href="https://prismjs.com/plugins/command-line/">Prism Plugins - Commad Line</a></p>
+<h5 id="show-language" tabindex="-1"><a class="header-anchor" href="#show-language">Show Language</a></h5>
+<p>Refer to the manual at <a href="https://prismjs.com/plugins/show-language/">Prism Plugins - Show Language</a></p>
+<h5 id="toolbar" tabindex="-1"><a class="header-anchor" href="#toolbar">Toolbar</a></h5>
+<p>Refer to the manual at <a href="https://prismjs.com/plugins/toolbar/">Prism Plugins - Toolbar</a></p>
+<h5 id="copy-to-clipboard-button" tabindex="-1"><a class="header-anchor" href="#copy-to-clipboard-button">Copy to Clipboard Button</a></h5>
+<p>Refer to the manual at <a href="https://prismjs.com/plugins/copy-to-clipboard">Prism Plugins - Copy to Clipboard Button</a></p>
 <h3 id="syntax-highlighting-examples" tabindex="-1"><a class="header-anchor" href="#syntax-highlighting-examples">Syntax Highlighting Examples</a></h3>
 <p>You can also look up <a href="https://prismjs.com/examples.html">Examples at Prism</a></p>
 <details class="closeOnLoad" open><summary>HTML</summary>
