@@ -670,6 +670,19 @@ body>.page:first-child {
   [id], details {
     scroll-margin-top: $navbar-height + 16px;
   }
+  [id]:focus-visible {
+    outline: 1px solid var(--clr-base-d250);
+    // outline-offset: 0.5em;
+    border-radius: 6px;
+  }
+  h1[id]:focus-visible,
+  h2[id]:focus-visible,
+  h3[id]:focus-visible,
+  h4[id]:focus-visible,
+  h5[id]:focus-visible,
+  h6[id]:focus-visible {
+    outline-offset: 0.5em;
+  }
   p, ul, li, dt, dd, blockquote, pre, table, details {
     font-size: 1rem;
     font-size: clamp(0.85rem, 1.3333vw, 1rem);
@@ -690,7 +703,8 @@ body>.page:first-child {
   }
   a[href]:not([tabindex^="-"]):focus {
     outline: 0;
-    border-bottom: 1px solid var(--clr-link);
+    // border-bottom: 1px solid var(--clr-link);
+    text-decoration: underline;
   }
   h1 + hr {
     margin-top: 0.25rem;
