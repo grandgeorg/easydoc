@@ -147,7 +147,10 @@ fs.readdir(docsDir, (err, files) => {
   files.forEach((file) => {
     let fmData = fm(fs.readFileSync(path.join(docsDir, file), "utf-8"));
     let stats = fs.statSync(path.join(docsDir, file));
-    if (fmData.attributes.tocIncludeLevel && fmData.attributes.tocIncludeLevel.length > 0 && fmData.attributes.tocIncludeLevel !== tocIncludeLevel) {
+    if (fmData.attributes.tocIncludeLevel &&
+      fmData.attributes.tocIncludeLevel.length > 0
+      && fmData.attributes.tocIncludeLevel !== tocIncludeLevel
+    ) {
       md.use(mdItToc, {
         includeLevel: fmData.attributes.tocIncludeLevel,
       });

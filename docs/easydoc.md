@@ -73,20 +73,20 @@ npm run build
  ├🗀 .git
  ├🗀 .vscode
  ├🟢 docs
- │ ├🗏 easydoc.md 📌 🖤
- │ └🗏 reference.md 🖤
  ├🗀 lang 🖊️
+ ├🗁 manual 📌
+ │ ├🗀 assets
+ │ ├🗀 img
+ │ ├🗏 easydoc.html
+ │ ├🗏 easydoc.md
+ │ ├🗏 reference.html
+ │ └🗏 reference.md 
  ├🗀 node_modules
  ├🗀 src 🖊️
  ├🗀 templates 🖊️
  ├🔵 www
- │ ├🗀 css
- │ ├🗀 fonts
- │ ├🟢 img
- │ │ └🗏 easydoc-banner.png 🖤
- │ ├🗀 js 🖊️
- │ ├🗏 easydoc.html 📌
- │ └🗏 reference.html
+ │ ├🗀 assets 🖊️
+ │ └🟢 img
  ├🗏 .env ✏️
  ├🗏 .gitignore
  ├🗏 index.js 🖊️
@@ -99,7 +99,7 @@ npm run build
 │  🔵 output directory. Html files will be generated here.   │
 │  ✏️ configure EasyDoc                                      │
 │  🖊️ change EasyDoc                                         │
-│  📌 It's me. Your reading this document right now.         │
+│  📌 It's me. You are reading these documents right now.         │
 │  🖤 Remove these documentation files for a blank start.    │
 ╰──────────────────────────═━┈💬┈━═──────────────────────────╯
 ```

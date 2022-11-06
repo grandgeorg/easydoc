@@ -2,7 +2,7 @@
   "verbose": true,
   "restartable": "r",
   "ignore": [".git", "node_modules/**/node_modules"],
-  "watch": ["docs/", "test/", "www/css/", "www/img/", "www/fonts/", "www/js", "templates/", ".env"],
+  "watch": ["docs/", "test/", "www/css/", "www/img/", "www/fonts/", "www/js", "templates/", ".env", "nav.js"],
   "ext": "md, css, js, html, json, jpg, png, gif, svg, eot, ttf, woff, woff2, env, pug",
   "env": {
     "NODE_ENV": "development"

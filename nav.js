@@ -6,9 +6,5 @@ exports.nav = [
   {
     "title": "Reference",
     "url": "reference.html",
-  },
-  {
-    "title": "Example",
-    "url": "setup.html",
   }
 ];

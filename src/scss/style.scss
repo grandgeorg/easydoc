@@ -1220,7 +1220,11 @@ body>.page:first-child {
   div.code-toolbar {
     margin: 1rem 0;
   }
-  div.code-toolbar>.toolbar>.toolbar-item>a, div.code-toolbar>.toolbar>.toolbar-item>button {
+  div.code-toolbar>.toolbar>.toolbar-item {
+    margin-left: 0.5rem;
+  }
+  div.code-toolbar>.toolbar>.toolbar-item>a,
+  div.code-toolbar>.toolbar>.toolbar-item>button {
     padding: .25rem 0.75rem;
     color: var(--clr-base-l200);
   }
@@ -1229,7 +1233,9 @@ body>.page:first-child {
     font-size: 0.85rem;
     padding: 0;
   }
-  div.code-toolbar>.toolbar>.toolbar-item>a, div.code-toolbar>.toolbar>.toolbar-item>button, div.code-toolbar>.toolbar>.toolbar-item>span {
+  div.code-toolbar>.toolbar>.toolbar-item>a,
+  div.code-toolbar>.toolbar>.toolbar-item>button,
+  div.code-toolbar>.toolbar>.toolbar-item>span {
     color: var(--clr-base-l170);
     // font-size: .75rem;
     // padding: 0 .5em;
@@ -1237,7 +1243,8 @@ body>.page:first-child {
   div.code-toolbar>.toolbar>.toolbar-item>span {
     background: none;
   }
-  :not(pre)>code[class*=language-], pre[class*=language-] {
+  :not(pre)>code[class*=language-],
+  pre[class*=language-] {
     background: var(--clr-base-d420);
     outline-width: 1px;
     outline-style: solid;

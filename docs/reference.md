@@ -37,8 +37,8 @@ EASYDOC_TOC_INCLUDELEVEL=[1,2,3,4]
 
 ```none
 ---
-title: Page Title
 lang: de
+title: Page Title
 brandURL: https://domain.tld
 brandName: My Project
 brandSecondary: Reserach
@@ -50,6 +50,60 @@ tocIncludeLevel: [1, 2, 3, 4]
 # disableNavigationBar: true
 ---
 ```
+
+### 📄 Site Navigation
+Define individual menu items for site navigation.
+
+##### ```/nav.js``` examle file
+```js
+exports.nav = [
+  {
+    "title": "Easydoc",
+    "url": "easydoc.html",
+  },
+  {
+    "title": "Some Title",
+    "url": "some-URL",
+  }
+];
+```
+
+:::details Configuration parameters
+
+```.env: EASYDOC_LANG_FALLBACK``` / ```frontmatter: lang```
+: Language of the document and EsayDoc language (see also ```lang/langs.js```)
+
+```.env: EASYDOC_TITLE_FALLBACK``` / ```frontmatter: title```
+: Title of the document
+
+```.env: EASYDOC_BRAND_URL``` / ```frontmatter: brandURL```
+: URL the brand link should point to.
+
+```.env: EASYDOC_BRAND_NAME``` / ```frontmatter: brandName```
+: Main brand claim string (default style in red).
+
+```.env: EASYDOC_BRAND_SECONDARY``` / ```frontmatter: brandSecondary```
+: Secondary brand claim string (default style in blue).
+
+```.env: EASYDOC_TOC_INCLUDELEVEL``` / ```frontmatter: tocIncludeLevel```
+: Header include level for table of contants.
+
+```.env: EASYDOC_DISABLE_BRAND``` / ```frontmatter: disableBrand```
+: Disable brand claim and link in navbar and footer.
+
+```.env: EASYDOC_DISABLE_TOC``` / ```frontmatter: disableToc```
+: Disable table of contants.
+
+```.env: EASYDOC_DISABLE_SITE_NAV``` / ```frontmatter: disableSiteNav```
+: Disable site navigation.
+
+```.env: EASYDOC_DISABLE_TAG_NAVIGATOR``` / ```frontmatter: disableTagNavigator```
+: Disable tag navigator.
+
+```.env: EASYDOC_DISABLE_NAVIGATION_BAR``` / ```frontmatter: disableNavigationBar```
+: Completely disable the navigation bar.
+:::
+
 
 ## Markdown
 
@@ -239,410 +293,6 @@ Small with title
 ```
 :::
 
-### Icons
-
-Here you find a curated list of unicode icon characters and emojis.
-
-::: details emojis in body
-
-#### files
-📄 📝 📑 📜 📃 🧾 {.fs-xl}
-
-#### folder
-📁 📂 🗂️ {.fs-xl}
-
-#### hands
-✋ 👈 👉 👆 👇 ☝️ 👍 👎  
-✋🏻 👈🏻 👉🏻 👆🏻 👇🏻 ☝🏻 👍🏻 👎🏻  
-✋🏼 👈🏼 👉🏼 👆🏼 👇🏼 ☝🏼 👍🏼 👎🏼  
-✋🏽 👈🏽 👉🏽 👆🏽 👇🏽 ☝🏽 👍🏽 👎🏽  
-✋🏾 👈🏾 👉🏾 👆🏾 👇🏾 ☝🏾 👍🏾 👎🏾  
-✋🏿 👈🏿 👉🏿 👆🏿 👇🏿 ☝🏿 👍🏿 👎🏿 {.fs-xl}
-
-#### user
-👩‍💼 👨‍💼 👩 🧑 👱‍♂️ 👩‍🦳  
-👩🏻‍💼 👨🏻‍💼 👩🏻 🧑🏻 👱🏻 👩🏻‍🦳  
-👩🏼‍💼 👨🏼‍💼 👩🏼 🧑🏼 👱🏼 👩🏼‍🦳  
-👩🏽‍💼 👨🏽‍💼 👩🏽 🧑🏽 👱🏽‍♂️ 👩🏽‍🦳  
-👩🏾‍💼 👨🏾‍💼 👩🏾 🧑🏾 👱🏾‍♂️ 👩🏾‍🦳  
-👩🏿‍💼 👨🏿‍💼 👩🏿 🧑🏿 👱🏿‍♂️ 👩🏿‍🦳  
-👤 👥 {.fs-xl}
-
-#### computer
-🖥️ 💻  
-👩‍💻 👨‍💻 🧑‍💻  
-👩🏻‍💻 👨🏻‍💻 🧑🏻‍💻  
-👩🏼‍💻 👨🏼‍💻 🧑🏼‍💻  
-👩🏽‍💻 👨🏽‍💻 🧑🏽‍💻  
-👩🏾‍💻 👨🏾‍💻 🧑🏾‍💻  
-👩🏿‍💻 👨🏿‍💻 🧑🏿‍💻 {.fs-xl}
-
-#### phone
-📱 📲 📞 ☎️  {.fs-xl}
-
-#### symbols
-❌ ⭕️ 🛑 ⛔️ 📛 💯 💢 ♨️  
-⚠️ ☢️ ☣️  
-❗️ ❕ ❓ ❔ ‼️ ⁉️  
-➕ ➖ ✖️  
-❎ ✳️ ❇️ ✴️  
-🔀 🔁 🔂 🔃 🔄  
-⏩ ⏪ ⏫ ⏬  
-🔼 🔽  {.fs-xl}
-
-#### checkmarks
-✔️ ✅ ☑️  {.fs-xl}
-
-#### speach & bubbles
-📣 📢 💬 🗨️ 💭 🗯️ 👁‍🗨 👁️  {.fs-xl}
-
-#### primitives
-🔘 🔴 🟠 🟡 🟢 🔵 🟣 ⚫️ ⚪️ 🟤  
-🟥 🟧 🟨 🟩 🟦 🟪 ⬛️ ⬜️ 🟫  
-🔺 🔻  
-🔸 🔹 🔶 🔷  
-🔳 🔲 ▪️ ▫️ ◾️ ◽️ ◼️ ◻️ {.fs-xl}
-
-#### traffic
-🚧 🚦 🚥  {.fs-xl}
-
-#### time & navigation
-🧭 ⏱ ⏲ ⌛️ ⏳  {.fs-xl}
-
-#### electricity
-🔋 🔌  {.fs-xl}
-
-#### mechanics
-🧰 🔧 🔨 🛠️ ⚙️ 🧲 🗜️  {.fs-xl}
-
-#### weapon
-🔫 💣 🧨  {.fs-xl}
-
-#### test
-💊 🩸 🧬 🧫 🧪 ⚗️ 🌡️  {.fs-xl}
-
-#### security
-🔑 🗝️ 🔏 🔐 🔒 🔓  {.fs-xl}
-
-#### search
-🔍 🔎 {.fs-xl}
-
-#### office
-🗑 🗃️ 📋 📥 📤 📦  {.fs-xl}
-
-#### mail
-🧧 ✉️ 📩 📨 📧 
-📪 📫 📬 📭 📮 📯 {.fs-xl}
-
-#### tag
-🔖🏷️ {.fs-xl}
-
-#### books
-📓 📔 📒 📕 📗 📘 📙 📚 📖 🗒️ {.fs-xl}
-
-#### edit
-📌 📍 ✂️ ✏️ 🖋️ 🖊️ 🖌️ 🖍️ ✒️ {.fs-xl}
-
-#### stars
-💫 ⭐️ 🌟 ✨ ⚡️ ☀️ ☄️ 🌌 {.fs-xl}
-
-#### elements
-💥 🔥 🌪 🌈 💧 💦 ❄️ {.fs-xl}
-
-#### tickets
-🎫 🎟 {.fs-xl}
-
-#### image
-🎨 📷 📸 📹 🎥 📽️ 🎞️ 🎬 {.fs-xl}
-
-#### audio
-🎤 🎧 🎼 🎵 🎶 🔈 🔇 🔉 🔊 {.fs-xl}
-
-#### light
-💡 🪔 {.fs-xl}
-
-#### globe / earth
-🌐  🗺  🌎 🌍 🌏  {.fs-xl}
-
-#### hearts
-❤️ 🧡 💛 💚 💙 💜 🖤 🤍 🤎 💖 💞 💔 {.fs-xl}
-
-#### flags
-🏳️ 🏴 🏁 🚩 🏳️‍🌈 🏳️ 🏴‍☠️ {.fs-xl}
-
-#### calendar
-📅 📆 🗓️ {.fs-xl}
-
-#### charts
-📈 📉 📊 {.fs-xl}
-
-#### misc
-♻️ 🐳 🩹 🚸 🚨 👔 👽️ 💀 ⚗️ 🐞 {.fs-xl}
-
----
-
-:::
-
-::: details emojis in code
-```filetree
-
-files
-📄 📝 📑 📜 📃 🧾
-
-folder
-📁 📂 🗂️
-
-hands
-✋ 👈 👉 👆 👇 ☝️ 👍 👎
-✋🏻 👈🏻 👉🏻 👆🏻 👇🏻 ☝🏻 👍🏻 👎🏻
-✋🏼 👈🏼 👉🏼 👆🏼 👇🏼 ☝🏼 👍🏼 👎🏼
-✋🏽 👈🏽 👉🏽 👆🏽 👇🏽 ☝🏽 👍🏽 👎🏽
-✋🏾 👈🏾 👉🏾 👆🏾 👇🏾 ☝🏾 👍🏾 👎🏾
-✋🏿 👈🏿 👉🏿 👆🏿 👇🏿 ☝🏿 👍🏿 👎🏿
-
-user
-👩‍💼 👨‍💼 👩 🧑 👱‍♂️ 👩‍🦳 👤 👥 
-👩🏻‍💼 👨🏻‍💼 👩🏻 🧑🏻 👱🏻 👩🏻‍🦳
-👩🏼‍💼 👨🏼‍💼 👩🏼 🧑🏼 👱🏼 👩🏼‍🦳
-👩🏽‍💼 👨🏽‍💼 👩🏽 🧑🏽 👱🏽‍♂️ 👩🏽‍🦳
-👩🏾‍💼 👨🏾‍💼 👩🏾 🧑🏾 👱🏾‍♂️ 👩🏾‍🦳
-👩🏿‍💼 👨🏿‍💼 👩🏿 🧑🏿 👱🏿‍♂️ 👩🏿‍🦳
-
-computer
-🖥️ 💻
-👩‍💻 👨‍💻 🧑‍💻
-👩🏻‍💻 👨🏻‍💻 🧑🏻‍💻
-👩🏼‍💻 👨🏼‍💻 🧑🏼‍💻
-👩🏽‍💻 👨🏽‍💻 🧑🏽‍💻
-👩🏾‍💻 👨🏾‍💻 🧑🏾‍💻
-👩🏿‍💻 👨🏿‍💻 🧑🏿‍💻
-⌨️ 
-
-phone
-📱 📲 📞 ☎️
-
-symbols
-❌ ⭕️ 🛑 ⛔️ 📛 💯 💢 ♨️ 
-⚠️ ☢️ ☣️
-❗️ ❕ ❓ ❔ ‼️ ⁉️
-➕ ➖ ✖️
-❎ ✳️ ❇️ ✴️
-🔀 🔁 🔂 🔃 🔄
-⏩ ⏪ ⏫ ⏬
-🔼 🔽
-
-checkmarks
-✔️ ✅ ☑️
-
-speach & bubbles
-📣 📢 💬 🗨️ 💭 🗯️ 👁‍🗨 👁️
-
-primitives
-🔘 🔴 🟠 🟡 🟢 🔵 🟣 ⚫️ ⚪️ 🟤 
-🟥 🟧 🟨 🟩 🟦 🟪 ⬛️ ⬜️ 🟫
-🔺 🔻 
-🔸 🔹 🔶 🔷 
-🔳 🔲 ▪️ ▫️ ◾️ ◽️ ◼️ ◻️ 
-
-traffic
-🚧 🚦 🚥
-
-time & navigation
-🧭 ⏱ ⏲ ⌛️ ⏳
-
-electricity
-🔋 🔌
-
-mechanics
-🧰 🔧 🔨 🛠️ ⚙️ 🧲 🗜️
-
-weapon
-🔫 💣 🧨
-
-test
-💊 🩸 🧬 🧫 🧪 ⚗️ 🌡️
-
-security
-🔑 🗝️ 🔏 🔐 🔒 🔓
-
-search
-🔍 🔎
-
-office
-🗑 🗃️ 📋 📥 📤 📦
-
-mail
-🧧 ✉️ 📩 📨 📧
-📪 📫 📬 📭 📮 📯
-
-tag
-🔖🏷️
-
-books
-📓 📔 📒 📕 📗 📘 📙 📚 📖 🗒️
-
-edit
-📌 📍 ✂️ ✏️ 🖋️ 🖊️ 🖌️ 🖍️ ✒️
-
-stars
-💫 ⭐️ 🌟 ✨ ⚡️ ☀️ ☄️ 🌌
-
-elements
-💥 🔥 🌪 🌈 💧 💦 ❄️
-
-tickets
-🎫 🎟
-
-image
-🎨 📷 📸 📹 🎥 📽️ 🎞️ 🎬 
-
-audio
-🎤 🎧 🎼 🎵 🎶 🔈 🔇 🔉 🔊
-
-light
-💡 🪔
-
-globe 🌐
-earth map 🗺
-earth america 🌎
-earth europe & africa 🌍
-earth asia & pacific 🌏
-
-hearts
-❤️ 🧡 💛 💚 💙 💜 🖤 🤍 🤎 💖 💞 💔 card: ♥️
-
-flags
-🏳️ 🏴 🏁 🚩 🏳️‍🌈 🏳️ 🏴‍☠️
-
-calendar
-📅 📆 🗓️
-
-charts
-📈 📉 📊
-
-misc
-♻️ 🐳 🩹 🚸 🚨 👔 👽️ 💀 ⚗️ 🐞
-
-```
-:::
-
-::: details unicode characters in code
-```filetree
-unicode characters
-
-files
-🗋 🗌 🗍 · 🗎 🗏 🖹 🗐 🖺 🖻 · 🗅 🗆 🗇 · 🗈 🗉 🗊 · 🗑
-
-folders
-🖿 🗁 🗀
-
-hands
-☛ ☞
-
-computer
-🖥 🖧 🖳 🖴 🖵 🖸 🗔
-🗔 🗕 🗖 🗗 🗘 🗙 🗚 🗛 🗜 🗝
-
-phone & mail
-☎ 🕻 🕼 🕽 🕾 🕿 🖀 🖁 
-🖂 🖃 🖄 🖅 🖆 
-
-speach & bubbles
-🕩 🕪 🕫 🕬 🕭
-🗨 🗩 🗪 🗫 🗬 🗭 🗮 🗯 🗰 🗱 🗲 🗣
-
-edit
-🖈 🖉 🖊 🖋 🖌 🖍
-
-checkmarks
-🗸 🗹 🗴 🗵 🗶 🗷 ⌦⌧ 
-
-flags
-🏲 🏳
-
-symbols
-‼️ ⁉️ 🏵 🏶 ⋆
-⏭ ⏮ ⏯ ⏴⏵⏶⏷⏸⏹⏺
-■□▪▫ ◌○●◙◦ ▲►▼◄ 🞁🞂🞃🞀
-🞅🞅🞇🞉 🞑🞒🞓 🞔🞕🞖 
-🞤🞥🞦🞧 🞪🞫🞬🞭🞮 🞯🞰🞱🞲🞳🞴
-🞵🞶🞷🞸🞹🞺 🞻🞼🞽🞾🞿 🟈
-🟉🟊🟌🟍🟎🟐 🟒🟔
-
-arrows
-🠀🠁🠂🠃 🠄🠅🠆🠇 🠈🠉🠊🠋 🠐🠑🠒🠓 🠔🠕🠖🠗 
-🠘🠙🠚🠛 🠜🠝🠞🠟 🠠🠡🠢🠣 🠤🠥🠦🠧 🠧🠨🠩🠪🠫
-🠬🠭🠮🠯 🠰🠱🠲🠳 🠴🠵🠶🠷 🠸🠹🠺🠻 🠼🠽🠾🠿
-🡀🡁🡂🡃 🡄🡅🡆🡇 ⇦⇧⇨⇩⇳ ⇠⇡⇢⇣ 🢐🢑🢒🢓
-🡐🡑🡒🡓🡔🡕🡖🡗🡘🡙 🡠🡡🡢🡣🡤🡥🡦🡧 🡨🡩🡪🡫🡬🡭🡮🡯
-🡰🡱🡲🡳🡴🡵🡶🡷 🡸🡹🡺🡻🡼🡽🡾🡿 🢀🢁🢂🢃🢄🢅🢆🢇
-←↑→↓↔↕↨ ⇵ ⇽⇾⇿ 
-
-misc
-⌨ ⌕ ⌖ ⌘ ☺☻ ♪♫
-
-connectors
-┌───────────┐ ╔═══════════╗
-│  borders  │ ║  borders  ║
-├─────┬─────┤ ╠═════╦═════╣
-│  a  │  b  │ ║  a  ║  b  ║
-├─────┼─────┤ ╠═════╬═════╣
-│  c  │  d  │ ║  c  ║  d  ║
-└─────┴─────┘ ╚═════╩═════╝
-╒═══════════╕ ╓───────────╖
-│  borders  │ ║  borders  ║
-╞═════╤═════╡ ╟─────╥─────╢
-│  a  │  b  │ ║  a  ║  b  ║
-╞═════╪═════╡ ╟─────╫─────╢
-│  c  │  d  │ ║  c  ║  d  ║
-╘═════╧═════╛ ╙─────╨─────╜
-
-─ │ ┌ ┐ └ ┘ ├ ┤ ┬ ┴ ┼
-═ ║ ╔ ╗ ╚ ╝ ╠ ╣ ╦ ╩ ╬ 
-    ╒ ╕ ╘ ╛ ╞ ╡ ╤ ╧ ╪
-    ╓ ╖ ╙ ╜ ╟ ╢ ╥ ╨ ╫
-
-
-┏━━━━━•❃°•°❀°•°❃•━━━━━┓
-
-✧˚       🍏🍎         ˚✧
-
-┗━━━━━•❃°•°❀°•°❃•━━━━━┛
-
-```
-:::
-
-::: details example unicode characters & emojis in code
-```filetree
- 🖿 /etc/apache2/  
-  ┊
-  ├🗁 sites-available
-  │ ├🗏 subdomain-one.domain.tld.conf
-  │ └🗏 subdomain-two.domain.tld.conf    
-  ┊
-  ┊
- 🖿 /var/www/  
-  ┊
-  ├🗁 subdomain-one.domain.tld
-  │ ├🗁 data  
-  │ │ ├🗁 database  
-  │ │ ├🗁 extensions  
-  │ │ └🟢 uploads  
-  │ └🗏 docker-compose.yml  
-  ┊
-  ├🗁 subdomain-two.domain.tld  
-  │ ├🗁 data  
-  │ │ ├🗁 database  
-  │ │ ├🗁 extensions  
-  │ │ └🗁 uploads  
-  ┊ └🗏 docker-compose.yml 
-
-╭────────═━┈☀️┈━═────────╮
-│   🟢 something here.   │
-╰────────═━┈🌙┈━═────────╯
-```
-:::
-
 ### Markdown Plugins
 
 :::details flowcharts {.closeOnLoad data-open="true"}
@@ -773,6 +423,7 @@ Here is another focusable block {.text-right #attributes-sample-id tabindex="0"}
 
 #### Custom containers
 
+##### Info Container
 ::: info 💬 This is an info title
 🗲 FYI - so that you know ...  
 Here is a [link for you][def]
@@ -785,6 +436,7 @@ Here is a [link for you][def]
 :::
 ```
 
+##### Tip Container
 ::: tip 💬 This is a tip title
 FYI - so that you know ...  
 Here is a [link for you][def]
@@ -796,6 +448,8 @@ FYI - so that you know ...
 Here is a [link for you][def]
 :::
 ```
+
+##### Warning Container
 ::: warning ⚠️ This is a warning title
 **Here be dragons 🦎**  
 Here is a [link for you][def]
@@ -807,6 +461,7 @@ Here is a [link for you][def]
 Here is a [link for you][def]
 :::
 ```
+##### Danger Container
 ::: danger ❗️ This is a danger title
 **Attention! you are going to die ...**  
 ... just kidding! 😉
@@ -823,6 +478,7 @@ Here is a [link for you][def]
 :::
 ```
 
+##### Line Container
 ::: line 💬 This is a line title
 FYI - so that you know ...  
 Here is a [link for you][def]
@@ -834,6 +490,9 @@ FYI - so that you know ...
 Here is a [link for you][def]
 :::
 ```
+
+
+##### Details Container
 ::: details Click on this summary to see the details
 Here are some **funny** details.
 - Detail 1
@@ -849,6 +508,38 @@ Here are some **funny** details.
 - Detail 3
 :::
 ```
+
+##### Filetree Container
+::: details example unicode characters & emojis in filetree container
+```filetree
+ 🖿 /etc/apache2/  
+  ┊
+  ├🗁 sites-available
+  │ ├🗏 subdomain-one.domain.tld.conf
+  │ └🗏 subdomain-two.domain.tld.conf    
+  ┊
+  ┊
+ 🖿 /var/www/  
+  ┊
+  ├🗁 subdomain-one.domain.tld
+  │ ├🗁 data  
+  │ │ ├🗁 database  
+  │ │ ├🗁 extensions  
+  │ │ └🟢 uploads  
+  │ └🗏 docker-compose.yml  
+  ┊
+  ├🗁 subdomain-two.domain.tld  
+  │ ├🗁 data  
+  │ │ ├🗁 database  
+  │ │ ├🗁 extensions  
+  │ │ └🟢 uploads  
+  ┊ └🗏 docker-compose.yml 
+
+╭────────═━┈☀️┈━═────────╮
+│   🟢 image uploads.    │
+╰────────═━┈🌙┈━═────────╯
+```
+:::
 
 ## Syntax Highlighting
 
@@ -902,13 +593,157 @@ To get your own configuration go to:
 
 ##### Line Numbers
 
+::: details Line Numbers Example
+```js {.line-numbers data-start="1000"}
+(function () {
+  "use strict";
+  document.addEventListener("DOMContentLoaded", function () {
+    const state = {
+      global: {
+        lastActiveElement: Element | null,
+        currentInputIsMouse: false,
+        filename: window.location.pathname.substring(window.location.pathname.lastIndexOf('/') + 1),
+      },
+      nav: {
+        isOpen: false,
+        ps: pubsub(),
+        ignoreClickOutsideClass: ["ignore_click_outside"],
+      },
+      meta: typeof easydocMeta !== "undefined" ? easydocMeta : false,
+      selectedTags: [],
+      tagCloud: {
+        sort: "name",
+        order: "asc",
+        tags: [],
+      },
+      pageCards: [],
+    };
+    const elMenuToggle = document.querySelector(".burger");
+    const elMain = document.querySelector("main");
+    const elNavigationDrawer = document.querySelector(".navigation-drawer");
+    const elContainer = document.querySelector(".content");
+    const toggleBurger = burger();
+    // ...
+  });
+})();
+```
+Specify the data-start (Number) attribute for line numbers.  
+The above example uses ```.line-numbers``` class and ```data-start="1000"```.
+
+```markdown
+```js {.line-numbers data-start="1000"}
+```
+:::
+
 Refer to the manual at [Prism Plugins - Line Numbers](https://prismjs.com/plugins/line-numbers/)
 
-##### Line Highlight
+##### Line Highlight & Linkable Line Numbers
+
+::: details Line Highlight Example
+```js {.line-numbers data-line="8,24-25"}
+(function () {
+  "use strict";
+  document.addEventListener("DOMContentLoaded", function () {
+    const state = {
+      global: {
+        lastActiveElement: Element | null,
+        currentInputIsMouse: false,
+        filename: window.location.pathname.substring(window.location.pathname.lastIndexOf('/') + 1),
+      },
+      nav: {
+        isOpen: false,
+        ps: pubsub(),
+        ignoreClickOutsideClass: ["ignore_click_outside"],
+      },
+      meta: typeof easydocMeta !== "undefined" ? easydocMeta : false,
+      selectedTags: [],
+      tagCloud: {
+        sort: "name",
+        order: "asc",
+        tags: [],
+      },
+      pageCards: [],
+    };
+    const elMenuToggle = document.querySelector(".burger");
+    const elMain = document.querySelector("main");
+    const elNavigationDrawer = document.querySelector(".navigation-drawer");
+    const elContainer = document.querySelector(".content");
+    const toggleBurger = burger();
+    // ...
+  });
+})();
+```
+Specify the data-line attribute to highlight lines.  
+The above example uses ```data-line="8,24-25"```.
+
+```markdown
+```js {.line-numbers data-line="8,24-25"}
+```
+:::
+
+::: details Linkable Line Numbers
+```js {.line-numbers .linkable-line-numbers}
+(function () {
+  "use strict";
+  document.addEventListener("DOMContentLoaded", function () {
+    const state = {
+      global: {
+        lastActiveElement: Element | null,
+        currentInputIsMouse: false,
+        filename: window.location.pathname.substring(window.location.pathname.lastIndexOf('/') + 1),
+      },
+      nav: {
+        isOpen: false,
+        ps: pubsub(),
+        ignoreClickOutsideClass: ["ignore_click_outside"],
+      },
+      meta: typeof easydocMeta !== "undefined" ? easydocMeta : false,
+      selectedTags: [],
+      tagCloud: {
+        sort: "name",
+        order: "asc",
+        tags: [],
+      },
+      pageCards: [],
+    };
+    const elMenuToggle = document.querySelector(".burger");
+    const elMain = document.querySelector("main");
+    const elNavigationDrawer = document.querySelector(".navigation-drawer");
+    const elContainer = document.querySelector(".content");
+    const toggleBurger = burger();
+    // ...
+  });
+})();
+```
+Add class ```.linkable-line-numbers``` to make lines selectable.
+
+```markdown
+```js {.line-numbers .linkable-line-numbers}
+```
+
+⚠️ You may **not** want to use ```.linkable-line-numbers``` together with ```data-line``` attribute, as the linked line marker will overwrite the highlighted marker, when the line is clicked. {.custom-conatiner .warning style="padding:1em;"}
+
+---
+:::
 
 Refer to the manual at [Prism Plugins - Line Highlight](https://prismjs.com/plugins/line-highlight/)
 
 ##### Commad Line
+
+::: details Command Line Example
+```sh {.command-line data-user="root" data-host="someserver.tld" data-output="4"}
+apt-get update
+apt-get upgrade
+apt-get --assume-yes install curl vim mc htop imagemagick git nodejs npm
+... some output from last command
+```
+Add class ```.command-line``` to code block.  
+You may specify ```data-user```and ```data-host``` as well as the lines for the output with the ```data-output``` attribute.
+
+```markdown
+```sh {.command-line data-user="root" data-host="someserver.tld" data-output="4"}
+```
+:::
 
 Refer to the manual at [Prism Plugins - Commad Line](https://prismjs.com/plugins/command-line/)
 
@@ -923,7 +758,6 @@ Refer to the manual at [Prism Plugins - Toolbar](https://prismjs.com/plugins/too
 ##### Copy to Clipboard Button
 
 Refer to the manual at [Prism Plugins - Copy to Clipboard Button](https://prismjs.com/plugins/copy-to-clipboard)
-
 
 ### Syntax Highlighting Examples
 
@@ -1918,6 +1752,379 @@ services:
 networks:
   gitea:
     external: false
+```
+:::
+
+### Icons
+
+Here you find a curated list of unicode icon characters and emojis you may find usefull.
+
+::: details emojis in body
+
+#### files
+📄 📝 📑 📜 📃 🧾 {.fs-xl}
+
+#### folder
+📁 📂 🗂️ {.fs-xl}
+
+#### hands
+✋ 👈 👉 👆 👇 ☝️ 👍 👎  
+✋🏻 👈🏻 👉🏻 👆🏻 👇🏻 ☝🏻 👍🏻 👎🏻  
+✋🏼 👈🏼 👉🏼 👆🏼 👇🏼 ☝🏼 👍🏼 👎🏼  
+✋🏽 👈🏽 👉🏽 👆🏽 👇🏽 ☝🏽 👍🏽 👎🏽  
+✋🏾 👈🏾 👉🏾 👆🏾 👇🏾 ☝🏾 👍🏾 👎🏾  
+✋🏿 👈🏿 👉🏿 👆🏿 👇🏿 ☝🏿 👍🏿 👎🏿 {.fs-xl}
+
+#### user
+👩‍💼 👨‍💼 👩 🧑 👱‍♂️ 👩‍🦳  
+👩🏻‍💼 👨🏻‍💼 👩🏻 🧑🏻 👱🏻 👩🏻‍🦳  
+👩🏼‍💼 👨🏼‍💼 👩🏼 🧑🏼 👱🏼 👩🏼‍🦳  
+👩🏽‍💼 👨🏽‍💼 👩🏽 🧑🏽 👱🏽‍♂️ 👩🏽‍🦳  
+👩🏾‍💼 👨🏾‍💼 👩🏾 🧑🏾 👱🏾‍♂️ 👩🏾‍🦳  
+👩🏿‍💼 👨🏿‍💼 👩🏿 🧑🏿 👱🏿‍♂️ 👩🏿‍🦳  
+👤 👥 {.fs-xl}
+
+#### computer
+🖥️ 💻  
+👩‍💻 👨‍💻 🧑‍💻  
+👩🏻‍💻 👨🏻‍💻 🧑🏻‍💻  
+👩🏼‍💻 👨🏼‍💻 🧑🏼‍💻  
+👩🏽‍💻 👨🏽‍💻 🧑🏽‍💻  
+👩🏾‍💻 👨🏾‍💻 🧑🏾‍💻  
+👩🏿‍💻 👨🏿‍💻 🧑🏿‍💻 {.fs-xl}
+
+#### phone
+📱 📲 📞 ☎️  {.fs-xl}
+
+#### symbols
+❌ ⭕️ 🛑 ⛔️ 📛 💯 💢 ♨️  
+⚠️ ☢️ ☣️  
+❗️ ❕ ❓ ❔ ‼️ ⁉️  
+➕ ➖ ✖️  
+❎ ✳️ ❇️ ✴️  
+🔀 🔁 🔂 🔃 🔄  
+⏩ ⏪ ⏫ ⏬  
+🔼 🔽  {.fs-xl}
+
+#### checkmarks
+✔️ ✅ ☑️  {.fs-xl}
+
+#### speach & bubbles
+📣 📢 💬 🗨️ 💭 🗯️ 👁‍🗨 👁️  {.fs-xl}
+
+#### primitives
+🔘 🔴 🟠 🟡 🟢 🔵 🟣 ⚫️ ⚪️ 🟤  
+🟥 🟧 🟨 🟩 🟦 🟪 ⬛️ ⬜️ 🟫  
+🔺 🔻  
+🔸 🔹 🔶 🔷  
+🔳 🔲 ▪️ ▫️ ◾️ ◽️ ◼️ ◻️ {.fs-xl}
+
+#### traffic
+🚧 🚦 🚥  {.fs-xl}
+
+#### time & navigation
+🧭 ⏱ ⏲ ⌛️ ⏳  {.fs-xl}
+
+#### electricity
+🔋 🔌  {.fs-xl}
+
+#### mechanics
+🧰 🔧 🔨 🛠️ ⚙️ 🧲 🗜️  {.fs-xl}
+
+#### weapon
+🔫 💣 🧨  {.fs-xl}
+
+#### test
+💊 🩸 🧬 🧫 🧪 ⚗️ 🌡️  {.fs-xl}
+
+#### security
+🔑 🗝️ 🔏 🔐 🔒 🔓  {.fs-xl}
+
+#### search
+🔍 🔎 {.fs-xl}
+
+#### office
+🗑 🗃️ 📋 📥 📤 📦  {.fs-xl}
+
+#### mail
+🧧 ✉️ 📩 📨 📧 
+📪 📫 📬 📭 📮 📯 {.fs-xl}
+
+#### tag
+🔖🏷️ {.fs-xl}
+
+#### books
+📓 📔 📒 📕 📗 📘 📙 📚 📖 🗒️ {.fs-xl}
+
+#### edit
+📌 📍 ✂️ ✏️ 🖋️ 🖊️ 🖌️ 🖍️ ✒️ {.fs-xl}
+
+#### stars
+💫 ⭐️ 🌟 ✨ ⚡️ ☀️ ☄️ 🌌 {.fs-xl}
+
+#### elements
+💥 🔥 🌪 🌈 💧 💦 ❄️ {.fs-xl}
+
+#### tickets
+🎫 🎟 {.fs-xl}
+
+#### image
+🎨 📷 📸 📹 🎥 📽️ 🎞️ 🎬 {.fs-xl}
+
+#### audio
+🎤 🎧 🎼 🎵 🎶 🔈 🔇 🔉 🔊 {.fs-xl}
+
+#### light
+💡 🪔 {.fs-xl}
+
+#### globe / earth
+🌐  🗺  🌎 🌍 🌏  {.fs-xl}
+
+#### hearts
+❤️ 🧡 💛 💚 💙 💜 🖤 🤍 🤎 💖 💞 💔 {.fs-xl}
+
+#### flags
+🏳️ 🏴 🏁 🚩 🏳️‍🌈 🏳️ 🏴‍☠️ {.fs-xl}
+
+#### calendar
+📅 📆 🗓️ {.fs-xl}
+
+#### charts
+📈 📉 📊 {.fs-xl}
+
+#### misc
+♻️ 🐳 🩹 🚸 🚨 👔 👽️ 💀 ⚗️ 🐞 {.fs-xl}
+
+---
+
+:::
+
+::: details emojis in code
+```filetree
+
+files
+📄 📝 📑 📜 📃 🧾
+
+folder
+📁 📂 🗂️
+
+hands
+✋ 👈 👉 👆 👇 ☝️ 👍 👎
+✋🏻 👈🏻 👉🏻 👆🏻 👇🏻 ☝🏻 👍🏻 👎🏻
+✋🏼 👈🏼 👉🏼 👆🏼 👇🏼 ☝🏼 👍🏼 👎🏼
+✋🏽 👈🏽 👉🏽 👆🏽 👇🏽 ☝🏽 👍🏽 👎🏽
+✋🏾 👈🏾 👉🏾 👆🏾 👇🏾 ☝🏾 👍🏾 👎🏾
+✋🏿 👈🏿 👉🏿 👆🏿 👇🏿 ☝🏿 👍🏿 👎🏿
+
+user
+👩‍💼 👨‍💼 👩 🧑 👱‍♂️ 👩‍🦳 👤 👥 
+👩🏻‍💼 👨🏻‍💼 👩🏻 🧑🏻 👱🏻 👩🏻‍🦳
+👩🏼‍💼 👨🏼‍💼 👩🏼 🧑🏼 👱🏼 👩🏼‍🦳
+👩🏽‍💼 👨🏽‍💼 👩🏽 🧑🏽 👱🏽‍♂️ 👩🏽‍🦳
+👩🏾‍💼 👨🏾‍💼 👩🏾 🧑🏾 👱🏾‍♂️ 👩🏾‍🦳
+👩🏿‍💼 👨🏿‍💼 👩🏿 🧑🏿 👱🏿‍♂️ 👩🏿‍🦳
+
+computer
+🖥️ 💻
+👩‍💻 👨‍💻 🧑‍💻
+👩🏻‍💻 👨🏻‍💻 🧑🏻‍💻
+👩🏼‍💻 👨🏼‍💻 🧑🏼‍💻
+👩🏽‍💻 👨🏽‍💻 🧑🏽‍💻
+👩🏾‍💻 👨🏾‍💻 🧑🏾‍💻
+👩🏿‍💻 👨🏿‍💻 🧑🏿‍💻
+⌨️ 
+
+phone
+📱 📲 📞 ☎️
+
+symbols
+❌ ⭕️ 🛑 ⛔️ 📛 💯 💢 ♨️ 
+⚠️ ☢️ ☣️
+❗️ ❕ ❓ ❔ ‼️ ⁉️
+➕ ➖ ✖️
+❎ ✳️ ❇️ ✴️
+🔀 🔁 🔂 🔃 🔄
+⏩ ⏪ ⏫ ⏬
+🔼 🔽
+
+checkmarks
+✔️ ✅ ☑️
+
+speach & bubbles
+📣 📢 💬 🗨️ 💭 🗯️ 👁‍🗨 👁️
+
+primitives
+🔘 🔴 🟠 🟡 🟢 🔵 🟣 ⚫️ ⚪️ 🟤 
+🟥 🟧 🟨 🟩 🟦 🟪 ⬛️ ⬜️ 🟫
+🔺 🔻 
+🔸 🔹 🔶 🔷 
+🔳 🔲 ▪️ ▫️ ◾️ ◽️ ◼️ ◻️ 
+
+traffic
+🚧 🚦 🚥
+
+time & navigation
+🧭 ⏱ ⏲ ⌛️ ⏳
+
+electricity
+🔋 🔌
+
+mechanics
+🧰 🔧 🔨 🛠️ ⚙️ 🧲 🗜️
+
+weapon
+🔫 💣 🧨
+
+test
+💊 🩸 🧬 🧫 🧪 ⚗️ 🌡️
+
+security
+🔑 🗝️ 🔏 🔐 🔒 🔓
+
+search
+🔍 🔎
+
+office
+🗑 🗃️ 📋 📥 📤 📦
+
+mail
+🧧 ✉️ 📩 📨 📧
+📪 📫 📬 📭 📮 📯
+
+tag
+🔖🏷️
+
+books
+📓 📔 📒 📕 📗 📘 📙 📚 📖 🗒️
+
+edit
+📌 📍 ✂️ ✏️ 🖋️ 🖊️ 🖌️ 🖍️ ✒️
+
+stars
+💫 ⭐️ 🌟 ✨ ⚡️ ☀️ ☄️ 🌌
+
+elements
+💥 🔥 🌪 🌈 💧 💦 ❄️
+
+tickets
+🎫 🎟
+
+image
+🎨 📷 📸 📹 🎥 📽️ 🎞️ 🎬 
+
+audio
+🎤 🎧 🎼 🎵 🎶 🔈 🔇 🔉 🔊
+
+light
+💡 🪔
+
+globe 🌐
+earth map 🗺
+earth america 🌎
+earth europe & africa 🌍
+earth asia & pacific 🌏
+
+hearts
+❤️ 🧡 💛 💚 💙 💜 🖤 🤍 🤎 💖 💞 💔 card: ♥️
+
+flags
+🏳️ 🏴 🏁 🚩 🏳️‍🌈 🏳️ 🏴‍☠️
+
+calendar
+📅 📆 🗓️
+
+charts
+📈 📉 📊
+
+misc
+♻️ 🐳 🩹 🚸 🚨 👔 👽️ 💀 ⚗️ 🐞
+
+```
+:::
+
+::: details unicode characters in code
+```filetree
+unicode characters
+
+files
+🗋 🗌 🗍 · 🗎 🗏 🖹 🗐 🖺 🖻 · 🗅 🗆 🗇 · 🗈 🗉 🗊 · 🗑
+
+folders
+🖿 🗁 🗀
+
+hands
+☛ ☞
+
+computer
+🖥 🖧 🖳 🖴 🖵 🖸 🗔
+🗔 🗕 🗖 🗗 🗘 🗙 🗚 🗛 🗜 🗝
+
+phone & mail
+☎ 🕻 🕼 🕽 🕾 🕿 🖀 🖁 
+🖂 🖃 🖄 🖅 🖆 
+
+speach & bubbles
+🕩 🕪 🕫 🕬 🕭
+🗨 🗩 🗪 🗫 🗬 🗭 🗮 🗯 🗰 🗱 🗲 🗣
+
+edit
+🖈 🖉 🖊 🖋 🖌 🖍
+
+checkmarks
+🗸 🗹 🗴 🗵 🗶 🗷 ⌦⌧ 
+
+flags
+🏲 🏳
+
+symbols
+‼️ ⁉️ 🏵 🏶 ⋆
+⏭ ⏮ ⏯ ⏴⏵⏶⏷⏸⏹⏺
+■□▪▫ ◌○●◙◦ ▲►▼◄ 🞁🞂🞃🞀
+🞅🞅🞇🞉 🞑🞒🞓 🞔🞕🞖 
+🞤🞥🞦🞧 🞪🞫🞬🞭🞮 🞯🞰🞱🞲🞳🞴
+🞵🞶🞷🞸🞹🞺 🞻🞼🞽🞾🞿 🟈
+🟉🟊🟌🟍🟎🟐 🟒🟔
+
+arrows
+🠀🠁🠂🠃 🠄🠅🠆🠇 🠈🠉🠊🠋 🠐🠑🠒🠓 🠔🠕🠖🠗 
+🠘🠙🠚🠛 🠜🠝🠞🠟 🠠🠡🠢🠣 🠤🠥🠦🠧 🠧🠨🠩🠪🠫
+🠬🠭🠮🠯 🠰🠱🠲🠳 🠴🠵🠶🠷 🠸🠹🠺🠻 🠼🠽🠾🠿
+🡀🡁🡂🡃 🡄🡅🡆🡇 ⇦⇧⇨⇩⇳ ⇠⇡⇢⇣ 🢐🢑🢒🢓
+🡐🡑🡒🡓🡔🡕🡖🡗🡘🡙 🡠🡡🡢🡣🡤🡥🡦🡧 🡨🡩🡪🡫🡬🡭🡮🡯
+🡰🡱🡲🡳🡴🡵🡶🡷 🡸🡹🡺🡻🡼🡽🡾🡿 🢀🢁🢂🢃🢄🢅🢆🢇
+←↑→↓↔↕↨ ⇵ ⇽⇾⇿ 
+
+misc
+⌨ ⌕ ⌖ ⌘ ☺☻ ♪♫
+
+connectors
+┌───────────┐ ╔═══════════╗
+│  borders  │ ║  borders  ║
+├─────┬─────┤ ╠═════╦═════╣
+│  a  │  b  │ ║  a  ║  b  ║
+├─────┼─────┤ ╠═════╬═════╣
+│  c  │  d  │ ║  c  ║  d  ║
+└─────┴─────┘ ╚═════╩═════╝
+╒═══════════╕ ╓───────────╖
+│  borders  │ ║  borders  ║
+╞═════╤═════╡ ╟─────╥─────╢
+│  a  │  b  │ ║  a  ║  b  ║
+╞═════╪═════╡ ╟─────╫─────╢
+│  c  │  d  │ ║  c  ║  d  ║
+╘═════╧═════╛ ╙─────╨─────╜
+
+─ │ ┌ ┐ └ ┘ ├ ┤ ┬ ┴ ┼
+═ ║ ╔ ╗ ╚ ╝ ╠ ╣ ╦ ╩ ╬ 
+    ╒ ╕ ╘ ╛ ╞ ╡ ╤ ╧ ╪
+    ╓ ╖ ╙ ╜ ╟ ╢ ╥ ╨ ╫
+
+
+┏━━━━━•❃°•°❀°•°❃•━━━━━┓
+
+✧˚       🍏🍎         ˚✧
+
+┗━━━━━•❃°•°❀°•°❃•━━━━━┛
+
 ```
 :::
 
