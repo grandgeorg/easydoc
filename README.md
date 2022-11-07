@@ -20,11 +20,9 @@ tags:
 
 ## Install
 
+Download [latest release](https://git.grandgeorg.de/Viktor/easydoc/releases) and unpack it.
+
 ```bash
-# clone via https:
-git clone https://git.grandgeorg.de/Viktor/easydoc.git
-# or clone via SSH (if you have a key):
-git clone git@git.grandgeorg.de:Viktor/easydoc.git
 cd ./easydoc/
 npm install
 # start vscode if you like ...
