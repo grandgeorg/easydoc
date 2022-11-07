@@ -42,15 +42,32 @@ tocIncludeLevel: [1, 2, 3]
 -	You can also drop / push the contents of the ```www``` directory to a HTTP-Server.
 :::
 
+::: details Rich markdown support and code highlighting features
+- Uses [markdown-it](https://github.com/markdown-it/markdown-it) with plugins for markdown to HTML rendering
+- Uses [Prism](https://prismjs.com/) with plugins to highlight code.
+:::
+
+::: details Fully configurable and customizable
+- Configure global and per page settings (see [reference](reference.html) for details).
+- Customize all components as you like.
+- Edit SCSS files (under ```src/scss```) to change theme.
+- Edit ```app.js``` to change navigation etc.
+- ```app.js``` uses pure vanilla JavaScript without any dependencies.
+:::
+
+::: details Built in Navigation
+- Table of contents on pages
+- Individual site navigation
+- Tab Navigator module
+:::
+
 
 
 ## Install
 
+Download [latest release](https://git.grandgeorg.de/Viktor/easydoc/releases) and unpack it.
+
 ```bash
-# clone via https:
-git clone https://git.grandgeorg.de/Viktor/easydoc.git
-# or clone via SSH (if you have a key):
-git clone git@git.grandgeorg.de:Viktor/easydoc.git
 cd ./easydoc/
 npm install
 # start vscode if you like ...
@@ -87,7 +104,8 @@ npm run build
  ├🔵 www
  │ ├🗀 assets 🖊️
  │ ├🟢 img
- │ └🗏 index.html 🖤
+ │ ├🗏 index.html 🖤
+ │ └🗏 meta.js 🖤
  ├🗏 .env ✏️
  ├🗏 .gitignore
  ├🗏 .hintrc
@@ -116,9 +134,20 @@ For configuration and further usage refer to the [EasyDoc Reference](reference.h
 
 --------------------------------------------------------------------------------
 
-### Workflow
+## Workflow
 
-Use git if working in a team.
+For the most convenient use do the following:
+
+1. Start [Visual Studio Code](https://code.visualstudio.com/) from the ```easydoc``` directory.
+2. Start the [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) extention.
+3. Run ```npm run watch```.
+4. Put the vscode and the browser window side by side.
+5. Start creating and editing markdown files in ```docs``` directory.
+6. Use git if working in a team.
+
+::: details Workspace Example Screenshot
+![EasyDoc workspace example with Visual Studio Code and browser side by side](img/easydoc-manual-workspace.png)
+:::
 
 ## Todos
 

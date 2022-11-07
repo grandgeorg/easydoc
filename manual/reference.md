@@ -125,7 +125,8 @@ exports.nav = [
  ├🔵 www
  │ ├🗀 assets 🖊️
  │ ├🟢 img
- │ └🗏 index.html 🖤
+ │ ├🗏 index.html 🖤
+ │ └🗏 meta.js 🖤
  ├🗏 .env ✏️
  ├🗏 .gitignore
  ├🗏 .hintrc
@@ -199,6 +200,7 @@ _This is italic text_
     * Facilisis in pretium nisl aliquet
     - Nulla volutpat aliquam velit
 + Very easy!
+
 ```markdown
 + Create a list by starting a line with `+`, `-`, or `*`
 + Sub-lists are made by indenting 2 spaces:
@@ -228,6 +230,26 @@ Start numbering with offset:
 
 18. scelerisque ut mollis sed
 19. faucibus orci luctus
+
+```markdown
+1. Lorem ipsum dolor sit amet
+2. Consectetur adipiscing elit
+
+Lists can be interrupted and then resumed
+
+3. Integer molestie lorem at massa
+4. Ac tristique libero volutpat at
+    1. sub in enim justo
+    2. sub venenatis vitae
+    3. sub consequat vitae
+5. Facilisis in pretium nisl aliquet
+6. Nulla volutpat aliquam velit
+
+Start numbering with offset:
+
+18. scelerisque ut mollis sed
+19. faucibus orci luctus
+```
 :::
 
 
@@ -533,7 +555,6 @@ Here is a [link for you][def]
 :::
 ```
 
-
 ##### Details Container
 ::: details Click on this summary to see the details
 Here are some **funny** details.
@@ -632,6 +653,10 @@ EasyDoc uses [Prism](https://prismjs.com/) to highlight syntax in code blocks.
 
 To get your own configuration go to: 
 [prismjs](https://prismjs.com/download.html)
+
+---
+
+### Prism Plugins
 
 ##### Line Numbers
 
@@ -800,6 +825,8 @@ Refer to the manual at [Prism Plugins - Toolbar](https://prismjs.com/plugins/too
 ##### Copy to Clipboard Button
 
 Refer to the manual at [Prism Plugins - Copy to Clipboard Button](https://prismjs.com/plugins/copy-to-clipboard)
+
+---
 
 ### Syntax Highlighting Examples
 
@@ -1796,6 +1823,8 @@ networks:
     external: false
 ```
 :::
+
+---
 
 ### Icons
 

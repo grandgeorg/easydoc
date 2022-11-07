@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><title>EasyDoc Reference</title><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="stylesheet" href="assets/css/style.min.css"><link rel="stylesheet" href="assets/css/prism.min.css"><script src="assets/js/clipboard.min.js"></script><script src="assets/js/prism.js"></script><script src="assets/js/raphael.min.js"></script><script src="assets/js/flowchart.min.js"></script><script src="assets/js/app.min.js"></script><script src="meta.js"></script></head><body><div class="navbar"><a class="navbar__brand" href="https://grandgeorg.de"><span class="brand">Grandgeorg</span><span class="brand-second">Websolutions</span></a><div class="navbar__controls"><button class="btn-tag-nav navitem" id="open-tag-navigation" aria-label="open tag navigation" title="open tag navigation" role="button"><svg class="bi bi-tags" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M3 2v4.586l7 7L14.586 9l-7-7H3zM2 2a1 1 0 0 1 1-1h4.586a1 1 0 0 1 .707.293l7 7a1 1 0 0 1 0 1.414l-4.586 4.586a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 2 6.586V2z"></path><path d="M5.5 5a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1zm0 1a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zM1 7.086a1 1 0 0 0 .293.707L8.75 15.25l-.043.043a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 0 7.586V3a1 1 0 0 1 1-1v5.086z"></path></svg><span class="navitem-title">Tag Navigator</span></button><button class="burger" aria-expanded="false" aria-label="navigation menu"><span class="burger__line burger__line-1" aria-hidden="true" focusable="false"></span><span class="burger__line burger__line-2" aria-hidden="true" focusable="false"></span><span class="burger__line burger__line-3" aria-hidden="true" focusable="false"></span></button></div></div><nav class="navigation-drawer" aria-label="Main menu"><h3 class="nav-title text-center">Table of Contents</h3><div class="toc"><div class="table-of-contents"><ul><li><a href="#easydoc-reference">EasyDoc Reference</a><ul><li><a href="#configuration">Configuration</a><ul><li><a href="#-global-configuration">📄 Global Configuration</a></li><li><a href="#-per-page-overrides-in-front-matter">📄 Per page overrides in front matter</a></li><li><a href="#-site-navigation">📄 Site Navigation</a></li></ul></li><li><a href="#markdown">Markdown</a><ul><li><a href="#typography--elements">Typography &amp; Elements</a></li><li><a href="#markdown-plugins">Markdown Plugins</a></li></ul></li><li><a href="#syntax-highlighting">Syntax Highlighting</a><ul><li><a href="#syntax-highlighting-examples">Syntax Highlighting Examples</a></li><li><a href="#icons">Icons</a></li></ul></li></ul></li></ul></div></div><div class="sitenav"><h3 class="nav-title text-center">Navigation</h3><ul><li><a href="easydoc.html">Easydoc</a></li><li><a class="active" href="reference.html">Reference</a></li></ul></div></nav><main class="page"><div class="mtime">Last Update Mon Nov 07 2022 16:42:28 GMT+0100 (Mitteleuropäische Normalzeit)</div><div class="content"><h1 class="text-center" id="easydoc-reference" tabindex="-1"><a class="header-anchor" href="#easydoc-reference">EasyDoc Reference</a></h1>
+<!DOCTYPE html><html lang="en"><head><title>EasyDoc Reference</title><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="stylesheet" href="assets/css/style.min.css"><link rel="stylesheet" href="assets/css/prism.min.css"><script src="assets/js/clipboard.min.js"></script><script src="assets/js/prism.js"></script><script src="assets/js/raphael.min.js"></script><script src="assets/js/flowchart.min.js"></script><script src="assets/js/app.min.js"></script><script src="meta.js"></script></head><body><div class="navbar"><a class="navbar__brand" href="https://grandgeorg.de"><span class="brand">Grandgeorg</span><span class="brand-second">Websolutions</span></a><div class="navbar__controls"><button class="btn-tag-nav navitem" id="open-tag-navigation" aria-label="open tag navigation" title="open tag navigation" role="button"><svg class="bi bi-tags" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M3 2v4.586l7 7L14.586 9l-7-7H3zM2 2a1 1 0 0 1 1-1h4.586a1 1 0 0 1 .707.293l7 7a1 1 0 0 1 0 1.414l-4.586 4.586a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 2 6.586V2z"></path><path d="M5.5 5a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1zm0 1a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zM1 7.086a1 1 0 0 0 .293.707L8.75 15.25l-.043.043a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 0 7.586V3a1 1 0 0 1 1-1v5.086z"></path></svg><span class="navitem-title">Tag Navigator</span></button><button class="burger" aria-expanded="false" aria-label="navigation menu"><span class="burger__line burger__line-1" aria-hidden="true" focusable="false"></span><span class="burger__line burger__line-2" aria-hidden="true" focusable="false"></span><span class="burger__line burger__line-3" aria-hidden="true" focusable="false"></span></button></div></div><nav class="navigation-drawer" aria-label="Main menu"><h3 class="nav-title text-center">Table of Contents</h3><div class="toc"><div class="table-of-contents"><ul><li><a href="#easydoc-reference">EasyDoc Reference</a><ul><li><a href="#configuration">Configuration</a><ul><li><a href="#-global-configuration">📄 Global Configuration</a></li><li><a href="#-per-page-overrides-in-front-matter">📄 Per page overrides in front matter</a></li><li><a href="#-site-navigation">📄 Site Navigation</a></li></ul></li><li><a href="#markdown">Markdown</a><ul><li><a href="#typography--elements">Typography &amp; Elements</a></li><li><a href="#markdown-plugins">Markdown Plugins</a></li></ul></li><li><a href="#syntax-highlighting">Syntax Highlighting</a><ul><li><a href="#prism-plugins">Prism Plugins</a></li><li><a href="#syntax-highlighting-examples">Syntax Highlighting Examples</a></li><li><a href="#icons">Icons</a></li></ul></li></ul></li></ul></div></div><div class="sitenav"><h3 class="nav-title text-center">Navigation</h3><ul><li><a href="easydoc.html">EasyDoc</a></li><li><a class="active" href="reference.html">Reference</a></li></ul></div></nav><main class="page"><div class="mtime">Last Update Mon Nov 07 2022 18:52:43 GMT+0100 (Mitteleuropäische Normalzeit)</div><div class="content"><h1 class="text-center" id="easydoc-reference" tabindex="-1"><a class="header-anchor" href="#easydoc-reference">EasyDoc Reference</a></h1>
 <p class="text-center">🔴🔵</p>
 <hr>
 <h2 id="configuration" tabindex="-1"><a class="header-anchor" href="#configuration">Configuration</a></h2>
@@ -92,7 +92,8 @@ tocIncludeLevel: [1, 2, 3, 4]
  ├🔵 www
  │ ├🗀 assets 🖊️
  │ ├🟢 img
- │ └🗏 index.html 🖤
+ │ ├🗏 index.html 🖤
+ │ └🗏 meta.js 🖤
  ├🗏 .env ✏️
  ├🗏 .gitignore
  ├🗏 .hintrc
@@ -202,7 +203,24 @@ _This is italic text_
 <li>scelerisque ut mollis sed</li>
 <li>faucibus orci luctus</li>
 </ol>
-</details>
+<pre class="language-markdown" id="codeblock-286"><code>1. Lorem ipsum dolor sit amet
+2. Consectetur adipiscing elit
+
+Lists can be interrupted and then resumed
+
+3. Integer molestie lorem at massa
+4. Ac tristique libero volutpat at
+    1. sub in enim justo
+    2. sub venenatis vitae
+    3. sub consequat vitae
+5. Facilisis in pretium nisl aliquet
+6. Nulla volutpat aliquam velit
+
+Start numbering with offset:
+
+18. scelerisque ut mollis sed
+19. faucibus orci luctus
+</code></pre></details>
 <details><summary>Definition lists</summary>
 <dl>
 <dt>Some Definition Title 1</dt>
@@ -224,7 +242,7 @@ with lazy continuation.</dd>
 <dd>Definition 2a</dd>
 <dd>Definition 2b</dd>
 </dl>
-<pre class="language-markdown" id="codeblock-357"><code>Some Definition Title 1
+<pre class="language-markdown" id="codeblock-358"><code>Some Definition Title 1
 : Type: `string`
 : Default: `empty`
 : Some description
@@ -299,7 +317,7 @@ Term 2
 </tr>
 </tbody>
 </table>
-<pre class="language-markdown" id="codeblock-463"><code>| Option | Description | active |
+<pre class="language-markdown" id="codeblock-464"><code>| Option | Description | active |
 | ------ | ----------- |:------:|
 | data   | path to data files to supply the data that will be passed into templates. | ✅ |
 | engine | engine to be used for processing templates. Handlebars is the default. | ❌ |
@@ -317,7 +335,7 @@ Right aligned columns
 <p><a href="https://metager.de/">metager</a><br>
 <a href="https://metager.de/" title="MetaGer">metager with title</a><br>
 Autoconverted link <a href="https://grandgeorg.de">https://grandgeorg.de</a></p>
-<pre class="language-markdown" id="codeblock-469"><code>[metager](https://metager.de/)  
+<pre class="language-markdown" id="codeblock-470"><code>[metager](https://metager.de/)  
 [metager with title](https://metager.de/ &quot;MetaGer&quot;)  
 Autoconverted link https://grandgeorg.de  
 </code></pre></details>
@@ -326,7 +344,7 @@ Autoconverted link https://grandgeorg.de
 <p><img src="https://source.unsplash.com/1920x1080/?cityscape,landscape,nature/__random__" alt="Random Image"></p>
 <h5 class="text-center" id="small-with-title" tabindex="-1"><a class="header-anchor" href="#small-with-title">Small with title</a></h5>
 <p><img src="https://source.unsplash.com/320x180/?cityscape,landscape,nature/__random__" alt="Random Image small" title="Random Image small"></p>
-<pre class="language-markdown" id="codeblock-484"><code>##### Fullsize  {.text-center}
+<pre class="language-markdown" id="codeblock-485"><code>##### Fullsize  {.text-center}
 ![Random Image](https://source.unsplash.com/1920x1080/?cityscape,landscape,nature/__random__)
 ##### Small with title {.text-center}
 ![Random Image small](https://source.unsplash.com/320x180/?cityscape,landscape,nature/__random__ &quot;Random Image small&quot;)
@@ -335,7 +353,7 @@ Autoconverted link https://grandgeorg.de
 <details class="closeOnLoad" open><summary>flowcharts</summary>
 <p>Refer to the documentation from <a href="https://flowchart.js.org/">flowchart.js</a></p>
 <h4 id="example-1" tabindex="-1"><a class="header-anchor" href="#example-1">Example 1</a></h4>
-<div class="flowchart" id="flowchart_496">st=>start: Start
+<div class="flowchart" id="flowchart_497">st=>start: Start
 e=>end: The End
 op1=>operation: My Operation|current
 sub1=>subroutine: My Subroutine
@@ -346,7 +364,7 @@ st->op1->cond
 cond(yes)->io->e
 cond(no)->sub1(right)->op1</div>
 <h4 id="example-2" tabindex="-1"><a class="header-anchor" href="#example-2">Example 2</a></h4>
-<div class="flowchart" id="flowchart_500">st=>start: Start:>https://grandgeorg.de[blank]
+<div class="flowchart" id="flowchart_501">st=>start: Start:>https://grandgeorg.de[blank]
 e=>end:>https://grandgeorg.de
 op1=>operation: My Operation
 sub1=>subroutine: My Subroutine
@@ -360,7 +378,7 @@ cond(yes)->io->e
 cond(no)->para
 para(path1, bottom)->sub1(right)->op1
 para(path2, top)->op1</div>
-<pre class="language-markdown" id="codeblock-501"><code>#### Example 1
+<pre class="language-markdown" id="codeblock-502"><code>#### Example 1
 
 @flowstart
 st=&gt;start: Start
@@ -406,7 +424,7 @@ para(path2, top)-&gt;op1
 <li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox"> Neptune</li>
 <li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox"> Comet Haley</li>
 </ul>
-<pre class="language-markdown" id="codeblock-551"><code>- [ ] Mercury
+<pre class="language-markdown" id="codeblock-552"><code>- [ ] Mercury
 - [x] Venus
 - [x] Earth (Orbit/Moon)
 - [x] Mars
@@ -418,7 +436,7 @@ para(path2, top)-&gt;op1
 </code></pre></details>
 <details><summary>Footnotes</summary>
 <p>Here is a footnote reference,<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup> and another.<sup class="footnote-ref"><a href="#fn2" id="fnref2">[2]</a></sup></p>
-<pre class="language-markdown" id="codeblock-557"><code>Here is a footnote reference,[^1] and another.[^longnote]
+<pre class="language-markdown" id="codeblock-558"><code>Here is a footnote reference,[^1] and another.[^longnote]
 
 [^1]: Here is the footnote.
 [^longnote]: Here's one with multiple lines  
@@ -428,7 +446,7 @@ para(path2, top)-&gt;op1
 <details><summary>Attributes</summary>
 <p class="text-center">Place any HTML-attribute after a block</p>
 <p class="text-right" id="attributes-sample-id" tabindex="0">Here is another focusable block</p>
-<pre class="language-markdown" id="codeblock-566"><code>Place any HTML-attribute after a block {.text-center}
+<pre class="language-markdown" id="codeblock-567"><code>Place any HTML-attribute after a block {.text-center}
 
 Here is another focusable block {.text-right #attributes-sample-id tabindex=&quot;0&quot;}
 </code></pre></details>
@@ -442,7 +460,7 @@ Here is another focusable block {.text-right #attributes-sample-id tabindex=&quo
 Here is a <a href="https://grandgeorg.de">link for you</a></p>
 </div>
 </div>
-<pre class="language-markdown" id="codeblock-579"><code>::: info 💬 This is an info title
+<pre class="language-markdown" id="codeblock-580"><code>::: info 💬 This is an info title
 🗲 FYI - so that you know ...  
 Here is a [link for you][def]
 :::
@@ -455,7 +473,7 @@ Here is a [link for you][def]
 Here is a <a href="https://grandgeorg.de">link for you</a></p>
 </div>
 </div>
-<pre class="language-markdown" id="codeblock-588"><code>::: tip 💬 This is a tip title
+<pre class="language-markdown" id="codeblock-589"><code>::: tip 💬 This is a tip title
 FYI - so that you know ...  
 Here is a [link for you][def]
 :::
@@ -468,7 +486,7 @@ Here is a [link for you][def]
 Here is a <a href="https://grandgeorg.de">link for you</a></p>
 </div>
 </div>
-<pre class="language-markdown" id="codeblock-597"><code>::: warning ⚠️ This is a warning title
+<pre class="language-markdown" id="codeblock-598"><code>::: warning ⚠️ This is a warning title
 **Here be dragons 🦎**  
 Here is a [link for you][def]
 :::
@@ -482,7 +500,7 @@ Here is a [link for you][def]
 <p>Here is a <a href="https://grandgeorg.de">link for you</a></p>
 </div>
 </div>
-<pre class="language-markdown" id="codeblock-609"><code>::: danger ❗️ This is a danger title
+<pre class="language-markdown" id="codeblock-610"><code>::: danger ❗️ This is a danger title
 **Attention! you are going to die ...**  
 ... just kidding! 😉
 
@@ -497,7 +515,7 @@ Here is a [link for you][def]
 Here is a <a href="https://grandgeorg.de">link for you</a></p>
 </div>
 </div>
-<pre class="language-markdown" id="codeblock-618"><code>::: line 💬 This is a line title
+<pre class="language-markdown" id="codeblock-619"><code>::: line 💬 This is a line title
 FYI - so that you know ...  
 Here is a [link for you][def]
 :::
@@ -510,7 +528,7 @@ Here is a [link for you][def]
 <li>Detail 3</li>
 </ul>
 </details>
-<pre class="language-markdown" id="codeblock-644"><code>::: details Click on this summary to see the details
+<pre class="language-markdown" id="codeblock-645"><code>::: details Click on this summary to see the details
 Here are some **funny** details.
 - Detail 1
 - Detail 2
@@ -518,7 +536,7 @@ Here are some **funny** details.
 :::
 </code></pre><h5 id="filetree-container" tabindex="-1"><a class="header-anchor" href="#filetree-container">Filetree Container</a></h5>
 <details><summary>filetree container example with unicode characters &amp; emojis</summary>
-<pre class="language-filetree" id="codeblock-649"><code> 🖿 /etc/apache2/  
+<pre class="language-filetree" id="codeblock-650"><code> 🖿 /etc/apache2/  
   ┊
   ├🗁 sites-available
   │ ├🗏 subdomain-one.domain.tld.conf
@@ -588,9 +606,11 @@ Here are some **funny** details.
 </ul>
 <p>To get your own configuration go to:
 <a href="https://prismjs.com/download.html">prismjs</a></p>
+<hr>
+<h3 id="prism-plugins" tabindex="-1"><a class="header-anchor" href="#prism-plugins">Prism Plugins</a></h3>
 <h5 id="line-numbers" tabindex="-1"><a class="header-anchor" href="#line-numbers">Line Numbers</a></h5>
 <details><summary>Line Numbers Example</summary>
-<pre class="line-numbers language-js" data-start="1000" id="codeblock-839"><code>(function () {
+<pre class="line-numbers language-js" data-start="1000" id="codeblock-844"><code>(function () {
   &quot;use strict&quot;;
   document.addEventListener(&quot;DOMContentLoaded&quot;, function () {
     const state = {
@@ -623,12 +643,12 @@ Here are some **funny** details.
 })();
 </code></pre><p>Specify the data-start (Number) attribute for line numbers.<br>
 The above example uses <code>.line-numbers</code> class and <code>data-start=&quot;1000&quot;</code>.</p>
-<pre class="language-markdown" id="codeblock-843"><code>```js {.line-numbers data-start=&quot;1000&quot;}
+<pre class="language-markdown" id="codeblock-848"><code>```js {.line-numbers data-start=&quot;1000&quot;}
 </code></pre></details>
 <p>Refer to the manual at <a href="https://prismjs.com/plugins/line-numbers/">Prism Plugins - Line Numbers</a></p>
 <h5 id="line-highlight--linkable-line-numbers" tabindex="-1"><a class="header-anchor" href="#line-highlight--linkable-line-numbers">Line Highlight &amp; Linkable Line Numbers</a></h5>
 <details><summary>Line Highlight Example</summary>
-<pre class="line-numbers language-js" data-line="8,24-25" id="codeblock-852"><code>(function () {
+<pre class="line-numbers language-js" data-line="8,24-25" id="codeblock-857"><code>(function () {
   &quot;use strict&quot;;
   document.addEventListener(&quot;DOMContentLoaded&quot;, function () {
     const state = {
@@ -661,10 +681,10 @@ The above example uses <code>.line-numbers</code> class and <code>data-start=&qu
 })();
 </code></pre><p>Specify the data-line attribute to highlight lines.<br>
 The above example uses <code>data-line=&quot;8,24-25&quot;</code>.</p>
-<pre class="language-markdown" id="codeblock-856"><code>```js {.line-numbers data-line=&quot;8,24-25&quot;}
+<pre class="language-markdown" id="codeblock-861"><code>```js {.line-numbers data-line=&quot;8,24-25&quot;}
 </code></pre></details>
 <details><summary>Linkable Line Numbers</summary>
-<pre class="line-numbers linkable-line-numbers language-js" id="codeblock-859"><code>(function () {
+<pre class="line-numbers linkable-line-numbers language-js" id="codeblock-864"><code>(function () {
   &quot;use strict&quot;;
   document.addEventListener(&quot;DOMContentLoaded&quot;, function () {
     const state = {
@@ -696,20 +716,20 @@ The above example uses <code>data-line=&quot;8,24-25&quot;</code>.</p>
   });
 })();
 </code></pre><p>Add class <code>.linkable-line-numbers</code> to make lines selectable.</p>
-<pre class="language-markdown" id="codeblock-863"><code>```js {.line-numbers .linkable-line-numbers}
+<pre class="language-markdown" id="codeblock-868"><code>```js {.line-numbers .linkable-line-numbers}
 </code></pre><p class="custom-conatiner warning" style="padding:1em;">⚠️ You may <strong>not</strong> want to use <code>.linkable-line-numbers</code> together with <code>data-line</code> attribute, as the linked line marker will overwrite the highlighted marker, when the line is clicked.</p>
 <hr>
 </details>
 <p>Refer to the manual at <a href="https://prismjs.com/plugins/line-highlight/">Prism Plugins - Line Highlight</a></p>
 <h5 id="commad-line" tabindex="-1"><a class="header-anchor" href="#commad-line">Commad Line</a></h5>
 <details><summary>Command Line Example</summary>
-<pre class="command-line language-sh" data-user="root" data-host="someserver.tld" data-output="4" id="codeblock-876"><code>apt-get update
+<pre class="command-line language-sh" data-user="root" data-host="someserver.tld" data-output="4" id="codeblock-881"><code>apt-get update
 apt-get upgrade
 apt-get --assume-yes install curl vim mc htop imagemagick git nodejs npm
 ... some output from last command
 </code></pre><p>Add class <code>.command-line</code> to code block.<br>
 You may specify <code>data-user</code>and <code>data-host</code> as well as the lines for the output with the <code>data-output</code> attribute.</p>
-<pre class="language-markdown" id="codeblock-880"><code>```sh {.command-line data-user=&quot;root&quot; data-host=&quot;someserver.tld&quot; data-output=&quot;4&quot;}
+<pre class="language-markdown" id="codeblock-885"><code>```sh {.command-line data-user=&quot;root&quot; data-host=&quot;someserver.tld&quot; data-output=&quot;4&quot;}
 </code></pre></details>
 <p>Refer to the manual at <a href="https://prismjs.com/plugins/command-line/">Prism Plugins - Commad Line</a></p>
 <h5 id="show-language" tabindex="-1"><a class="header-anchor" href="#show-language">Show Language</a></h5>
@@ -718,6 +738,7 @@ You may specify <code>data-user</code>and <code>data-host</code> as well as the 
 <p>Refer to the manual at <a href="https://prismjs.com/plugins/toolbar/">Prism Plugins - Toolbar</a></p>
 <h5 id="copy-to-clipboard-button" tabindex="-1"><a class="header-anchor" href="#copy-to-clipboard-button">Copy to Clipboard Button</a></h5>
 <p>Refer to the manual at <a href="https://prismjs.com/plugins/copy-to-clipboard">Prism Plugins - Copy to Clipboard Button</a></p>
+<hr>
 <h3 id="syntax-highlighting-examples" tabindex="-1"><a class="header-anchor" href="#syntax-highlighting-examples">Syntax Highlighting Examples</a></h3>
 <p>You can also look up <a href="https://prismjs.com/examples.html">Examples at Prism</a></p>
 <details class="closeOnLoad" open><summary>HTML</summary>
@@ -1631,6 +1652,7 @@ networks:
   gitea:
     external: false
 </code></pre></details>
+<hr>
 <h3 id="icons" tabindex="-1"><a class="header-anchor" href="#icons">Icons</a></h3>
 <p>Here you find a curated list of unicode icon characters and emojis you may find usefull.</p>
 <details><summary>emojis in body</summary>
@@ -1736,7 +1758,7 @@ networks:
 <hr>
 </details>
 <details><summary>emojis in code</summary>
-<pre class="language-filetree" id="codeblock-1210"><code>
+<pre class="language-filetree" id="codeblock-1217"><code>
 files
 📄 📝 📑 📜 📃 🧾
 
@@ -1876,7 +1898,7 @@ misc
 
 </code></pre></details>
 <details><summary>unicode characters in code</summary>
-<pre class="language-filetree" id="codeblock-1213"><code>unicode characters
+<pre class="language-filetree" id="codeblock-1220"><code>unicode characters
 
 files
 🗋 🗌 🗍 · 🗎 🗏 🖹 🗐 🖺 🖻 · 🗅 🗆 🗇 · 🗈 🗉 🗊 · 🗑
