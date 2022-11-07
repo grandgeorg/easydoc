@@ -1,7 +1,3 @@
 /data
-/docs/*.md
-!/docs/index.md
 /node_modules
 /test
-/www/*.html
-!/www/index.html
