@@ -941,26 +941,25 @@
 
     function hadleIdsInDetails() {
       const hash = window.location.hash;
+      const id = hash.replace("#", "").replace(/[.].*/g, "");
+      const hashedElement = id ? document.getElementById(id) : null;
       const closeOnLoad = document.querySelectorAll(".closeOnLoad");
       closeOnLoad.forEach((element) => {
-        if (element.tagName === "DETAILS" && element.hasAttribute("open") && (!hash || !element.querySelector(hash))) {
+        if (element.tagName === "DETAILS" && element.hasAttribute("open") && (!id || !element.querySelector("#" + id))) {
           element.removeAttribute("open");
           element.classList.remove("closeOnLoad");
         }
       });
 
-      if (hash) {
-        const element = document.querySelector(hash);
-        if (element) {
-          const details = element.closest("details");
-          if (details) {
-            details.setAttribute("open", "open");
-            setTimeout(() => {
-              details.scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" });
-            }, 100);
-          } else {
-            element.scrollIntoView();
-          }
+      if (hashedElement) {
+        const details = hashedElement.closest("details");
+        if (details) {
+          details.setAttribute("open", "open");
+          setTimeout(() => {
+            details.scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" });
+          }, 100);
+        } else {
+          hashedElement.scrollIntoView();
         }
       }
 
