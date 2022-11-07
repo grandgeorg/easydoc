@@ -1,18 +1,7 @@
 /data
 /docs/*.md
-# !/docs/example-1.md
-# !/docs/example-2.md
-# !/docs/sample-markdown.md
-!/docs/easydoc.md
-!/docs/reference.md
+!/docs/index.md
 /node_modules
 /test
 /www/*.html
-!/www/reference.html
-!/www/easydoc.html
-# !/www/example-1.html
-# !/www/example-2.html
-# !/www/sample-markdown.html
-# /www/meta.js
-/www/img/*.png
-__notes.txt
+!/www/index.html
