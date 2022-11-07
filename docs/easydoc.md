@@ -5,7 +5,6 @@ tags:
   - javascript
   - documentation
   - tool
-  - foo
 tocIncludeLevel: [1, 2, 3]
 # disableBrand: true
 # disableToc: true
@@ -23,7 +22,7 @@ tocIncludeLevel: [1, 2, 3]
 ##### _created by:_ {.text-center}
 
 <!-- BRAND HTML -->
-<a class="brand-link" href="https:grandgeorg.de">
+<a class="brand-link" href="https://grandgeorg.de">
   <div class="brand">Grandgeorg</div>
   <div class="brand-second">Websolutions</div>
 </a>
@@ -73,6 +72,7 @@ npm run build
  ├🗀 .git
  ├🗀 .vscode
  ├🟢 docs
+ │ └🗏 index.md 🖤
  ├🗀 lang 🖊️
  ├🗁 manual 📌
  │ ├🗀 assets
@@ -86,20 +86,24 @@ npm run build
  ├🗀 templates 🖊️
  ├🔵 www
  │ ├🗀 assets 🖊️
- │ └🟢 img
+ │ ├🟢 img
+ │ └🗏 index.html 🖤
  ├🗏 .env ✏️
  ├🗏 .gitignore
+ ├🗏 .hintrc
  ├🗏 index.js 🖊️
- ├🗏 nodemon.jsons
+ ├🗏 nav.js ✏️
+ ├🗏 nodemon.json
  ├🗏 package.json
- └🗏 package-lock.json
+ ├🗏 package-lock.json
+ └🗏 webpack.config.js
 
 ╭──────────────────────────═━┈💬┈━═──────────────────────────╮
 │  🟢 input directories. Start creating files here.          │
 │  🔵 output directory. Html files will be generated here.   │
 │  ✏️ configure EasyDoc                                      │
 │  🖊️ change EasyDoc                                         │
-│  📌 It's me. You are reading these documents right now.         │
+│  📌 It's me. You are reading these documents right now.    │
 │  🖤 Remove these documentation files for a blank start.    │
 ╰──────────────────────────═━┈💬┈━═──────────────────────────╯
 ```
@@ -118,4 +122,4 @@ Use git if working in a team.
 
 ## Todos
 
-- make print css version.
+- make CSS **print** version.
