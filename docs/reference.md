@@ -51,10 +51,46 @@ tocIncludeLevel: [1, 2, 3, 4]
 ---
 ```
 
+:::details Configuration parameters
+
+```.env: EASYDOC_LANG_FALLBACK``` | ```frontmatter: lang```
+: Language of the document and EsayDoc language (see ```lang/langs.js```)
+
+```.env: EASYDOC_TITLE_FALLBACK``` | ```frontmatter: title```
+: Title of the document
+
+```.env: EASYDOC_BRAND_URL``` | ```frontmatter: brandURL```
+: URL the brand link should point to.
+
+```.env: EASYDOC_BRAND_NAME``` | ```frontmatter: brandName```
+: Main brand claim string (default style in red).
+
+```.env: EASYDOC_BRAND_SECONDARY``` | ```frontmatter: brandSecondary```
+: Secondary brand claim string (default style in blue).
+
+```.env: EASYDOC_TOC_INCLUDELEVEL``` | ```frontmatter: tocIncludeLevel```
+: Header include level for table of contents.
+
+```.env: EASYDOC_DISABLE_BRAND``` | ```frontmatter: disableBrand```
+: Disable brand claim and link in navbar and footer.
+
+```.env: EASYDOC_DISABLE_TOC``` | ```frontmatter: disableToc```
+: Disable table of contents.
+
+```.env: EASYDOC_DISABLE_SITE_NAV``` | ```frontmatter: disableSiteNav```
+: Disable site navigation.
+
+```.env: EASYDOC_DISABLE_TAG_NAVIGATOR``` | ```frontmatter: disableTagNavigator```
+: Disable tag navigator.
+
+```.env: EASYDOC_DISABLE_NAVIGATION_BAR``` | ```frontmatter: disableNavigationBar```
+: Completely disable the navigation bar.
+:::
+
 ### 📄 Site Navigation
 Define individual menu items for site navigation.
 
-##### ```/nav.js``` examle file
+##### ```nav.js``` example file
 ```js
 exports.nav = [
   {
@@ -68,42 +104,48 @@ exports.nav = [
 ];
 ```
 
-:::details Configuration parameters
+::: details 🖿 easydoc directory structure
+```filetree
+🗁 easydoc
+ ├🗀 .git
+ ├🗀 .vscode
+ ├🟢 docs
+ │ └🗏 index.md 🖤
+ ├🗀 lang 🖊️
+ ├🗁 manual 📌
+ │ ├🗀 assets
+ │ ├🗀 img
+ │ ├🗏 easydoc.html
+ │ ├🗏 easydoc.md
+ │ ├🗏 reference.html
+ │ └🗏 reference.md 
+ ├🗀 node_modules
+ ├🗀 src 🖊️
+ ├🗀 templates 🖊️
+ ├🔵 www
+ │ ├🗀 assets 🖊️
+ │ ├🟢 img
+ │ └🗏 index.html 🖤
+ ├🗏 .env ✏️
+ ├🗏 .gitignore
+ ├🗏 .hintrc
+ ├🗏 index.js 🖊️
+ ├🗏 nav.js ✏️
+ ├🗏 nodemon.json
+ ├🗏 package.json
+ ├🗏 package-lock.json
+ └🗏 webpack.config.js
 
-```.env: EASYDOC_LANG_FALLBACK``` / ```frontmatter: lang```
-: Language of the document and EsayDoc language (see also ```lang/langs.js```)
-
-```.env: EASYDOC_TITLE_FALLBACK``` / ```frontmatter: title```
-: Title of the document
-
-```.env: EASYDOC_BRAND_URL``` / ```frontmatter: brandURL```
-: URL the brand link should point to.
-
-```.env: EASYDOC_BRAND_NAME``` / ```frontmatter: brandName```
-: Main brand claim string (default style in red).
-
-```.env: EASYDOC_BRAND_SECONDARY``` / ```frontmatter: brandSecondary```
-: Secondary brand claim string (default style in blue).
-
-```.env: EASYDOC_TOC_INCLUDELEVEL``` / ```frontmatter: tocIncludeLevel```
-: Header include level for table of contants.
-
-```.env: EASYDOC_DISABLE_BRAND``` / ```frontmatter: disableBrand```
-: Disable brand claim and link in navbar and footer.
-
-```.env: EASYDOC_DISABLE_TOC``` / ```frontmatter: disableToc```
-: Disable table of contants.
-
-```.env: EASYDOC_DISABLE_SITE_NAV``` / ```frontmatter: disableSiteNav```
-: Disable site navigation.
-
-```.env: EASYDOC_DISABLE_TAG_NAVIGATOR``` / ```frontmatter: disableTagNavigator```
-: Disable tag navigator.
-
-```.env: EASYDOC_DISABLE_NAVIGATION_BAR``` / ```frontmatter: disableNavigationBar```
-: Completely disable the navigation bar.
+╭──────────────────────────═━┈💬┈━═──────────────────────────╮
+│  🟢 input directories. Start creating files here.          │
+│  🔵 output directory. Html files will be generated here.   │
+│  ✏️ configure EasyDoc                                      │
+│  🖊️ change EasyDoc                                         │
+│  📌 It's me. You are reading these documents right now.    │
+│  🖤 Remove these documentation files for a blank start.    │
+╰──────────────────────────═━┈💬┈━═──────────────────────────╯
+```
 :::
-
 
 ## Markdown
 
@@ -281,14 +323,14 @@ Autoconverted link https://grandgeorg.de
 :::
 
 :::details Images
-Fullsize 
+##### Fullsize {.text-center}
 ![Random Image](https://source.unsplash.com/1920x1080/?cityscape,landscape,nature/__random__)
-Small with title
+##### Small with title {.text-center}
 ![Random Image small](https://source.unsplash.com/320x180/?cityscape,landscape,nature/__random__ "Random Image small")
 ```markdown
-Fullsize 
+##### Fullsize  {.text-center}
 ![Random Image](https://source.unsplash.com/1920x1080/?cityscape,landscape,nature/__random__)
-Small with title
+##### Small with title {.text-center}
 ![Random Image small](https://source.unsplash.com/320x180/?cityscape,landscape,nature/__random__ "Random Image small")
 ```
 :::
@@ -510,7 +552,7 @@ Here are some **funny** details.
 ```
 
 ##### Filetree Container
-::: details example unicode characters & emojis in filetree container
+::: details filetree container example with unicode characters & emojis
 ```filetree
  🖿 /etc/apache2/  
   ┊
