@@ -63,7 +63,9 @@ $navbar-height: 42px;
   --clr-link: #2196f3;
   --clr-link-d200: #2085d8;
 
-  --clr-code: #dd6efd;
+  // --clr-code: #dd6efd;
+  // --clr-code: #cc99cd;
+  --clr-code: #c468de;
 
   --clr-brand: #f30;
   --clr-brand-second: #267dff;
@@ -738,6 +740,7 @@ body>.page:first-child {
     }
     &[href]:not([tabindex^="-"]):focus {
       outline: 0;
+      text-decoration: none;
       border-bottom: 1px solid var(--clr-base-l200);
     }
   }
