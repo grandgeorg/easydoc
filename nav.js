@@ -1,10 +1,6 @@
 exports.nav = [
   {
-    "title": "Easydoc",
-    "url": "easydoc.html",
-  },
-  {
-    "title": "Reference",
-    "url": "reference.html",
+    "title": "My Documentation",
+    "url": "index.html",
   }
 ];
