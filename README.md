@@ -39,6 +39,7 @@ npm run build
 ```
 
 --------------------------------------------------------------------------------
-For configuration and further usage refer to the [EasyDoc Reference HTML file](manual/reference.html) or the [EasyDoc Reference markdown file](manual/reference.md)
+Find more information in the [EasyDoc manual](manual/easydoc.html).
+For configuration and further usage refer to the [EasyDoc reference](manual/reference.html).
 
 --------------------------------------------------------------------------------
