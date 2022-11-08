@@ -117,20 +117,43 @@
       state.nav.ps.subscribe(toggleNavigation());
 
       const elTocLinks = document.querySelectorAll(".toc a");
+      const elTargets = [];
+
+
       elTocLinks.forEach(function (elTocLink) {
-        elTocLink.addEventListener("click", function (event) {
-          event.preventDefault();
-          const elTarget = document.querySelector(event.target.hash);
-          if (elTarget) {
+        const elTarget = document.querySelector(elTocLink.getAttribute("href"));
+        if (elTarget) {
+          elTargets.push(elTarget);
+          elTocLink.addEventListener("click", function (event) {
+            event.preventDefault();
             elTarget.scrollIntoView({
               behavior: "smooth",
               block: "start",
             });
-          }
-          if (window.innerWidth < elNavigationDrawer.offsetWidth * 2) {
-            toggleBurger(event);
-          }
-        });
+            if (window.innerWidth < elNavigationDrawer.offsetWidth * 2) {
+              toggleBurger(event);
+            }
+          });
+          // for intersection observer see:
+          // https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API)
+          // https://codepen.io/saas/pen/LYENgqq
+          const observer = new IntersectionObserver(function (entries) {
+              entries.forEach(function (entry) {
+                // if (entry.isIntersecting) {
+                if (entry.intersectionRatio > 0) {
+                  elTocLink.classList.add("intersecting");
+                } else {
+                  elTocLink.classList.remove("intersecting");
+                }
+              });
+            }, {
+              // root: elContainer,
+              rootMargin: "-42px 0px 0px 0px",
+              // threshold: 0.5,
+            }
+          );
+          observer.observe(elTarget);
+        }
       });
 
       document.addEventListener(

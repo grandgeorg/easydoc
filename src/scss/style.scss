@@ -462,6 +462,7 @@ body a.navbar__brand[href]:not([tabindex^="-"]):focus {
   background-color: var(--clr-base-d600);
   border-left: 1px solid var(--clr-base-d400);
   // @include scrollbars(6px, #555, #666, #070f17, 3px, 0px);
+  @include scrollbars(10px, var(--clr-base-sl-d600), var(--clr-base-sl-d500), var(--clr-base-d600), 7px, 3px);
   .nav-title {
     margin: 0 0 0.75rem;
     font-weight: $font-weight-extralight;
@@ -476,9 +477,18 @@ body a.navbar__brand[href]:not([tabindex^="-"]):focus {
     border-radius: 6px;
     border: 1px solid var(--clr-base-d400);
     padding: 0.75rem 0;
-    ul li a:focus {
-      outline: none;
-      color: var(--clr-link);
+    ul li {
+      a {
+        border-left: 2px solid transparent;
+        border-radius: 0;
+        &.intersecting {
+          border-color: var(--clr-base-mark-active);
+        }
+      }
+      a:focus {
+        outline: none;
+        color: var(--clr-link);
+      }
     }
   }
   ul {
