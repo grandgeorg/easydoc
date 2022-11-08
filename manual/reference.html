@@ -1,9 +1,9 @@
-<!DOCTYPE html><html lang="en"><head><title>EasyDoc Reference</title><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="stylesheet" href="assets/css/style.min.css"><link rel="stylesheet" href="assets/css/prism.min.css"><script src="assets/js/clipboard.min.js"></script><script src="assets/js/prism.js"></script><script src="assets/js/raphael.min.js"></script><script src="assets/js/flowchart.min.js"></script><script src="assets/js/app.min.js"></script><script src="meta.js"></script></head><body><div class="navbar"><a class="navbar__brand" href="https://grandgeorg.de"><span class="brand">Grandgeorg</span><span class="brand-second">Websolutions</span></a><div class="navbar__controls"><button class="btn-tag-nav navitem" id="open-tag-navigation" aria-label="open tag navigation" title="open tag navigation" role="button"><svg class="bi bi-tags" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M3 2v4.586l7 7L14.586 9l-7-7H3zM2 2a1 1 0 0 1 1-1h4.586a1 1 0 0 1 .707.293l7 7a1 1 0 0 1 0 1.414l-4.586 4.586a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 2 6.586V2z"></path><path d="M5.5 5a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1zm0 1a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zM1 7.086a1 1 0 0 0 .293.707L8.75 15.25l-.043.043a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 0 7.586V3a1 1 0 0 1 1-1v5.086z"></path></svg><span class="navitem-title">Tag Navigator</span></button><button class="burger" aria-expanded="false" aria-label="navigation menu"><span class="burger__line burger__line-1" aria-hidden="true" focusable="false"></span><span class="burger__line burger__line-2" aria-hidden="true" focusable="false"></span><span class="burger__line burger__line-3" aria-hidden="true" focusable="false"></span></button></div></div><nav class="navigation-drawer" aria-label="Main menu"><h3 class="nav-title text-center">Table of Contents</h3><div class="toc"><div class="table-of-contents"><ul><li><a href="#easydoc-reference">EasyDoc Reference</a><ul><li><a href="#configuration">Configuration</a><ul><li><a href="#-global-configuration">📄 Global Configuration</a></li><li><a href="#-per-page-overrides-in-front-matter">📄 Per page overrides in front matter</a></li><li><a href="#-site-navigation">📄 Site Navigation</a></li></ul></li><li><a href="#markdown">Markdown</a><ul><li><a href="#typography--elements">Typography &amp; Elements</a></li><li><a href="#markdown-plugins">Markdown Plugins</a></li></ul></li><li><a href="#syntax-highlighting">Syntax Highlighting</a><ul><li><a href="#prism-plugins">Prism Plugins</a></li><li><a href="#syntax-highlighting-examples">Syntax Highlighting Examples</a></li><li><a href="#icons">Icons</a></li></ul></li></ul></li></ul></div></div><div class="sitenav"><h3 class="nav-title text-center">Navigation</h3><ul><li><a href="easydoc.html">EasyDoc</a></li><li><a class="active" href="reference.html">Reference</a></li></ul></div></nav><main class="page"><div class="mtime">Last Update Mon Nov 07 2022 18:52:43 GMT+0100 (Mitteleuropäische Normalzeit)</div><div class="content"><h1 class="text-center" id="easydoc-reference" tabindex="-1"><a class="header-anchor" href="#easydoc-reference">EasyDoc Reference</a></h1>
+<!DOCTYPE html><html lang="en"><head><title>EasyDoc Reference</title><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="stylesheet" href="assets/css/style.min.css"><link rel="stylesheet" href="assets/css/prism.min.css"><script src="assets/js/clipboard.min.js"></script><script src="assets/js/prism.js"></script><script src="assets/js/raphael.min.js"></script><script src="assets/js/flowchart.min.js"></script><script src="assets/js/app.min.js"></script><script src="meta.js"></script></head><body><div class="navbar"><a class="navbar__brand" href="https://grandgeorg.de"><span class="brand">Grandgeorg</span><span class="brand-second">Websolutions</span></a><div class="navbar__controls"><button class="btn-tag-nav navitem" id="open-tag-navigation" aria-label="open tag navigation" title="open tag navigation" role="button"><svg class="bi bi-tags" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M3 2v4.586l7 7L14.586 9l-7-7H3zM2 2a1 1 0 0 1 1-1h4.586a1 1 0 0 1 .707.293l7 7a1 1 0 0 1 0 1.414l-4.586 4.586a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 2 6.586V2z"></path><path d="M5.5 5a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1zm0 1a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zM1 7.086a1 1 0 0 0 .293.707L8.75 15.25l-.043.043a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 0 7.586V3a1 1 0 0 1 1-1v5.086z"></path></svg><span class="navitem-title">Tag Navigator</span></button><button class="burger" aria-expanded="false" aria-label="navigation menu"><span class="burger__line burger__line-1" aria-hidden="true" focusable="false"></span><span class="burger__line burger__line-2" aria-hidden="true" focusable="false"></span><span class="burger__line burger__line-3" aria-hidden="true" focusable="false"></span></button></div></div><nav class="navigation-drawer" aria-label="Main menu"><h3 class="nav-title text-center">Table of Contents</h3><div class="toc"><div class="table-of-contents"><ul><li><a href="#t-easydoc-reference">EasyDoc Reference</a><ul><li><a href="#t-configuration">Configuration</a><ul><li><a href="#t--global-configuration">📄 Global Configuration</a></li><li><a href="#t--per-page-overrides-in-front-matter">📄 Per page overrides in front matter</a></li><li><a href="#t--site-navigation">📄 Site Navigation</a></li></ul></li><li><a href="#t-markdown">Markdown</a><ul><li><a href="#t-typography--elements">Typography &amp; Elements</a></li><li><a href="#t-markdown-plugins">Markdown Plugins</a></li></ul></li><li><a href="#t-syntax-highlighting">Syntax Highlighting</a><ul><li><a href="#t-prism-plugins">Prism Plugins</a></li><li><a href="#t-syntax-highlighting-examples">Syntax Highlighting Examples</a></li><li><a href="#t-icons">Icons</a></li></ul></li></ul></li></ul></div></div><div class="sitenav"><h3 class="nav-title text-center">Navigation</h3><ul><li><a href="easydoc.html">EasyDoc</a></li><li><a class="active" href="reference.html">Reference</a></li></ul></div></nav><main class="page"><div class="mtime">Last Update Mon Nov 07 2022 18:52:43 GMT+0100 (Mitteleuropäische Normalzeit)</div><div class="content"><h1 class="text-center" id="t-easydoc-reference" tabindex="-1"><a class="header-anchor" href="#t-easydoc-reference">EasyDoc Reference</a></h1>
 <p class="text-center">🔴🔵</p>
 <hr>
-<h2 id="configuration" tabindex="-1"><a class="header-anchor" href="#configuration">Configuration</a></h2>
-<h3 id="-global-configuration" tabindex="-1"><a class="header-anchor" href="#-global-configuration">📄 Global Configuration</a></h3>
-<h5 id="env-file" tabindex="-1"><a class="header-anchor" href="#env-file"><code>.env</code> file</a></h5>
+<h2 id="t-configuration" tabindex="-1"><a class="header-anchor" href="#t-configuration">Configuration</a></h2>
+<h3 id="t--global-configuration" tabindex="-1"><a class="header-anchor" href="#t--global-configuration">📄 Global Configuration</a></h3>
+<h5 id="t-env-file" tabindex="-1"><a class="header-anchor" href="#t-env-file"><code>.env</code> file</a></h5>
 <pre class="language-ini" id="codeblock-16"><code>EASYDOC_LANG_FALLBACK=en
 EASYDOC_TITLE_FALLBACK=Documentation
 
@@ -18,8 +18,8 @@ EASYDOC_TOC_INCLUDELEVEL=[1,2,3,4]
 # EASYDOC_DISABLE_SITE_NAV=true
 # EASYDOC_DISABLE_TAG_NAVIGATOR=true
 # EASYDOC_DISABLE_NAVIGATION_BAR=true
-</code></pre><h3 id="-per-page-overrides-in-front-matter" tabindex="-1"><a class="header-anchor" href="#-per-page-overrides-in-front-matter">📄 Per page overrides in front matter</a></h3>
-<h5 id="docsmd-files" tabindex="-1"><a class="header-anchor" href="#docsmd-files"><code>docs/*.md</code> files</a></h5>
+</code></pre><h3 id="t--per-page-overrides-in-front-matter" tabindex="-1"><a class="header-anchor" href="#t--per-page-overrides-in-front-matter">📄 Per page overrides in front matter</a></h3>
+<h5 id="t-docsmd-files" tabindex="-1"><a class="header-anchor" href="#t-docsmd-files"><code>docs/*.md</code> files</a></h5>
 <pre class="language-none" id="codeblock-23"><code>---
 lang: de
 title: Page Title
@@ -59,9 +59,9 @@ tocIncludeLevel: [1, 2, 3, 4]
 <dd>Completely disable the navigation bar.</dd>
 </dl>
 </details>
-<h3 id="-site-navigation" tabindex="-1"><a class="header-anchor" href="#-site-navigation">📄 Site Navigation</a></h3>
+<h3 id="t--site-navigation" tabindex="-1"><a class="header-anchor" href="#t--site-navigation">📄 Site Navigation</a></h3>
 <p>Define individual menu items for site navigation.</p>
-<h5 id="navjs-example-file" tabindex="-1"><a class="header-anchor" href="#navjs-example-file"><code>nav.js</code> example file</a></h5>
+<h5 id="t-navjs-example-file" tabindex="-1"><a class="header-anchor" href="#t-navjs-example-file"><code>nav.js</code> example file</a></h5>
 <pre class="language-js" id="codeblock-125"><code>exports.nav = [
   {
     &quot;title&quot;: &quot;Easydoc&quot;,
@@ -113,8 +113,8 @@ tocIncludeLevel: [1, 2, 3, 4]
 │  🖤 Remove these documentation files for a blank start.    │
 ╰──────────────────────────═━┈💬┈━═──────────────────────────╯
 </code></pre></details>
-<h2 id="markdown" tabindex="-1"><a class="header-anchor" href="#markdown">Markdown</a></h2>
-<h3 id="typography--elements" tabindex="-1"><a class="header-anchor" href="#typography--elements">Typography &amp; Elements</a></h3>
+<h2 id="t-markdown" tabindex="-1"><a class="header-anchor" href="#t-markdown">Markdown</a></h2>
+<h3 id="t-typography--elements" tabindex="-1"><a class="header-anchor" href="#t-typography--elements">Typography &amp; Elements</a></h3>
 <details><summary>Typographic replacements</summary>
 <p>© © ® ® ™ ™ ±<br>
 ellipsis … ellipsis … ellipsis … ellipsis … ellipsis …<br>
@@ -151,7 +151,7 @@ _This is italic text_
 &gt;&gt; ...by using additional greater-than signs right next to each other...
 &gt; &gt; &gt; ...or with spaces between arrows.
 </code></pre></details>
-<h4 id="" tabindex="-1"><a class="header-anchor" href="#"></a></h4>
+<h4 id="t-" tabindex="-1"><a class="header-anchor" href="#t-"></a></h4>
 <details><summary>Unordered lists</summary>
 <ul>
 <li>Create a list by starting a line with <code>+</code>, <code>-</code>, or <code>*</code></li>
@@ -340,19 +340,19 @@ Autoconverted link <a href="https://grandgeorg.de">https://grandgeorg.de</a></p>
 Autoconverted link https://grandgeorg.de  
 </code></pre></details>
 <details><summary>Images</summary>
-<h5 class="text-center" id="fullsize" tabindex="-1"><a class="header-anchor" href="#fullsize">Fullsize</a></h5>
+<h5 class="text-center" id="t-fullsize" tabindex="-1"><a class="header-anchor" href="#t-fullsize">Fullsize</a></h5>
 <p><img src="https://source.unsplash.com/1920x1080/?cityscape,landscape,nature/__random__" alt="Random Image"></p>
-<h5 class="text-center" id="small-with-title" tabindex="-1"><a class="header-anchor" href="#small-with-title">Small with title</a></h5>
+<h5 class="text-center" id="t-small-with-title" tabindex="-1"><a class="header-anchor" href="#t-small-with-title">Small with title</a></h5>
 <p><img src="https://source.unsplash.com/320x180/?cityscape,landscape,nature/__random__" alt="Random Image small" title="Random Image small"></p>
 <pre class="language-markdown" id="codeblock-485"><code>##### Fullsize  {.text-center}
 ![Random Image](https://source.unsplash.com/1920x1080/?cityscape,landscape,nature/__random__)
 ##### Small with title {.text-center}
 ![Random Image small](https://source.unsplash.com/320x180/?cityscape,landscape,nature/__random__ &quot;Random Image small&quot;)
 </code></pre></details>
-<h3 id="markdown-plugins" tabindex="-1"><a class="header-anchor" href="#markdown-plugins">Markdown Plugins</a></h3>
+<h3 id="t-markdown-plugins" tabindex="-1"><a class="header-anchor" href="#t-markdown-plugins">Markdown Plugins</a></h3>
 <details class="closeOnLoad" open><summary>flowcharts</summary>
 <p>Refer to the documentation from <a href="https://flowchart.js.org/">flowchart.js</a></p>
-<h4 id="example-1" tabindex="-1"><a class="header-anchor" href="#example-1">Example 1</a></h4>
+<h4 id="t-example-1" tabindex="-1"><a class="header-anchor" href="#t-example-1">Example 1</a></h4>
 <div class="flowchart" id="flowchart_497">st=>start: Start
 e=>end: The End
 op1=>operation: My Operation|current
@@ -363,7 +363,7 @@ io=>inputoutput: catch something...
 st->op1->cond
 cond(yes)->io->e
 cond(no)->sub1(right)->op1</div>
-<h4 id="example-2" tabindex="-1"><a class="header-anchor" href="#example-2">Example 2</a></h4>
+<h4 id="t-example-2" tabindex="-1"><a class="header-anchor" href="#t-example-2">Example 2</a></h4>
 <div class="flowchart" id="flowchart_501">st=>start: Start:>https://grandgeorg.de[blank]
 e=>end:>https://grandgeorg.de
 op1=>operation: My Operation
@@ -450,8 +450,8 @@ para(path2, top)-&gt;op1
 
 Here is another focusable block {.text-right #attributes-sample-id tabindex=&quot;0&quot;}
 </code></pre></details>
-<h4 id="custom-containers" tabindex="-1"><a class="header-anchor" href="#custom-containers">Custom containers</a></h4>
-<h5 id="info-container" tabindex="-1"><a class="header-anchor" href="#info-container">Info Container</a></h5>
+<h4 id="t-custom-containers" tabindex="-1"><a class="header-anchor" href="#t-custom-containers">Custom containers</a></h4>
+<h5 id="t-info-container" tabindex="-1"><a class="header-anchor" href="#t-info-container">Info Container</a></h5>
 
             <div class="custom-conatiner info" tabindex="0">
               <div class="custom-conatiner-title info-title"> 💬 This is an info title</div>
@@ -464,7 +464,7 @@ Here is a <a href="https://grandgeorg.de">link for you</a></p>
 🗲 FYI - so that you know ...  
 Here is a [link for you][def]
 :::
-</code></pre><h5 id="tip-container" tabindex="-1"><a class="header-anchor" href="#tip-container">Tip Container</a></h5>
+</code></pre><h5 id="t-tip-container" tabindex="-1"><a class="header-anchor" href="#t-tip-container">Tip Container</a></h5>
 
             <div class="custom-conatiner tip" tabindex="0">
               <div class="custom-conatiner-title tip-title"> 💬 This is a tip title</div>
@@ -477,7 +477,7 @@ Here is a <a href="https://grandgeorg.de">link for you</a></p>
 FYI - so that you know ...  
 Here is a [link for you][def]
 :::
-</code></pre><h5 id="warning-container" tabindex="-1"><a class="header-anchor" href="#warning-container">Warning Container</a></h5>
+</code></pre><h5 id="t-warning-container" tabindex="-1"><a class="header-anchor" href="#t-warning-container">Warning Container</a></h5>
 
             <div class="custom-conatiner warning" tabindex="0">
               <div class="custom-conatiner-title warning-title"> ⚠️ This is a warning title</div>
@@ -490,7 +490,7 @@ Here is a <a href="https://grandgeorg.de">link for you</a></p>
 **Here be dragons 🦎**  
 Here is a [link for you][def]
 :::
-</code></pre><h5 id="danger-container" tabindex="-1"><a class="header-anchor" href="#danger-container">Danger Container</a></h5>
+</code></pre><h5 id="t-danger-container" tabindex="-1"><a class="header-anchor" href="#t-danger-container">Danger Container</a></h5>
 
             <div class="custom-conatiner danger" tabindex="0">
               <div class="custom-conatiner-title danger-title"> ❗️ This is a danger title</div>
@@ -506,7 +506,7 @@ Here is a [link for you][def]
 
 Here is a [link for you][def]
 :::
-</code></pre><h5 id="line-container" tabindex="-1"><a class="header-anchor" href="#line-container">Line Container</a></h5>
+</code></pre><h5 id="t-line-container" tabindex="-1"><a class="header-anchor" href="#t-line-container">Line Container</a></h5>
 
             <div class="custom-conatiner line" tabindex="0">
               <div class="custom-conatiner-title line-title"> 💬 This is a line title</div>
@@ -519,7 +519,7 @@ Here is a <a href="https://grandgeorg.de">link for you</a></p>
 FYI - so that you know ...  
 Here is a [link for you][def]
 :::
-</code></pre><h5 id="details-container" tabindex="-1"><a class="header-anchor" href="#details-container">Details Container</a></h5>
+</code></pre><h5 id="t-details-container" tabindex="-1"><a class="header-anchor" href="#t-details-container">Details Container</a></h5>
 <details><summary>Click on this summary to see the details</summary>
 <p>Here are some <strong>funny</strong> details.</p>
 <ul>
@@ -534,7 +534,7 @@ Here are some **funny** details.
 - Detail 2
 - Detail 3
 :::
-</code></pre><h5 id="filetree-container" tabindex="-1"><a class="header-anchor" href="#filetree-container">Filetree Container</a></h5>
+</code></pre><h5 id="t-filetree-container" tabindex="-1"><a class="header-anchor" href="#t-filetree-container">Filetree Container</a></h5>
 <details><summary>filetree container example with unicode characters &amp; emojis</summary>
 <pre class="language-filetree" id="codeblock-650"><code> 🖿 /etc/apache2/  
   ┊
@@ -563,9 +563,9 @@ Here are some **funny** details.
 │   🟢 image uploads.    │
 ╰────────═━┈🌙┈━═────────╯
 </code></pre></details>
-<h2 id="syntax-highlighting" tabindex="-1"><a class="header-anchor" href="#syntax-highlighting">Syntax Highlighting</a></h2>
+<h2 id="t-syntax-highlighting" tabindex="-1"><a class="header-anchor" href="#t-syntax-highlighting">Syntax Highlighting</a></h2>
 <p>EasyDoc uses <a href="https://prismjs.com/">Prism</a> to highlight syntax in code blocks.</p>
-<h4 id="supported-languages" tabindex="-1"><a class="header-anchor" href="#supported-languages">Supported languages</a></h4>
+<h4 id="t-supported-languages" tabindex="-1"><a class="header-anchor" href="#t-supported-languages">Supported languages</a></h4>
 <ul style="column-width:25ch;column-gap:1em;list-style-type:none;padding-left:0;">
 <li>✅ <a href="#cbe-html" class="openIdInClosedDetails">Markup (HTML,XML etc.)</a></li>
 <li>✅ <a href="#cbe-css" class="openIdInClosedDetails">CSS, CSS Extras</a></li>
@@ -595,7 +595,7 @@ Here are some **funny** details.
 <li>✅ <a href="#cbe-ts" class="openIdInClosedDetails">TypeScript</a></li>
 <li>✅ <a href="#cbe-yml" class="openIdInClosedDetails">YAML</a></li>
 </ul>
-<h4 id="plugins" tabindex="-1"><a class="header-anchor" href="#plugins">Plugins</a></h4>
+<h4 id="t-plugins" tabindex="-1"><a class="header-anchor" href="#t-plugins">Plugins</a></h4>
 <ul style="column-width:25ch;column-gap:1em;list-style-type:none;padding-left:0;">
 <li>✅ <a href="#line-numbers">Line Numbers</a></li>
 <li>✅ <a href="#line-highlight">Line Highlight</a></li>
@@ -607,8 +607,8 @@ Here are some **funny** details.
 <p>To get your own configuration go to:
 <a href="https://prismjs.com/download.html">prismjs</a></p>
 <hr>
-<h3 id="prism-plugins" tabindex="-1"><a class="header-anchor" href="#prism-plugins">Prism Plugins</a></h3>
-<h5 id="line-numbers" tabindex="-1"><a class="header-anchor" href="#line-numbers">Line Numbers</a></h5>
+<h3 id="t-prism-plugins" tabindex="-1"><a class="header-anchor" href="#t-prism-plugins">Prism Plugins</a></h3>
+<h5 id="t-line-numbers" tabindex="-1"><a class="header-anchor" href="#t-line-numbers">Line Numbers</a></h5>
 <details><summary>Line Numbers Example</summary>
 <pre class="line-numbers language-js" data-start="1000" id="codeblock-844"><code>(function () {
   &quot;use strict&quot;;
@@ -646,7 +646,7 @@ The above example uses <code>.line-numbers</code> class and <code>data-start=&qu
 <pre class="language-markdown" id="codeblock-848"><code>```js {.line-numbers data-start=&quot;1000&quot;}
 </code></pre></details>
 <p>Refer to the manual at <a href="https://prismjs.com/plugins/line-numbers/">Prism Plugins - Line Numbers</a></p>
-<h5 id="line-highlight--linkable-line-numbers" tabindex="-1"><a class="header-anchor" href="#line-highlight--linkable-line-numbers">Line Highlight &amp; Linkable Line Numbers</a></h5>
+<h5 id="t-line-highlight--linkable-line-numbers" tabindex="-1"><a class="header-anchor" href="#t-line-highlight--linkable-line-numbers">Line Highlight &amp; Linkable Line Numbers</a></h5>
 <details><summary>Line Highlight Example</summary>
 <pre class="line-numbers language-js" data-line="8,24-25" id="codeblock-857"><code>(function () {
   &quot;use strict&quot;;
@@ -721,7 +721,7 @@ The above example uses <code>data-line=&quot;8,24-25&quot;</code>.</p>
 <hr>
 </details>
 <p>Refer to the manual at <a href="https://prismjs.com/plugins/line-highlight/">Prism Plugins - Line Highlight</a></p>
-<h5 id="commad-line" tabindex="-1"><a class="header-anchor" href="#commad-line">Commad Line</a></h5>
+<h5 id="t-commad-line" tabindex="-1"><a class="header-anchor" href="#t-commad-line">Commad Line</a></h5>
 <details><summary>Command Line Example</summary>
 <pre class="command-line language-sh" data-user="root" data-host="someserver.tld" data-output="4" id="codeblock-881"><code>apt-get update
 apt-get upgrade
@@ -732,14 +732,14 @@ You may specify <code>data-user</code>and <code>data-host</code> as well as the 
 <pre class="language-markdown" id="codeblock-885"><code>```sh {.command-line data-user=&quot;root&quot; data-host=&quot;someserver.tld&quot; data-output=&quot;4&quot;}
 </code></pre></details>
 <p>Refer to the manual at <a href="https://prismjs.com/plugins/command-line/">Prism Plugins - Commad Line</a></p>
-<h5 id="show-language" tabindex="-1"><a class="header-anchor" href="#show-language">Show Language</a></h5>
+<h5 id="t-show-language" tabindex="-1"><a class="header-anchor" href="#t-show-language">Show Language</a></h5>
 <p>Refer to the manual at <a href="https://prismjs.com/plugins/show-language/">Prism Plugins - Show Language</a></p>
-<h5 id="toolbar" tabindex="-1"><a class="header-anchor" href="#toolbar">Toolbar</a></h5>
+<h5 id="t-toolbar" tabindex="-1"><a class="header-anchor" href="#t-toolbar">Toolbar</a></h5>
 <p>Refer to the manual at <a href="https://prismjs.com/plugins/toolbar/">Prism Plugins - Toolbar</a></p>
-<h5 id="copy-to-clipboard-button" tabindex="-1"><a class="header-anchor" href="#copy-to-clipboard-button">Copy to Clipboard Button</a></h5>
+<h5 id="t-copy-to-clipboard-button" tabindex="-1"><a class="header-anchor" href="#t-copy-to-clipboard-button">Copy to Clipboard Button</a></h5>
 <p>Refer to the manual at <a href="https://prismjs.com/plugins/copy-to-clipboard">Prism Plugins - Copy to Clipboard Button</a></p>
 <hr>
-<h3 id="syntax-highlighting-examples" tabindex="-1"><a class="header-anchor" href="#syntax-highlighting-examples">Syntax Highlighting Examples</a></h3>
+<h3 id="t-syntax-highlighting-examples" tabindex="-1"><a class="header-anchor" href="#t-syntax-highlighting-examples">Syntax Highlighting Examples</a></h3>
 <p>You can also look up <a href="https://prismjs.com/examples.html">Examples at Prism</a></p>
 <details class="closeOnLoad" open><summary>HTML</summary>
 <pre class="line-numbers linkable-line-numbers language-html" id="cbe-html"><code>&lt;!DOCTYPE html&gt;
@@ -1653,21 +1653,21 @@ networks:
     external: false
 </code></pre></details>
 <hr>
-<h3 id="icons" tabindex="-1"><a class="header-anchor" href="#icons">Icons</a></h3>
+<h3 id="t-icons" tabindex="-1"><a class="header-anchor" href="#t-icons">Icons</a></h3>
 <p>Here you find a curated list of unicode icon characters and emojis you may find usefull.</p>
 <details><summary>emojis in body</summary>
-<h4 id="files" tabindex="-1"><a class="header-anchor" href="#files">files</a></h4>
+<h4 id="t-files" tabindex="-1"><a class="header-anchor" href="#t-files">files</a></h4>
 <p class="fs-xl">📄 📝 📑 📜 📃 🧾</p>
-<h4 id="folder" tabindex="-1"><a class="header-anchor" href="#folder">folder</a></h4>
+<h4 id="t-folder" tabindex="-1"><a class="header-anchor" href="#t-folder">folder</a></h4>
 <p class="fs-xl">📁 📂 🗂️</p>
-<h4 id="hands" tabindex="-1"><a class="header-anchor" href="#hands">hands</a></h4>
+<h4 id="t-hands" tabindex="-1"><a class="header-anchor" href="#t-hands">hands</a></h4>
 <p class="fs-xl">✋ 👈 👉 👆 👇 ☝️ 👍 👎<br>
 ✋🏻 👈🏻 👉🏻 👆🏻 👇🏻 ☝🏻 👍🏻 👎🏻<br>
 ✋🏼 👈🏼 👉🏼 👆🏼 👇🏼 ☝🏼 👍🏼 👎🏼<br>
 ✋🏽 👈🏽 👉🏽 👆🏽 👇🏽 ☝🏽 👍🏽 👎🏽<br>
 ✋🏾 👈🏾 👉🏾 👆🏾 👇🏾 ☝🏾 👍🏾 👎🏾<br>
 ✋🏿 👈🏿 👉🏿 👆🏿 👇🏿 ☝🏿 👍🏿 👎🏿</p>
-<h4 id="user" tabindex="-1"><a class="header-anchor" href="#user">user</a></h4>
+<h4 id="t-user" tabindex="-1"><a class="header-anchor" href="#t-user">user</a></h4>
 <p class="fs-xl">👩‍💼 👨‍💼 👩 🧑 👱‍♂️ 👩‍🦳<br>
 👩🏻‍💼 👨🏻‍💼 👩🏻 🧑🏻 👱🏻 👩🏻‍🦳<br>
 👩🏼‍💼 👨🏼‍💼 👩🏼 🧑🏼 👱🏼 👩🏼‍🦳<br>
@@ -1675,7 +1675,7 @@ networks:
 👩🏾‍💼 👨🏾‍💼 👩🏾 🧑🏾 👱🏾‍♂️ 👩🏾‍🦳<br>
 👩🏿‍💼 👨🏿‍💼 👩🏿 🧑🏿 👱🏿‍♂️ 👩🏿‍🦳<br>
 👤 👥</p>
-<h4 id="computer" tabindex="-1"><a class="header-anchor" href="#computer">computer</a></h4>
+<h4 id="t-computer" tabindex="-1"><a class="header-anchor" href="#t-computer">computer</a></h4>
 <p class="fs-xl">🖥️ 💻<br>
 👩‍💻 👨‍💻 🧑‍💻<br>
 👩🏻‍💻 👨🏻‍💻 🧑🏻‍💻<br>
@@ -1683,9 +1683,9 @@ networks:
 👩🏽‍💻 👨🏽‍💻 🧑🏽‍💻<br>
 👩🏾‍💻 👨🏾‍💻 🧑🏾‍💻<br>
 👩🏿‍💻 👨🏿‍💻 🧑🏿‍💻</p>
-<h4 id="phone" tabindex="-1"><a class="header-anchor" href="#phone">phone</a></h4>
+<h4 id="t-phone" tabindex="-1"><a class="header-anchor" href="#t-phone">phone</a></h4>
 <p class="fs-xl">📱 📲 📞 ☎️ </p>
-<h4 id="symbols" tabindex="-1"><a class="header-anchor" href="#symbols">symbols</a></h4>
+<h4 id="t-symbols" tabindex="-1"><a class="header-anchor" href="#t-symbols">symbols</a></h4>
 <p class="fs-xl">❌ ⭕️ 🛑 ⛔️ 📛 💯 💢 ♨️<br>
 ⚠️ ☢️ ☣️<br>
 ❗️ ❕ ❓ ❔ ‼️ ⁉️<br>
@@ -1694,66 +1694,66 @@ networks:
 🔀 🔁 🔂 🔃 🔄<br>
 ⏩ ⏪ ⏫ ⏬<br>
 🔼 🔽 </p>
-<h4 id="checkmarks" tabindex="-1"><a class="header-anchor" href="#checkmarks">checkmarks</a></h4>
+<h4 id="t-checkmarks" tabindex="-1"><a class="header-anchor" href="#t-checkmarks">checkmarks</a></h4>
 <p class="fs-xl">✔️ ✅ ☑️ </p>
-<h4 id="speach--bubbles" tabindex="-1"><a class="header-anchor" href="#speach--bubbles">speach &amp; bubbles</a></h4>
+<h4 id="t-speach--bubbles" tabindex="-1"><a class="header-anchor" href="#t-speach--bubbles">speach &amp; bubbles</a></h4>
 <p class="fs-xl">📣 📢 💬 🗨️ 💭 🗯️ 👁‍🗨 👁️ </p>
-<h4 id="primitives" tabindex="-1"><a class="header-anchor" href="#primitives">primitives</a></h4>
+<h4 id="t-primitives" tabindex="-1"><a class="header-anchor" href="#t-primitives">primitives</a></h4>
 <p class="fs-xl">🔘 🔴 🟠 🟡 🟢 🔵 🟣 ⚫️ ⚪️ 🟤<br>
 🟥 🟧 🟨 🟩 🟦 🟪 ⬛️ ⬜️ 🟫<br>
 🔺 🔻<br>
 🔸 🔹 🔶 🔷<br>
 🔳 🔲 ▪️ ▫️ ◾️ ◽️ ◼️ ◻️</p>
-<h4 id="traffic" tabindex="-1"><a class="header-anchor" href="#traffic">traffic</a></h4>
+<h4 id="t-traffic" tabindex="-1"><a class="header-anchor" href="#t-traffic">traffic</a></h4>
 <p class="fs-xl">🚧 🚦 🚥 </p>
-<h4 id="time--navigation" tabindex="-1"><a class="header-anchor" href="#time--navigation">time &amp; navigation</a></h4>
+<h4 id="t-time--navigation" tabindex="-1"><a class="header-anchor" href="#t-time--navigation">time &amp; navigation</a></h4>
 <p class="fs-xl">🧭 ⏱ ⏲ ⌛️ ⏳ </p>
-<h4 id="electricity" tabindex="-1"><a class="header-anchor" href="#electricity">electricity</a></h4>
+<h4 id="t-electricity" tabindex="-1"><a class="header-anchor" href="#t-electricity">electricity</a></h4>
 <p class="fs-xl">🔋 🔌 </p>
-<h4 id="mechanics" tabindex="-1"><a class="header-anchor" href="#mechanics">mechanics</a></h4>
+<h4 id="t-mechanics" tabindex="-1"><a class="header-anchor" href="#t-mechanics">mechanics</a></h4>
 <p class="fs-xl">🧰 🔧 🔨 🛠️ ⚙️ 🧲 🗜️ </p>
-<h4 id="weapon" tabindex="-1"><a class="header-anchor" href="#weapon">weapon</a></h4>
+<h4 id="t-weapon" tabindex="-1"><a class="header-anchor" href="#t-weapon">weapon</a></h4>
 <p class="fs-xl">🔫 💣 🧨 </p>
-<h4 id="test" tabindex="-1"><a class="header-anchor" href="#test">test</a></h4>
+<h4 id="t-test" tabindex="-1"><a class="header-anchor" href="#t-test">test</a></h4>
 <p class="fs-xl">💊 🩸 🧬 🧫 🧪 ⚗️ 🌡️ </p>
-<h4 id="security" tabindex="-1"><a class="header-anchor" href="#security">security</a></h4>
+<h4 id="t-security" tabindex="-1"><a class="header-anchor" href="#t-security">security</a></h4>
 <p class="fs-xl">🔑 🗝️ 🔏 🔐 🔒 🔓 </p>
-<h4 id="search" tabindex="-1"><a class="header-anchor" href="#search">search</a></h4>
+<h4 id="t-search" tabindex="-1"><a class="header-anchor" href="#t-search">search</a></h4>
 <p class="fs-xl">🔍 🔎</p>
-<h4 id="office" tabindex="-1"><a class="header-anchor" href="#office">office</a></h4>
+<h4 id="t-office" tabindex="-1"><a class="header-anchor" href="#t-office">office</a></h4>
 <p class="fs-xl">🗑 🗃️ 📋 📥 📤 📦 </p>
-<h4 id="mail" tabindex="-1"><a class="header-anchor" href="#mail">mail</a></h4>
+<h4 id="t-mail" tabindex="-1"><a class="header-anchor" href="#t-mail">mail</a></h4>
 <p class="fs-xl">🧧 ✉️ 📩 📨 📧
 📪 📫 📬 📭 📮 📯</p>
-<h4 id="tag" tabindex="-1"><a class="header-anchor" href="#tag">tag</a></h4>
+<h4 id="t-tag" tabindex="-1"><a class="header-anchor" href="#t-tag">tag</a></h4>
 <p class="fs-xl">🔖🏷️</p>
-<h4 id="books" tabindex="-1"><a class="header-anchor" href="#books">books</a></h4>
+<h4 id="t-books" tabindex="-1"><a class="header-anchor" href="#t-books">books</a></h4>
 <p class="fs-xl">📓 📔 📒 📕 📗 📘 📙 📚 📖 🗒️</p>
-<h4 id="edit" tabindex="-1"><a class="header-anchor" href="#edit">edit</a></h4>
+<h4 id="t-edit" tabindex="-1"><a class="header-anchor" href="#t-edit">edit</a></h4>
 <p class="fs-xl">📌 📍 ✂️ ✏️ 🖋️ 🖊️ 🖌️ 🖍️ ✒️</p>
-<h4 id="stars" tabindex="-1"><a class="header-anchor" href="#stars">stars</a></h4>
+<h4 id="t-stars" tabindex="-1"><a class="header-anchor" href="#t-stars">stars</a></h4>
 <p class="fs-xl">💫 ⭐️ 🌟 ✨ ⚡️ ☀️ ☄️ 🌌</p>
-<h4 id="elements" tabindex="-1"><a class="header-anchor" href="#elements">elements</a></h4>
+<h4 id="t-elements" tabindex="-1"><a class="header-anchor" href="#t-elements">elements</a></h4>
 <p class="fs-xl">💥 🔥 🌪 🌈 💧 💦 ❄️</p>
-<h4 id="tickets" tabindex="-1"><a class="header-anchor" href="#tickets">tickets</a></h4>
+<h4 id="t-tickets" tabindex="-1"><a class="header-anchor" href="#t-tickets">tickets</a></h4>
 <p class="fs-xl">🎫 🎟</p>
-<h4 id="image" tabindex="-1"><a class="header-anchor" href="#image">image</a></h4>
+<h4 id="t-image" tabindex="-1"><a class="header-anchor" href="#t-image">image</a></h4>
 <p class="fs-xl">🎨 📷 📸 📹 🎥 📽️ 🎞️ 🎬</p>
-<h4 id="audio" tabindex="-1"><a class="header-anchor" href="#audio">audio</a></h4>
+<h4 id="t-audio" tabindex="-1"><a class="header-anchor" href="#t-audio">audio</a></h4>
 <p class="fs-xl">🎤 🎧 🎼 🎵 🎶 🔈 🔇 🔉 🔊</p>
-<h4 id="light" tabindex="-1"><a class="header-anchor" href="#light">light</a></h4>
+<h4 id="t-light" tabindex="-1"><a class="header-anchor" href="#t-light">light</a></h4>
 <p class="fs-xl">💡 🪔</p>
-<h4 id="globe--earth" tabindex="-1"><a class="header-anchor" href="#globe--earth">globe / earth</a></h4>
+<h4 id="t-globe--earth" tabindex="-1"><a class="header-anchor" href="#t-globe--earth">globe / earth</a></h4>
 <p class="fs-xl">🌐  🗺  🌎 🌍 🌏 </p>
-<h4 id="hearts" tabindex="-1"><a class="header-anchor" href="#hearts">hearts</a></h4>
+<h4 id="t-hearts" tabindex="-1"><a class="header-anchor" href="#t-hearts">hearts</a></h4>
 <p class="fs-xl">❤️ 🧡 💛 💚 💙 💜 🖤 🤍 🤎 💖 💞 💔</p>
-<h4 id="flags" tabindex="-1"><a class="header-anchor" href="#flags">flags</a></h4>
+<h4 id="t-flags" tabindex="-1"><a class="header-anchor" href="#t-flags">flags</a></h4>
 <p class="fs-xl">🏳️ 🏴 🏁 🚩 🏳️‍🌈 🏳️ 🏴‍☠️</p>
-<h4 id="calendar" tabindex="-1"><a class="header-anchor" href="#calendar">calendar</a></h4>
+<h4 id="t-calendar" tabindex="-1"><a class="header-anchor" href="#t-calendar">calendar</a></h4>
 <p class="fs-xl">📅 📆 🗓️</p>
-<h4 id="charts" tabindex="-1"><a class="header-anchor" href="#charts">charts</a></h4>
+<h4 id="t-charts" tabindex="-1"><a class="header-anchor" href="#t-charts">charts</a></h4>
 <p class="fs-xl">📈 📉 📊</p>
-<h4 id="misc" tabindex="-1"><a class="header-anchor" href="#misc">misc</a></h4>
+<h4 id="t-misc" tabindex="-1"><a class="header-anchor" href="#t-misc">misc</a></h4>
 <p class="fs-xl">♻️ 🐳 🩹 🚸 🚨 👔 👽️ 💀 ⚗️ 🐞</p>
 <hr>
 </details>
