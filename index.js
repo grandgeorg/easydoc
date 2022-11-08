@@ -119,7 +119,7 @@ const anchor = require("markdown-it-anchor");
 md.use(anchor, {
   permalink: anchor.permalink.headerLink(),
   slugify: function (s) {
-    return String(s)
+    return String("t-" + s)
       .toLowerCase()
       .replace(/\s+/g, "-")
       .replace(/[^a-z0-9\-]/gi, "");
@@ -162,6 +162,9 @@ fs.readdir(docsDir, (err, files) => {
     let toc = md.render("[[toc]]\n" + fmData.body);
     toc = toc.match(/<div class="table-of-contents">(.|\s)*?<\/div>/g)[0];
     let lang = fmData.attributes.lang ? fmData.attributes.lang : process.env.EASYDOC_LANG_FALLBACK;
+    if (!t[lang]) {
+      lang = process.env.EASYDOC_LANG_FALLBACK;
+    }
     let title = fmData.attributes.title ? fmData.attributes.title : process.env.EASYDOC_TITLE_FALLBACK;
     let disableBrand = fmData.attributes.disableBrand ? Boolean(fmData.attributes.disableBrand) : Boolean(process.env.EASYDOC_DISABLE_BRAND);
     let disableToc = fmData.attributes.disableToc ? Boolean(fmData.attributes.disableToc) : Boolean(process.env.EASYDOC_DISABLE_TOC);
