@@ -8,7 +8,8 @@
       {
         "ignore": [
           "appearance",
-          "scroll-behavior"
+          "scroll-behavior",
+          "scrollbar-color"
         ]
       }
     ]
