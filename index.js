@@ -167,6 +167,7 @@ fs.readdir(docsDir, (err, files) => {
     }
     let title = fmData.attributes.title ? fmData.attributes.title : process.env.EASYDOC_TITLE_FALLBACK;
     let disableBrand = fmData.attributes.disableBrand ? Boolean(fmData.attributes.disableBrand) : Boolean(process.env.EASYDOC_DISABLE_BRAND);
+    let navbarClass = disableBrand ? 'no_brand' : '';
     let disableToc = fmData.attributes.disableToc ? Boolean(fmData.attributes.disableToc) : Boolean(process.env.EASYDOC_DISABLE_TOC);
     let disableSiteNav = fmData.attributes.disableSiteNav ? Boolean(fmData.attributes.disableSiteNav) : Boolean(process.env.EASYDOC_DISABLE_SITE_NAV);
     let disableTagNavigator = fmData.attributes.disableTagNavigator ? Boolean(fmData.attributes.disableTagNavigator) : Boolean(process.env.EASYDOC_DISABLE_TAG_NAVIGATOR);
@@ -233,6 +234,7 @@ fs.readdir(docsDir, (err, files) => {
           ? fmData.attributes.brandSecondary
           : process.env.EASYDOC_BRAND_SECONDARY,
         disableBrand: disableBrand,
+        navbarClass: navbarClass,
         disableToc: disableToc,
         disableSiteNav: disableSiteNav,
         disableTagNavigator: disableTagNavigator,

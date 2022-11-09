@@ -14,7 +14,7 @@ html(lang=attributes.lang)
     script(src="meta.js")
   body
     if !attributes.disableNavigationBar
-      .navbar
+      .navbar(class=attributes.navbarClass)
         if !attributes.disableBrand
           a.navbar__brand(href=attributes.brandURL)
             if attributes.brandName

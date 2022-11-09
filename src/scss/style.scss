@@ -325,6 +325,9 @@ a code {
   background-color: var(--clr-base-d600);
   border-bottom: 1px solid var(--clr-base-d400);
   line-height: 1;
+  &.no_brand {
+    justify-content: end;
+  }
   .navbar__brand {
     display: block;
     margin-right: 0.75rem;
