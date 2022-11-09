@@ -117,13 +117,9 @@
       state.nav.ps.subscribe(toggleNavigation());
 
       const elTocLinks = document.querySelectorAll(".toc a");
-      const elTargets = [];
-
-
       elTocLinks.forEach(function (elTocLink) {
         const elTarget = document.querySelector(elTocLink.getAttribute("href"));
         if (elTarget) {
-          elTargets.push(elTarget);
           elTocLink.addEventListener("click", function (event) {
             event.preventDefault();
             elTarget.scrollIntoView({
@@ -134,26 +130,44 @@
               toggleBurger(event);
             }
           });
-          // for intersection observer see:
-          // https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API)
-          // https://codepen.io/saas/pen/LYENgqq
-          const observer = new IntersectionObserver(function (entries) {
-              entries.forEach(function (entry) {
-                // if (entry.isIntersecting) {
-                if (entry.intersectionRatio > 0) {
-                  elTocLink.classList.add("intersecting");
-                } else {
-                  elTocLink.classList.remove("intersecting");
-                }
-              });
-            }, {
-              // root: elContainer,
-              rootMargin: "-42px 0px 0px 0px",
-              // threshold: 0.5,
-            }
-          );
-          observer.observe(elTarget);
         }
+      });
+
+      function addIntersectingClasses () {
+        const topOffset = 42;
+        const intersectingAfter = {
+          hasIntersecting: false,
+          tocLink: null,
+        };
+
+        function addIntersectiongAfterClass () {
+          if (!intersectingAfter.hasIntersecting && intersectingAfter.tocLink) {
+            intersectingAfter.tocLink.classList.add("intersecting");
+          }
+        }
+
+        elTocLinks.forEach(function (elTocLink) {
+          const elTarget = document.querySelector(elTocLink.getAttribute("href"));
+          if (elTarget) {
+              const rect = elTarget.getBoundingClientRect();
+              if (rect.top > topOffset && rect.top < window.innerHeight && rect.bottom > topOffset && rect.bottom < window.innerHeight) {
+                elTocLink.classList.add("intersecting");
+                intersectingAfter.hasIntersecting = true;
+                intersectingAfter.tocLink = null;
+              } else {
+                elTocLink.classList.remove("intersecting");
+                if (rect.top < topOffset && rect.bottom < topOffset && !intersectingAfter.hasIntersecting) {
+                  intersectingAfter.tocLink = elTocLink;
+                }
+              }
+          }
+        });
+        addIntersectiongAfterClass();
+      }
+
+      addIntersectingClasses();
+      document.addEventListener('scroll', (e) => {
+        addIntersectingClasses();
       });
 
       document.addEventListener(

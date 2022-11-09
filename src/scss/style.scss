@@ -487,6 +487,9 @@ body a.navbar__brand[href]:not([tabindex^="-"]):focus {
         &.intersecting {
           border-color: var(--clr-base-mark-active);
         }
+        &.intersecting-after {
+          border-color: var(--clr-base-mark-active);
+        }
       }
       a:focus {
         outline: none;
@@ -511,7 +514,8 @@ body a.navbar__brand[href]:not([tabindex^="-"]):focus {
         // background-color: var(--clr-base-d500);
         border-radius: 6px;
         // border: 1px solid var(--clr-base-d300);
-        transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+        // transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+        transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out;
         &:hover,
         &.active:hover {
           color: var(--clr-link);
