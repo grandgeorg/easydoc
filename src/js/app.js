@@ -22,7 +22,8 @@
       // meta: document.scripts
       selectedTags: [],
       tagCloud: {
-        sort: "name", // unused so far
+        filter: "",
+        sortby: "name", // unused so far
         order: "asc", // unused so far
         tags: [],
       },
@@ -464,6 +465,45 @@
       }
     }
 
+    function updateTagCloudState(payload) {
+      state.tagCloud = {
+        ...state.tagCloud,
+        ...payload,
+      }
+      localStorage.setItem("tagCloud", JSON.stringify({
+        filter: state.tagCloud.filter,
+        sortby: state.tagCloud.sortby,
+        order: state.tagCloud.order,
+      }));
+    }
+
+    function setTagCloudStateFromLocalStore() {
+      const tagCloud = JSON.parse(localStorage.getItem("tagCloud"));
+      if (tagCloud) {
+        state.tagCloud = {
+          ...state.tagCloud,
+          ...tagCloud,
+        }
+      }
+    }
+
+    function filterTagCloud(filter) {
+      filter = filter.toLowerCase();
+      const words = filter.split(",");
+      for (let i = 0; i < words.length; i++) {
+        words[i] = words[i].trim();
+      }
+      const filterEvent = new CustomEvent("filterTagcloud", {
+        // bubbles: true,
+        detail: {
+          words: words,
+        },
+      });
+      state.tagCloud.tags.forEach((tag) => {
+        tag.dispatchEvent(filterEvent);
+      });
+    }
+
     // tag navigation
     function registerTagNavigation() {
       const openButton = document.querySelector("#open-tag-navigation");
@@ -483,6 +523,7 @@
           e.stopPropagation();
 
           setSelectedTagsFromLocalStore();
+          setTagCloudStateFromLocalStore();
 
           // modal body content
           const modalBodyContent = document.createElement("div");
@@ -516,15 +557,13 @@
           tagCloudFilterInput.setAttribute("autocorrect", "off");
           tagCloudFilterInput.setAttribute("autocapitalize", "off");
           tagCloudFilterInput.setAttribute("spellcheck", "false");
+          if (state.tagCloud.filter.length > 0) {
+            tagCloudFilterInput.value = state.tagCloud.filter;
+          }
+
           tagCloudFilterInput.addEventListener("input", function (e) {
-            const filter = e.target.value.toLowerCase();
-            const words = filter.split(",");
-            for (let i = 0; i < words.length; i++) {
-              words[i] = words[i].trim();
-            }
-            state.tagCloud.tags.forEach(function (tag) {
-              tag.dispatchEvent(new CustomEvent("filterTagcloud", { detail: { words: words } }));
-            });
+            updateTagCloudState({ filter: e.target.value });
+            filterTagCloud(state.tagCloud.filter);
           });
 
           // append
@@ -553,8 +592,10 @@
           tagCloudSortSelect.innerHTML = `
             <option value="name">name</option>
             <option value="count">count</option>`;
+          tagCloudSortSelect.value = state.tagCloud.sortby;
           tagCloudSortSelect.addEventListener("change", (event) => {
             const sortValue = event.target.value;
+            updateTagCloudState({ sortby: sortValue });
             state.meta.tags.sort(function (a, b) {
               if (sortValue === "name" && tagCloudOrderSelect.value === "asc") {
                 return a.lcname.localeCompare(b.lcname);
@@ -589,8 +630,10 @@
           tagCloudOrderSelect.innerHTML = `
             <option value="asc">ascending</option>
             <option value="desc">descending</option>`;
+          tagCloudOrderSelect.value = state.tagCloud.order;
           tagCloudOrderSelect.addEventListener("change", (event) => {
             const sortOrder = event.target.value;
+            updateTagCloudState({ order: sortOrder });
             state.meta.tags.sort(function (a, b) {
               if (tagCloudSortSelect.value === "name" && sortOrder === "asc") {
                 return a.lcname.localeCompare(b.lcname);
@@ -626,6 +669,17 @@
           tagCloudHeader.appendChild(tagCloudSort);
 
           // tagcloud
+          state.meta.tags.sort(function (a, b) {
+            if (state.tagCloud.sortby === "name" && state.tagCloud.order === "asc") {
+              return a.lcname.localeCompare(b.lcname);
+            } else if (state.tagCloud.sortby === "name" && state.tagCloud.order === "desc") {
+              return b.lcname.localeCompare(a.lcname);
+            } else if (state.tagCloud.sortby === "count" && state.tagCloud.order === "asc") {
+              return a.count - b.count;
+            } else if (state.tagCloud.sortby === "count" && state.tagCloud.order === "desc") {
+              return b.count - a.count;
+            }
+          });
           let tagCloud = getTagcloud();
 
           function getTagcloud() {
@@ -673,16 +727,17 @@
               tagButton.addEventListener(
                 "filterTagcloud",
                 function (e) {
-                  // console.log(e.detail.words);
+                  // console.log("filterTagcloudEvent", e.detail.words);
                   if (e.detail.words.length === 0) {
                     tagButton.classList.remove("hidden");
                   } else {
                     let show = false;
-                    e.detail.words.forEach(function (word) {
+                    for (const word of e.detail.words) {
                       if (tag.lcname.indexOf(word) !== -1) {
                         show = true;
+                        break;
                       }
-                    });
+                    }
                     if (show) {
                       tagButton.classList.remove("hidden");
                     } else {
@@ -696,8 +751,18 @@
               tagCloud.appendChild(tagButton);
             });
 
+            // if (state.tagCloud.tags.length === 0) {
+            //   tagCloud.innerHTML = `<p class="empty">No tags found.</p>`;
+            // }
+
+            if (state.tagCloud.filter.length > 0) {
+              filterTagCloud(state.tagCloud.filter);
+            }
+
             return tagCloud;
           }
+
+          // ----------------------------------------
 
           // tag navigation header
           const tagNavigationHeader = document.createElement("div");
@@ -921,6 +986,8 @@
 
             return tagNavigation;
           }
+
+          // ----------------------------------------
 
           // put it all together
           const tagCloudDetails = document.createElement("details");
