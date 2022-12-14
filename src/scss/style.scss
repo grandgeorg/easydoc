@@ -1363,6 +1363,19 @@ body>.page:first-child {
         color: var(--clr-base-l200);
         line-height: 1;
       }
+      .modal-controls {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        .modal-reset {
+          min-height: 32px;
+          .bi {
+            height: 23px;
+            width: 32px;
+            vertical-align: initial;
+          }
+        }
+      }
       .modal-close {
         margin: 0 0.6rem 0 0;
         padding: 0;
