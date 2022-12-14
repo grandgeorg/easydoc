@@ -358,7 +358,7 @@
       }, 250);
     }
 
-    function addModalDialog(bodyContent, headerContent) {
+    function addModalDialog(bodyContent, headerContent, controls) {
       const dialog = document.createElement("div");
       dialog.setAttribute("class", "modal-dialog");
       dialog.setAttribute("role", "dialog");
@@ -375,6 +375,9 @@
       dialogTitle.setAttribute("id", "modal-title");
       dialogTitle.setAttribute("class", "modal-title");
       dialogTitle.innerHTML = headerContent;
+
+      const controlsContainer = document.createElement("div");
+      controlsContainer.setAttribute("class", "modal-controls");
 
       const close = document.createElement("button");
       close.setAttribute("type", "button");
@@ -424,7 +427,11 @@
 
       // layout
       header.appendChild(dialogTitle);
-      header.appendChild(close);
+      if (controls) {
+        controlsContainer.appendChild(controls);
+      }
+      controlsContainer.appendChild(close);
+      header.appendChild(controlsContainer);
       content.appendChild(header);
       content.appendChild(body);
       dialog.appendChild(content);
@@ -453,9 +460,13 @@
       localStorage.setItem("selectedTags", JSON.stringify(state.selectedTags));
     }
 
-    function updateSelectedTags(tags) {
+    function updateSelectedTags(tags, rm) {
       state.selectedTags = tags;
-      localStorage.setItem("selectedTags", JSON.stringify(state.selectedTags));
+      if (rm === "all") {
+        localStorage.removeItem('selectedTags');
+      } else {
+        localStorage.setItem("selectedTags", JSON.stringify(state.selectedTags));
+      }
     }
 
     function setSelectedTagsFromLocalStore() {
@@ -465,16 +476,25 @@
       }
     }
 
-    function updateTagCloudState(payload) {
+    function updateTagCloudState(payload, rm) {
       state.tagCloud = {
         ...state.tagCloud,
         ...payload,
       }
-      localStorage.setItem("tagCloud", JSON.stringify({
-        filter: state.tagCloud.filter,
-        sortby: state.tagCloud.sortby,
-        order: state.tagCloud.order,
-      }));
+      if (rm === "all") {
+        localStorage.removeItem('tagCloud');
+      } else if (rm === "filter") {
+        localStorage.setItem("tagCloud", JSON.stringify({
+          sortby: state.tagCloud.sortby,
+          order: state.tagCloud.order,
+        }));
+      } else  {
+        localStorage.setItem("tagCloud", JSON.stringify({
+          filter: state.tagCloud.filter,
+          sortby: state.tagCloud.sortby,
+          order: state.tagCloud.order,
+        }));
+      }
     }
 
     function setTagCloudStateFromLocalStore() {
@@ -487,9 +507,9 @@
       }
     }
 
-    function filterTagCloud(filter) {
-      filter = filter.toLowerCase();
-      const words = filter.split(",");
+    function filterTagCloud() {
+      // filter = state.tagCloud.filter.toLowerCase();
+      const words = state.tagCloud.filter.toLowerCase().split(",");
       for (let i = 0; i < words.length; i++) {
         words[i] = words[i].trim();
       }
@@ -563,7 +583,7 @@
 
           tagCloudFilterInput.addEventListener("input", function (e) {
             updateTagCloudState({ filter: e.target.value });
-            filterTagCloud(state.tagCloud.filter);
+            filterTagCloud();
           });
 
           // append
@@ -756,7 +776,7 @@
             // }
 
             if (state.tagCloud.filter.length > 0) {
-              filterTagCloud(state.tagCloud.filter);
+              filterTagCloud();
             }
 
             return tagCloud;
@@ -989,6 +1009,35 @@
 
           // ----------------------------------------
 
+          const modalResetControl = document.createElement("button");
+          modalResetControl.setAttribute("type", "button");
+
+          modalResetControl.setAttribute("class", "modal-reset modal-close");
+          modalResetControl.setAttribute("title", "Reset filter and selected tags");
+          modalResetControl.setAttribute("aria-label", "Reset filter and selected tags");
+          modalResetControl.setAttribute("tabindex", "0");
+          modalResetControl.innerHTML = `
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-clockwise" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/>
+            <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"/>
+          </svg>
+          `;
+          modalResetControl.addEventListener("click", function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            updateSelectedTags([], "all");
+            // remove active class from all tag elements
+            const tagElements = document.querySelectorAll(".tag.active");
+            tagElements.forEach((tagElement) => {
+              tagElement.classList.remove("active");
+            });
+            updateTagNavigation();
+
+            tagCloudFilterInput.value = "";
+            updateTagCloudState({ filter: "" }, "filter");
+            filterTagCloud();
+          });
+
           // put it all together
           const tagCloudDetails = document.createElement("details");
           tagCloudDetails.setAttribute("class", "tag-cloud-details");
@@ -1008,7 +1057,11 @@
           modalBodyContent.appendChild(tagCloudDetails);
           modalBodyContent.appendChild(tagNavigationDetails);
 
-          addModalDialog(modalBodyContent, state.meta.t[document.documentElement.lang].tagNav);
+          addModalDialog(
+            modalBodyContent,
+            state.meta.t[document.documentElement.lang].tagNav,
+            modalResetControl
+          );
           updateTagNavigation();
         });
       }
