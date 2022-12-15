@@ -53,6 +53,16 @@
       });
     }
 
+    function debounce(fn, delay) {
+      let timer = null;
+      return function (...args) {
+        if (timer) { clearTimeout(timer); }
+        timer = setTimeout(() => {
+          return fn(...args);
+        }, delay);
+      };
+    }
+
     function burger() {
       const eventOpen = new Event("open");
       const eventClose = new Event("close");
@@ -488,7 +498,7 @@
           sortby: state.tagCloud.sortby,
           order: state.tagCloud.order,
         }));
-      } else  {
+      } else {
         localStorage.setItem("tagCloud", JSON.stringify({
           filter: state.tagCloud.filter,
           sortby: state.tagCloud.sortby,
@@ -581,10 +591,10 @@
             tagCloudFilterInput.value = state.tagCloud.filter;
           }
 
-          tagCloudFilterInput.addEventListener("input", function (e) {
+          tagCloudFilterInput.addEventListener("input", debounce(function (e) {
             updateTagCloudState({ filter: e.target.value });
             filterTagCloud();
-          });
+          }, 250));
 
           // append
           tagCloudFilter.appendChild(tagCloudFilterLabel);
