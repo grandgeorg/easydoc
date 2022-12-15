@@ -1,5 +1,5 @@
 const easydocMeta = {
-      t: {"en":{"mtime":"Last Update","toc":"Table of Contents","nav":"Navigation","tagNav":"Tag Navigator"},"de":{"mtime":"letzte Aktualisierung","toc":"Inhaltsverzeichnis","nav":"Navigation","tagNav":"Tag Navigator"}},
-      pages: [{"title":"My Title","lang":"en","date":"2022-11-07T15:59:54.935Z","file":"index.html","tags":[]}],
+      t: {"en":{"mtime":"Last Update","toc":"Table of Contents","nav":"Navigation","tagNav":"Tag Navigator","tags":"Tags","pages":"Pages","filter_tags_placeholder":"Filter tags, use comma to separate","sortby":"sort by","name":"name","count":"count","order":"order","ascending":"ascending","descending":"descending","filter_pages_placeholder":"Filter by title and filename, use comma to separate","title":"title","file":"file","reset":"Reset filter and selected tags"},"de":{"mtime":"letzte Aktualisierung","toc":"Inhaltsverzeichnis","nav":"Navigation","tagNav":"Tag Navigator","tags":"Tags","pages":"Seiten","filter_tags_placeholder":"Tags filtern, Kommata verwenden, um sie zu trennen","sortby":"sortieren nach","name":"Name","count":"Anzahl","order":"Reihenfolge","ascending":"aufsteigend","descending":"absteigend","filter_pages_placeholder":"Nach Titel und Dateinamen filtern, Kommata verwenden, um sie zu trennen","title":"Titel","file":"Datei","reset":"Filter und ausgewählte Tags zurücksetzen"}},
+      pages: [{"title":"My Title","lang":"en","date":"2022-11-09T20:28:53.815Z","file":"index.html","tags":[]}],
       tags: []
     };
