@@ -12,6 +12,7 @@
         lastActiveElement: Element | null,
         currentInputIsMouse: false,
         filename: window.location.pathname.substring(window.location.pathname.lastIndexOf('/') + 1),
+        lang: document.documentElement.lang || "en",
       },
       nav: {
         isOpen: false,
@@ -19,13 +20,17 @@
         ignoreClickOutsideClass: ["ignore_click_outside"],
       },
       meta: typeof easydocMeta !== "undefined" ? easydocMeta : false,
-      // meta: document.scripts
       selectedTags: [],
       tagCloud: {
         filter: "",
-        sortby: "name", // unused so far
-        order: "asc", // unused so far
+        sortby: "name",
+        order: "asc",
         tags: [],
+      },
+      tagPages: {
+        filter: "",
+        sortby: "title",
+        order: "asc",
       },
       pageCards: [],
     };
@@ -47,9 +52,9 @@
             listener(msg);
           });
         },
-        purgeListeners: function () {
-          listeners = [];
-        },
+        // purgeListeners: function () {
+        //   listeners = [];
+        // },
       });
     }
 
@@ -396,7 +401,8 @@
       close.setAttribute("aria-label", "Close");
       close.setAttribute("tabindex", "0");
       close.innerHTML = `
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+        fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
           <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
         </svg>`;
 
@@ -518,7 +524,6 @@
     }
 
     function filterTagCloud() {
-      // filter = state.tagCloud.filter.toLowerCase();
       const words = state.tagCloud.filter.toLowerCase().split(",");
       for (let i = 0; i < words.length; i++) {
         words[i] = words[i].trim();
@@ -534,12 +539,57 @@
       });
     }
 
+    function updateTagNavigationState(payload, rm) {
+      state.tagPages = {
+        ...state.tagPages,
+        ...payload,
+      }
+      if (rm === "all") {
+        localStorage.removeItem('tagPages');
+      } else if (rm === "filter") {
+        localStorage.setItem("tagPages", JSON.stringify({
+          sortby: state.tagPages.sortby,
+          order: state.tagPages.order,
+        }));
+      } else {
+        localStorage.setItem("tagPages", JSON.stringify({
+          filter: state.tagPages.filter,
+          sortby: state.tagPages.sortby,
+          order: state.tagPages.order,
+        }));
+      }
+    }
+
+    function setTagNavigationStateFromLocalStore() {
+      const tagPages = JSON.parse(localStorage.getItem("tagPages"));
+      if (tagPages) {
+        state.tagPages = {
+          ...state.tagPages,
+          ...tagPages,
+        }
+      }
+    }
+
+    function filterTagNavigation() {
+      const words = state.tagPages.filter.toLowerCase().split(",");
+      for (let i = 0; i < words.length; i++) {
+        words[i] = words[i].trim();
+      }
+      const filterEvent = new CustomEvent("filterPageCards", {
+        detail: {
+          words: words,
+        },
+      });
+      state.pageCards.forEach((pageCard) => {
+        pageCard.dispatchEvent(filterEvent);
+      });
+    }
+
     // tag navigation
     function registerTagNavigation() {
       const openButton = document.querySelector("#open-tag-navigation");
       if (openButton) {
         if (!state.meta) {
-          // alert("No meta data found");
           // remove openButton - silently
           openButton.remove();
           return;
@@ -547,6 +597,40 @@
         state.tagNavigation = {
           openButton: openButton,
         };
+
+        const icons = {
+          tag: `
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-tag" viewBox="0 0 16 16">
+              <path d="M6 4.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm-1 0a.5.5 0 1 0-1 0 .5.5 0 0 0 1 0z"/>
+              <path d="M2 1h4.586a1 1 0 0 1 .707.293l7 7a1 1 0 0 1 0 1.414l-4.586 4.586a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 1 6.586V2a1 1 0 0 1 1-1zm0 5.586 7 7L13.586 9l-7-7H2v4.586z"/>
+            </svg>`,
+          tagCurrent: `
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check2-circle" viewBox="0 0 16 16">
+              <path d="M2.5 8a5.5 5.5 0 0 1 8.25-4.764.5.5 0 0 0 .5-.866A6.5 6.5 0 1 0 14.5 8a.5.5 0 0 0-1 0 5.5 5.5 0 1 1-11 0z"/>
+              <path d="M15.354 3.354a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l7-7z"/>
+            </svg>`,
+          filter: `
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-filter-circle" viewBox="0 0 16 16">
+              <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+              <path d="M7 11.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5z"/>
+            </svg>`,
+          sortby: `
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-card-list" viewBox="0 0 16 16">
+              <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h13zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z"/>
+              <path d="M5 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 5 8zm0-2.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm0 5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-1-5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zM4 8a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zm0 2.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0z"/>
+            </svg>`,
+          order: `
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-sort-alpha-down" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M10.082 5.629 9.664 7H8.598l1.789-5.332h1.234L13.402 7h-1.12l-.419-1.371h-1.781zm1.57-.785L11 2.687h-.047l-.652 2.157h1.351z"/>
+              <path d="M12.96 14H9.028v-.691l2.579-3.72v-.054H9.098v-.867h3.785v.691l-2.567 3.72v.054h2.645V14zM4.5 2.5a.5.5 0 0 0-1 0v9.793l-1.146-1.147a.5.5 0 0 0-.708.708l2 1.999.007.007a.497.497 0 0 0 .7-.006l2-2a.5.5 0 0 0-.707-.708L4.5 12.293V2.5z"/>
+            </svg>`,
+          reset: `
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-clockwise" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/>
+              <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"/>
+            </svg>`,
+        };
+
         openButton.addEventListener("click", function (e) {
 
           e.preventDefault();
@@ -554,6 +638,7 @@
 
           setSelectedTagsFromLocalStore();
           setTagCloudStateFromLocalStore();
+          setTagNavigationStateFromLocalStore();
 
           // modal body content
           const modalBodyContent = document.createElement("div");
@@ -571,18 +656,14 @@
           const tagCloudFilterLabel = document.createElement("label");
           tagCloudFilterLabel.setAttribute("for", "tag-cloud-filter-input");
           tagCloudFilterLabel.setAttribute("class", "filter-label");
-          tagCloudFilterLabel.innerHTML = `
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-filter-circle" viewBox="0 0 16 16">
-              <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-              <path d="M7 11.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5z"/>
-            </svg>`;
+          tagCloudFilterLabel.innerHTML = icons.filter;
 
           // tagcloud filter input
           const tagCloudFilterInput = document.createElement("input");
           tagCloudFilterInput.setAttribute("type", "text");
           tagCloudFilterInput.setAttribute("id", "tag-cloud-filter-input");
           tagCloudFilterInput.setAttribute("class", "filter-input");
-          tagCloudFilterInput.setAttribute("placeholder", "Filter tags, use comma to separate");
+          tagCloudFilterInput.setAttribute("placeholder", state.meta.t[state.global.lang].filter_tags_placeholder);
           tagCloudFilterInput.setAttribute("autocomplete", "off");
           tagCloudFilterInput.setAttribute("autocorrect", "off");
           tagCloudFilterInput.setAttribute("autocapitalize", "off");
@@ -609,19 +690,15 @@
           const tagCloudSortLabel = document.createElement("label");
           tagCloudSortLabel.setAttribute("for", "tag-cloud-sort-select");
           tagCloudSortLabel.setAttribute("class", "sort-label");
-          tagCloudSortLabel.innerHTML = `
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-card-list" viewBox="0 0 16 16">
-              <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h13zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z"/>
-              <path d="M5 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 5 8zm0-2.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm0 5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-1-5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zM4 8a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zm0 2.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0z"/>
-            </svg><span class="description">sort by</span>`;
+          tagCloudSortLabel.innerHTML = `${icons.sortby}<span class="description">${state.meta.t[state.global.lang].sortby}</span>`;
 
           // tagcloud sort select
           const tagCloudSortSelect = document.createElement("select");
           tagCloudSortSelect.setAttribute("id", "tag-cloud-sort-select");
           tagCloudSortSelect.setAttribute("class", "sort-select");
           tagCloudSortSelect.innerHTML = `
-            <option value="name">name</option>
-            <option value="count">count</option>`;
+            <option value="name">${state.meta.t[state.global.lang].name}</option>
+            <option value="count">${state.meta.t[state.global.lang].count}</option>`;
           tagCloudSortSelect.value = state.tagCloud.sortby;
           tagCloudSortSelect.addEventListener("change", (event) => {
             const sortValue = event.target.value;
@@ -648,18 +725,18 @@
           tagCloudOrderLabel.setAttribute("for", "tag-cloud-sort-order");
           tagCloudOrderLabel.setAttribute("class", "order-label");
           tagCloudOrderLabel.innerHTML = `
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-sort-alpha-down" viewBox="0 0 16 16">
-              <path fill-rule="evenodd" d="M10.082 5.629 9.664 7H8.598l1.789-5.332h1.234L13.402 7h-1.12l-.419-1.371h-1.781zm1.57-.785L11 2.687h-.047l-.652 2.157h1.351z"/>
-              <path d="M12.96 14H9.028v-.691l2.579-3.72v-.054H9.098v-.867h3.785v.691l-2.567 3.72v.054h2.645V14zM4.5 2.5a.5.5 0 0 0-1 0v9.793l-1.146-1.147a.5.5 0 0 0-.708.708l2 1.999.007.007a.497.497 0 0 0 .7-.006l2-2a.5.5 0 0 0-.707-.708L4.5 12.293V2.5z"/>
-            </svg><span class="description">order</span>`;
+            ${icons.order}
+            <span class="description">
+              ${state.meta.t[state.global.lang].order}
+            </span>`;
 
           // tagcloud order select OrderSelect
           const tagCloudOrderSelect = document.createElement("select");
           tagCloudOrderSelect.setAttribute("id", "tag-cloud-sort-order");
           tagCloudOrderSelect.setAttribute("class", "order-select");
           tagCloudOrderSelect.innerHTML = `
-            <option value="asc">ascending</option>
-            <option value="desc">descending</option>`;
+            <option value="asc">${state.meta.t[state.global.lang].ascending}</option>
+            <option value="desc">${state.meta.t[state.global.lang].descending}</option>`;
           tagCloudOrderSelect.value = state.tagCloud.order;
           tagCloudOrderSelect.addEventListener("change", (event) => {
             const sortOrder = event.target.value;
@@ -723,17 +800,14 @@
               if (tag.files.includes(state.global.filename)) {
                 tagButton.setAttribute("class", "tag current");
                 tagButton.innerHTML = `
-                  <span class="current">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check2-circle" viewBox="0 0 16 16">
-                      <path d="M2.5 8a5.5 5.5 0 0 1 8.25-4.764.5.5 0 0 0 .5-.866A6.5 6.5 0 1 0 14.5 8a.5.5 0 0 0-1 0 5.5 5.5 0 1 1-11 0z"/>
-                      <path d="M15.354 3.354a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l7-7z"/>
-                    </svg>
-                  </span>
+                  <span class="current">${icons.tagCurrent}</span>
                   <span class="tag-name">${tag.name}</span>
                   <span class="tag-count">${tag.count}</span>`;
               } else {
                 tagButton.setAttribute("class", "tag");
-                tagButton.innerHTML = `<span class="tag-name">${tag.name}</span><span class="tag-count">${tag.count}</span>`;
+                tagButton.innerHTML = `
+                  <span class="tag-name">${tag.name}</span>
+                  <span class="tag-count">${tag.count}</span>`;
               }
 
               if (state.selectedTags.includes(tag.lcname)) {
@@ -806,32 +880,26 @@
           const pageFilterLabel = document.createElement("label");
           pageFilterLabel.setAttribute("for", "page-filter-input");
           pageFilterLabel.setAttribute("class", "filter-label");
-          pageFilterLabel.innerHTML = `
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-filter-circle" viewBox="0 0 16 16">
-              <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-              <path d="M7 11.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5z"/>
-            </svg>`;
+          pageFilterLabel.innerHTML = icons.filter;
 
           // page filter input
           const pageFilterInput = document.createElement("input");
           pageFilterInput.setAttribute("type", "text");
           pageFilterInput.setAttribute("id", "page-filter-input");
           pageFilterInput.setAttribute("class", "filter-input");
-          pageFilterInput.setAttribute("placeholder", "Filter by title and filename, use comma to separate");
+          pageFilterInput.setAttribute("placeholder", state.meta.t[state.global.lang].filter_pages_placeholder);
           pageFilterInput.setAttribute("autocomplete", "off");
           pageFilterInput.setAttribute("autocorrect", "off");
           pageFilterInput.setAttribute("autocapitalize", "off");
           pageFilterInput.setAttribute("spellcheck", "false");
-          pageFilterInput.addEventListener("input", function (e) {
-            const filter = e.target.value.toLowerCase();
-            const words = filter.split(",");
-            for (let i = 0; i < words.length; i++) {
-              words[i] = words[i].trim();
-            }
-            state.pageCards.forEach(function (pageCard) {
-              pageCard.dispatchEvent(new CustomEvent("filterPageCards", { detail: { words: words } }));
-            });
-          });
+          // console.log(state);
+          if (state.tagPages.filter.length > 0) {
+            pageFilterInput.value = state.tagPages.filter;
+          }
+          pageFilterInput.addEventListener("input", debounce(function (e) {
+            updateTagNavigationState({ filter: e.target.value });
+            filterTagNavigation();
+          }, 250));
 
           // append
           pageFilter.appendChild(pageFilterLabel);
@@ -847,20 +915,22 @@
           tagNavigationSortLabel.setAttribute("for", "tag-navigation-sort-select");
           tagNavigationSortLabel.setAttribute("class", "sort-label");
           tagNavigationSortLabel.innerHTML = `
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-card-list" viewBox="0 0 16 16">
-            <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h13zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z"/>
-            <path d="M5 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 5 8zm0-2.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm0 5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-1-5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zM4 8a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zm0 2.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0z"/>
-          </svg><span class="description">sort by</span>`;
+            ${icons.sortby}
+            <span class="description">
+              ${state.meta.t[state.global.lang].sortby}
+            </span>`;
 
           // tag navigation sort select
           const tagNavigationSortSelect = document.createElement("select");
           tagNavigationSortSelect.setAttribute("id", "tag-navigation-sort-select");
           tagNavigationSortSelect.setAttribute("class", "sort-select");
           tagNavigationSortSelect.innerHTML = `
-            <option value="title">title</option>
-            <option value="file">file</option>`;
-            tagNavigationSortSelect.addEventListener("change", (event) => {
+            <option value="title">${state.meta.t[state.global.lang].title}</option>
+            <option value="file">${state.meta.t[state.global.lang].file}</option>`;
+          tagNavigationSortSelect.value = state.tagPages.sortby;
+          tagNavigationSortSelect.addEventListener("change", (event) => {
             const sortValue = event.target.value;
+            updateTagNavigationState({ sortby: sortValue });
             state.meta.pages.sort(function (a, b) {
               if (sortValue === "title" && tagNavigationOrderSelect.value === "asc") {
                 return a.title.localeCompare(b.title);
@@ -876,6 +946,7 @@
             tagNavigationDetails.removeChild(tagNavigation);
             tagNavigation = getTagNavigation();
             tagNavigationDetails.appendChild(tagNavigation);
+            updateTagNavigation();
           });
 
           // tag navigation order label
@@ -883,20 +954,22 @@
           tagNavigationOrderLabel.setAttribute("for", "tag-navigation-order-select");
           tagNavigationOrderLabel.setAttribute("class", "order-label");
           tagNavigationOrderLabel.innerHTML = `
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-sort-alpha-down" viewBox="0 0 16 16">
-            <path fill-rule="evenodd" d="M10.082 5.629 9.664 7H8.598l1.789-5.332h1.234L13.402 7h-1.12l-.419-1.371h-1.781zm1.57-.785L11 2.687h-.047l-.652 2.157h1.351z"/>
-            <path d="M12.96 14H9.028v-.691l2.579-3.72v-.054H9.098v-.867h3.785v.691l-2.567 3.72v.054h2.645V14zM4.5 2.5a.5.5 0 0 0-1 0v9.793l-1.146-1.147a.5.5 0 0 0-.708.708l2 1.999.007.007a.497.497 0 0 0 .7-.006l2-2a.5.5 0 0 0-.707-.708L4.5 12.293V2.5z"/>
-          </svg><span class="description">order</span>`;
+            ${icons.order}
+            <span class="description">
+              ${state.meta.t[state.global.lang].order}
+            </span>`;
 
           // tag navigation order select
           const tagNavigationOrderSelect = document.createElement("select");
           tagNavigationOrderSelect.setAttribute("id", "tag-navigation-order-select");
           tagNavigationOrderSelect.setAttribute("class", "order-select");
           tagNavigationOrderSelect.innerHTML = `
-            <option value="asc">asc</option>
-            <option value="desc">desc</option>`;
+            <option value="asc">${state.meta.t[state.global.lang].ascending}</option>
+            <option value="desc">${state.meta.t[state.global.lang].descending}</option>`;
+          tagNavigationOrderSelect.value = state.tagPages.order;
           tagNavigationOrderSelect.addEventListener("change", (event) => {
             const orderValue = event.target.value;
+            updateTagNavigationState({ order: orderValue });
             state.meta.pages.sort(function (a, b) {
               if (tagNavigationSortSelect.value === "title" && orderValue === "asc") {
                 return a.title.localeCompare(b.title);
@@ -912,6 +985,7 @@
             tagNavigationDetails.removeChild(tagNavigation);
             tagNavigation = getTagNavigation();
             tagNavigationDetails.appendChild(tagNavigation);
+            updateTagNavigation();
           });
 
           // tag navigation sort container
@@ -932,6 +1006,17 @@
           tagNavigationHeader.appendChild(tagNavigationSort);
 
           // page cards navigation a.k.a. tag navigation
+          state.meta.pages.sort(function (a, b) {
+            if (state.tagPages.sortby === "title" && state.tagPages.order === "asc") {
+              return a.title.localeCompare(b.title);
+            } else if (state.tagPages.sortby === "title" && state.tagPages.order === "desc") {
+              return b.title.localeCompare(a.title);
+            } else if (state.tagPages.sortby === "file" && state.tagPages.order === "asc") {
+              return a.file.localeCompare(b.file);
+            } else if (state.tagPages.sortby === "file" && state.tagPages.order === "desc") {
+              return b.file.localeCompare(a.file);
+            }
+          });
           let tagNavigation = getTagNavigation();
 
           function getTagNavigation() {
@@ -959,7 +1044,10 @@
                   } else {
                     let show = false;
                     e.detail.words.forEach(function (word) {
-                      if (page.title.toLowerCase().indexOf(word) !== -1 || page.file.toLowerCase().indexOf(word) !== -1) {
+                      if (
+                        page.title.toLowerCase().indexOf(word) !== -1 ||
+                        page.file.toLowerCase().indexOf(word) !== -1
+                      ) {
                         show = true;
                       }
                     });
@@ -985,12 +1073,7 @@
                   if (state.selectedTags.includes(lcTag)) {
                     tagElement.classList.add("active");
                   }
-                  tagElement.innerHTML =
-                    `
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-tag" viewBox="0 0 16 16">
-                      <path d="M6 4.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm-1 0a.5.5 0 1 0-1 0 .5.5 0 0 0 1 0z"/>
-                      <path d="M2 1h4.586a1 1 0 0 1 .707.293l7 7a1 1 0 0 1 0 1.414l-4.586 4.586a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 1 6.586V2a1 1 0 0 1 1-1zm0 5.586 7 7L13.586 9l-7-7H2v4.586z"/>
-                    </svg>` + tag;
+                  tagElement.innerHTML = icons.sortby + tag;
                   tagElement.addEventListener("click", function (e) {
                     e.preventDefault();
                     e.stopPropagation();
@@ -1004,7 +1087,6 @@
                       updateSelectedTags(state.selectedTags.filter((item) => item !== lcTag));
                     }
                     updateTagNavigation();
-                    // updateTagFilter();
                   });
                   tags.appendChild(tagElement);
                 });
@@ -1013,6 +1095,11 @@
               state.pageCards.push(pageCard);
               tagNavigation.appendChild(pageCard);
             });
+
+            if (state.tagPages.filter.length > 0) {
+              // console.log("filtering tag navigation");
+              filterTagNavigation();
+            }
 
             return tagNavigation;
           }
@@ -1023,15 +1110,10 @@
           modalResetControl.setAttribute("type", "button");
 
           modalResetControl.setAttribute("class", "modal-reset modal-close");
-          modalResetControl.setAttribute("title", "Reset filter and selected tags");
-          modalResetControl.setAttribute("aria-label", "Reset filter and selected tags");
+          modalResetControl.setAttribute("title", state.meta.t[state.global.lang].reset);
+          modalResetControl.setAttribute("aria-label", state.meta.t[state.global.lang].reset);
           modalResetControl.setAttribute("tabindex", "0");
-          modalResetControl.innerHTML = `
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-clockwise" viewBox="0 0 16 16">
-            <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/>
-            <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"/>
-          </svg>
-          `;
+          modalResetControl.innerHTML = icons.reset;
           modalResetControl.addEventListener("click", function (e) {
             e.preventDefault();
             e.stopPropagation();
@@ -1041,6 +1123,9 @@
             tagElements.forEach((tagElement) => {
               tagElement.classList.remove("active");
             });
+            pageFilterInput.value = "";
+            updateTagNavigationState({ filter: "" }, "filter");
+            filterTagNavigation();
             updateTagNavigation();
 
             tagCloudFilterInput.value = "";
@@ -1052,7 +1137,7 @@
           const tagCloudDetails = document.createElement("details");
           tagCloudDetails.setAttribute("class", "tag-cloud-details");
           tagCloudDetails.setAttribute("open", "open");
-          tagCloudDetails.innerHTML = `<summary>Tags</summary>`;
+          tagCloudDetails.innerHTML = `<summary>${state.meta.t[state.global.lang].tags}</summary>`;
 
           tagCloudDetails.appendChild(tagCloudHeader);
           tagCloudDetails.appendChild(tagCloud);
@@ -1060,7 +1145,7 @@
           const tagNavigationDetails = document.createElement("details");
           tagNavigationDetails.setAttribute("class", "tag-navigation-details");
           tagNavigationDetails.setAttribute("open", "open");
-          tagNavigationDetails.innerHTML = `<summary>Pages</summary>`;
+          tagNavigationDetails.innerHTML = `<summary>${state.meta.t[state.global.lang].pages}</summary>`;
           tagNavigationDetails.appendChild(tagNavigationHeader);
           tagNavigationDetails.appendChild(tagNavigation);
 
@@ -1069,7 +1154,7 @@
 
           addModalDialog(
             modalBodyContent,
-            state.meta.t[document.documentElement.lang].tagNav,
+            state.meta.t[state.global.lang].tagNav,
             modalResetControl
           );
           updateTagNavigation();
@@ -1078,6 +1163,7 @@
     }
 
     function updateTagNavigation() {
+      // console.log('updateTagNavigation');
       // console.log(state.selectedTags);
       state.meta.pages.forEach((page) => {
         const pageCard = document.getElementById("page-" + page.file);
@@ -1138,7 +1224,7 @@
           window.location.hash = href;
           const element = document.querySelector(href);
           const details = element.closest("details");
-          console.log(href);
+          // console.log(href);
           if (element && details) {
             details.setAttribute("open", "open");
             details.scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" });
