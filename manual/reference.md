@@ -346,14 +346,14 @@ Autoconverted link https://grandgeorg.de
 
 :::details Images
 ##### Fullsize {.text-center}
-![Random Image](https://source.unsplash.com/1920x1080/?cityscape,landscape,nature/__random__)
+![Test blue and transparent](img/test-blue-1920x1080.png)
 ##### Small with title {.text-center}
-![Random Image small](https://source.unsplash.com/320x180/?cityscape,landscape,nature/__random__ "Random Image small")
+![Test green and transparent](img/test-green-320x180.png "Test Image small")
 ```markdown
-##### Fullsize  {.text-center}
-![Random Image](https://source.unsplash.com/1920x1080/?cityscape,landscape,nature/__random__)
+##### Fullsize {.text-center}
+![Test blue and transparent](img/test-blue-1920x1080.png)
 ##### Small with title {.text-center}
-![Random Image small](https://source.unsplash.com/320x180/?cityscape,landscape,nature/__random__ "Random Image small")
+![Test green and transparent](img/test-green-320x180.png "Test Image small")
 ```
 :::
 

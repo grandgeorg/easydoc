@@ -65,7 +65,16 @@ tocIncludeLevel: [1, 2, 3]
 
 ## Install
 
-Download [latest release](https://git.grandgeorg.de/Viktor/easydoc/releases) and unpack it.
+Download [latest release](https://git.grandgeorg.de/Viktor/easydoc/releases) and unpack it or clone with git:
+
+```bash
+# clone via https:
+git clone https://git.grandgeorg.de/Viktor/easydoc.git
+# or clone via SSH (if you have a key):
+git clone git@git.grandgeorg.de:Viktor/easydoc.git
+```
+
+Change into `easydoc` directory and run install:
 
 ```bash
 cd ./easydoc/
