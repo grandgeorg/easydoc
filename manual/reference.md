@@ -642,12 +642,12 @@ EasyDoc uses [Prism](https://prismjs.com/) to highlight syntax in code blocks.
 
 #### Plugins
 
-+ ✅ [Line Numbers](#line-numbers)
-+ ✅ [Line Highlight](#line-highlight)
-+ ✅ [Commad Line](#commad-line)
-+ ✅ [Show Language](#show-language)
-+ ✅ [Toolbar](#toolbar)
-+ ✅ [Copy to Clipboard Button](#copy-to-clipboard-button)
++ ✅ [Line Numbers](#t-line-numbers)
++ ✅ [Line Highlight](#t-line-highlight--linkable-line-numbers)
++ ✅ [Commad Line](#t-commad-line)
++ ✅ [Show Language](#t-show-language)
++ ✅ [Toolbar](#t-toolbar)
++ ✅ [Copy to Clipboard Button](#t-copy-to-clipboard-button)
 
 {style="column-width:25ch;column-gap:1em;list-style-type:none;padding-left:0;"}
 
