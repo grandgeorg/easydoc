@@ -33,6 +33,7 @@
         order: "asc",
       },
       pageCards: [],
+      easydocCookieConsent: localStorage.getItem("easydocCookieConsent") || false,
     };
 
     const elMenuToggle = document.querySelector(".burger");
@@ -378,7 +379,7 @@
       dialog.setAttribute("class", "modal-dialog");
       dialog.setAttribute("role", "dialog");
       dialog.setAttribute("aria-modal", "true");
-      dialog.setAttribute("aria-labelledby", "modal-title");
+      dialog.setAttribute("aria-labelledby", "modal");
 
       const content = document.createElement("div");
       content.setAttribute("class", "modal-content");
@@ -636,6 +637,8 @@
           e.preventDefault();
           e.stopPropagation();
 
+          state.easydocCookieConsent = localStorage.getItem("easydocCookieConsent") || false;
+
           setSelectedTagsFromLocalStore();
           setTagCloudStateFromLocalStore();
           setTagNavigationStateFromLocalStore();
@@ -855,9 +858,9 @@
               tagCloud.appendChild(tagButton);
             });
 
-            // if (state.tagCloud.tags.length === 0) {
-            //   tagCloud.innerHTML = `<p class="empty">No tags found.</p>`;
-            // }
+            if (state.tagCloud.tags.length === 0) {
+              tagCloud.innerHTML = `<p class="empty">${state.meta.t[state.global.lang].no_tags_available}</p>`;
+            }
 
             if (state.tagCloud.filter.length > 0) {
               filterTagCloud();
@@ -1158,6 +1161,11 @@
             modalResetControl
           );
           updateTagNavigation();
+
+          if (!state.easydocCookieConsent) {
+            cookieConsent();
+          }
+
         });
       }
     }
@@ -1231,6 +1239,86 @@
           }
         });
       });
+    }
+
+    function cookieConsent()
+    {
+      if (state.easydocCookieConsent === true) {
+        return;
+      } else {
+        const modal = document.createElement("div");
+        modal.setAttribute("class", "modal");
+
+        const dialog = document.createElement("div");
+        dialog.setAttribute("class", "modal-dialog dialog-centered mw-80ch");
+        dialog.setAttribute("role", "dialog");
+        dialog.setAttribute("aria-modal", "true");
+        dialog.setAttribute("aria-labelledby", "modal");
+
+        const content = document.createElement("div");
+        content.setAttribute("class", "modal-content");
+
+        const header = document.createElement("div");
+        header.setAttribute("class", "modal-header justify-content-center");
+
+        const title = document.createElement("h2");
+        title.setAttribute("class", "modal-title text-center");
+        title.innerHTML = state.meta.t[state.global.lang].cookie_consent_title;
+
+        const body = document.createElement("div");
+        body.setAttribute("class", "modal-body");
+
+        const cookieConsent = document.createElement("div");
+        cookieConsent.setAttribute("class", "cookie-consent");
+        cookieConsent.innerHTML = `
+          <p>${state.meta.t[state.global.lang].cookie_consent_message}</p>`;
+
+        const footer = document.createElement("div");
+        footer.setAttribute("class", "modal-footer");
+
+        const closeButton = document.createElement("button");
+        closeButton.setAttribute("class", "btn-close cookie-consent-button cp");
+        closeButton.setAttribute("type", "button");
+        closeButton.setAttribute("tabindex", "0");
+        closeButton.innerText = state.meta.t[state.global.lang].cookie_consent_button;
+        closeButton.addEventListener("click", function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          state.easydocCookieConsent = true;
+          localStorage.setItem("easydocCookieConsent", true);
+          modal.classList.add("willclose");
+          setTimeout(() => {
+            modal.remove();
+          }, 250);
+        });
+
+        header.appendChild(title);
+        content.appendChild(header);
+
+        // cookieConsent.appendChild(closeButton);
+        body.appendChild(cookieConsent);
+        content.appendChild(body);
+
+        footer.appendChild(closeButton);
+        content.appendChild(footer);
+
+        dialog.appendChild(content);
+        modal.appendChild(dialog);
+
+        document.body.appendChild(modal);
+
+        setTimeout(() => {
+          closeButton.focus();
+        }, 100);
+
+
+        // addModal(dialog, false);
+
+        // addModalDialog(
+        //   cookieConsentBody,
+        //   state.meta.t[state.global.lang].cookie_consent_title,
+        // );
+      }
     }
 
     function main() {

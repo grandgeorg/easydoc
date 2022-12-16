@@ -18,6 +18,10 @@ exports.en = {
   "title": "title",
   "file": "file",
   "reset": "Reset filter and selected tags",
+  "no_tags_available": "No tags available.",
+  "cookie_consent_title": "Cookie Consent",
+  "cookie_consent_message": "This navigation uses the local storage of the browser to save your inputs and selections, and then to access this state between page loads. This technically necessary information is only written and read by this navigation. The content is neither tracked by the site owner nor shared with third parties.",
+  "cookie_consent_button": "Understood",
 };
 exports.de = {
   "mtime": "letzte Aktualisierung",
@@ -37,4 +41,8 @@ exports.de = {
   "title": "Titel",
   "file": "Datei",
   "reset": "Filter und ausgewählte Tags zurücksetzen",
+  "no_tags_available": "Keine Tags vorhanden.",
+  "cookie_consent_title": "Cookie-Zustimmung",
+  "cookie_consent_message": "Diese Navigation verwendet den lokalen Speicher des Browsers, um Ihre Eingaben und Auswahlen zu speichern, um dann auf diesen Status zwischen Seitenaufrufen zugreifen zu können. Diese technisch notwendigen Informationen werden lediglich von dieser Navigation geschrieben und ausgelesen. Der Inhalt wird weder durch den Seitenbetreiber verfolgt noch an Dritte weitergegeben.",
+  "cookie_consent_button": "Verstanden",
 };
