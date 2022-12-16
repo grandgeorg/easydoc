@@ -626,6 +626,22 @@
       }
     }
 
+    function sortTagCloud(sortby, order, a, b) {
+      if (sortby === "name") {
+        if (order === "asc") {
+          return a.lcname.localeCompare(b.lcname);
+        } else {
+          return b.lcname.localeCompare(a.lcname);
+        }
+      } else if (sortby === "count") {
+        if (order === "asc") {
+          return a.count - b.count;
+        } else {
+          return b.count - a.count;
+        }
+      }
+    }
+
     // tag navigation
     function registerTagNavigation() {
       const openButton = document.querySelector("#open-tag-navigation");
@@ -723,7 +739,6 @@
           if (state.tagCloud.filter.length > 0) {
             tagCloudFilterInput.value = state.tagCloud.filter;
           }
-
           tagCloudFilterInput.addEventListener("input", debounce(function (e) {
             updateTagCloudState({ filter: e.target.value });
             filterTagCloud();
@@ -756,15 +771,7 @@
             const sortValue = event.target.value;
             updateTagCloudState({ sortby: sortValue });
             state.meta.tags.sort(function (a, b) {
-              if (sortValue === "name" && tagCloudOrderSelect.value === "asc") {
-                return a.lcname.localeCompare(b.lcname);
-              } else if (sortValue === "name" && tagCloudOrderSelect.value === "desc") {
-                return b.lcname.localeCompare(a.lcname);
-              } else if (sortValue === "count" && tagCloudOrderSelect.value === "asc") {
-                return a.count - b.count;
-              } else if (sortValue === "count" && tagCloudOrderSelect.value === "desc") {
-                return b.count - a.count;
-              }
+              return sortTagCloud(sortValue, tagCloudOrderSelect.value, a, b);
             });
             // update tagcloud
             tagCloudDetails.removeChild(tagCloud);
@@ -794,15 +801,7 @@
             const sortOrder = event.target.value;
             updateTagCloudState({ order: sortOrder });
             state.meta.tags.sort(function (a, b) {
-              if (tagCloudSortSelect.value === "name" && sortOrder === "asc") {
-                return a.lcname.localeCompare(b.lcname);
-              } else if (tagCloudSortSelect.value === "name" && sortOrder === "desc") {
-                return b.lcname.localeCompare(a.lcname);
-              } else if (tagCloudSortSelect.value === "count" && sortOrder === "asc") {
-                return a.count - b.count;
-              } else if (tagCloudSortSelect.value === "count" && sortOrder === "desc") {
-                return b.count - a.count;
-              }
+              return sortTagCloud(tagCloudSortSelect.value, sortOrder, a, b);
             });
             // update tagcloud
             tagCloudDetails.removeChild(tagCloud);
@@ -829,15 +828,7 @@
 
           // tagcloud
           state.meta.tags.sort(function (a, b) {
-            if (state.tagCloud.sortby === "name" && state.tagCloud.order === "asc") {
-              return a.lcname.localeCompare(b.lcname);
-            } else if (state.tagCloud.sortby === "name" && state.tagCloud.order === "desc") {
-              return b.lcname.localeCompare(a.lcname);
-            } else if (state.tagCloud.sortby === "count" && state.tagCloud.order === "asc") {
-              return a.count - b.count;
-            } else if (state.tagCloud.sortby === "count" && state.tagCloud.order === "desc") {
-              return b.count - a.count;
-            }
+            return sortTagCloud(state.tagCloud.sortby, state.tagCloud.order, a, b);
           });
           let tagCloud = getTagcloud();
 
