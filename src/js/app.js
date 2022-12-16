@@ -296,16 +296,6 @@
       });
     }
 
-    // function addIdsToHeadings() {
-    //   const headings = ['h1', 'h2', 'h3', 'h4', 'h5'];
-    //   headings.forEach(heading => {
-    //     let elementList = document.querySelectorAll(heading);
-    //     elementList.forEach((element, idx) => {
-    //       element.setAttribute('id', heading + '_' + idx);
-    //     });
-    //   });
-    // }
-
     function addLightBox() {
       const images = document.querySelectorAll("img");
       images.forEach((image) => {
@@ -642,7 +632,6 @@
       }
     }
 
-    // tag navigation
     function registerTagNavigation() {
       const openButton = document.querySelector("#open-tag-navigation");
       if (openButton) {
@@ -1335,6 +1324,16 @@
         }, 100);
       }
     }
+
+    // function addIdsToHeadings() {
+    //   const headings = ['h1', 'h2', 'h3', 'h4', 'h5'];
+    //   headings.forEach(heading => {
+    //     let elementList = document.querySelectorAll(heading);
+    //     elementList.forEach((element, idx) => {
+    //       element.setAttribute('id', heading + '_' + idx);
+    //     });
+    //   });
+    // }
 
     function main() {
       // addIdsToHeadings();
