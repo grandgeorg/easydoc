@@ -297,7 +297,8 @@ div.code-toolbar > .toolbar > .toolbar-item > button {
 	padding: 0.25rem .5em;
 	color: #bbb;
 	font-size: 0.75rem;
-	background: rgba(224, 224, 224, 0.2);
+	// background: rgba(224, 224, 224, 0.2);
+	background: rgb(26 31 36);
 	box-shadow: 0 2px 0 0 rgba(0,0,0,0.2);
 	border-radius: 6px;
 }
@@ -372,3 +373,4 @@ pre > code.diff-highlight .token.inserted:not(.prefix) {
 	display: block;
 }
 
+@import "_prism_default";
