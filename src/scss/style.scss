@@ -183,14 +183,11 @@ table {
   background-color: var(--clr-base-d450);
 }
 
-// TODO: set table colors as variables
 tr:nth-child(2n) {
-  // background-color: rgb(32, 34, 35);
   background-color: var(--clr-base-d400);
 }
 
 tr:hover {
-  // background-color: rgb(44, 47, 48);
   background-color: var(--clr-base-d500);
 }
 
@@ -319,7 +316,6 @@ a code {
   height: 1em;
   display: inline-block;
   vertical-align: -0.125em;
-
 }
 
 .mw-800 {
@@ -329,6 +325,7 @@ a code {
 .mw-80ch {
   max-width: 80ch !important;
 }
+
 // layout
 
 // brand
@@ -446,9 +443,6 @@ body a.navbar__brand[href]:not([tabindex^="-"]):focus {
       transition: all 1s ease 0s;
     }
     &:not([disabled]):not([tabindex^="-"]):focus {
-      // outline: 0;
-      // background-color: var(--clr-base-mark-active);
-      // color: var(--clr-base-l500);
       outline: 2px solid var(--clr-base-mark-active);
       outline-offset: 4px;
     }
@@ -576,10 +570,7 @@ body a.navbar__brand[href]:not([tabindex^="-"]):focus {
         line-height: 1;
         text-decoration: none;
         color: var(--clr-base-l250);
-        // background-color: var(--clr-base-d500);
         border-radius: 6px;
-        // border: 1px solid var(--clr-base-d300);
-        // transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
         transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.25s ease-in-out;
         &:hover,
         &.active:hover {
@@ -1870,5 +1861,32 @@ html[data-theme="light"] {
   }
 }
 
-
-
+// print styles
+@media print {
+  html, body {
+    background-color: #fff;
+  }
+  .navbar {
+    display: none;
+  }
+  .page {
+    margin: 0;
+    padding: 0;
+    > .mtime,
+    > .content,
+    > .footer {
+      background-color: #fff !important;
+      border: 0 none transparent !important;
+      max-width: none;
+      padding: 0;
+    }
+    > .content {
+      h1 {
+        font-weight: 400;
+      }
+    }
+    > .footer {
+      display: none;
+    }
+  }
+}
