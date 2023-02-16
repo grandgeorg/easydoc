@@ -6,7 +6,11 @@ const fs = require("fs");
 const pug = require("pug");
 const fm = require("front-matter");
 const t = require("./lang/langs.js");
-const nav = require("./nav.js");
+
+const baseDir = process.cwd();
+
+const nav = path.join(baseDir, "nav.js");
+// const nav = require("./nav.js");
 
 const md = require("markdown-it")({
   html: true,
@@ -127,11 +131,13 @@ md.use(anchor, {
 });
 const tocIncludeLevel = process.env.EASYDOC_TOC_INCLUDELEVEL ? process.env.EASYDOC_TOC_INCLUDELEVEL : [1, 2, 3, 4];
 const mdItToc = require("markdown-it-table-of-contents");
-const docsDir = path.join(__dirname, "docs");
+const docsDir = path.join(baseDir, "docs");
+// const docsDir = path.join(__dirname, "docs");
 // const docsDir = path.join(__dirname, "test");
 const templateDir = path.join(__dirname, "templates");
 const layout = path.join(templateDir, "layout.pug");
-const distDir = path.join(__dirname, "www");
+const distDir = path.join(baseDir, "www");
+// const distDir = path.join(__dirname, "www");
 const rgxExt = /\.(?:md)$/;
 const outExt = ".html";
 
