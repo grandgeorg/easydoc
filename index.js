@@ -9,7 +9,7 @@ const t = require("./lang/langs.js");
 
 const baseDir = process.cwd();
 
-const nav = path.join(baseDir, "nav.js");
+const nav = require(path.join(baseDir, "nav.js"));
 // const nav = require("./nav.js");
 
 const md = require("markdown-it")({
