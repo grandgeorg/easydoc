@@ -145,6 +145,21 @@ const pages = [];
 const tagCloud = [];
 let notLowercaseTags = [];
 
+const mtimeOptions = {
+  weekday: "long",
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+  hour: "numeric",
+  minute: "numeric",
+  second: "numeric",
+};
+
+function getFromatedMtime(mtime, lang) {
+  const suffix = lang === "de" ? " Uhr" : "";
+  return new Date(mtime).toLocaleDateString(lang, mtimeOptions) + suffix;
+}
+
 // console.log("Building site...");
 fs.readdir(docsDir, (err, files) => {
   if (err) {
@@ -153,6 +168,7 @@ fs.readdir(docsDir, (err, files) => {
   files.forEach((file) => {
     let fmData = fm(fs.readFileSync(path.join(docsDir, file), "utf-8"));
     let stats = fs.statSync(path.join(docsDir, file));
+    // console.log(stats);
     if (fmData.attributes.tocIncludeLevel &&
       fmData.attributes.tocIncludeLevel.length > 0
       && fmData.attributes.tocIncludeLevel !== tocIncludeLevel
@@ -233,7 +249,7 @@ fs.readdir(docsDir, (err, files) => {
       attributes: {
         title: title,
         lang: lang,
-        mtime: stats.mtime,
+        mtime: getFromatedMtime(stats.mtime, lang),
         brandURL: fmData.attributes.brandURL ? fmData.attributes.brandURL : process.env.EASYDOC_BRAND_URL,
         brandName: fmData.attributes.brandName ? fmData.attributes.brandName : process.env.EASYDOC_BRAND_NAME,
         brandSecondary: fmData.attributes.brandSecondary
