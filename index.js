@@ -1,6 +1,5 @@
 "use strict";
 
-require("dotenv").config();
 const path = require("path");
 const fs = require("fs");
 const pug = require("pug");
@@ -8,9 +7,76 @@ const fm = require("front-matter");
 const t = require("./lang/langs.js");
 
 const baseDir = process.cwd();
+const docsDir = path.join(baseDir, "docs");
+const distDir = path.join(baseDir, "www");
+const navFile = path.join(baseDir, "nav.js");
 
-const nav = require(path.join(baseDir, "nav.js"));
-// const nav = require("./nav.js");
+// check if .env file exists
+if (!fs.existsSync(path.join(baseDir, ".env"))) {
+  fs.copyFileSync(
+    path.join(__dirname, ".env"),
+    path.join(baseDir, ".env")
+  );
+}
+require("dotenv").config();
+
+// check if docs directory exists
+if (!fs.existsSync(docsDir)) {
+  fs.mkdirSync(docsDir);
+}
+
+// check if nav file exists
+if (!fs.existsSync(navFile)) {
+  fs.copyFileSync(
+    path.join(__dirname, "nav.js"),
+    path.join(baseDir, "nav.js")
+  );
+}
+const nav = require(navFile);
+
+// check if dist directory exists
+if (!fs.existsSync(distDir)) {
+  fs.mkdirSync(distDir);
+  fs.mkdirSync(path.join(distDir, "assets"));
+  fs.mkdirSync(path.join(distDir, "assets", "css"));
+  fs.mkdirSync(path.join(distDir, "assets", "fonts"));
+  fs.mkdirSync(path.join(distDir, "assets", "js"));
+  fs.mkdirSync(path.join(distDir, "img"));
+
+  // copy assets
+  fs.copyFileSync(
+    path.join(__dirname, "www", "assets", "css", "style.min.css"),
+    path.join(distDir, "assets", "css", "style.min.css")
+  );
+  fs.copyFileSync(
+    path.join(__dirname, "www", "assets", "css", "prism.min.css"),
+    path.join(distDir, "assets", "css", "prism.min.css")
+  );
+  fs.copyFileSync(
+    path.join(__dirname, "www", "assets", "fonts", "EncodeSans.woff2"),
+    path.join(distDir, "assets", "fonts", "EncodeSans.woff2")
+  );
+  fs.copyFileSync(
+    path.join(__dirname, "www", "assets", "js", "app.min.js"),
+    path.join(distDir, "assets", "js", "app.min.js")
+  );
+  fs.copyFileSync(
+    path.join(__dirname, "www", "assets", "js", "prism.js"),
+    path.join(distDir, "assets", "js", "prism.js")
+  );
+  fs.copyFileSync(
+    path.join(__dirname, "www", "assets", "js", "flowchart.min.js"),
+    path.join(distDir, "assets", "js", "flowchart.min.js")
+  );
+  fs.copyFileSync(
+    path.join(__dirname, "www", "assets", "js", "raphael.min.js"),
+    path.join(distDir, "assets", "js", "raphael.min.js")
+  );
+  fs.copyFileSync(
+    path.join(__dirname, "www", "assets", "js", "clipboard.min.js"),
+    path.join(distDir, "assets", "js", "clipboard.min.js")
+  );
+}
 
 const md = require("markdown-it")({
   html: true,
@@ -131,12 +197,8 @@ md.use(anchor, {
 });
 const tocIncludeLevel = process.env.EASYDOC_TOC_INCLUDELEVEL ? process.env.EASYDOC_TOC_INCLUDELEVEL : [1, 2, 3, 4];
 const mdItToc = require("markdown-it-table-of-contents");
-const docsDir = path.join(baseDir, "docs");
-// const docsDir = path.join(__dirname, "docs");
-// const docsDir = path.join(__dirname, "test");
 const templateDir = path.join(__dirname, "templates");
 const layout = path.join(templateDir, "layout.pug");
-const distDir = path.join(baseDir, "www");
 // const distDir = path.join(__dirname, "www");
 const rgxExt = /\.(?:md)$/;
 const outExt = ".html";
