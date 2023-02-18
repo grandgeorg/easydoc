@@ -117,8 +117,8 @@ exports.nav = [
  │ ├🗀 img
  │ ├🗏 easydoc.html
  │ ├🗏 easydoc.md
- │ ├🗏 reference.html
- │ └🗏 reference.md 
+ │ ├🗏 easydoc-reference.html
+ │ └🗏 easydoc-reference.md 
  ├🗀 node_modules
  ├🗀 setup 🖊️
  ├🗀 src 🖊️

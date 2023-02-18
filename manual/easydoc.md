@@ -82,7 +82,7 @@ npm install
 ```
 You could now use EasyDoc from this directory, but we recommend, that for your documentations in different paths you use the ```setup.js``` from EasyDoc as follows:
 
-```sh
+```bash
 # cd to some directory in some project of yours, where you want to setup your documentation with EasyDoc
 cd /some/project/docs
 # run setup.js from easydoc with node
@@ -119,8 +119,8 @@ npm run build
  │ ├🗀 img
  │ ├🗏 easydoc.html
  │ ├🗏 easydoc.md
- │ ├🗏 reference.html
- │ └🗏 reference.md 
+ │ ├🗏 easydoc-reference.html
+ │ └🗏 easydoc-reference.md 
  ├🗀 node_modules
  ├🗀 setup 🖊️
  ├🗀 src 🖊️
