@@ -64,10 +64,10 @@ npm run build
 
 --------------------------------------------------------------------------------
 - Find more information in the [EasyDoc manual](manual/easydoc.html).  
-- For configuration and further usage refer to the [EasyDoc reference](manual/reference.html).
+- For configuration and further usage refer to the [EasyDoc reference](manual/easydoc-reference.html).
 
 If you are reading this in the repository use the links to the markdown files:
 
 - [EasyDoc manual](manual/easydoc.md)  
-- [EasyDoc reference](manual/reference.md)
+- [EasyDoc reference](manual/easydoc-reference.md)
 --------------------------------------------------------------------------------
