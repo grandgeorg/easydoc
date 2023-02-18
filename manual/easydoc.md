@@ -48,7 +48,7 @@ tocIncludeLevel: [1, 2, 3]
 :::
 
 ::: details Fully configurable and customizable
-- Configure global and per page settings (see [reference](reference.html) for details).
+- Configure global and per page settings (see [reference](easydoc-reference.html) for details).
 - Customize all components as you like.
 - Edit SCSS files (under ```src/scss```) to change theme.
 - Edit ```app.js``` to change navigation etc.
@@ -58,14 +58,14 @@ tocIncludeLevel: [1, 2, 3]
 ::: details Built in Navigation
 - Table of contents on pages
 - Individual site navigation
-- Tab Navigator module
+- Tag Navigator module
 :::
 
 
 
 ## Install
 
-Download [latest release](https://git.grandgeorg.de/Viktor/easydoc/releases) and unpack it or clone with git:
+Clone with git from [master branch](https://git.grandgeorg.de/Viktor/easydoc):
 
 ```bash
 # clone via https:
@@ -79,8 +79,22 @@ Change into `easydoc` directory and run install:
 ```bash
 cd ./easydoc/
 npm install
-# start vscode if you like ...
-code .
+```
+You could now use EasyDoc from this directory, but we recommend, that for your documentations in different paths you use the ```setup.js``` from EasyDoc as follows:
+
+```sh
+# cd to some directory in some project of yours, where you want to setup your documentation with EasyDoc
+cd /some/project/docs
+# run setup.js from easydoc with node
+node /path/where/you/cloned/and/installed/easydoc/setup.js
+# edit newly generated config files (.env, nav.js, package.json - author, description, keywords) in /some/project/docs ...
+# put some md-files into docs directory
+# you can now run
+npm run build
+# if you also want to use nodemon to watch your file changes first run
+npm install
+# then you can run
+npm run watch
 ```
 
 ## Usage
@@ -108,6 +122,7 @@ npm run build
  │ ├🗏 reference.html
  │ └🗏 reference.md 
  ├🗀 node_modules
+ ├🗀 setup 🖊️
  ├🗀 src 🖊️
  ├🗀 templates 🖊️
  ├🔵 www
@@ -139,7 +154,7 @@ npm run build
 
 
 --------------------------------------------------------------------------------
-For configuration and further usage refer to the [EasyDoc Reference](reference.html) {.text-center}
+For configuration and further usage refer to the [EasyDoc Reference](easydoc-reference.html) {.text-center}
 
 --------------------------------------------------------------------------------
 
@@ -148,7 +163,7 @@ For configuration and further usage refer to the [EasyDoc Reference](reference.h
 For the most convenient use do the following:
 
 1. Start [Visual Studio Code](https://code.visualstudio.com/) from the ```easydoc``` directory.
-2. Start the [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) extention.
+2. Start the [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) extension.
 3. Run ```npm run watch```.
 4. Put the vscode and the browser window side by side.
 5. Start creating and editing markdown files in ```docs``` directory.
@@ -157,7 +172,3 @@ For the most convenient use do the following:
 ::: details Workspace Example Screenshot
 ![EasyDoc workspace example with Visual Studio Code and browser side by side](img/easydoc-manual-workspace.png)
 :::
-
-## Todos
-
-- make CSS **print** version.

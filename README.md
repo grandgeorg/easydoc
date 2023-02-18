@@ -34,8 +34,23 @@ Change into `easydoc` directory and run install:
 ```bash
 cd ./easydoc/
 npm install
-# start vscode if you like ...
-code .
+```
+
+You could now use EasyDoc from this directory, but we recommend, that for your documentations in different paths you use the ```setup.js``` from EasyDoc as follows:
+
+```bash
+# cd to some directory in some project of yours, where you want to setup your documentation with EasyDoc
+cd /some/project/docs
+# run setup.js from easydoc with node
+node /path/where/you/cloned/and/installed/easydoc/setup.js
+# edit newly generated config files (.env, nav.js, package.json - author, description, keywords) in /some/project/docs ...
+# put some md-files into docs directory
+# you can now run
+npm run build
+# if you also want to use nodemon to watch your file changes first run
+npm install
+# then you can run
+npm run watch
 ```
 
 ## Usage

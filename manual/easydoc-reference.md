@@ -120,6 +120,7 @@ exports.nav = [
  │ ├🗏 reference.html
  │ └🗏 reference.md 
  ├🗀 node_modules
+ ├🗀 setup 🖊️
  ├🗀 src 🖊️
  ├🗀 templates 🖊️
  ├🔵 www
