@@ -1237,7 +1237,7 @@
       });
     }
 
-    function hadleIdsInDetails() {
+    function handleIdsInDetails() {
       const hash = window.location.hash;
       const id = hash.replace("#", "").replace(/[.].*/g, "");
       const hashedElement = id ? document.getElementById(id) : null;
@@ -1360,13 +1360,17 @@
     // }
 
     function main() {
+      // let flowchartScript = document.querySelector('script[src="assets/js/flowchart.min.js"]');
       // addIdsToHeadings();
       toggleTheme();
       addFlowcharts();
+      // if (flowchartScript) {
+      //   addFlowcharts();
+      // }
       addLightBox();
       dispatchNavigation();
       registerTagNavigation();
-      hadleIdsInDetails();
+      handleIdsInDetails();
     }
 
     main();
