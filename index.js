@@ -37,11 +37,14 @@ const nav = require(navFile);
 // check if dist directory exists
 if (!fs.existsSync(distDir)) {
   fs.mkdirSync(distDir);
+}
+
+// check if assets directory exists
+if (!fs.existsSync(path.join(distDir, "assets"))) {
   fs.mkdirSync(path.join(distDir, "assets"));
   fs.mkdirSync(path.join(distDir, "assets", "css"));
   fs.mkdirSync(path.join(distDir, "assets", "fonts"));
   fs.mkdirSync(path.join(distDir, "assets", "js"));
-  fs.mkdirSync(path.join(distDir, "img"));
 
   // copy assets
   fs.copyFileSync(
@@ -76,6 +79,11 @@ if (!fs.existsSync(distDir)) {
     path.join(__dirname, "www", "assets", "js", "clipboard.min.js"),
     path.join(distDir, "assets", "js", "clipboard.min.js")
   );
+}
+
+// check if img directory exists
+if (!fs.existsSync(path.join(distDir, "img"))) {
+  fs.mkdirSync(path.join(distDir, "img"));
 }
 
 const md = require("markdown-it")({
@@ -147,7 +155,7 @@ md.use(markdownItAttrs, {
 });
 
 // custom renderer for fenced code blocks
-// @see dafult render in node_modules/markdown-it/dist/markdown-it.js #L3093
+// @see default render in node_modules/markdown-it/dist/markdown-it.js #L3093
 const defaultRenderFence = md.renderer.rules.fence;
 md.renderer.rules.fence = function (tokens, idx, options, env, slf) {
   // We mimic the default renderer,
