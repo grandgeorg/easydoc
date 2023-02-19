@@ -47,7 +47,7 @@ exports.de = {
   "reset": "Filter und ausgewählte Tags zurücksetzen",
   "no_tags_available": "Keine Tags vorhanden.",
   "cookie_consent_title": "Cookie-Zustimmung",
-  "cookie_consent_message": "Diese Navigation verwendet den lokalen Speicher des Browsers, um Ihre Eingaben und Auswahlen zu speichern, um dann auf diesen Status zwischen Seitenaufrufen zugreifen zu können. Diese technisch notwendigen Informationen werden lediglich von dieser Navigation geschrieben und ausgelesen. Der Inhalt wird weder durch den Seitenbetreiber verfolgt noch an Dritte weitergegeben.",
+  "cookie_consent_message": "Diese Navigation verwendet den lokalen Speicher des Browsers, um Ihre Eingaben und Selektionen zu speichern, um dann auf diesen Status zwischen Seitenaufrufen zugreifen zu können. Diese technisch notwendigen Informationen werden lediglich von dieser Navigation geschrieben und ausgelesen. Der Inhalt wird weder durch den Seitenbetreiber verfolgt noch an Dritte weitergegeben.",
   "cookie_consent_button": "Verstanden",
   "open_tag_navigation": "Tag-Navigation öffnen",
   "toggle_theme_settings": "Wechseln Sie zwischen hellen und dunklen Thema",
