@@ -11,80 +11,78 @@ const docsDir = path.join(baseDir, "docs");
 const distDir = path.join(baseDir, "www");
 const navFile = path.join(baseDir, "nav.js");
 
-// check if .env file exists
-if (!fs.existsSync(path.join(baseDir, ".env"))) {
-  fs.copyFileSync(
-    path.join(__dirname, ".env"),
-    path.join(baseDir, ".env")
-  );
+// run checks if not in main directory
+if (__dirname !== baseDir) {
+  // check if .env file exists
+  if (!fs.existsSync(path.join(baseDir, ".env"))) {
+    fs.copyFileSync(
+      path.join(__dirname, ".env"),
+      path.join(baseDir, ".env")
+    );
+  }
+  // check if docs directory exists
+  if (!fs.existsSync(docsDir)) {
+    fs.mkdirSync(docsDir);
+  }
+  // check if nav file exists
+  if (!fs.existsSync(navFile)) {
+    fs.copyFileSync(
+      path.join(__dirname, "nav.js"),
+      path.join(baseDir, "nav.js")
+    );
+  }
+  // check if dist directory exists
+  if (!fs.existsSync(distDir)) {
+    fs.mkdirSync(distDir);
+  }
+  // check if assets directory exists
+  if (!fs.existsSync(path.join(distDir, "assets"))) {
+    fs.mkdirSync(path.join(distDir, "assets"));
+    fs.mkdirSync(path.join(distDir, "assets", "css"));
+    fs.mkdirSync(path.join(distDir, "assets", "fonts"));
+    fs.mkdirSync(path.join(distDir, "assets", "js"));
+    // copy assets
+    fs.copyFileSync(
+      path.join(__dirname, "www", "assets", "css", "style.min.css"),
+      path.join(distDir, "assets", "css", "style.min.css")
+    );
+    fs.copyFileSync(
+      path.join(__dirname, "www", "assets", "css", "prism.min.css"),
+      path.join(distDir, "assets", "css", "prism.min.css")
+    );
+    fs.copyFileSync(
+      path.join(__dirname, "www", "assets", "fonts", "EncodeSans.woff2"),
+      path.join(distDir, "assets", "fonts", "EncodeSans.woff2")
+    );
+    fs.copyFileSync(
+      path.join(__dirname, "www", "assets", "js", "app.min.js"),
+      path.join(distDir, "assets", "js", "app.min.js")
+    );
+    fs.copyFileSync(
+      path.join(__dirname, "www", "assets", "js", "prism.js"),
+      path.join(distDir, "assets", "js", "prism.js")
+    );
+    fs.copyFileSync(
+      path.join(__dirname, "www", "assets", "js", "flowchart.min.js"),
+      path.join(distDir, "assets", "js", "flowchart.min.js")
+    );
+    fs.copyFileSync(
+      path.join(__dirname, "www", "assets", "js", "raphael.min.js"),
+      path.join(distDir, "assets", "js", "raphael.min.js")
+    );
+    fs.copyFileSync(
+      path.join(__dirname, "www", "assets", "js", "clipboard.min.js"),
+      path.join(distDir, "assets", "js", "clipboard.min.js")
+    );
+  }
+  // check if img directory exists
+  if (!fs.existsSync(path.join(distDir, "img"))) {
+    fs.mkdirSync(path.join(distDir, "img"));
+  }
 }
+
 require("dotenv").config();
-
-// check if docs directory exists
-if (!fs.existsSync(docsDir)) {
-  fs.mkdirSync(docsDir);
-}
-
-// check if nav file exists
-if (!fs.existsSync(navFile)) {
-  fs.copyFileSync(
-    path.join(__dirname, "nav.js"),
-    path.join(baseDir, "nav.js")
-  );
-}
 const nav = require(navFile);
-
-// check if dist directory exists
-if (!fs.existsSync(distDir)) {
-  fs.mkdirSync(distDir);
-}
-
-// check if assets directory exists
-if (!fs.existsSync(path.join(distDir, "assets"))) {
-  fs.mkdirSync(path.join(distDir, "assets"));
-  fs.mkdirSync(path.join(distDir, "assets", "css"));
-  fs.mkdirSync(path.join(distDir, "assets", "fonts"));
-  fs.mkdirSync(path.join(distDir, "assets", "js"));
-
-  // copy assets
-  fs.copyFileSync(
-    path.join(__dirname, "www", "assets", "css", "style.min.css"),
-    path.join(distDir, "assets", "css", "style.min.css")
-  );
-  fs.copyFileSync(
-    path.join(__dirname, "www", "assets", "css", "prism.min.css"),
-    path.join(distDir, "assets", "css", "prism.min.css")
-  );
-  fs.copyFileSync(
-    path.join(__dirname, "www", "assets", "fonts", "EncodeSans.woff2"),
-    path.join(distDir, "assets", "fonts", "EncodeSans.woff2")
-  );
-  fs.copyFileSync(
-    path.join(__dirname, "www", "assets", "js", "app.min.js"),
-    path.join(distDir, "assets", "js", "app.min.js")
-  );
-  fs.copyFileSync(
-    path.join(__dirname, "www", "assets", "js", "prism.js"),
-    path.join(distDir, "assets", "js", "prism.js")
-  );
-  fs.copyFileSync(
-    path.join(__dirname, "www", "assets", "js", "flowchart.min.js"),
-    path.join(distDir, "assets", "js", "flowchart.min.js")
-  );
-  fs.copyFileSync(
-    path.join(__dirname, "www", "assets", "js", "raphael.min.js"),
-    path.join(distDir, "assets", "js", "raphael.min.js")
-  );
-  fs.copyFileSync(
-    path.join(__dirname, "www", "assets", "js", "clipboard.min.js"),
-    path.join(distDir, "assets", "js", "clipboard.min.js")
-  );
-}
-
-// check if img directory exists
-if (!fs.existsSync(path.join(distDir, "img"))) {
-  fs.mkdirSync(path.join(distDir, "img"));
-}
 
 const md = require("markdown-it")({
   html: true,
