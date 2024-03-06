@@ -170,6 +170,11 @@
       if (!elMenuToggle) {
         return;
       }
+
+      if (!state.meta.config.easydoc_search_api_url) {
+        state.meta.config.easydoc_search_api_url = "/api/";
+      }
+
       elMenuToggle.addEventListener("click", toggleBurger, false);
       state.nav.ps.subscribe(toggleNavigation());
 
@@ -616,6 +621,19 @@
       });
     }
 
+    async function filterByFulltext(query) {
+      const results = await fetch(`${state.meta.config.easydoc_search_api_url}?q=${query}`);
+      const json = await results.json();
+      const searchEvent = new CustomEvent("filterByFulltext", {
+        detail: {
+          results: json,
+        },
+      });
+      state.pageCards.forEach((pageCard) => {
+        pageCard.dispatchEvent(searchEvent);
+      });
+    }
+
     function sortPageCards(sortby, order, a, b) {
       if (sortby === "title") {
         if (order === "asc") {
@@ -1046,6 +1064,58 @@
           tagNavigationSort.appendChild(tagNavigationOrderContainer);
           tagNavigationHeader.appendChild(tagNavigationSort);
 
+
+          // full text search
+          if (state.meta.config.enable_fulltext_search) {
+            const pageFilterFulltext = document.createElement("div");
+            pageFilterFulltext.setAttribute("class", "page-filter-fulltext");
+
+            // page filter fulltext label
+            const pageFilterFulltextLabel = document.createElement("label");
+            pageFilterFulltextLabel.setAttribute("for", "page-filter-fulltext-input");
+            pageFilterFulltextLabel.setAttribute("class", "filter-label");
+            pageFilterFulltextLabel.innerHTML = icons.globe;
+
+            // page filter fulltext input
+            const pageFilterFulltextInput = document.createElement("input");
+            pageFilterFulltextInput.setAttribute("type", "text");
+            pageFilterFulltextInput.setAttribute("id", "page-filter-fulltext-input");
+            pageFilterFulltextInput.setAttribute("class", "filter-input");
+            pageFilterFulltextInput.setAttribute("placeholder", state.meta.t[state.global.lang].filter_pages_fulltext_placeholder);
+            pageFilterFulltextInput.setAttribute("autocomplete", "off");
+            pageFilterFulltextInput.setAttribute("autocorrect", "off");
+            pageFilterFulltextInput.setAttribute("autocapitalize", "off");
+            pageFilterFulltextInput.setAttribute("spellcheck", "false");
+            pageFilterFulltextInput.setAttribute("hidden", "true");
+            pageFilterFulltextInput.addEventListener("input", debounce(function (e) {
+              filterByFulltext(e.target.value);
+            }, 250));
+
+            // if state.meta.search is true, then the fulltext search is available
+            // add checkbox fulltext search
+            const pageFilterFulltextCheckbox = document.createElement("input");
+            pageFilterFulltextCheckbox.setAttribute("type", "checkbox");
+            pageFilterFulltextCheckbox.setAttribute("id", "page-filter-fulltext-checkbox");
+            pageFilterFulltextCheckbox.setAttribute("class", "filter-checkbox");
+            pageFilterFulltextCheckbox.setAttribute("title", state.meta.t[state.global.lang].filter_pages_fulltext_checkbox);
+            pageFilterFulltextCheckbox.setAttribute("role", "switch");
+            pageFilterFulltextCheckbox.addEventListener("change", function (e) {
+              if (e.target.checked) {
+                pageFilterFulltextInput.classList.remove("hidden");
+                pageFilterFulltextInput.removeAttribute("hidden");
+              } else {
+                pageFilterFulltextInput.classList.add("hidden");
+                pageFilterFulltextInput.setAttribute("hidden", "true");
+              }
+            });
+            tagNavigationHeader.appendChild(pageFilterFulltextCheckbox);
+
+            // append
+            pageFilterFulltext.appendChild(pageFilterFulltextLabel);
+            pageFilterFulltext.appendChild(pageFilterFulltextInput);
+            tagNavigationHeader.appendChild(pageFilterFulltext);
+          }
+
           // page cards navigation a.k.a. tag navigation
           state.meta.pages.sort(function (a, b) {
             return sortPageCards(state.tagPages.sortby, state.tagPages.order, a, b);
@@ -1100,6 +1170,30 @@
                 },
                 false
               );
+
+              if (state.meta.config.enable_fulltext_search) {
+                pageCard.addEventListener(
+                  "filterByFulltext",
+                  function (e) {
+                    if (e.detail.results.length === 0) {
+                      pageCard.classList.remove("filter-hidden");
+                    } else {
+                      let show = false;
+                      e.detail.results.forEach(function (result) {
+                        if (result.ref === page.file) {
+                          show = true;
+                        }
+                      });
+                      if (show) {
+                        pageCard.classList.remove("filter-hidden");
+                      } else {
+                        pageCard.classList.add("filter-hidden");
+                      }
+                    }
+                  },
+                  false
+                );
+              }
 
               if (page.tags && Array.isArray(page.tags) && page.tags.length > 0) {
                 const tags = document.createElement("div");

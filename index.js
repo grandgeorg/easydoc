@@ -5,6 +5,7 @@ const fs = require("fs");
 const pug = require("pug");
 const fm = require("front-matter");
 const t = require("./lang/langs.js");
+const elasticlunr = require("elasticlunr");
 
 const baseDir = process.cwd();
 const docsDir = path.join(baseDir, "docs");
@@ -15,10 +16,7 @@ const navFile = path.join(baseDir, "nav.js");
 if (__dirname !== baseDir) {
   // check if .env file exists
   if (!fs.existsSync(path.join(baseDir, ".env"))) {
-    fs.copyFileSync(
-      path.join(__dirname, ".env"),
-      path.join(baseDir, ".env")
-    );
+    fs.copyFileSync(path.join(__dirname, ".env"), path.join(baseDir, ".env"));
   }
   // check if docs directory exists
   if (!fs.existsSync(docsDir)) {
@@ -26,10 +24,7 @@ if (__dirname !== baseDir) {
   }
   // check if nav file exists
   if (!fs.existsSync(navFile)) {
-    fs.copyFileSync(
-      path.join(__dirname, "nav.js"),
-      path.join(baseDir, "nav.js")
-    );
+    fs.copyFileSync(path.join(__dirname, "nav.js"), path.join(baseDir, "nav.js"));
   }
   // check if dist directory exists
   if (!fs.existsSync(distDir)) {
@@ -84,6 +79,14 @@ if (__dirname !== baseDir) {
 require("dotenv").config();
 const nav = require(navFile);
 
+const searchIndex = elasticlunr(function () {
+  this.addField("title");
+  this.addField("date");
+  this.addField("tags");
+  this.addField("body");
+  this.setRef("file");
+});
+
 const md = require("markdown-it")({
   html: true,
   linkify: true,
@@ -114,9 +117,9 @@ function getCustomContainer(name) {
         }
       } else {
         // closing tags
-        return '</div>\n</div>\n';
+        return "</div>\n</div>\n";
       }
-    }
+    },
   };
 }
 
@@ -127,14 +130,14 @@ md.use(require("markdown-it-container"), "danger", getCustomContainer("danger"))
 md.use(require("markdown-it-container"), "line", getCustomContainer("line"));
 // md.use(require("markdown-it-container"), "block");
 md.use(require("markdown-it-container"), "details", {
-  validate: function(params) {
+  validate: function (params) {
     return params.trim().match(/^details\s+(.*)$/);
   },
   render: function (tokens, idx) {
     var m = tokens[idx].info.trim().match(/^details\s+(.*)$/);
     if (tokens[idx].nesting === 1) {
       let className = tokens[idx].attrGet("class") ? ' class="' + tokens[idx].attrGet("class") + '"' : "";
-      let open = tokens[idx].attrGet("data-open") ? ' open' : "";
+      let open = tokens[idx].attrGet("data-open") ? " open" : "";
       return `<details${className}${open}><summary>${md.utils.escapeHtml(m[1])}</summary>\n`;
     } else {
       return "</details>\n";
@@ -144,7 +147,7 @@ md.use(require("markdown-it-container"), "details", {
 md.use(require("./src/js/markdown-it-flowchart"));
 md.use(require("markdown-it-task-lists"));
 md.use(require("markdown-it-footnote"));
-const markdownItAttrs = require('markdown-it-attrs');
+const markdownItAttrs = require("markdown-it-attrs");
 md.use(markdownItAttrs, {
   // optional, these are default options
   leftDelimiter: "{",
@@ -161,7 +164,11 @@ md.renderer.rules.fence = function (tokens, idx, options, env, slf) {
   // otherwise prism.js can not handle data attributes for plugins.
   const token = tokens[idx];
   const info = token.info ? md.utils.unescapeAll(token.info).trim() : "";
-  let langName = "", langAttrs = "", highlighted, infoParts, helperClass = "";
+  let langName = "",
+    langAttrs = "",
+    highlighted,
+    infoParts,
+    helperClass = "";
   if (info) {
     infoParts = info.split(/(\s+)/g);
     langName = infoParts[0];
@@ -172,7 +179,10 @@ md.renderer.rules.fence = function (tokens, idx, options, env, slf) {
       highlighted = md.utils.escapeHtml(token.content);
     }
     // if token has attribute data-line and has no class line-numbers add class .no-line-numbers
-    if (token.attrGet("data-line") && (!token.attrGet("class") || token.attrGet("class").indexOf("line-numbers") === -1)) {
+    if (
+      token.attrGet("data-line") &&
+      (!token.attrGet("class") || token.attrGet("class").indexOf("line-numbers") === -1)
+    ) {
       helperClass += " no-line-numbers";
     }
     if (token.attrIndex("class") >= 0) {
@@ -184,13 +194,11 @@ md.renderer.rules.fence = function (tokens, idx, options, env, slf) {
     if (token.attrIndex("id") === -1) {
       token.attrPush(["id", "codeblock-" + idx]);
     }
-    return '<pre' + slf.renderAttrs(token) + '>'
-      + '<code>' + highlighted + '</code>'
-      + '</pre>';
+    return "<pre" + slf.renderAttrs(token) + ">" + "<code>" + highlighted + "</code>" + "</pre>";
   } else {
     return defaultRenderFence(tokens, idx, options, env, slf);
   }
-}
+};
 const anchor = require("markdown-it-anchor");
 md.use(anchor, {
   permalink: anchor.permalink.headerLink(),
@@ -237,9 +245,10 @@ fs.readdir(docsDir, (err, files) => {
     let fmData = fm(fs.readFileSync(path.join(docsDir, file), "utf-8"));
     let stats = fs.statSync(path.join(docsDir, file));
     // console.log(stats);
-    if (fmData.attributes.tocIncludeLevel &&
-      fmData.attributes.tocIncludeLevel.length > 0
-      && fmData.attributes.tocIncludeLevel !== tocIncludeLevel
+    if (
+      fmData.attributes.tocIncludeLevel &&
+      fmData.attributes.tocIncludeLevel.length > 0 &&
+      fmData.attributes.tocIncludeLevel !== tocIncludeLevel
     ) {
       md.use(mdItToc, {
         includeLevel: fmData.attributes.tocIncludeLevel,
@@ -256,12 +265,22 @@ fs.readdir(docsDir, (err, files) => {
       lang = process.env.EASYDOC_LANG_FALLBACK;
     }
     let title = fmData.attributes.title ? fmData.attributes.title : process.env.EASYDOC_TITLE_FALLBACK;
-    let disableBrand = fmData.attributes.disableBrand ? Boolean(fmData.attributes.disableBrand) : Boolean(process.env.EASYDOC_DISABLE_BRAND);
-    let navbarClass = disableBrand ? 'no_brand' : '';
-    let disableToc = fmData.attributes.disableToc ? Boolean(fmData.attributes.disableToc) : Boolean(process.env.EASYDOC_DISABLE_TOC);
-    let disableSiteNav = fmData.attributes.disableSiteNav ? Boolean(fmData.attributes.disableSiteNav) : Boolean(process.env.EASYDOC_DISABLE_SITE_NAV);
-    let disableTagNavigator = fmData.attributes.disableTagNavigator ? Boolean(fmData.attributes.disableTagNavigator) : Boolean(process.env.EASYDOC_DISABLE_TAG_NAVIGATOR);
-    let disableNavigationBar = fmData.attributes.disableNavigationBar ? Boolean(fmData.attributes.disableNavigationBar) : Boolean(process.env.EASYDOC_DISABLE_NAVIGATION_BAR);
+    let disableBrand = fmData.attributes.disableBrand
+      ? Boolean(fmData.attributes.disableBrand)
+      : Boolean(process.env.EASYDOC_DISABLE_BRAND);
+    let navbarClass = disableBrand ? "no_brand" : "";
+    let disableToc = fmData.attributes.disableToc
+      ? Boolean(fmData.attributes.disableToc)
+      : Boolean(process.env.EASYDOC_DISABLE_TOC);
+    let disableSiteNav = fmData.attributes.disableSiteNav
+      ? Boolean(fmData.attributes.disableSiteNav)
+      : Boolean(process.env.EASYDOC_DISABLE_SITE_NAV);
+    let disableTagNavigator = fmData.attributes.disableTagNavigator
+      ? Boolean(fmData.attributes.disableTagNavigator)
+      : Boolean(process.env.EASYDOC_DISABLE_TAG_NAVIGATOR);
+    let disableNavigationBar = fmData.attributes.disableNavigationBar
+      ? Boolean(fmData.attributes.disableNavigationBar)
+      : Boolean(process.env.EASYDOC_DISABLE_NAVIGATION_BAR);
     if (disableBrand && disableToc && disableSiteNav && disableTagNavigator) {
       disableNavigationBar = true;
     }
@@ -271,7 +290,11 @@ fs.readdir(docsDir, (err, files) => {
     }
 
     let fileOut = file.replace(rgxExt, outExt);
-    let tags = fmData.attributes.tags ? Array.isArray(fmData.attributes.tags) ? fmData.attributes.tags : [fmData.attributes.tags] : [];
+    let tags = fmData.attributes.tags
+      ? Array.isArray(fmData.attributes.tags)
+        ? fmData.attributes.tags
+        : [fmData.attributes.tags]
+      : [];
 
     tags.forEach((tag) => {
       if (tag !== tag.toLowerCase()) {
@@ -287,7 +310,7 @@ fs.readdir(docsDir, (err, files) => {
           name: tag,
           lcname: tag.toLowerCase(),
           count: 1,
-          files: [fileOut]
+          files: [fileOut],
         });
       }
     });
@@ -299,7 +322,7 @@ fs.readdir(docsDir, (err, files) => {
       // toc: toc,
       tags: tags,
     });
-    let navigation = '';
+    let navigation = "";
     if (!disableNavigationBar && !disableBurger && !disableSiteNav) {
       // console.log("Navigation rendered with t ", t[lang], " for file ", fileOut);
       navigation = pug.renderFile(path.join(templateDir, "nav.pug"), {
@@ -333,6 +356,15 @@ fs.readdir(docsDir, (err, files) => {
       },
     });
     fs.writeFileSync(path.join(distDir, fileOut), page);
+    if (String(process.env.EASYDOC_ENABLE_FULLTEXT_SEARCH).toLowerCase() === "true") {
+      searchIndex.addDoc({
+        title: title,
+        date: stats.mtime,
+        tags: tags.join(" "),
+        body: fmData.body,
+        file: fileOut,
+      });
+    }
   });
 
   if (notLowercaseTags.length > 0) {
@@ -387,12 +419,53 @@ fs.readdir(docsDir, (err, files) => {
     return 0;
   });
 
-  fs.writeFileSync(path.join(distDir, "meta.js"),
+  const metaConfig = {
+    lang_fallback: process.env.EASYDOC_LANG_FALLBACK,
+    title_fallback: process.env.EASYDOC_TITLE_FALLBACK,
+    brand_url: process.env.EASYDOC_BRAND_URL,
+    brand_name: process.env.EASYDOC_BRAND_NAME,
+    brand_secondary: process.env.EASYDOC_BRAND_SECONDARY,
+    disable_brand:
+      String(process.env.EASYDOC_DISABLE_BRAND).toLowerCase() === "false"
+        ? false
+        : Boolean(process.env.EASYDOC_DISABLE_BRAND),
+    disable_toc:
+      String(process.env.EASYDOC_DISABLE_TOC).toLowerCase() === "false"
+        ? false
+        : Boolean(process.env.EASYDOC_DISABLE_TOC),
+    disable_site_nav:
+      String(process.env.EASYDOC_DISABLE_SITE_NAV).toLowerCase() === "false"
+        ? false
+        : Boolean(process.env.EASYDOC_DISABLE_SITE_NAV),
+    disable_tag_navigator:
+      String(process.env.EASYDOC_DISABLE_TAG_NAVIGATOR).toLowerCase() === "false"
+        ? false
+        : Boolean(process.env.EASYDOC_DISABLE_TAG_NAVIGATOR),
+    disable_navigation_bar:
+      String(process.env.EASYDOC_DISABLE_NAVIGATION_BAR).toLowerCase() === "false"
+        ? false
+        : Boolean(process.env.EASYDOC_DISABLE_NAVIGATION_BAR),
+    // disable_burger: Boolean(process.env.EASYDOC_DISABLE_BURGER),
+    toc_include_level: tocIncludeLevel,
+    enable_fulltext_search:
+      String(process.env.EASYDOC_ENABLE_FULLTEXT_SEARCH).toLowerCase() === "false"
+        ? false
+        : Boolean(process.env.EASYDOC_ENABLE_FULLTEXT_SEARCH),
+    easydoc_search_api_url: process.env.EASYDOC_SEARCH_API_URL,
+    // search_index: searchIndex.toJSON(),
+  };
+
+  fs.writeFileSync(
+    path.join(distDir, "meta.js"),
     `const easydocMeta = {
+      config: ${JSON.stringify(metaConfig)},
       t: ${JSON.stringify(t)},
       pages: ${JSON.stringify(pages)},
       tags: ${JSON.stringify(tagCloud)}
     };`
   );
-});
 
+  if (String(process.env.EASYDOC_ENABLE_FULLTEXT_SEARCH).toLowerCase() === "true") {
+    fs.writeFileSync(path.join(distDir, "searchIndex.json"), JSON.stringify(searchIndex));
+  }
+});

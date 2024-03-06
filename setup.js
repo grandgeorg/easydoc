@@ -102,6 +102,14 @@ if (!fs.existsSync(path.join(baseDir, "nodemon.json"))) {
   );
 }
 
+// check if searchApi.js file exists
+if (!fs.existsSync(path.join(baseDir, "searchApi.js"))) {
+  fs.copyFileSync(
+    path.join(__dirname, "setup", "_searchApi.js"),
+    path.join(baseDir, "searchApi.js")
+  );
+}
+
 // check if package.json file exists
 if (!fs.existsSync(path.join(baseDir, "package.json"))) {
   const packageJson = {
@@ -114,8 +122,12 @@ if (!fs.existsSync(path.join(baseDir, "package.json"))) {
     scripts: {
       build: "node " + indexFile,
       watch: "nodemon " + indexFile,
+      search: "node searchApi.js"
     },
     devDependencies: {
+      "cors": "^2.8.5",
+      "elasticlunr": "^0.9.5",
+      "express": "^4.18.2",
       "nodemon": "^2.0.20"
     }
   };

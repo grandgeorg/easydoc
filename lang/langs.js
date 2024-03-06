@@ -15,6 +15,7 @@ exports.en = {
   "ascending": "ascending",
   "descending": "descending",
   "filter_pages_placeholder": "Filter by title and filename, use comma to separate",
+  "filter_pages_fulltext_placeholder": "Filter with fulltext search",
   "title": "title",
   "file": "file",
   "date": "date",
@@ -25,6 +26,7 @@ exports.en = {
   "cookie_consent_button": "Understood",
   "open_tag_navigation": "open tag navigation",
   "toggle_theme_settings": "switch between light and dark theme",
+  "filter_pages_fulltext_checkbox": "fulltext search",
 };
 exports.de = {
   "mtime": "letzte Aktualisierung",
@@ -41,6 +43,7 @@ exports.de = {
   "ascending": "aufsteigend",
   "descending": "absteigend",
   "filter_pages_placeholder": "Nach Titel und Dateinamen filtern, Kommata verwenden, um sie zu trennen",
+  "filter_pages_fulltext_placeholder": "Mit Volltextsuche filtern",
   "title": "Titel",
   "file": "Datei",
   "date": "Datum",
@@ -51,4 +54,5 @@ exports.de = {
   "cookie_consent_button": "Verstanden",
   "open_tag_navigation": "Tag-Navigation öffnen",
   "toggle_theme_settings": "Wechseln Sie zwischen hellen und dunklen Thema",
+  "filter_pages_fulltext_checkbox": "Volltextsuche",
 };
