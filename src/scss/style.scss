@@ -1889,4 +1889,19 @@ html[data-theme="light"] {
       display: none;
     }
   }
+  .page>.content pre[class*=language-], .cookie-consent pre[class*=language-] {
+    padding-top: 1rem;
+  }
+  div.code-toolbar>.toolbar {
+    display: none;
+  }
+  .page>.content div.code-toolbar {
+    page-break-inside: avoid;
+  }
+  // .page>.content :not(pre)>code[class*=language-], .page>.content pre[class*=language-] {
+  //   page-break-inside: avoid;
+  // }
+  code[class*=language-], pre[class*=language-] {
+    font-size: 0.75rem !important;
+  }
 }
