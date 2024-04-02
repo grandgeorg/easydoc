@@ -40,6 +40,8 @@ if (!fs.existsSync(distDir)) {
   fs.mkdirSync(path.join(distDir, "assets", "css"));
   fs.mkdirSync(path.join(distDir, "assets", "fonts"));
   fs.mkdirSync(path.join(distDir, "assets", "js"));
+  fs.mkdirSync(path.join(distDir, "assets", "img"));
+  fs.mkdirSync(path.join(distDir, "assets", "img", "icons"));
   fs.mkdirSync(path.join(distDir, "img"));
 
   // copy assets
@@ -74,6 +76,22 @@ if (!fs.existsSync(distDir)) {
   fs.copyFileSync(
     path.join(__dirname, "www", "assets", "js", "clipboard.min.js"),
     path.join(distDir, "assets", "js", "clipboard.min.js")
+  );
+  fs.copyFileSync(
+    path.join(__dirname, "www", "assets", "img", "icons", "favicon-192x192.png"),
+    path.join(distDir, "assets", "img", "icons", "favicon-192x192.png")
+  );
+  fs.copyFileSync(
+    path.join(__dirname, "www", "assets", "img", "icons", "favicon-512x512.png"),
+    path.join(distDir, "assets", "img", "icons", "favicon-512x512.png")
+  );
+  fs.copyFileSync(
+    path.join(__dirname, "www", "assets", "img", "icons", "favicon.ico"),
+    path.join(distDir, "assets", "img", "icons", "favicon.ico")
+  );
+  fs.copyFileSync(
+    path.join(__dirname, "www", "assets", "img", "icons", "favicon.svg"),
+    path.join(distDir, "assets", "img", "icons", "favicon.svg")
   );
 }
 
