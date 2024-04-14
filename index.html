@@ -1,0 +1,138 @@
+<!DOCTYPE html><html lang="en"><head><title>EasyDoc</title><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="stylesheet" href="assets/css/style.min.css"><link rel="stylesheet" href="assets/css/prism.min.css"><script src="assets/js/clipboard.min.js"></script><script src="assets/js/prism.js"></script><script src="assets/js/raphael.min.js"></script><script src="assets/js/flowchart.min.js"></script><script src="assets/js/app.min.js"></script><script src="meta.js"></script><link rel="icon" type="image/x-icon" href="assets/img/icons/favicon.ico"><link rel="icon" type="image/svg+xml" href="assets/img/icons/favicon.svg"><link rel="apple-touch-icon" sizes="192x192" href="assets/img/icons/favicon-192x192.png"><link rel="apple-touch-icon" sizes="512x512" href="assets/img/icons/favicon-512x512.png"></head><body><div class="navbar"><a class="navbar__brand" href="https://grandgeorg.de"><span class="brand">Grandgeorg</span><span class="brand-second">Websolutions</span></a><div class="navbar__controls"><button class="btn-tag-nav navitem" id="open-tag-navigation" aria-label="open tag navigation" title="open tag navigation" role="button"><svg class="bi bi-tags" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M3 2v4.586l7 7L14.586 9l-7-7H3zM2 2a1 1 0 0 1 1-1h4.586a1 1 0 0 1 .707.293l7 7a1 1 0 0 1 0 1.414l-4.586 4.586a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 2 6.586V2z"></path><path d="M5.5 5a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1zm0 1a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zM1 7.086a1 1 0 0 0 .293.707L8.75 15.25l-.043.043a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 0 7.586V3a1 1 0 0 1 1-1v5.086z"></path></svg><span class="navitem-title">Tag Navigator</span></button><button class="theme-toggle" aria-label="switch between light and dark theme" title="switch between light and dark theme"></button><button class="burger" aria-expanded="false" aria-label="navigation menu"><span class="burger__line burger__line-1" aria-hidden="true" focusable="false"></span><span class="burger__line burger__line-2" aria-hidden="true" focusable="false"></span><span class="burger__line burger__line-3" aria-hidden="true" focusable="false"></span></button></div></div><nav class="navigation-drawer" aria-label="Main menu"><h3 class="nav-title text-center">Table of Contents</h3><div class="toc"><div class="table-of-contents"><ul><li><a href="#t-easydoc">EasyDoc</a><ul><li><a href="#t-features">Features</a></li><li><a href="#t-install">Install</a></li><li><a href="#t-usage">Usage</a></li><li><a href="#t-workflow">Workflow</a></li></ul></li></ul></div></div><div class="sitenav"><h3 class="nav-title text-center">Navigation</h3><ul><li><a class="active" href="index.html">EasyDoc</a></li><li><a href="easydoc-reference.html">EasyDoc Reference</a></li></ul></div></nav><main class="page"><div class="mtime">Last Update Sunday, April 14, 2024 at 10:14:25 AM</div><div class="content"><h1 class="text-center" id="t-easydoc" tabindex="-1"><a class="header-anchor" href="#t-easydoc">EasyDoc</a></h1>
+<p><img src="img/easydoc-banner.png" alt="EasyDoc"></p>
+<hr>
+<h5 class="text-center" id="t-created-by" tabindex="-1"><a class="header-anchor" href="#t-created-by"><em>created by:</em></a></h5>
+<!-- BRAND HTML -->
+<a class="brand-link" href="https://grandgeorg.de">
+  <div class="brand">Grandgeorg</div>
+  <div class="brand-second">Websolutions</div>
+</a>
+<svg width="156" height="84" viewBox="0 0 52 28" class="logo gw-logo" style="margin-top:0.5rem">
+  <path style="fill:#ff3300;stroke:#bf260066;stroke-width:2px;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1" d="M 24,4 H 4 V 24 H 24 V 12 h -8 v 4 h 4 v 4 H 8 V 8 h 16 z"/>
+  <path style="fill:#267dff;stroke:#1d5ebf66;stroke-width:2px;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1" d="M 48,4 V 24 H 28 V 4 h 4 v 16 h 4 V 8 h 4 v 12 h 4 V 4 Z" />
+</svg>
+<!-- :BRAND HTML -->
+<hr>
+<h2 id="t-features" tabindex="-1"><a class="header-anchor" href="#t-features">Features</a></h2>
+<details><summary>Generates completely local HTML Website.</summary>
+<ul>
+<li>You can just open the resulting HTML-files in the <code>www</code> directory locally in a browser.</li>
+<li>You can also drop / push the contents of the <code>www</code> directory to a HTTP-Server.</li>
+</ul>
+</details>
+<details><summary>Rich markdown support and code highlighting features</summary>
+<ul>
+<li>Uses <a href="https://github.com/markdown-it/markdown-it">markdown-it</a> with plugins for markdown to HTML rendering</li>
+<li>Uses <a href="https://prismjs.com/">Prism</a> with plugins to highlight code.</li>
+</ul>
+</details>
+<details><summary>Fully configurable and customizable</summary>
+<ul>
+<li>Configure global and per page settings (see <a href="easydoc-reference.html">reference</a> for details).</li>
+<li>Customize all components as you like.</li>
+<li>Edit SCSS files (under <code>src/scss</code>) to change theme.</li>
+<li>Edit <code>app.js</code> to change navigation etc.</li>
+<li><code>app.js</code> uses pure vanilla JavaScript without any dependencies.</li>
+</ul>
+</details>
+<details><summary>Built in Navigation</summary>
+<ul>
+<li>Table of contents on pages</li>
+<li>Individual site navigation</li>
+<li>Tag Navigator module</li>
+</ul>
+</details>
+<h2 id="t-install" tabindex="-1"><a class="header-anchor" href="#t-install">Install</a></h2>
+<p>Clone with git from <a href="https://github.com/grandgeorg/easydoc">master branch</a>:</p>
+<pre class="language-bash" id="codeblock-99"><code># clone via https:
+git clone https://github.com/grandgeorg/easydoc.git
+# or clone via SSH (if you have a key):
+git clone git@github.com:grandgeorg/easydoc.git
+</code></pre><p>Change into <code>easydoc</code> directory and run install:</p>
+<pre class="language-bash" id="codeblock-103"><code>cd ./easydoc/
+npm install
+</code></pre><p>You could now use EasyDoc from this directory, but we recommend, that for your documentations in different paths you use the <code>setup.js</code> from EasyDoc as follows:</p>
+<pre class="language-bash" id="codeblock-107"><code># cd to some directory in some project of yours, where you want to setup your documentation with EasyDoc
+cd /some/project/docs
+# run setup.js from easydoc with node
+# e.g. node D:\\srv\\vhost\\easydoc\\index.js
+# in powershell you can use the following command:
+# node (Get-Item -Path &quot;D:\\srv\vhost\easydoc\index.js&quot;).FullName
+node /path/where/you/cloned/and/installed/easydoc/setup.js
+# edit newly generated config files (.env, nav.js, package.json - author, description, keywords) in /some/project/docs ...
+# put some md-files into docs directory
+# you can now run
+npm run build
+# if you also want to use nodemon to watch your file changes first run
+npm install
+# then you can run
+npm run watch
+</code></pre><h2 id="t-usage" tabindex="-1"><a class="header-anchor" href="#t-usage">Usage</a></h2>
+<pre class="language-bash" id="codeblock-111"><code># watches on file changes and runs build:
+npm run watch
+# or build one time
+npm run build
+</code></pre><details><summary>🖿 easydoc directory structure</summary>
+<pre class="language-filetree" id="codeblock-113"><code>🗁 easydoc
+ ├🗀 .git
+ ├🗀 .vscode
+ ├🟢 docs
+ │ └🗏 index.md 🖤
+ ├🗀 lang 🖊️
+ ├🗁 manual 📌
+ │ ├🗀 assets
+ │ ├🗀 img
+ │ ├🗏 easydoc.html
+ │ ├🗏 easydoc.md
+ │ ├🗏 easydoc-reference.html
+ │ └🗏 easydoc-reference.md 
+ ├🗀 node_modules
+ ├🗀 setup 🖊️
+ ├🗀 src 🖊️
+ ├🗀 templates 🖊️
+ ├🔵 www
+ │ ├🗀 assets 🖊️
+ │ ├🟢 img
+ │ ├🗏 index.html 🖤
+ │ └🗏 meta.js 🖤
+ ├🗏 .env ✏️
+ ├🗏 .gitignore
+ ├🗏 .hintrc
+ ├🗏 index.js 🖊️
+ ├🗏 nav.js ✏️
+ ├🗏 nodemon.json
+ ├🗏 package.json
+ ├🗏 package-lock.json
+ └🗏 webpack.config.js
+
+╭──────────────────────────═━┈💬┈━═──────────────────────────╮
+│  🟢 input directories. Start creating files here.          │
+│  🔵 output directory. Html files will be generated here.   │
+│  ✏️ configure EasyDoc                                      │
+│  🖊️ change EasyDoc                                         │
+│  📌 It's me. You are reading these documents right now.    │
+│  🖤 Remove these documentation files for a blank start.    │
+╰──────────────────────────═━┈💬┈━═──────────────────────────╯
+</code></pre></details>
+<hr>
+<p class="text-center">For configuration and further usage refer to the <a href="easydoc-reference.html">EasyDoc Reference</a></p>
+<hr>
+<h2 id="t-workflow" tabindex="-1"><a class="header-anchor" href="#t-workflow">Workflow</a></h2>
+<p>For the most convenient use do the following:</p>
+<ol>
+<li>Start <a href="https://code.visualstudio.com/">Visual Studio Code</a> from the <code>easydoc</code> directory.</li>
+<li>Start the <a href="https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer">Live Server</a> extension.</li>
+<li>Run <code>npm run watch</code>.</li>
+<li>Put the vscode and the browser window side by side.</li>
+<li>Start creating and editing markdown files in <code>docs</code> directory.</li>
+<li>Use git if working in a team.</li>
+</ol>
+<details><summary>Workspace Example Screenshot</summary>
+<p><img src="img/easydoc-manual-workspace.png" alt="EasyDoc workspace example with Visual Studio Code and browser side by side"></p>
+</details>
+<details><summary>Workflow Example Video</summary>
+  <video controls style="max-width:100%">
+    <source src="video/workflow.mp4" type="video/mp4">
+  </video>
+</details>
+</div><div class="footer"><a class="brand-link" href="https://grandgeorg.de"><span class="brand">Grandgeorg</span><span class="brand-second">Websolutions</span></a></div></main></body></html>
