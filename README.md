@@ -65,7 +65,9 @@ npm run watch
 npm run build
 ```
 
---------------------------------------------------------------------------------
+## Manual & Reference & Demo
+
+The manual and reference are generated with EasyDoc itself, so you can see how it looks like.
+
 - Find more information in the [EasyDoc manual](https://grandgeorg.github.io/easydoc/).  
 - For configuration and further usage refer to the [EasyDoc reference](https://grandgeorg.github.io/easydoc/easydoc-reference.html).
---------------------------------------------------------------------------------
