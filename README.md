@@ -11,16 +11,18 @@ tags:
 
 ![EasyDoc](manual/img/easydoc-banner.png)
 
+##### _created by:_ [Grandgeorg Websolutions](https://grandgeorg.de)
 ---
-  
-##### _created by:_
-##### [Grandgeorg Websolutions](https://grandgeorg.de)
 
----
+## Requirements
+
+- Node.js
+- npm
+- git
 
 ## Install
 
-Download [latest release](https://github.com/grandgeorg/easydoc) and unpack it or clone with git:
+Clone this [repository](https://github.com/grandgeorg/easydoc):
 
 ```bash
 # clone via https:
