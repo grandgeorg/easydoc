@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><title>EasyDoc Reference</title><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="stylesheet" href="assets/css/style.min.css"><link rel="stylesheet" href="assets/css/prism.min.css"><script src="assets/js/clipboard.min.js"></script><script src="assets/js/prism.js"></script><script src="assets/js/raphael.min.js"></script><script src="assets/js/flowchart.min.js"></script><script src="assets/js/app.min.js"></script><script src="meta.js"></script><link rel="icon" type="image/x-icon" href="assets/img/icons/favicon.ico"><link rel="icon" type="image/svg+xml" href="assets/img/icons/favicon.svg"><link rel="apple-touch-icon" sizes="192x192" href="assets/img/icons/favicon-192x192.png"><link rel="apple-touch-icon" sizes="512x512" href="assets/img/icons/favicon-512x512.png"></head><body><div class="navbar"><a class="navbar__brand" href="https://grandgeorg.de"><span class="brand">Grandgeorg</span><span class="brand-second">Websolutions</span></a><div class="navbar__controls"><button class="btn-tag-nav navitem" id="open-tag-navigation" aria-label="open tag navigation" title="open tag navigation" role="button"><svg class="bi bi-tags" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M3 2v4.586l7 7L14.586 9l-7-7H3zM2 2a1 1 0 0 1 1-1h4.586a1 1 0 0 1 .707.293l7 7a1 1 0 0 1 0 1.414l-4.586 4.586a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 2 6.586V2z"></path><path d="M5.5 5a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1zm0 1a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zM1 7.086a1 1 0 0 0 .293.707L8.75 15.25l-.043.043a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 0 7.586V3a1 1 0 0 1 1-1v5.086z"></path></svg><span class="navitem-title">Tag Navigator</span></button><button class="theme-toggle" aria-label="switch between light and dark theme" title="switch between light and dark theme"></button><button class="burger" aria-expanded="false" aria-label="navigation menu"><span class="burger__line burger__line-1" aria-hidden="true" focusable="false"></span><span class="burger__line burger__line-2" aria-hidden="true" focusable="false"></span><span class="burger__line burger__line-3" aria-hidden="true" focusable="false"></span></button></div></div><nav class="navigation-drawer" aria-label="Main menu"><h3 class="nav-title text-center">Table of Contents</h3><div class="toc"><div class="table-of-contents"><ul><li><a href="#t-easydoc-reference">EasyDoc Reference</a><ul><li><a href="#t-configuration">Configuration</a><ul><li><a href="#t--global-configuration">📄 Global Configuration</a></li><li><a href="#t--per-page-overrides-in-front-matter">📄 Per page overrides in front matter</a></li><li><a href="#t--site-navigation">📄 Site Navigation</a></li></ul></li><li><a href="#t-markdown">Markdown</a><ul><li><a href="#t-typography--elements">Typography &amp; Elements</a></li><li><a href="#t-markdown-plugins">Markdown Plugins</a></li></ul></li><li><a href="#t-syntax-highlighting">Syntax Highlighting</a><ul><li><a href="#t-prism-plugins">Prism Plugins</a></li><li><a href="#t-syntax-highlighting-examples">Syntax Highlighting Examples</a></li><li><a href="#t-icons">Icons</a></li></ul></li></ul></li></ul></div></div><div class="sitenav"><h3 class="nav-title text-center">Navigation</h3><ul><li><a href="index.html">EasyDoc</a></li><li><a class="active" href="easydoc-reference.html">EasyDoc Reference</a></li></ul></div></nav><main class="page"><div class="mtime">Last Update Saturday, February 18, 2023 at 2:13:22 PM</div><div class="content"><h1 class="text-center" id="t-easydoc-reference" tabindex="-1"><a class="header-anchor" href="#t-easydoc-reference">EasyDoc Reference</a></h1>
+<!DOCTYPE html><html lang="en"><head><title>EasyDoc Reference</title><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="stylesheet" href="assets/css/style.min.css"><link rel="stylesheet" href="assets/css/prism.min.css"><script src="assets/js/clipboard.min.js"></script><script src="assets/js/prism.js"></script><script src="assets/js/raphael.min.js"></script><script src="assets/js/flowchart.min.js"></script><script src="assets/js/app.min.js"></script><script src="meta.js"></script><link rel="icon" type="image/x-icon" href="assets/img/icons/favicon.ico"><link rel="icon" type="image/svg+xml" href="assets/img/icons/favicon.svg"><link rel="apple-touch-icon" sizes="192x192" href="assets/img/icons/favicon-192x192.png"><link rel="apple-touch-icon" sizes="512x512" href="assets/img/icons/favicon-512x512.png"></head><body><div class="navbar"><a class="navbar__brand" href="https://grandgeorg.de"><span class="brand">Grandgeorg</span><span class="brand-second">Websolutions</span></a><div class="navbar__controls"><button class="btn-tag-nav navitem" id="open-tag-navigation" aria-label="open tag navigation" title="open tag navigation" role="button"><svg class="bi bi-tags" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M3 2v4.586l7 7L14.586 9l-7-7H3zM2 2a1 1 0 0 1 1-1h4.586a1 1 0 0 1 .707.293l7 7a1 1 0 0 1 0 1.414l-4.586 4.586a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 2 6.586V2z"></path><path d="M5.5 5a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1zm0 1a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zM1 7.086a1 1 0 0 0 .293.707L8.75 15.25l-.043.043a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 0 7.586V3a1 1 0 0 1 1-1v5.086z"></path></svg><span class="navitem-title">Tag Navigator</span></button><button class="theme-toggle" aria-label="switch between light and dark theme" title="switch between light and dark theme"></button><button class="burger" aria-expanded="false" aria-label="navigation menu"><span class="burger__line burger__line-1" aria-hidden="true" focusable="false"></span><span class="burger__line burger__line-2" aria-hidden="true" focusable="false"></span><span class="burger__line burger__line-3" aria-hidden="true" focusable="false"></span></button></div></div><nav class="navigation-drawer" aria-label="Main menu"><h3 class="nav-title text-center">Table of Contents</h3><div class="toc"><div class="table-of-contents"><ul><li><a href="#t-easydoc-reference">EasyDoc Reference</a><ul><li><a href="#t-configuration">Configuration</a><ul><li><a href="#t--global-configuration">📄 Global Configuration</a></li><li><a href="#t--per-page-overrides-in-front-matter">📄 Per page overrides in front matter</a></li><li><a href="#t--site-navigation">📄 Site Navigation</a></li></ul></li><li><a href="#t-markdown">Markdown</a><ul><li><a href="#t-typography--elements">Typography &amp; Elements</a></li><li><a href="#t-markdown-plugins">Markdown Plugins</a></li><li><a href="#t-custom-containers">Custom containers</a></li></ul></li><li><a href="#t-syntax-highlighting">Syntax Highlighting</a><ul><li><a href="#t-prism-plugins">Prism Plugins</a></li><li><a href="#t-syntax-highlighting-examples">Syntax Highlighting Examples</a></li><li><a href="#t-icons">Icons</a></li></ul></li></ul></li></ul></div></div><div class="sitenav"><h3 class="nav-title text-center">Navigation</h3><ul><li><a href="index.html">EasyDoc</a></li><li><a class="active" href="easydoc-reference.html">EasyDoc Reference</a></li></ul></div></nav><main class="page"><div class="mtime">Last Update Friday, April 19, 2024 at 9:30:03 PM</div><div class="content"><h1 class="text-center" id="t-easydoc-reference" tabindex="-1"><a class="header-anchor" href="#t-easydoc-reference">EasyDoc Reference</a></h1>
 <p class="text-center">🔴🔵</p>
 <hr>
 <h2 id="t-configuration" tabindex="-1"><a class="header-anchor" href="#t-configuration">Configuration</a></h2>
@@ -451,34 +451,34 @@ para(path2, top)-&gt;op1
 
 Here is another focusable block {.text-right #attributes-sample-id tabindex=&quot;0&quot;}
 </code></pre></details>
-<h4 id="t-custom-containers" tabindex="-1"><a class="header-anchor" href="#t-custom-containers">Custom containers</a></h4>
-<h5 id="t-info-container" tabindex="-1"><a class="header-anchor" href="#t-info-container">Info Container</a></h5>
+<h3 id="t-custom-containers" tabindex="-1"><a class="header-anchor" href="#t-custom-containers">Custom containers</a></h3>
+<h4 id="t-info-container" tabindex="-1"><a class="header-anchor" href="#t-info-container">Info Container</a></h4>
 
             <div class="custom-conatiner info" tabindex="0">
-              <div class="custom-conatiner-title info-title"> 💬 This is an info title</div>
+              <div class="custom-conatiner-title info-title"> 📘 This is an info title</div>
               <div class="custom-conatiner-body info-body">
 <p>🗲 FYI - so that you know …<br>
 Here is a <a href="https://grandgeorg.de">link for you</a></p>
 </div>
 </div>
-<pre class="language-markdown" id="codeblock-580"><code>::: info 💬 This is an info title
+<pre class="language-markdown" id="codeblock-580"><code>::: info 📘 This is an info title
 🗲 FYI - so that you know ...  
 Here is a [link for you][def]
 :::
-</code></pre><h5 id="t-tip-container" tabindex="-1"><a class="header-anchor" href="#t-tip-container">Tip Container</a></h5>
+</code></pre><h4 id="t-tip-container" tabindex="-1"><a class="header-anchor" href="#t-tip-container">Tip Container</a></h4>
 
             <div class="custom-conatiner tip" tabindex="0">
-              <div class="custom-conatiner-title tip-title"> 💬 This is a tip title</div>
+              <div class="custom-conatiner-title tip-title"> 📗 This is a tip title</div>
               <div class="custom-conatiner-body tip-body">
 <p>FYI - so that you know …<br>
 Here is a <a href="https://grandgeorg.de">link for you</a></p>
 </div>
 </div>
-<pre class="language-markdown" id="codeblock-589"><code>::: tip 💬 This is a tip title
+<pre class="language-markdown" id="codeblock-589"><code>::: tip 📗 This is a tip title
 FYI - so that you know ...  
 Here is a [link for you][def]
 :::
-</code></pre><h5 id="t-warning-container" tabindex="-1"><a class="header-anchor" href="#t-warning-container">Warning Container</a></h5>
+</code></pre><h4 id="t-warning-container" tabindex="-1"><a class="header-anchor" href="#t-warning-container">Warning Container</a></h4>
 
             <div class="custom-conatiner warning" tabindex="0">
               <div class="custom-conatiner-title warning-title"> ⚠️ This is a warning title</div>
@@ -491,7 +491,7 @@ Here is a <a href="https://grandgeorg.de">link for you</a></p>
 **Here be dragons 🦎**  
 Here is a [link for you][def]
 :::
-</code></pre><h5 id="t-danger-container" tabindex="-1"><a class="header-anchor" href="#t-danger-container">Danger Container</a></h5>
+</code></pre><h4 id="t-danger-container" tabindex="-1"><a class="header-anchor" href="#t-danger-container">Danger Container</a></h4>
 
             <div class="custom-conatiner danger" tabindex="0">
               <div class="custom-conatiner-title danger-title"> ❗️ This is a danger title</div>
@@ -507,7 +507,7 @@ Here is a [link for you][def]
 
 Here is a [link for you][def]
 :::
-</code></pre><h5 id="t-line-container" tabindex="-1"><a class="header-anchor" href="#t-line-container">Line Container</a></h5>
+</code></pre><h4 id="t-line-container" tabindex="-1"><a class="header-anchor" href="#t-line-container">Line Container</a></h4>
 
             <div class="custom-conatiner line" tabindex="0">
               <div class="custom-conatiner-title line-title"> 💬 This is a line title</div>
@@ -520,7 +520,7 @@ Here is a <a href="https://grandgeorg.de">link for you</a></p>
 FYI - so that you know ...  
 Here is a [link for you][def]
 :::
-</code></pre><h5 id="t-details-container" tabindex="-1"><a class="header-anchor" href="#t-details-container">Details Container</a></h5>
+</code></pre><h4 id="t-details-container" tabindex="-1"><a class="header-anchor" href="#t-details-container">Details Container</a></h4>
 <details><summary>Click on this summary to see the details</summary>
 <p>Here are some <strong>funny</strong> details.</p>
 <ul>
@@ -535,7 +535,7 @@ Here are some **funny** details.
 - Detail 2
 - Detail 3
 :::
-</code></pre><h5 id="t-filetree-container" tabindex="-1"><a class="header-anchor" href="#t-filetree-container">Filetree Container</a></h5>
+</code></pre><h4 id="t-filetree-container" tabindex="-1"><a class="header-anchor" href="#t-filetree-container">Filetree Container</a></h4>
 <details><summary>filetree container example with unicode characters &amp; emojis</summary>
 <pre class="language-filetree" id="codeblock-650"><code> 🖿 /etc/apache2/  
   ┊
