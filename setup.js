@@ -132,7 +132,7 @@ if (!fs.existsSync(path.join(baseDir, "searchApi.js"))) {
 if (!fs.existsSync(path.join(baseDir, "package.json"))) {
   const packageJson = {
     name: "easydoc",
-    version: "1.0.0",
+    version: "1.2.0",
     author: "EasyDoc",
     description: "",
     keywords: [],

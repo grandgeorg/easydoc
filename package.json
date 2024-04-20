@@ -1,6 +1,6 @@
 {
   "name": "easy-md-doc",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "description": "Simple markdown to HTML generator",
   "author": "Grandgeorg Websolutions, Viktor Grandgeorg <viktor@grandgeorg.de>",
   "main": "index.js",
