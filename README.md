@@ -2,7 +2,7 @@
 
 ![EasyDoc](manual/img/easydoc-banner.png)
 
-EasyDoc is a powerful technical documentation tool that generates completely local HTML pages and websites from markdown files. It offers rich markdown support and code highlighting features, using [markdown-it](https://github.com/markdown-it/markdown-it) and [Prism](https://prismjs.com/) respectively.
+EasyDoc is a simple but powerful technical documentation tool that generates completely local HTML pages and websites from markdown files. It offers rich markdown support and code highlighting features, using [markdown-it](https://github.com/markdown-it/markdown-it) and [Prism](https://prismjs.com/) respectively.
 
 EasyDoc is fully configurable and customizable, allowing you to tailor global and per page settings, customize components, and edit its theme. It also provides built-in navigation features such as a table of contents on pages, individual site navigation, and a Tag Navigator module.
 
@@ -13,7 +13,7 @@ EasyDoc is fully configurable and customizable, allowing you to tailor global an
 
 - Node.js
 - npm
-- git
+- git (optional)
 
 ## Install
 
@@ -25,6 +25,7 @@ git clone https://github.com/grandgeorg/easydoc.git
 # or clone via SSH (if you have a key):
 git clone git@github.com:grandgeorg/easydoc.git
 ```
+If you don't have git installed, you can also download the repository as a zip file and extract it.
 
 Change into `easydoc` directory and run install:
 
