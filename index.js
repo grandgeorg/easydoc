@@ -241,129 +241,142 @@ fs.readdir(docsDir, (err, files) => {
   if (err) {
     return console.log("Unable to scan directory: " + err);
   }
+  // console.log(files);
   files.forEach((file) => {
-    let fmData = fm(fs.readFileSync(path.join(docsDir, file), "utf-8"));
-    let stats = fs.statSync(path.join(docsDir, file));
-    // console.log(stats);
-    if (
-      fmData.attributes.tocIncludeLevel &&
-      fmData.attributes.tocIncludeLevel.length > 0 &&
-      fmData.attributes.tocIncludeLevel !== tocIncludeLevel
-    ) {
-      md.use(mdItToc, {
-        includeLevel: fmData.attributes.tocIncludeLevel,
-      });
-    } else {
-      md.use(mdItToc, {
-        includeLevel: tocIncludeLevel,
-      });
-    }
-    let toc = md.render("[[toc]]\n" + fmData.body);
-    toc = toc.match(/<div class="table-of-contents">(.|\s)*?<\/div>/g)[0];
-    let lang = fmData.attributes.lang ? fmData.attributes.lang : process.env.EASYDOC_LANG_FALLBACK;
-    if (!t[lang]) {
-      lang = process.env.EASYDOC_LANG_FALLBACK;
-    }
-    let title = fmData.attributes.title ? fmData.attributes.title : process.env.EASYDOC_TITLE_FALLBACK;
-    let disableBrand = fmData.attributes.disableBrand
-      ? Boolean(fmData.attributes.disableBrand)
-      : Boolean(process.env.EASYDOC_DISABLE_BRAND);
-    let navbarClass = disableBrand ? "no_brand" : "";
-    let disableToc = fmData.attributes.disableToc
-      ? Boolean(fmData.attributes.disableToc)
-      : Boolean(process.env.EASYDOC_DISABLE_TOC);
-    let disableSiteNav = fmData.attributes.disableSiteNav
-      ? Boolean(fmData.attributes.disableSiteNav)
-      : Boolean(process.env.EASYDOC_DISABLE_SITE_NAV);
-    let disableTagNavigator = fmData.attributes.disableTagNavigator
-      ? Boolean(fmData.attributes.disableTagNavigator)
-      : Boolean(process.env.EASYDOC_DISABLE_TAG_NAVIGATOR);
-    let disableNavigationBar = fmData.attributes.disableNavigationBar
-      ? Boolean(fmData.attributes.disableNavigationBar)
-      : Boolean(process.env.EASYDOC_DISABLE_NAVIGATION_BAR);
-    if (disableBrand && disableToc && disableSiteNav && disableTagNavigator) {
-      disableNavigationBar = true;
-    }
-    let disableBurger = false;
-    if (!disableBrand && disableToc && disableSiteNav && disableTagNavigator) {
-      disableBurger = true;
-    }
-
-    let fileOut = file.replace(rgxExt, outExt);
-    let tags = fmData.attributes.tags
-      ? Array.isArray(fmData.attributes.tags)
-        ? fmData.attributes.tags
-        : [fmData.attributes.tags]
-      : [];
-
-    tags.forEach((tag) => {
-      if (tag !== tag.toLowerCase()) {
-        notLowercaseTags.push(tag);
-      }
-      // check if tag exists in tagCloud
-      let tagExists = tagCloud.find((item) => item.name === tag);
-      if (tagExists) {
-        tagExists.count++;
-        tagExists.files.push(fileOut);
+    // if file is an image, copy it to distDir
+    if (file.match(/\.(png|jpe?g|gif|svg)$/)) {
+      fs.copyFileSync(path
+        .join(docsDir, file), path.join(distDir, file));
+    } else if (file.match(/\.(pdf)$/)) {
+      fs.copyFileSync(path
+        .join(docsDir, file), path.join(distDir, file));
+    } else if (file.match(/\.(zip)$/)) {
+      fs.copyFileSync(path
+        .join(docsDir, file), path.join(distDir, file));
+    } else if (file.match(/\.(md)$/)) {
+      let fmData = fm(fs.readFileSync(path.join(docsDir, file), "utf-8"));
+      let stats = fs.statSync(path.join(docsDir, file));
+      // console.log(stats);
+      if (
+        fmData.attributes.tocIncludeLevel &&
+        fmData.attributes.tocIncludeLevel.length > 0 &&
+        fmData.attributes.tocIncludeLevel !== tocIncludeLevel
+      ) {
+        md.use(mdItToc, {
+          includeLevel: fmData.attributes.tocIncludeLevel,
+        });
       } else {
-        tagCloud.push({
-          name: tag,
-          lcname: tag.toLowerCase(),
-          count: 1,
-          files: [fileOut],
+        md.use(mdItToc, {
+          includeLevel: tocIncludeLevel,
         });
       }
-    });
-    pages.push({
-      title: title,
-      lang: lang,
-      date: stats.mtime,
-      file: fileOut,
-      // toc: toc,
-      tags: tags,
-    });
-    let navigation = "";
-    if (!disableNavigationBar && !disableBurger && !disableSiteNav) {
-      // console.log("Navigation rendered with t ", t[lang], " for file ", fileOut);
-      navigation = pug.renderFile(path.join(templateDir, "nav.pug"), {
-        nav: nav.nav,
-        lang: lang,
-        t: t[lang],
-        file: fileOut,
+      let toc = md.render("[[toc]]\n" + fmData.body);
+      toc = toc.match(/<div class="table-of-contents">(.|\s)*?<\/div>/g)[0];
+      let lang = fmData.attributes.lang ? fmData.attributes.lang : process.env.EASYDOC_LANG_FALLBACK;
+      if (!t[lang]) {
+        lang = process.env.EASYDOC_LANG_FALLBACK;
+      }
+      let title = fmData.attributes.title ? fmData.attributes.title : process.env.EASYDOC_TITLE_FALLBACK;
+      let disableBrand = fmData.attributes.disableBrand
+        ? Boolean(fmData.attributes.disableBrand)
+        : Boolean(process.env.EASYDOC_DISABLE_BRAND);
+      let navbarClass = disableBrand ? "no_brand" : "";
+      let disableToc = fmData.attributes.disableToc
+        ? Boolean(fmData.attributes.disableToc)
+        : Boolean(process.env.EASYDOC_DISABLE_TOC);
+      let disableSiteNav = fmData.attributes.disableSiteNav
+        ? Boolean(fmData.attributes.disableSiteNav)
+        : Boolean(process.env.EASYDOC_DISABLE_SITE_NAV);
+      let disableTagNavigator = fmData.attributes.disableTagNavigator
+        ? Boolean(fmData.attributes.disableTagNavigator)
+        : Boolean(process.env.EASYDOC_DISABLE_TAG_NAVIGATOR);
+      let disableNavigationBar = fmData.attributes.disableNavigationBar
+        ? Boolean(fmData.attributes.disableNavigationBar)
+        : Boolean(process.env.EASYDOC_DISABLE_NAVIGATION_BAR);
+      if (disableBrand && disableToc && disableSiteNav && disableTagNavigator) {
+        disableNavigationBar = true;
+      }
+      let disableBurger = false;
+      if (!disableBrand && disableToc && disableSiteNav && disableTagNavigator) {
+        disableBurger = true;
+      }
+
+      let fileOut = file.replace(rgxExt, outExt);
+      let tags = fmData.attributes.tags
+        ? Array.isArray(fmData.attributes.tags)
+          ? fmData.attributes.tags
+          : [fmData.attributes.tags]
+        : [];
+
+      tags.forEach((tag) => {
+        if (tag !== tag.toLowerCase()) {
+          notLowercaseTags.push(tag);
+        }
+        // check if tag exists in tagCloud
+        let tagExists = tagCloud.find((item) => item.name === tag);
+        if (tagExists) {
+          tagExists.count++;
+          tagExists.files.push(fileOut);
+        } else {
+          tagCloud.push({
+            name: tag,
+            lcname: tag.toLowerCase(),
+            count: 1,
+            files: [fileOut],
+          });
+        }
       });
-    }
-    let page = pug.renderFile(layout, {
-      toc: toc,
-      t: t[lang],
-      content: md.render(fmData.body),
-      sitenav: navigation,
-      attributes: {
+      pages.push({
         title: title,
         lang: lang,
-        mtime: getFromatedMtime(stats.mtime, lang),
-        brandURL: fmData.attributes.brandURL ? fmData.attributes.brandURL : process.env.EASYDOC_BRAND_URL,
-        brandName: fmData.attributes.brandName ? fmData.attributes.brandName : process.env.EASYDOC_BRAND_NAME,
-        brandSecondary: fmData.attributes.brandSecondary
-          ? fmData.attributes.brandSecondary
-          : process.env.EASYDOC_BRAND_SECONDARY,
-        disableBrand: disableBrand,
-        navbarClass: navbarClass,
-        disableToc: disableToc,
-        disableSiteNav: disableSiteNav,
-        disableTagNavigator: disableTagNavigator,
-        disableNavigationBar: disableNavigationBar,
-        disableBurger: disableBurger,
-      },
-    });
-    fs.writeFileSync(path.join(distDir, fileOut), page);
-    if (String(process.env.EASYDOC_ENABLE_FULLTEXT_SEARCH).toLowerCase() === "true") {
-      searchIndex.addDoc({
-        title: title,
         date: stats.mtime,
-        tags: tags.join(" "),
-        body: fmData.body,
         file: fileOut,
+        // toc: toc,
+        tags: tags,
       });
+      let navigation = "";
+      if (!disableNavigationBar && !disableBurger && !disableSiteNav) {
+        // console.log("Navigation rendered with t ", t[lang], " for file ", fileOut);
+        navigation = pug.renderFile(path.join(templateDir, "nav.pug"), {
+          nav: nav.nav,
+          lang: lang,
+          t: t[lang],
+          file: fileOut,
+        });
+      }
+      let page = pug.renderFile(layout, {
+        toc: toc,
+        t: t[lang],
+        content: md.render(fmData.body),
+        sitenav: navigation,
+        attributes: {
+          title: title,
+          lang: lang,
+          mtime: getFromatedMtime(stats.mtime, lang),
+          brandURL: fmData.attributes.brandURL ? fmData.attributes.brandURL : process.env.EASYDOC_BRAND_URL,
+          brandName: fmData.attributes.brandName ? fmData.attributes.brandName : process.env.EASYDOC_BRAND_NAME,
+          brandSecondary: fmData.attributes.brandSecondary
+            ? fmData.attributes.brandSecondary
+            : process.env.EASYDOC_BRAND_SECONDARY,
+          disableBrand: disableBrand,
+          navbarClass: navbarClass,
+          disableToc: disableToc,
+          disableSiteNav: disableSiteNav,
+          disableTagNavigator: disableTagNavigator,
+          disableNavigationBar: disableNavigationBar,
+          disableBurger: disableBurger,
+        },
+      });
+      fs.writeFileSync(path.join(distDir, fileOut), page);
+      if (String(process.env.EASYDOC_ENABLE_FULLTEXT_SEARCH).toLowerCase() === "true") {
+        searchIndex.addDoc({
+          title: title,
+          date: stats.mtime,
+          tags: tags.join(" "),
+          body: fmData.body,
+          file: fileOut,
+        });
+      }
     }
   });
 
