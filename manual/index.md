@@ -17,7 +17,7 @@ tocIncludeLevel: [1, 2, 3]
 
 ![EasyDoc](img/easydoc-banner.png)
 
----
+A powerful technical documentation tool that generates completely local HTML pages and websites from markdown files. {.text-center}
   
 ##### _created by:_ {.text-center}
 
@@ -38,7 +38,7 @@ tocIncludeLevel: [1, 2, 3]
 ## Features
 
 ::: details Generates completely local HTML Website.
--	You can just open the resulting HTML-files in the ```www``` directory locally in a browser. 
+-	You can just open the resulting HTML-files in the ```www``` directory locally (from filesystem) in a browser. 
 -	You can also drop / push the contents of the ```www``` directory to a HTTP-Server.
 :::
 
