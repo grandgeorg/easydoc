@@ -486,35 +486,35 @@ Here is another focusable block {.text-right #attributes-sample-id tabindex="0"}
 ```
 :::
 
-#### Custom containers
+### Custom containers
 
-##### Info Container
-::: info 💬 This is an info title
+#### Info Container
+::: info 📘 This is an info title
 🗲 FYI - so that you know ...  
 Here is a [link for you][def]
 :::
 
 ```markdown
-::: info 💬 This is an info title
+::: info 📘 This is an info title
 🗲 FYI - so that you know ...  
 Here is a [link for you][def]
 :::
 ```
 
-##### Tip Container
-::: tip 💬 This is a tip title
+#### Tip Container
+::: tip 📗 This is a tip title
 FYI - so that you know ...  
 Here is a [link for you][def]
 :::
 
 ```markdown
-::: tip 💬 This is a tip title
+::: tip 📗 This is a tip title
 FYI - so that you know ...  
 Here is a [link for you][def]
 :::
 ```
 
-##### Warning Container
+#### Warning Container
 ::: warning ⚠️ This is a warning title
 **Here be dragons 🦎**  
 Here is a [link for you][def]
@@ -526,7 +526,7 @@ Here is a [link for you][def]
 Here is a [link for you][def]
 :::
 ```
-##### Danger Container
+#### Danger Container
 ::: danger ❗️ This is a danger title
 **Attention! you are going to die ...**  
 ... just kidding! 😉
@@ -543,7 +543,7 @@ Here is a [link for you][def]
 :::
 ```
 
-##### Line Container
+#### Line Container
 ::: line 💬 This is a line title
 FYI - so that you know ...  
 Here is a [link for you][def]
@@ -556,7 +556,7 @@ Here is a [link for you][def]
 :::
 ```
 
-##### Details Container
+#### Details Container
 ::: details Click on this summary to see the details
 Here are some **funny** details.
 - Detail 1
@@ -573,7 +573,7 @@ Here are some **funny** details.
 :::
 ```
 
-##### Filetree Container
+#### Filetree Container
 ::: details filetree container example with unicode characters & emojis
 ```filetree
  🖿 /etc/apache2/  
