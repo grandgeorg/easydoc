@@ -1,15 +1,10 @@
----
-title: EasyDoc
-tags:
-  - markdown
-  - javascript
-  - documentation
-  - tool
----
-
 # EasyDoc
 
 ![EasyDoc](manual/img/easydoc-banner.png)
+
+EasyDoc is a powerful technical documentation tool that generates completely local HTML pages and websites from markdown files. It offers rich markdown support and code highlighting features, using [markdown-it](https://github.com/markdown-it/markdown-it) and [Prism](https://prismjs.com/) respectively.
+
+EasyDoc is fully configurable and customizable, allowing you to tailor global and per page settings, customize components, and edit its CSS-theme. It also provides built-in navigation features such as a table of contents on pages, individual site navigation, and a Tag Navigator module.
 
 ##### _created by:_ [Grandgeorg Websolutions](https://grandgeorg.de)
 ---
