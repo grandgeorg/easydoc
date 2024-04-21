@@ -625,6 +625,10 @@
     }
 
     async function filterByFulltext(query) {
+      if (!query || query.length < 1) {
+        filterByFulltextReset();
+        return;
+      }
       const results = await fetch(`${state.meta.config.easydoc_search_api_url}?q=${query}`);
       const json = await results.json();
       const searchEvent = new CustomEvent("filterByFulltext", {
@@ -641,6 +645,7 @@
       const resetEvent = new CustomEvent("filterByFulltext", {
         detail: {
           results: [],
+          noQuery: true,
         },
       });
       state.pageCards.forEach((pageCard) => {
@@ -1216,7 +1221,7 @@
                 pageCard.addEventListener(
                   "filterByFulltext",
                   function (e) {
-                    if (e.detail.results.length === 0) {
+                    if (e.detail.noQuery) {
                       pageCard.classList.remove("filter-hidden");
                     } else {
                       let show = false;
