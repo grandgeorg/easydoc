@@ -84,6 +84,7 @@ const searchIndex = elasticlunr(function () {
   this.addField("date");
   this.addField("tags");
   this.addField("body");
+  this.addField("file_name");
   this.setRef("file");
 });
 
@@ -374,6 +375,7 @@ fs.readdir(docsDir, (err, files) => {
           date: stats.mtime,
           tags: tags.join(" "),
           body: fmData.body,
+          file_name: fileOut,
           file: fileOut,
         });
       }
@@ -479,6 +481,7 @@ fs.readdir(docsDir, (err, files) => {
   );
 
   if (String(process.env.EASYDOC_ENABLE_FULLTEXT_SEARCH).toLowerCase() === "true") {
-    fs.writeFileSync(path.join(distDir, "searchIndex.json"), JSON.stringify(searchIndex));
+    // console.log("Building " + baseDir + "/searchIndex.json");
+    fs.writeFileSync(path.join(baseDir, "searchIndex.json"), JSON.stringify(searchIndex));
   }
 });

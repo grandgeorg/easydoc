@@ -326,6 +326,10 @@ a code {
   max-width: 80ch !important;
 }
 
+.hidden {
+  display: none !important;
+}
+
 // layout
 
 // brand
@@ -1566,6 +1570,7 @@ html[data-theme="light"] {
 .tag-cloud-filter,
 .tag-cloud-sort,
 .page-filter,
+.page-filter-fulltext,
 .tag-navigation-sort {
   display: flex;
 }
@@ -1600,6 +1605,7 @@ html[data-theme="light"] {
   border-bottom-left-radius: 6px;
   border: 1px solid var(--clr-base-d400);
   border-right: 0;
+  cursor: pointer;
   // select not first-child
   &:not(:first-child) {
     margin-left: 1rem;
@@ -1610,6 +1616,14 @@ html[data-theme="light"] {
     line-height: 1;
     margin: 0;
     padding: 0 0 0 0.5rem;
+  }
+}
+
+.page-filter-fulltext.active {
+  flex-grow: 1;
+
+  label svg {
+    color: var(--clr-base);
   }
 }
 

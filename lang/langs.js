@@ -26,7 +26,8 @@ exports.en = {
   "cookie_consent_button": "Understood",
   "open_tag_navigation": "open tag navigation",
   "toggle_theme_settings": "switch between light and dark theme",
-  "filter_pages_fulltext_checkbox": "fulltext search",
+  "filter_pages_fulltext_on": "Switch to fulltext search",
+  "filter_pages_fulltext_off": "Switch to search by title and filename",
 };
 exports.de = {
   "mtime": "letzte Aktualisierung",
@@ -54,5 +55,6 @@ exports.de = {
   "cookie_consent_button": "Verstanden",
   "open_tag_navigation": "Tag-Navigation öffnen",
   "toggle_theme_settings": "Wechseln Sie zwischen hellen und dunklen Thema",
-  "filter_pages_fulltext_checkbox": "Volltextsuche",
+  "filter_pages_fulltext_on": "Zur Volltextsuche wechseln",
+  "filter_pages_fulltext_off": "Zur Suche nach Titel und Dateiname wechseln",
 };

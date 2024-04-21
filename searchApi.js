@@ -6,7 +6,6 @@ const elasticlunr = require("elasticlunr");
 const serializedIndex = fs.readFileSync(path.join(__dirname, "searchIndex.json"));
 const index = elasticlunr.Index.load(JSON.parse(serializedIndex));
 const app = express();
-app.use(express.static("public"));
 app.use(cors());
 
 app.get("/", function (req, res) {
@@ -16,7 +15,7 @@ app.get("/", function (req, res) {
       title: { boost: 2 },
       tags: { boost: 1.5 },
       body: { boost: 1 },
-      file: { boost: 1 },
+      file_name: { boost: 1 }
     },
     expand: true,
   });
