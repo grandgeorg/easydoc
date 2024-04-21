@@ -18,6 +18,7 @@ app.get("/", function (req, res) {
       file_name: { boost: 1 }
     },
     expand: true,
+    bool: "AND"
   });
   res.json(results);
 });
