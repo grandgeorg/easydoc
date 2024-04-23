@@ -1278,6 +1278,8 @@
 
             if (state.tagPages.filter.length > 0) {
               // console.log("filtering tag navigation");
+              // this is the reason why when clicking tagNavigationOrderSelect
+              // the page cards are filtered by file filter
               filterTagNavigation();
             }
 
