@@ -79,6 +79,8 @@ if (__dirname !== baseDir) {
 require("dotenv").config();
 const nav = require(navFile);
 
+const withFulltextSearch = String(process.env.EASYDOC_ENABLE_FULLTEXT_SEARCH).toLowerCase() === "true";
+
 const searchIndex = elasticlunr(function () {
   this.addField("title");
   this.addField("date");
@@ -369,7 +371,7 @@ fs.readdir(docsDir, (err, files) => {
         },
       });
       fs.writeFileSync(path.join(distDir, fileOut), page);
-      if (String(process.env.EASYDOC_ENABLE_FULLTEXT_SEARCH).toLowerCase() === "true") {
+      if (withFulltextSearch) {
         searchIndex.addDoc({
           title: title,
           date: stats.mtime,
@@ -480,7 +482,7 @@ fs.readdir(docsDir, (err, files) => {
     };`
   );
 
-  if (String(process.env.EASYDOC_ENABLE_FULLTEXT_SEARCH).toLowerCase() === "true") {
+  if (withFulltextSearch) {
     // console.log("Building " + baseDir + "/searchIndex.json");
     fs.writeFileSync(path.join(baseDir, "searchIndex.json"), JSON.stringify(searchIndex));
   }
