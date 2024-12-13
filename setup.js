@@ -146,7 +146,7 @@ if (!fs.existsSync(path.join(baseDir, "package.json"))) {
       "cors": "^2.8.5",
       "elasticlunr": "^0.9.5",
       "express": "^4.18.2",
-      "nodemon": "^2.0.20"
+      "nodemon": "^3.1.7"
     }
   };
 
