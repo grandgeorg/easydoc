@@ -943,6 +943,17 @@ body>.page:first-child {
     margin: 0 auto;
   }
 
+  .img-fluid {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    img {
+      margin: 0;
+    }
+  }
+
   // code blocks
   pre[class*="language-"] {
     border-radius: 6px;
