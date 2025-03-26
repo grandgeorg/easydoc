@@ -256,6 +256,9 @@ fs.readdir(docsDir, (err, files) => {
     } else if (file.match(/\.(zip)$/)) {
       fs.copyFileSync(path
         .join(docsDir, file), path.join(distDir, file));
+    } else if (file.match(/\.(js)$/)) {
+      fs.copyFileSync(path
+        .join(docsDir, file), path.join(distDir, file));
     } else if (file.match(/\.(md)$/)) {
       let fmData = fm(fs.readFileSync(path.join(docsDir, file), "utf-8"));
       let stats = fs.statSync(path.join(docsDir, file));
@@ -280,6 +283,10 @@ fs.readdir(docsDir, (err, files) => {
         lang = process.env.EASYDOC_LANG_FALLBACK;
       }
       let title = fmData.attributes.title ? fmData.attributes.title : process.env.EASYDOC_TITLE_FALLBACK;
+
+      let loadVueJs = fmData.attributes.loadVueJs
+        ? Boolean(fmData.attributes.loadVueJs)
+        : Boolean(process.env.EASYDOC_LOAD_VUE_JS);
       let disableBrand = fmData.attributes.disableBrand
         ? Boolean(fmData.attributes.disableBrand)
         : Boolean(process.env.EASYDOC_DISABLE_BRAND);
@@ -368,6 +375,7 @@ fs.readdir(docsDir, (err, files) => {
           disableTagNavigator: disableTagNavigator,
           disableNavigationBar: disableNavigationBar,
           disableBurger: disableBurger,
+          loadVueJs: loadVueJs,
         },
       });
       fs.writeFileSync(path.join(distDir, fileOut), page);
