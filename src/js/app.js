@@ -639,6 +639,37 @@
       state.pageCards.forEach((pageCard) => {
         pageCard.dispatchEvent(searchEvent);
       });
+
+      // This works but is not the best way to do it:
+
+      // add score data to pageCards
+      state.pageCards.forEach((pageCard) => {
+        const hit = json.find((result) => "page-" + result.ref === pageCard.id);
+        if (hit) {
+          pageCard.dataset.score = hit.score;
+        } else {
+          pageCard.dataset.score = 0;
+        }
+      });
+      // sort pageCards by score
+      state.pageCards.sort((a, b) => {
+        const scoreA = parseFloat(a.dataset.score);
+        const scoreB = parseFloat(b.dataset.score);
+        return scoreB - scoreA;
+      });
+
+      // console.log(state.pageCards);
+
+      // remove all pageCards from DOM
+      const pageCardsContainer = document.querySelector(".tag-navigation");
+      if (pageCardsContainer) {
+        pageCardsContainer.innerHTML = "";
+      }
+      // add pageCards to DOM
+      state.pageCards.forEach((pageCard) => {
+        pageCardsContainer.appendChild(pageCard);
+      });
+
     }
 
     function filterByFulltextReset() {
