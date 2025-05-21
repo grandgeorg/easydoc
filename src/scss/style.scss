@@ -1732,13 +1732,15 @@ html[data-theme="light"] {
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
+  align-items: stretch;
+  justify-content: center;
   margin: 1rem 0;
   .page-card {
     padding: 0.75rem;
     border: 1px solid var(--clr-base-d260);
     border-radius: 6px;
     background-color: var(--clr-base-d550);
-    flex: 1 1 19ch;
+    flex: 0 1 27ch;
     &:hover {
       border-color: var(--clr-base-d250);
       background-color: var(--clr-base-d525);
