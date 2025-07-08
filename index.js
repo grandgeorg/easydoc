@@ -62,6 +62,10 @@ if (__dirname !== baseDir) {
       path.join(distDir, "assets", "js", "flowchart.min.js")
     );
     fs.copyFileSync(
+      path.join(__dirname, "www", "assets", "js", "mermaid.tiny.min.js"),
+      path.join(distDir, "assets", "js", "mermaid.tiny.min.js")
+    );
+    fs.copyFileSync(
       path.join(__dirname, "www", "assets", "js", "raphael.min.js"),
       path.join(distDir, "assets", "js", "raphael.min.js")
     );
@@ -147,6 +151,7 @@ md.use(require("markdown-it-container"), "details", {
     }
   },
 });
+
 md.use(require("./src/js/markdown-it-flowchart"));
 md.use(require("markdown-it-task-lists"));
 md.use(require("markdown-it-footnote"));
@@ -172,7 +177,8 @@ md.renderer.rules.fence = function (tokens, idx, options, env, slf) {
     highlighted,
     infoParts,
     helperClass = "";
-  if (info) {
+    // console.log(info);
+  if (info && info !== "mermaid") {
     infoParts = info.split(/(\s+)/g);
     langName = infoParts[0];
     langAttrs = infoParts.slice(2).join("");
@@ -198,6 +204,14 @@ md.renderer.rules.fence = function (tokens, idx, options, env, slf) {
       token.attrPush(["id", "codeblock-" + idx]);
     }
     return "<pre" + slf.renderAttrs(token) + ">" + "<code>" + highlighted + "</code>" + "</pre>";
+  } else if (info === "mermaid") {
+    // let code = token.content.trim();
+    // add id attribute to pre tag
+    if (token.attrIndex("id") === -1) {
+      token.attrPush(["id", "mermaid-" + idx]);
+    }
+    // `<pre class="mermaid">${token.content.trim()}</pre>`;
+    return `<pre class="mermaid"` + slf.renderAttrs(token) + ">" + token.content.trim() + "</pre>";
   } else {
     return defaultRenderFence(tokens, idx, options, env, slf);
   }
@@ -284,6 +298,9 @@ fs.readdir(docsDir, (err, files) => {
       }
       let title = fmData.attributes.title ? fmData.attributes.title : process.env.EASYDOC_TITLE_FALLBACK;
 
+      let loadMermaid = fmData.attributes.loadMermaid
+        ? Boolean(fmData.attributes.loadMermaid)
+        : Boolean(process.env.EASYDOC_LOAD_MERMAID);
       let loadVueJs = fmData.attributes.loadVueJs
         ? Boolean(fmData.attributes.loadVueJs)
         : Boolean(process.env.EASYDOC_LOAD_VUE_JS);
@@ -376,6 +393,7 @@ fs.readdir(docsDir, (err, files) => {
           disableNavigationBar: disableNavigationBar,
           disableBurger: disableBurger,
           loadVueJs: loadVueJs,
+          loadMermaid: loadMermaid,
         },
       });
       fs.writeFileSync(path.join(distDir, fileOut), page);

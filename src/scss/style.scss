@@ -1313,6 +1313,25 @@ html[data-theme="light"] {
   height: auto;
 }
 
+// mermaid
+.mermaid {
+  background-color: var(--clr-base-d600);
+  padding: 1rem;
+  border-radius: 6px;
+  & > svg,
+  & > .flowchart {
+    display: block;
+    margin: 0 auto;
+    text-align: revert;
+    font-size: revert;
+    min-height: revert;
+    justify-content: revert;
+    align-items: revert;
+    transition: revert;
+    padding: revert;
+  }
+}
+
 /* clean-css ignore:start */
 // .operation-element,
 // .parallel-element,

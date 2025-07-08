@@ -1543,6 +1543,21 @@
     //   });
     // }
 
+    function addMermaid() {
+      if (typeof mermaid !== "undefined") {
+        mermaid.initialize({
+          // startOnLoad: false,
+          theme: "dark",
+          flowchart: {
+            htmlLabels: true,
+            useMaxWidth: false,
+          },
+          // allow HTML in flowcharts
+          securityLevel: "loose",
+        });
+      }
+    }
+
     function main() {
       // let flowchartScript = document.querySelector('script[src="assets/js/flowchart.min.js"]');
       // addIdsToHeadings();
@@ -1555,6 +1570,8 @@
       dispatchNavigation();
       registerTagNavigation();
       handleIdsInDetails();
+      // add mermaid
+      addMermaid();
     }
 
     main();

@@ -10,6 +10,8 @@ html(lang=attributes.lang)
     script(src="assets/js/prism.js")
     script(src="assets/js/raphael.min.js")
     script(src="assets/js/flowchart.min.js")
+    if attributes.loadMermaid
+      script(src="assets/js/mermaid.tiny.min.js")
     script(src="assets/js/app.min.js")
     script(src="meta.js")
     if attributes.loadVueJs
