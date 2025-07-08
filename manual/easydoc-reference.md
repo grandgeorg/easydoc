@@ -30,6 +30,10 @@ EASYDOC_TOC_INCLUDELEVEL=[1,2,3,4]
 # EASYDOC_DISABLE_SITE_NAV=true
 # EASYDOC_DISABLE_TAG_NAVIGATOR=true
 # EASYDOC_DISABLE_NAVIGATION_BAR=true
+# EASYDOC_ENABLE_FULLTEXT_SEARCH=false
+# EASYDOC_SEARCH_API_URL=http://localhost:3000
+# EASYDOC_LOAD_VUEJS=false
+# EASYDOC_LOAD_MERMAID=false
 ```
 
 ### 📄 Per page overrides in front matter
@@ -39,6 +43,9 @@ EASYDOC_TOC_INCLUDELEVEL=[1,2,3,4]
 ---
 lang: de
 title: Page Title
+tags:
+  - tag1
+  - tag2
 brandURL: https://domain.tld
 brandName: My Project
 brandSecondary: Reserach
@@ -48,6 +55,8 @@ tocIncludeLevel: [1, 2, 3, 4]
 # disableSiteNav: true
 # disableTagNavigator: true
 # disableNavigationBar: true
+# loadVueJs: true
+# loadMermaid: true
 ---
 ```
 
@@ -85,6 +94,21 @@ tocIncludeLevel: [1, 2, 3, 4]
 
 ```.env: EASYDOC_DISABLE_NAVIGATION_BAR``` | ```frontmatter: disableNavigationBar```
 : Completely disable the navigation bar.
+
+```.env: EASYDOC_ENABLE_FULLTEXT_SEARCH```
+: Enable fulltext search with Elasticlunr.js
+
+```.env: EASYDOC_SEARCH_API_URL```
+: URL of the search API to use for fulltext search.
+
+```.env: EASYDOC_LOAD_VUEJS``` | ```frontmatter: loadVueJs```
+: Load VueJs.
+
+```.env: EASYDOC_LOAD_MERMAID``` | ```frontmatter: loadMermaid```
+: Load MermaidJs for flowcharts and diagrams.
+
+```frontmatter: tags```
+: Tags for the page, used in tag navigator and search.
 :::
 
 ### 📄 Site Navigation
@@ -433,6 +457,497 @@ para(path1, bottom)->sub1(right)->op1
 para(path2, top)->op1
 @flowend
 ```
+:::
+
+:::details mermaid {.closeOnLoad data-open="true"}
+
+Refer to the documentation from [Mermaid](https://mermaid.js.org/)
+
+#### Flowchart - Network Diagram - Theme "dark" (default in easydocs)
+
+```mermaid
+graph TD
+    subgraph "`**Internet**`"
+        A[Client PC]
+    end
+
+    subgraph Your Network Perimeter
+        B[OPNsense Firewall Public IP] --- C(OpenVPN Server)
+    end
+
+    subgraph Internal Network e.g. DMZ
+        D[Ubuntu Jumphost Private IP]
+    end
+
+    subgraph Secure Internal Network
+        E[Internal Windows RDP Server Private IP]
+    end
+
+    A -- "1\. Initiate OpenVPN Connection" --> B
+    B -- "OpenVPN Traffic" --> C
+    C -- "Encrypted Tunnel over Internet" --> D
+    D -- "(SSH Server on Jumphost)" --> F(SSH Tunnel Local Port Forwarding)
+    A -- "RDP Client Connects to localhost:3389" --> F
+    F -- "2\. SSH Tunnel Forwards RDP Traffic" --> E
+    E -- "RDP Response Back" --> F
+    F -- "RDP Data Back through Tunnel" --> A
+
+    style A fill:#909,stroke:#afafaf,stroke-width:2px
+    style B fill:#33a,stroke:#afafaf,stroke-width:2px
+    style C fill:#006900,stroke:#afafaf,stroke-width:2px
+    style D fill:#a33,stroke:#afafaf,stroke-width:2px
+    style E fill:#716101,stroke:#afafaf,stroke-width:2px
+    style F fill:#97003b,stroke:#afafaf,stroke-width:2px
+```
+
+#### Flowchart - Network Diagram - Theme "default"
+
+```mermaid{id="mermaid-network-diagram-11"}
+---
+config:
+  theme: 'default'
+---
+graph TD
+    subgraph "`**Internet**`"
+        A[Client PC]
+    end
+
+    subgraph Your Network Perimeter
+        B[OPNsense Firewall Public IP] --- C(OpenVPN Server)
+    end
+
+    subgraph Internal Network e.g. DMZ
+        D[Ubuntu Jumphost Private IP]
+    end
+
+    subgraph Secure Internal Network
+        E[Internal Windows RDP Server Private IP]
+    end
+
+    A -- "1\. Initiate OpenVPN Connection" --> B
+    B -- "OpenVPN Traffic" --> C
+    C -- "Encrypted Tunnel over Internet" --> D
+    D -- "(SSH Server on Jumphost)" --> F(SSH Tunnel Local Port Forwarding)
+    A -- "RDP Client Connects to localhost:3389" --> F
+    F -- "2\. SSH Tunnel Forwards RDP Traffic" --> E
+    E -- "RDP Response Back" --> F
+    F -- "RDP Data Back through Tunnel" --> A
+```
+<style>
+  #mermaid-network-diagram-11 {
+    background-color: #f0f0f0;
+  }
+</style>
+
+#### Flowchart - Network Diagram - Theme "neutral"
+
+```mermaid{id="mermaid-network-diagram-12"}
+---
+config:
+  theme: 'neutral'
+---
+graph TD
+    subgraph "`**Internet**`"
+        A[Client PC]
+    end
+
+    subgraph Your Network Perimeter
+        B[OPNsense Firewall Public IP] --- C(OpenVPN Server)
+    end
+
+    subgraph Internal Network e.g. DMZ
+        D[Ubuntu Jumphost Private IP]
+    end
+
+    subgraph Secure Internal Network
+        E[Internal Windows RDP Server Private IP]
+    end
+
+    A -- "1\. Initiate OpenVPN Connection" --> B
+    B -- "OpenVPN Traffic" --> C
+    C -- "Encrypted Tunnel over Internet" --> D
+    D -- "(SSH Server on Jumphost)" --> F(SSH Tunnel Local Port Forwarding)
+    A -- "RDP Client Connects to localhost:3389" --> F
+    F -- "2\. SSH Tunnel Forwards RDP Traffic" --> E
+    E -- "RDP Response Back" --> F
+    F -- "RDP Data Back through Tunnel" --> A
+```
+<style>
+  #mermaid-network-diagram-12 {
+    background-color: #f0f0f0;
+  }
+</style>
+
+#### Flowchart - Network Diagram - Theme "forest"
+
+```mermaid{id="mermaid-network-diagram-10"}
+---
+config:
+  theme: 'forest'
+---
+graph TD
+    subgraph "`**Internet**`"
+        A[Client PC]
+    end
+
+    subgraph Your Network Perimeter
+        B[OPNsense Firewall Public IP] --- C(OpenVPN Server)
+    end
+
+    subgraph Internal Network e.g. DMZ
+        D[Ubuntu Jumphost Private IP]
+    end
+
+    subgraph Secure Internal Network
+        E[Internal Windows RDP Server Private IP]
+    end
+
+    A -- "1\. Initiate OpenVPN Connection" --> B
+    B -- "OpenVPN Traffic" --> C
+    C -- "Encrypted Tunnel over Internet" --> D
+    D -- "(SSH Server on Jumphost)" --> F(SSH Tunnel Local Port Forwarding)
+    A -- "RDP Client Connects to localhost:3389" --> F
+    F -- "2\. SSH Tunnel Forwards RDP Traffic" --> E
+    E -- "RDP Response Back" --> F
+    F -- "RDP Data Back through Tunnel" --> A
+```
+<style>
+  #mermaid-network-diagram-10 {
+    background-color: #f0f0f0;
+  }
+</style>
+
+#### Journey
+
+```mermaid
+journey
+    title My working day
+    section Go to work
+      Make tea: 5: Me
+      Go upstairs: 3: Me
+      Do work: 1: Me, Cat
+    section Go home
+      Go downstairs: 5: Me
+      Sit down: 5: Me
+```
+
+#### GANTT Diagram
+
+```mermaid{id="mermaid-gantt-10"}
+gantt
+    dateFormat  YYYY-MM-DD
+    title       Adding GANTT diagram functionality to mermaid
+    excludes    weekends
+    %% (`excludes` accepts specific dates in YYYY-MM-DD format, days of the week ("sunday") or "weekends", but not the word "weekdays".)
+
+    section A section
+    Completed task            :done,    des1, 2014-01-06,2014-01-08
+    Active task               :active,  des2, 2014-01-09, 3d
+    Future task               :         des3, after des2, 5d
+    Future task2              :         des4, after des3, 5d
+
+    section Critical tasks
+    Completed task in the critical line :crit, done, 2014-01-06,24h
+    Implement parser and jison          :crit, done, after des1, 2d
+    Create tests for parser             :crit, active, 3d
+    Future task in critical line        :crit, 5d
+    Create tests for renderer           :2d
+    Add to mermaid                      :until isadded
+    Functionality added                 :milestone, isadded, 2014-01-25, 0d
+
+    section Documentation
+    Describe gantt syntax               :active, a1, after des1, 3d
+    Add gantt diagram to demo page      :after a1  , 20h
+    Add another diagram to demo page    :doc1, after a1  , 48h
+
+    section Last section
+    Describe gantt syntax               :after doc1, 3d
+    Add gantt diagram to demo page      :20h
+    Add another diagram to demo page    :48h
+
+```
+<style>
+  #mermaid-gantt-10 .done0 {
+      fill: #060 !important;
+  }
+  #mermaid-gantt-10 .doneCrit1 {
+      fill: #660 !important;
+  }
+</style>
+
+#### GANTT Diagram with Theme "default"
+
+```mermaid{id="mermaid-gantt-12"}
+---
+config:
+  theme: 'default'
+---
+gantt
+    dateFormat  YYYY-MM-DD
+    title       Adding GANTT diagram functionality to mermaid
+    excludes    weekends
+    %% (`excludes` accepts specific dates in YYYY-MM-DD format, days of the week ("sunday") or "weekends", but not the word "weekdays".)
+
+    section A section
+    Completed task            :done,    des1, 2014-01-06,2014-01-08
+    Active task               :active,  des2, 2014-01-09, 3d
+    Future task               :         des3, after des2, 5d
+    Future task2              :         des4, after des3, 5d
+
+    section Critical tasks
+    Completed task in the critical line :crit, done, 2014-01-06,24h
+    Implement parser and jison          :crit, done, after des1, 2d
+    Create tests for parser             :crit, active, 3d
+    Future task in critical line        :crit, 5d
+    Create tests for renderer           :2d
+    Add to mermaid                      :until isadded
+    Functionality added                 :milestone, isadded, 2014-01-25, 0d
+
+    section Documentation
+    Describe gantt syntax               :active, a1, after des1, 3d
+    Add gantt diagram to demo page      :after a1  , 20h
+    Add another diagram to demo page    :doc1, after a1  , 48h
+
+    section Last section
+    Describe gantt syntax               :after doc1, 3d
+    Add gantt diagram to demo page      :20h
+    Add another diagram to demo page    :48h
+
+```
+<style>
+  #mermaid-gantt-12 {
+    background-color: #f3f3f3;
+  }
+</style>
+
+#### GANTT Diagram with Theme "forest"
+
+```mermaid{id="mermaid-gantt-11"}
+---
+config:
+  theme: 'forest'
+---
+gantt
+    dateFormat  YYYY-MM-DD
+    title       Adding GANTT diagram functionality to mermaid
+    excludes    weekends
+    %% (`excludes` accepts specific dates in YYYY-MM-DD format, days of the week ("sunday") or "weekends", but not the word "weekdays".)
+
+    section A section
+    Completed task            :done,    des1, 2014-01-06,2014-01-08
+    Active task               :active,  des2, 2014-01-09, 3d
+    Future task               :         des3, after des2, 5d
+    Future task2              :         des4, after des3, 5d
+
+    section Critical tasks
+    Completed task in the critical line :crit, done, 2014-01-06,24h
+    Implement parser and jison          :crit, done, after des1, 2d
+    Create tests for parser             :crit, active, 3d
+    Future task in critical line        :crit, 5d
+    Create tests for renderer           :2d
+    Add to mermaid                      :until isadded
+    Functionality added                 :milestone, isadded, 2014-01-25, 0d
+
+    section Documentation
+    Describe gantt syntax               :active, a1, after des1, 3d
+    Add gantt diagram to demo page      :after a1  , 20h
+    Add another diagram to demo page    :doc1, after a1  , 48h
+
+    section Last section
+    Describe gantt syntax               :after doc1, 3d
+    Add gantt diagram to demo page      :20h
+    Add another diagram to demo page    :48h
+
+```
+<style>
+  #mermaid-gantt-11 {
+    background-color: #f3f3f3;
+  }
+</style>
+
+#### Sequence Diagram
+
+```mermaid
+sequenceDiagram
+    Alice->>John: Hello John, how are you?
+    John-->>Alice: Great!
+    Alice-)John: See you later!
+```
+
+#### Class Diagram
+
+```mermaid
+---
+title: Animal example
+---
+classDiagram
+    note "From Duck till Zebra"
+    Animal <|-- Duck
+    note for Duck "can fly\ncan swim\ncan dive\ncan help in debugging"
+    Animal <|-- Fish
+    Animal <|-- Zebra
+    Animal : +int age
+    Animal : +String gender
+    Animal: +isMammal()
+    Animal: +mate()
+    class Duck{
+        +String beakColor
+        +swim()
+        +quack()
+    }
+    class Fish{
+        -int sizeInFeet
+        -canEat()
+    }
+    class Zebra{
+        +bool is_wild
+        +run()
+    }
+```
+
+#### State Diagram
+
+```mermaid
+---
+title: Simple sample
+---
+stateDiagram-v2
+    [*] --> Still
+    Still --> [*]
+
+    Still --> Moving
+    Moving --> Still
+    Moving --> Crash
+    Crash --> [*]
+```
+
+#### Entity Relationship Diagram
+
+```mermaid
+---
+title: Order example
+---
+erDiagram
+    CUSTOMER ||--o{ ORDER : places
+    ORDER ||--|{ LINE-ITEM : contains
+    CUSTOMER }|..|{ DELIVERY-ADDRESS : uses
+```
+
+#### Pie Chart
+
+```mermaid
+---
+config:
+  pie:
+    textPosition: 0.5
+  themeVariables:
+    pieOuterStrokeWidth: "5px"
+---
+pie showData
+    title Key elements in Product X
+    "Calcium" : 42.96
+    "Potassium" : 50.05
+    "Magnesium" : 10.01
+    "Iron" :  5
+```
+
+#### Quadrant Chart
+
+```mermaid
+quadrantChart
+    title Reach and engagement of campaigns
+    x-axis Low Reach --> High Reach
+    y-axis Low Engagement --> High Engagement
+    quadrant-1 We should expand
+    quadrant-2 Need to promote
+    quadrant-3 Re-evaluate
+    quadrant-4 May be improved
+    Campaign A: [0.3, 0.6]
+    Campaign B: [0.45, 0.23]
+    Campaign C: [0.57, 0.69]
+    Campaign D: [0.78, 0.34]
+    Campaign E: [0.40, 0.34]
+    Campaign F: [0.35, 0.78]
+```
+
+#### Requirement Diagram
+
+```mermaid
+    requirementDiagram
+
+    requirement test_req {
+    id: 1
+    text: the test text.
+    risk: high
+    verifymethod: test
+    }
+
+    element test_entity {
+    type: simulation
+    }
+
+    test_entity - satisfies -> test_req
+```
+
+#### GitGraph Diagram
+
+```mermaid
+---
+title: Example Git diagram
+---
+gitGraph
+   commit
+   commit
+   branch develop
+   checkout develop
+   commit
+   commit
+   checkout main
+   merge develop
+   commit
+   commit
+```
+
+#### Timeline Diagram
+
+```mermaid
+timeline
+    title History of Social Media Platform
+    2002 : LinkedIn
+    2004 : Facebook
+         : Google
+    2005 : YouTube
+         : Google
+    2006 : Twitter
+         : Reddit
+         : Tumblr
+         : MySpace
+    2007 : LinkedIn acquired by Microsoft
+    2010 : Instagram
+    2011 : Snapchat
+    2016 : TikTok
+    2020 : Clubhouse
+    2021 : Facebook rebranded to Meta
+    2022 : Twitter acquired by Elon Musk
+    2023 : Threads launched by Meta
+```
+
+#### Timeline Diagram with rapping of text
+
+```mermaid
+timeline
+        title England's History Timeline
+        section Stone Age
+          7600 BC : Britain's oldest known house was built in Orkney, Scotland
+          6000 BC : Sea levels rise and Britain becomes an island.<br> The people who live here are hunter-gatherers.
+        section Bronze Age
+          2300 BC : People arrive from Europe and settle in Britain. <br>They bring farming and metalworking.
+                  : New styles of pottery and ways of burying the dead appear.
+          2200 BC : The last major building works are completed at Stonehenge.<br> People now bury their dead in stone circles.
+                  : The first metal objects are made in Britain.Some other nice things happen. it is a good time to be alive.
+
+```
+
 :::
 
 :::details Task lists
