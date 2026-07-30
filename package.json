@@ -8,10 +8,12 @@
     "build": "node index.js",
     "watch": "nodemon index.js",
     "js": "webpack",
-    "search": "node searchApi.js"
+    "search": "node searchApi.js",
+    "deploy": "node deploy.js"
   },
   "license": "GPL-3.0-or-later",
   "dependencies": {
+    "dotenv": "^16.0.3",
     "front-matter": "^4.0.2",
     "markdown-it": "^13.0.1",
     "markdown-it-anchor": "^8.6.5",
@@ -22,11 +24,11 @@
     "markdown-it-footnote": "^3.0.3",
     "markdown-it-table-of-contents": "^0.6.0",
     "markdown-it-task-lists": "^2.1.1",
-    "pug": "^3.0.2"
+    "pug": "^3.0.2",
+    "ssh2-sftp-client": "^12.1.1"
   },
   "devDependencies": {
     "cors": "^2.8.5",
-    "dotenv": "^16.0.3",
     "elasticlunr": "^0.9.5",
     "express": "^4.18.2",
     "nodemon": "^3.1.7",

@@ -11,6 +11,7 @@ const distDir = path.join(baseDir, "www");
 const navFile = path.join(baseDir, "nav.js");
 const vscodeDir = path.join(baseDir, ".vscode");
 const indexFile = path.join(__dirname, "index.js");
+const deployFile = path.join(__dirname, "deploy.js");
 
 // check if .env file exists
 if (!fs.existsSync(path.join(baseDir, ".env"))) {
@@ -148,7 +149,8 @@ if (!fs.existsSync(path.join(baseDir, "package.json"))) {
     scripts: {
       build: "node " + indexFile,
       watch: "nodemon " + indexFile,
-      search: "node searchApi.js"
+      search: "node searchApi.js",
+      deploy: "node " + deployFile
     },
     devDependencies: {
       "cors": "^2.8.5",
