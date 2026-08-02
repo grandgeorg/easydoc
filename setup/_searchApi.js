@@ -16,7 +16,7 @@ app.get("/", function (req, res) {
       title: { boost: 2 },
       tags: { boost: 1.5 },
       body: { boost: 1 },
-      file: { boost: 1 },
+      file_name: { boost: 1 },
     },
     expand: true,
   });
