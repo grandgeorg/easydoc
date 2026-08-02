@@ -83,6 +83,10 @@ if (!fs.existsSync(distDir)) {
     path.join(distDir, "assets", "js", "vue.global.prod.js")
   );
   fs.copyFileSync(
+    path.join(__dirname, "www", "assets", "js", "dashboard.min.js"),
+    path.join(distDir, "assets", "js", "dashboard.min.js")
+  );
+  fs.copyFileSync(
     path.join(__dirname, "www", "assets", "js", "mermaid.tiny.min.js"),
     path.join(distDir, "assets", "js", "mermaid.tiny.min.js")
   );

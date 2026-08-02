@@ -74,6 +74,16 @@ if (__dirname !== baseDir) {
       path.join(distDir, "assets", "js", "clipboard.min.js")
     );
   }
+  // assets introduced after a project was scaffolded are copied individually,
+  // because the block above only runs once, when www/assets does not exist yet
+  const distJsDir = path.join(distDir, "assets", "js");
+  if (fs.existsSync(distJsDir)) {
+    ["vue.global.prod.js", "dashboard.min.js"].forEach((asset) => {
+      if (!fs.existsSync(path.join(distJsDir, asset))) {
+        fs.copyFileSync(path.join(__dirname, "www", "assets", "js", asset), path.join(distJsDir, asset));
+      }
+    });
+  }
   // check if img directory exists
   if (!fs.existsSync(path.join(distDir, "img"))) {
     fs.mkdirSync(path.join(distDir, "img"));
@@ -83,7 +93,12 @@ if (__dirname !== baseDir) {
 require("dotenv").config();
 const nav = require(navFile);
 
-const withFulltextSearch = String(process.env.EASYDOC_ENABLE_FULLTEXT_SEARCH).toLowerCase() === "true";
+function envBool(name) {
+  return String(process.env[name]).toLowerCase() === "true";
+}
+
+const withFulltextSearch = envBool("EASYDOC_ENABLE_FULLTEXT_SEARCH");
+const autoIndexDashboard = envBool("EASYDOC_GENERATE_AUTO_INDEX") && envBool("EASYDOC_AUTO_INDEX_SHOW_DASHBOARD");
 
 const searchIndex = elasticlunr(function () {
   this.addField("title");
@@ -253,6 +268,67 @@ function getFromatedMtime(mtime, lang) {
   return new Date(mtime).toLocaleDateString(lang, mtimeOptions) + suffix;
 }
 
+const AUTO_INDEX_START = "<!-- easydoc:auto-index:start -->";
+const AUTO_INDEX_END = "<!-- easydoc:auto-index:end -->";
+
+function getAutoIndexBlock() {
+  return [
+    AUTO_INDEX_START,
+    '<div id="dashboard"></div>',
+    '<script src="assets/js/dashboard.min.js"></script>',
+    AUTO_INDEX_END,
+  ].join("\n");
+}
+
+// Creates docs/index.md when missing and keeps the generated block in sync.
+// The file is only written when its content actually changes, otherwise
+// `npm run watch` would retrigger itself on every build.
+function ensureAutoIndex() {
+  if (!envBool("EASYDOC_GENERATE_AUTO_INDEX")) {
+    return;
+  }
+  const indexPath = path.join(docsDir, "index.md");
+  const block = autoIndexDashboard ? getAutoIndexBlock() : "";
+
+  if (!fs.existsSync(indexPath)) {
+    const frontMatter = [
+      "---",
+      "lang: " + JSON.stringify(process.env.EASYDOC_LANG_FALLBACK || "en"),
+      "title: " + JSON.stringify(process.env.EASYDOC_TITLE_FALLBACK || "Documentation"),
+      "disableToc: true",
+      "---",
+      "",
+    ].join("\n");
+    fs.writeFileSync(indexPath, block ? frontMatter + "\n" + block + "\n" : frontMatter);
+    return;
+  }
+
+  if (!block) {
+    return;
+  }
+
+  const current = fs.readFileSync(indexPath, "utf-8");
+  const startAt = current.indexOf(AUTO_INDEX_START);
+  const endAt = current.indexOf(AUTO_INDEX_END);
+  let next;
+  if (startAt !== -1 && endAt > startAt) {
+    next = current.slice(0, startAt) + block + current.slice(endAt + AUTO_INDEX_END.length);
+  } else if (String(process.env.EASYDOC_AUTO_INDEX_POSITION).toLowerCase() === "append") {
+    next = current.replace(/\s*$/, "") + "\n\n" + block + "\n";
+  } else {
+    // prepend inserts after the front matter, never before it
+    const frontMatterMatch = current.match(/^---\r?\n[\s\S]*?\r?\n---\r?\n/);
+    const head = frontMatterMatch ? frontMatterMatch[0] : "";
+    const body = current.slice(head.length).replace(/^\r?\n+/, "");
+    next = (head ? head + "\n" : "") + block + "\n\n" + body;
+  }
+  if (next !== current) {
+    fs.writeFileSync(indexPath, next);
+  }
+}
+
+ensureAutoIndex();
+
 // console.log("Building site...");
 fs.readdir(docsDir, (err, files) => {
   if (err) {
@@ -301,9 +377,12 @@ fs.readdir(docsDir, (err, files) => {
       let loadMermaid = fmData.attributes.loadMermaid
         ? Boolean(fmData.attributes.loadMermaid)
         : Boolean(process.env.EASYDOC_LOAD_MERMAID);
-      let loadVueJs = fmData.attributes.loadVueJs
+      let loadVueJs = fmData.attributes.loadVueJs !== undefined
         ? Boolean(fmData.attributes.loadVueJs)
-        : Boolean(process.env.EASYDOC_LOAD_VUE_JS);
+        : envBool("EASYDOC_LOAD_VUEJS");
+      if (autoIndexDashboard && file === "index.md") {
+        loadVueJs = true;
+      }
       let disableBrand = fmData.attributes.disableBrand
         ? Boolean(fmData.attributes.disableBrand)
         : Boolean(process.env.EASYDOC_DISABLE_BRAND);
