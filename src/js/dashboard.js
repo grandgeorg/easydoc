@@ -98,6 +98,8 @@
       const activeQuery = ref(query.value);
       const fulltextByToken = ref({});
       const fulltextUnavailable = ref(false);
+      const showAll = ref(Boolean(easydocMeta.config.auto_index_init_show_all));
+      const required = ref([]);
 
       const tokens = computed(function () {
         return tokenize(activeQuery.value);
@@ -180,8 +182,36 @@
         return score;
       }
 
+      function hasFulltextHit(token, file) {
+        const hits = fulltextByToken.value[token];
+        return Boolean(
+          hits &&
+            hits.some(function (result) {
+              return result.ref === file;
+            })
+        );
+      }
+
+      // A required chip key is "<kind>:<value>"; every required key has to match.
+      function matchesRequired(key, page, pageTags, title, file) {
+        const separator = key.indexOf(":");
+        const kind = key.slice(0, separator);
+        const value = key.slice(separator + 1);
+        if (kind === "tag") {
+          return pageTags.indexOf(value.toLowerCase()) !== -1;
+        }
+        if (kind === "titlefile") {
+          return title.indexOf(value) !== -1 || file.indexOf(value) !== -1;
+        }
+        return hasFulltextHit(value, page.file);
+      }
+
       const results = computed(function () {
         const list = tokens.value;
+        if (!list.length && !showAll.value) {
+          return [];
+        }
+        const requiredKeys = required.value;
         const matched = [];
         easydocMeta.pages.forEach(function (page) {
           const pageTags = (page.tags || []).map(function (tag) {
@@ -204,6 +234,11 @@
           const score = fulltextScore(page.file);
           if (score > 0) {
             hit = true;
+          }
+          if (hit && requiredKeys.length) {
+            hit = requiredKeys.every(function (key) {
+              return matchesRequired(key, page, pageTags, title, file);
+            });
           }
           if (hit) {
             matched.push({
@@ -243,7 +278,7 @@
               known.partial = known.partial && !exact;
               return;
             }
-            summary.push({ name: tag.name, count: tag.count, partial: !exact });
+            summary.push({ key: `tag:${tag.name}`, name: tag.name, count: tag.count, partial: !exact });
           });
         });
         return summary;
@@ -259,7 +294,7 @@
             }
           });
           if (count > 0) {
-            summary.push({ token: token, count: count });
+            summary.push({ key: `titlefile:${token}`, token: token, count: count });
           }
         });
         return summary;
@@ -275,7 +310,7 @@
           const best = hits.reduce(function (max, hit) {
             return hit.score > max ? hit.score : max;
           }, 0);
-          summary.push({ token: token, count: hits.length, score: best.toFixed(2) });
+          summary.push({ key: `fulltext:${token}`, token: token, count: hits.length, score: best.toFixed(2) });
         });
         return summary;
       });
@@ -287,6 +322,57 @@
           fulltextSummary.value.length > 0 ||
           fulltextUnavailable.value
         );
+      });
+
+      const summaryKeys = computed(function () {
+        return tagSummary.value
+          .map(function (item) {
+            return item.key;
+          })
+          .concat(
+            titleFileSummary.value.map(function (item) {
+              return item.key;
+            }),
+            fulltextSummary.value.map(function (item) {
+              return item.key;
+            })
+          );
+      });
+
+      // Chips disappear as the query changes, so drop the requirements they carried.
+      watch(summaryKeys, function (keys) {
+        const kept = required.value.filter(function (key) {
+          return keys.indexOf(key) !== -1;
+        });
+        if (kept.length !== required.value.length) {
+          required.value = kept;
+        }
+      });
+
+      function isRequired(key) {
+        return required.value.indexOf(key) !== -1;
+      }
+
+      function toggleRequired(key) {
+        if (isRequired(key)) {
+          required.value = required.value.filter(function (item) {
+            return item !== key;
+          });
+        } else {
+          required.value = required.value.concat([key]);
+        }
+      }
+
+      function chipTitle(key, partial) {
+        const action = isRequired(key) ? t.dashboard_require_off : t.dashboard_require_on;
+        return partial ? `${t.dashboard_partial_tag} \u00b7 ${action}` : action;
+      }
+
+      const emptyMessage = computed(function () {
+        if (!tokens.value.length && !showAll.value) {
+          return t.dashboard_start_typing;
+        }
+        return t.dashboard_no_results;
       });
 
       function isSelected(tag) {
@@ -316,11 +402,16 @@
         query,
         tokens,
         results,
+        showAll,
+        emptyMessage,
         tagSummary,
         titleFileSummary,
         fulltextSummary,
         hasSummary,
         fulltextUnavailable,
+        isRequired,
+        toggleRequired,
+        chipTitle,
         isSelected,
         toggleTag,
         clearQuery,
@@ -354,6 +445,18 @@
             <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854z"/>
           </svg>
         </button>
+        <button
+          class="dashboard-toggle-all"
+          type="button"
+          :class="{ active: showAll }"
+          :aria-pressed="showAll ? 'true' : 'false'"
+          :title="showAll ? t.dashboard_show_all_off : t.dashboard_show_all_on"
+          :aria-label="showAll ? t.dashboard_show_all_off : t.dashboard_show_all_on"
+          @click="showAll = !showAll">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-grid-3x3-gap" viewBox="0 0 16 16">
+            <path d="M4 2v2H2V2h2zm1 12v-2a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1zm0-5V7a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1zm0-5V2a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1zm5 0V2a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1zM9 2v2H7V2h2zm5 0v2h-2V2h2zm-4 5v2a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1zM9 7v2H7V7h2zm5 0v2h-2V7h2zM4 7v2H2V7h2zm10 5v2h-2v-2h2zm1 0v2a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1v-2a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1zm-6 0v2H7v-2h2zm1 0v2a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1v-2a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1zM4 12v2H2v-2h2zm11-10v2h-2V2h2zm0 5v2h-2V7h2z"/>
+          </svg>
+        </button>
       </div>
 
       <div class="dashboard-summary" v-if="hasSummary">
@@ -362,17 +465,20 @@
             {{ t.dashboard_summary_tags }}<span class="summary-count">{{ tagSummary.length }}</span>
           </div>
           <div class="tags">
-            <span
+            <button
+              type="button"
               class="tag"
               v-for="item in tagSummary"
-              :key="item.name"
-              :class="{ partial: item.partial }"
-              :title="item.partial ? t.dashboard_partial_tag : null">
+              :key="item.key"
+              :class="{ partial: item.partial, required: isRequired(item.key) }"
+              :aria-pressed="isRequired(item.key) ? 'true' : 'false'"
+              :title="chipTitle(item.key, item.partial)"
+              @click="toggleRequired(item.key)">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-tag" viewBox="0 0 16 16">
                 <path d="M6 4.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm-1 0a.5.5 0 1 0-1 0 .5.5 0 0 0 1 0z"/>
                 <path d="M2 1h4.586a1 1 0 0 1 .707.293l7 7a1 1 0 0 1 0 1.414l-4.586 4.586a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 1 6.586V2a1 1 0 0 1 1-1zm0 5.586 7 7L13.586 9l-7-7H2v4.586z"/>
               </svg>{{ item.name }}<span class="tag-count">{{ item.count }}</span>
-            </span>
+            </button>
           </div>
         </div>
 
@@ -381,9 +487,17 @@
             {{ t.dashboard_summary_titlefile }}<span class="summary-count">{{ titleFileSummary.length }}</span>
           </div>
           <div class="tags">
-            <span class="token" v-for="item in titleFileSummary" :key="item.token">
+            <button
+              type="button"
+              class="token"
+              v-for="item in titleFileSummary"
+              :key="item.key"
+              :class="{ required: isRequired(item.key) }"
+              :aria-pressed="isRequired(item.key) ? 'true' : 'false'"
+              :title="chipTitle(item.key)"
+              @click="toggleRequired(item.key)">
               <mark>{{ item.token }}</mark><span class="tag-count">{{ item.count }}</span>
-            </span>
+            </button>
           </div>
         </div>
 
@@ -392,18 +506,26 @@
             {{ t.dashboard_summary_fulltext }}<span class="summary-count">{{ fulltextSummary.length }}</span>
           </div>
           <div class="tags">
-            <span class="token" v-for="item in fulltextSummary" :key="item.token">
-              {{ item.token }}<span class="tag-count">{{ item.count }}</span><span class="score-chip" :title="t.dashboard_score">{{ item.score }}</span>
-            </span>
+            <button
+              type="button"
+              class="token"
+              v-for="item in fulltextSummary"
+              :key="item.key"
+              :class="{ required: isRequired(item.key) }"
+              :aria-pressed="isRequired(item.key) ? 'true' : 'false'"
+              :title="chipTitle(item.key)"
+              @click="toggleRequired(item.key)">
+              {{ item.token }}<span class="tag-count">{{ item.count }}</span><span class="score-chip">{{ item.score }}</span>
+            </button>
           </div>
         </div>
 
         <div class="dashboard-note" v-if="fulltextUnavailable">{{ t.dashboard_fulltext_unavailable }}</div>
       </div>
 
-      <div class="dashboard-result-count">{{ results.length }} {{ t.dashboard_results }}</div>
+      <div class="dashboard-result-count" v-if="results.length">{{ results.length }} {{ t.dashboard_results }}</div>
 
-      <div class="dashboard-empty" v-if="!results.length">{{ t.dashboard_no_results }}</div>
+      <div class="dashboard-empty" v-if="!results.length">{{ emptyMessage }}</div>
 
       <div class="tag-navigation dashboard-pages" v-else>
         <div class="page-card" v-for="item in results" :key="item.page.file">

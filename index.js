@@ -574,6 +574,7 @@ fs.readdir(docsDir, (err, files) => {
         ? false
         : Boolean(process.env.EASYDOC_ENABLE_FULLTEXT_SEARCH),
     easydoc_search_api_url: process.env.EASYDOC_SEARCH_API_URL,
+    auto_index_init_show_all: envBool("EASYDOC_AUTO_INDEX_INIT_SHOW_ALL"),
     // search_index: searchIndex.toJSON(),
   };
 

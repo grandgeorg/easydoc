@@ -15,6 +15,7 @@ into it.
 | `EASYDOC_GENERATE_AUTO_INDEX` | `false` | Master switch. When off, nothing below runs. |
 | `EASYDOC_AUTO_INDEX_POSITION` | `prepend` | `prepend` \| `append`. Where the block is inserted **on first insert only**. |
 | `EASYDOC_AUTO_INDEX_SHOW_DASHBOARD` | `false` | Inject the dashboard mount point + script. |
+| `EASYDOC_AUTO_INDEX_INIT_SHOW_ALL` | `false` | Initial state of the dashboard's "show all pages" switch. Reaches the browser as `easydocMeta.config.auto_index_init_show_all`. |
 | `EASYDOC_AUTO_INDEX_SHOW_TAG_NAVIGATOR` | `false` | Reserved — **not implemented**. The tag navigator is a modal; this option is for a future inline variant. |
 
 All four are parsed with an `envBool()` helper: `String(v).toLowerCase() === "true"`.
@@ -74,10 +75,19 @@ silently if `#dashboard`, `Vue`, or `easydocMeta` is missing.
   - title substring
   - filename substring
   - fulltext hit
-- Empty query shows all pages.
+- Empty query shows **nothing** unless the "show all pages" switch is on. The switch is
+  seeded from `auto_index_init_show_all` and is not persisted.
 - 300 ms debounce on everything.
 - Query is mirrored to `?q=` with `history.replaceState`. No localStorage, so the
   cookie-consent flow in `app.js` does not apply.
+
+### Required matches
+
+Every summary chip is a toggle. A chip key is `"<kind>:<value>"` with kind `tag`,
+`titlefile` or `fulltext`. Toggled-on chips are **AND**-ed on top of the inclusive-OR
+base filter, so a page must satisfy *all* of them (`aria-pressed` + `.required` class).
+A `watch` on the current chip keys prunes requirements whose chip disappeared, so they
+cannot resurrect when the same token is typed again.
 
 ### Fulltext
 

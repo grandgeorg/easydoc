@@ -1909,7 +1909,8 @@ html[data-theme="light"] {
   margin: 1rem 0;
 }
 
-.dashboard-clear {
+.dashboard-clear,
+.dashboard-toggle-all {
   display: flex;
   align-items: center;
   margin: 0 0 0 0.5rem;
@@ -1922,6 +1923,15 @@ html[data-theme="light"] {
   cursor: pointer;
   &:hover {
     background-color: var(--clr-base-mark-hover);
+  }
+}
+
+.dashboard-toggle-all.active {
+  color: var(--clr-base-l500);
+  background-color: var(--clr-base-mark-active);
+  border-color: var(--clr-base-mark-active);
+  &:hover {
+    background-color: var(--clr-base-mark-active);
   }
 }
 
@@ -1940,28 +1950,45 @@ html[data-theme="light"] {
     gap: 0.5rem;
   }
   .tag {
-    cursor: default;
-    &:hover {
-      background-color: var(--clr-base-d300);
-    }
     &.partial {
       background-color: transparent;
       border: 1px dashed var(--clr-base-d250);
+    }
+    &.required {
+      color: var(--clr-base-l500);
+      background-color: var(--clr-base-mark-active);
+      border-style: solid;
+      border-color: var(--clr-base-mark-active);
       &:hover {
-        background-color: transparent;
+        background-color: var(--clr-base-mark-active);
       }
     }
   }
   .token {
     display: inline-flex;
     align-items: center;
+    margin: 0;
     background-color: var(--clr-base-d300);
+    font-family: inherit;
     font-size: 0.875rem;
     font-weight: 500;
     line-height: 1;
     padding: 0.3em 0.6em;
+    border: 1px solid transparent;
     border-radius: 4px;
     color: var(--clr-base-l200);
+    cursor: pointer;
+    &:hover {
+      background-color: var(--clr-base-mark-hover);
+    }
+    &.required {
+      color: var(--clr-base-l500);
+      background-color: var(--clr-base-mark-active);
+      border-color: var(--clr-base-mark-active);
+      &:hover {
+        background-color: var(--clr-base-mark-active);
+      }
+    }
   }
   .tag-count {
     display: inline-block;

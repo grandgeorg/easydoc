@@ -38,6 +38,11 @@ exports.en = {
   "dashboard_results": "pages found",
   "dashboard_no_results": "No pages match your search.",
   "dashboard_fulltext_unavailable": "Fulltext search is currently unavailable, showing tag, title and filename matches only.",
+  "dashboard_show_all_on": "Show all pages",
+  "dashboard_show_all_off": "Only show search results",
+  "dashboard_require_on": "Click to make this match required",
+  "dashboard_require_off": "Click to stop requiring this match",
+  "dashboard_start_typing": "Type to search, or switch on 'show all pages'.",
 };
 exports.de = {
   "mtime": "letzte Aktualisierung",
@@ -77,4 +82,9 @@ exports.de = {
   "dashboard_results": "Seiten gefunden",
   "dashboard_no_results": "Keine Seite entspricht Ihrer Suche.",
   "dashboard_fulltext_unavailable": "Die Volltextsuche ist derzeit nicht verf\u00fcgbar, es werden nur Treffer in Tags, Titel und Dateiname angezeigt.",
+  "dashboard_show_all_on": "Alle Seiten anzeigen",
+  "dashboard_show_all_off": "Nur Suchergebnisse anzeigen",
+  "dashboard_require_on": "Klicken, um diesen Treffer verpflichtend zu machen",
+  "dashboard_require_off": "Klicken, um den verpflichtenden Treffer aufzuheben",
+  "dashboard_start_typing": "Suchbegriff eingeben oder \u201eAlle Seiten anzeigen\u201c einschalten.",
 };
