@@ -1,0 +1,10 @@
+details.pagesnav-details
+  summary.nav-title.text-center #{t.pages}
+  if pages && pages.length
+    ul
+      each item in pages
+        li
+          if item.file === file
+            a(href=item.file class="active") #{item.title}
+          else
+            a(href=item.file) #{item.title}

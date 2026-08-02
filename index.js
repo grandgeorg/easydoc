@@ -98,7 +98,8 @@ function envBool(name) {
 }
 
 const withFulltextSearch = envBool("EASYDOC_ENABLE_FULLTEXT_SEARCH");
-const autoIndexDashboard = envBool("EASYDOC_GENERATE_AUTO_INDEX") && envBool("EASYDOC_AUTO_INDEX_SHOW_DASHBOARD");
+const generateAutoIndex = envBool("EASYDOC_GENERATE_AUTO_INDEX");
+const autoIndexDashboard = generateAutoIndex && envBool("EASYDOC_AUTO_INDEX_SHOW_DASHBOARD");
 
 const searchIndex = elasticlunr(function () {
   this.addField("title");
@@ -250,6 +251,7 @@ const rgxExt = /\.(?:md)$/;
 const outExt = ".html";
 
 const pages = [];
+const renderQueue = [];
 const tagCloud = [];
 let notLowercaseTags = [];
 
@@ -284,7 +286,7 @@ function getAutoIndexBlock() {
 // The file is only written when its content actually changes, otherwise
 // `npm run watch` would retrigger itself on every build.
 function ensureAutoIndex() {
-  if (!envBool("EASYDOC_GENERATE_AUTO_INDEX")) {
+  if (!generateAutoIndex) {
     return;
   }
   const indexPath = path.join(docsDir, "index.md");
@@ -440,42 +442,37 @@ fs.readdir(docsDir, (err, files) => {
         // toc: toc,
         tags: tags,
       });
-      let navigation = "";
-      if (!disableNavigationBar && !disableBurger && !disableSiteNav) {
-        // console.log("Navigation rendered with t ", t[lang], " for file ", fileOut);
-        navigation = pug.renderFile(path.join(templateDir, "nav.pug"), {
-          nav: nav.nav,
-          lang: lang,
+      // The page list is only complete once every file has been scanned,
+      // so the layout is rendered after the loop.
+      renderQueue.push({
+        file: fileOut,
+        lang: lang,
+        withNav: !disableNavigationBar && !disableBurger && !disableSiteNav,
+        args: {
+          toc: toc,
           t: t[lang],
-          file: fileOut,
-        });
-      }
-      let page = pug.renderFile(layout, {
-        toc: toc,
-        t: t[lang],
-        content: md.render(fmData.body),
-        sitenav: navigation,
-        attributes: {
-          title: title,
-          lang: lang,
-          mtime: getFromatedMtime(stats.mtime, lang),
-          brandURL: fmData.attributes.brandURL ? fmData.attributes.brandURL : process.env.EASYDOC_BRAND_URL,
-          brandName: fmData.attributes.brandName ? fmData.attributes.brandName : process.env.EASYDOC_BRAND_NAME,
-          brandSecondary: fmData.attributes.brandSecondary
-            ? fmData.attributes.brandSecondary
-            : process.env.EASYDOC_BRAND_SECONDARY,
-          disableBrand: disableBrand,
-          navbarClass: navbarClass,
-          disableToc: disableToc,
-          disableSiteNav: disableSiteNav,
-          disableTagNavigator: disableTagNavigator,
-          disableNavigationBar: disableNavigationBar,
-          disableBurger: disableBurger,
-          loadVueJs: loadVueJs,
-          loadMermaid: loadMermaid,
+          content: md.render(fmData.body),
+          attributes: {
+            title: title,
+            lang: lang,
+            mtime: getFromatedMtime(stats.mtime, lang),
+            brandURL: fmData.attributes.brandURL ? fmData.attributes.brandURL : process.env.EASYDOC_BRAND_URL,
+            brandName: fmData.attributes.brandName ? fmData.attributes.brandName : process.env.EASYDOC_BRAND_NAME,
+            brandSecondary: fmData.attributes.brandSecondary
+              ? fmData.attributes.brandSecondary
+              : process.env.EASYDOC_BRAND_SECONDARY,
+            disableBrand: disableBrand,
+            navbarClass: navbarClass,
+            disableToc: disableToc,
+            disableSiteNav: disableSiteNav,
+            disableTagNavigator: disableTagNavigator,
+            disableNavigationBar: disableNavigationBar,
+            disableBurger: disableBurger,
+            loadVueJs: loadVueJs,
+            loadMermaid: loadMermaid,
+          },
         },
       });
-      fs.writeFileSync(path.join(distDir, fileOut), page);
       if (withFulltextSearch) {
         searchIndex.addDoc({
           title: title,
@@ -539,6 +536,32 @@ fs.readdir(docsDir, (err, files) => {
       return 1;
     }
     return 0;
+  });
+
+  const pagesNav = pages.slice().sort((a, b) => a.title.localeCompare(b.title));
+
+  renderQueue.forEach((item) => {
+    let navigation = "";
+    let pagesnav = "";
+    if (item.withNav) {
+      navigation = pug.renderFile(path.join(templateDir, "nav.pug"), {
+        nav: nav.nav,
+        lang: item.lang,
+        t: t[item.lang],
+        file: item.file,
+      });
+      if (generateAutoIndex) {
+        pagesnav = pug.renderFile(path.join(templateDir, "pagesnav.pug"), {
+          pages: pagesNav,
+          lang: item.lang,
+          t: t[item.lang],
+          file: item.file,
+        });
+      }
+    }
+    item.args.sitenav = navigation;
+    item.args.pagesnav = pagesnav;
+    fs.writeFileSync(path.join(distDir, item.file), pug.renderFile(layout, item.args));
   });
 
   const metaConfig = {

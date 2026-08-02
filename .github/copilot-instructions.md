@@ -36,7 +36,7 @@ the target unless there is a clear reason (`searchApi.js` is the historical exce
 | `searchApi.js` | Optional Express + `elasticlunr` full‑text search server on port 3000. |
 | `nav.js` | Site navigation config (`exports.nav = [...]`). |
 | `lang/langs.js` | UI translations (`en`, `de`). Add languages here. |
-| `templates/` | `pug` templates: `layout.pug`, `nav.pug`. |
+| `templates/` | `pug` templates: `layout.pug`, `nav.pug`, `pagesnav.pug`. |
 | `src/js`, `src/scss` | Front‑end source; bundled with webpack (`npm run js`). |
 | `setup/` | Template files copied into scaffolded projects (`_gitignore`, `_nodemon.json`, `_searchApi.js`, `_vscode_settings.json`). |
 | `www/` | Build output / distributable assets. |

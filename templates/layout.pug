@@ -49,6 +49,8 @@ html(lang=attributes.lang)
             .toc !{toc}
           if !attributes.disableSiteNav
             .sitenav !{sitenav}
+          if pagesnav
+            .sitenav.pagesnav !{pagesnav}
 
     main.page
       .mtime #{t.mtime} #{attributes.mtime}

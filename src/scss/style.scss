@@ -693,6 +693,34 @@ body a.navbar__brand[href]:not([tabindex^="-"]):focus {
 
 }
 
+// pages navigation (auto index)
+.navigation-drawer .pagesnav {
+  padding-top: 0;
+  .pagesnav-details {
+    margin: 0;
+    padding: 0 1rem;
+    // open is an attribute, not a class, so we need to use the attribute selector
+    &[open] {
+      // border: 1px solid var(--clr-base-d50);
+      summary.nav-title {
+        color: var(--clr-base-l500);
+        // border-bottom: 1px solid var(--clr-base-d100);
+        // border-bottom-left-radius: 0;
+        // border-bottom-right-radius: 0;
+      }
+    }
+    summary.nav-title {
+      margin: 0 -1rem;
+      padding: 0.5rem 0.75rem;
+      font-size: 1.125rem;
+      color: var(--clr-base-l250);
+    }
+  }
+  ul {
+    padding: 0.75rem 0;
+  }
+}
+
 // details
 details {
   margin: 1rem auto;

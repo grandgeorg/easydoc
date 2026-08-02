@@ -50,6 +50,25 @@ Rules, in order:
 content to the old and skip `writeFileSync` when identical, or `npm run watch` rebuilds
 forever. Always verify with two consecutive builds and an unchanged `docs/index.md` mtime.
 
+## Pages navigation
+
+`templates/pagesnav.pug` renders a collapsed `<details>` (summary `t.pages`) listing every
+page, sorted by title ascending, with the current file marked `class="active"` — the same
+markup contract as `nav.pug`. `layout.pug` prints it into `.sitenav.pagesnav` directly
+after `.sitenav`. It is rendered only when `EASYDOC_GENERATE_AUTO_INDEX` is on **and** the
+site nav is not disabled (`withNav` in the render queue).
+
+### Deferred rendering
+
+`pages` is filled while `files.forEach(...)` walks `docs/`, so a nav rendered inside that
+loop would be truncated for every file except the last. `index.js` therefore pushes
+`{ file, lang, withNav, args }` onto a `renderQueue` inside the loop and runs
+`pug.renderFile(layout, ...)` + `writeFileSync` **after** it, once `pages` and the
+normalised `tagCloud` are complete. `md.render()` and the TOC must stay inside the loop
+because the shared `md` instance is reconfigured per file (`mdItToc` include levels).
+
+Any future feature needing cross-page data at render time belongs in that post-loop pass.
+
 ## Vue.js loading
 
 - The `.env` variable is `EASYDOC_LOAD_VUEJS`. An earlier version of `index.js` read
