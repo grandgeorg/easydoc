@@ -20,6 +20,7 @@ app.get("/", function (req, res) {
     },
     expand: true,
   });
+  // console.log(`Search query: ${query}, Results found: ${results.length}`);
   res.json(results);
 });
 app.listen(3000, function () {
