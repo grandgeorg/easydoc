@@ -1897,6 +1897,12 @@ html[data-theme="light"] {
   }
 }
 
+.tag-navigation.dashboard-pages {
+  .page-card {
+    flex: 0 1 26ch;
+  }
+}
+
 // dashboard
 .dashboard-search {
   display: flex;
@@ -2024,12 +2030,29 @@ html[data-theme="light"] {
 }
 
 .tag-navigation.dashboard-pages {
-  justify-content: flex-start;
-  .page-card mark {
-    color: var(--clr-base-l500);
-    background-color: var(--clr-base-mark-active);
-    border-radius: 2px;
+  justify-content: center;
+
+  .page-card {
+    a {
+      color: var(--clr-base-l100);
+      text-decoration: none;
+    }
+    .page-card-title:hover {
+      color: var(--clr-base-l100);
+      text-decoration: none;
+    }
+    .page-card-filename:hover {
+      color: var(--clr-base-l100);
+      text-decoration: none;
+    }
+    mark {
+      color: var(--clr-base-l500);
+      background-color: var(--clr-base-mark-active);
+      border-radius: 2px;
+    }
+
   }
+
 }
 
 .dashboard-summary mark {
