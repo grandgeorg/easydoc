@@ -16,6 +16,8 @@ html(lang=attributes.lang)
     script(src="meta.js")
     if attributes.loadVueJs
       script(src="assets/js/vue.global.prod.js")
+    if attributes.navbarSearch
+      script(src="assets/js/navbarsearch.min.js")
     link(rel="icon", type="image/x-icon", href="assets/img/icons/favicon.ico")
     link(rel="icon", type="image/svg+xml", href="assets/img/icons/favicon.svg")
     link(rel="apple-touch-icon", sizes="192x192" href="assets/img/icons/favicon-192x192.png")
@@ -30,6 +32,8 @@ html(lang=attributes.lang)
             if attributes.brandSecondary
               span.brand-second #{attributes.brandSecondary}
         .navbar__controls
+          if attributes.navbarSearch
+            #navbar-search
           if !attributes.disableTagNavigator
             button.btn-tag-nav.navitem#open-tag-navigation(aria-label=t.open_tag_navigation title=t.open_tag_navigation role="button")
               svg(xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-tags" viewBox="0 0 16 16")
