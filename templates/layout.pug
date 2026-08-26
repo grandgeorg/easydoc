@@ -31,9 +31,9 @@ html(lang=attributes.lang)
               span.brand #{attributes.brandName}
             if attributes.brandSecondary
               span.brand-second #{attributes.brandSecondary}
+        if attributes.navbarSearch
+          #navbar-search.navbar-search-container
         .navbar__controls
-          if attributes.navbarSearch
-            #navbar-search.navbar-search-container
           if !attributes.disableTagNavigator
             button.btn-tag-nav.navitem#open-tag-navigation(aria-label=t.open_tag_navigation title=t.open_tag_navigation role="button")
               svg(xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-tags" viewBox="0 0 16 16")
