@@ -78,7 +78,7 @@ if (__dirname !== baseDir) {
   // because the block above only runs once, when www/assets does not exist yet
   const distJsDir = path.join(distDir, "assets", "js");
   if (fs.existsSync(distJsDir)) {
-    ["vue.global.prod.js", "dashboard.min.js"].forEach((asset) => {
+    ["vue.global.prod.js", "dashboard.min.js", "navbarsearch.min.js"].forEach((asset) => {
       if (!fs.existsSync(path.join(distJsDir, asset))) {
         fs.copyFileSync(path.join(__dirname, "www", "assets", "js", asset), path.join(distJsDir, asset));
       }
@@ -100,6 +100,7 @@ function envBool(name) {
 const withFulltextSearch = envBool("EASYDOC_ENABLE_FULLTEXT_SEARCH");
 const generateAutoIndex = envBool("EASYDOC_GENERATE_AUTO_INDEX");
 const autoIndexDashboard = generateAutoIndex && envBool("EASYDOC_AUTO_INDEX_SHOW_DASHBOARD");
+const navbarSearch = envBool("EASYDOC_NAVBAR_SEARCH");
 
 const searchIndex = elasticlunr(function () {
   this.addField("title");
@@ -385,6 +386,9 @@ fs.readdir(docsDir, (err, files) => {
       if (autoIndexDashboard && file === "index.md") {
         loadVueJs = true;
       }
+      if (navbarSearch) {
+        loadVueJs = true;
+      }
       let disableBrand = fmData.attributes.disableBrand
         ? Boolean(fmData.attributes.disableBrand)
         : Boolean(process.env.EASYDOC_DISABLE_BRAND);
@@ -470,6 +474,7 @@ fs.readdir(docsDir, (err, files) => {
             disableBurger: disableBurger,
             loadVueJs: loadVueJs,
             loadMermaid: loadMermaid,
+            navbarSearch: navbarSearch,
           },
         },
       });
@@ -598,6 +603,7 @@ fs.readdir(docsDir, (err, files) => {
         : Boolean(process.env.EASYDOC_ENABLE_FULLTEXT_SEARCH),
     easydoc_search_api_url: process.env.EASYDOC_SEARCH_API_URL,
     auto_index_init_show_all: envBool("EASYDOC_AUTO_INDEX_INIT_SHOW_ALL"),
+    navbar_search: envBool("EASYDOC_NAVBAR_SEARCH"),
     // search_index: searchIndex.toJSON(),
   };
 

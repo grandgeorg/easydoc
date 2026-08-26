@@ -4,6 +4,7 @@ module.exports = {
   entry: {
     'app.min': './src/js/app.js',
     'dashboard.min': './src/js/dashboard.js',
+    'navbarsearch.min': './src/js/navbarsearch.js',
   },
   output: {
     filename: '[name].js',

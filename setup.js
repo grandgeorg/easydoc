@@ -87,6 +87,10 @@ if (!fs.existsSync(distDir)) {
     path.join(distDir, "assets", "js", "dashboard.min.js")
   );
   fs.copyFileSync(
+    path.join(__dirname, "www", "assets", "js", "navbarsearch.min.js"),
+    path.join(distDir, "assets", "js", "navbarsearch.min.js")
+  );
+  fs.copyFileSync(
     path.join(__dirname, "www", "assets", "js", "mermaid.tiny.min.js"),
     path.join(distDir, "assets", "js", "mermaid.tiny.min.js")
   );
