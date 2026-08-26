@@ -44,6 +44,7 @@ exports.en = {
   "dashboard_require_off": "Click to stop requiring this match",
   "dashboard_start_typing": "Type to search, or switch on 'show all pages'.",
   "navbar_search": "Search",
+  "navbar_search_close": "Close search",
 };
 exports.de = {
   "mtime": "letzte Aktualisierung",
@@ -89,4 +90,5 @@ exports.de = {
   "dashboard_require_off": "Klicken, um den verpflichtenden Treffer aufzuheben",
   "dashboard_start_typing": "Suchbegriff eingeben oder \u201eAlle Seiten anzeigen\u201c einschalten.",
   "navbar_search": "Suche",
+  "navbar_search_close": "Suche schlie\u00dfen",
 };
