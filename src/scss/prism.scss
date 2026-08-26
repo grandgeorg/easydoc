@@ -1,3 +1,5 @@
+@use "prism_default";
+
 /* PrismJS 1.29.0
 https://prismjs.com/download.html#themes=prism-tomorrow&languages=markup+css+clike+javascript+apacheconf+bash+batch+css-extras+csv+diff+docker+editorconfig+git+graphql+ini+javadoclike+json+less+markdown+markup-templating+mongodb+nginx+php+phpdoc+php-extras+powershell+pug+python+regex+sass+scss+sql+typescript+xml-doc+yaml&plugins=line-highlight+line-numbers+show-language+command-line+toolbar+copy-to-clipboard+diff-highlight */
 /**
@@ -372,5 +374,3 @@ pre > code.diff-highlight .token.inserted:not(.prefix) {
 	color: inherit;
 	display: block;
 }
-
-@import "_prism_default";

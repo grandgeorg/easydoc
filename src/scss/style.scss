@@ -2117,6 +2117,13 @@ html[data-theme="light"] {
 }
 
 // navbar search (live input + results modal)
+
+.navbar-search-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .navbar-search {
   display: flex;
   align-items: center;
