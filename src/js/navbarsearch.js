@@ -2,7 +2,7 @@
 
 import { createSearchCore } from "./searchCore.js";
 
-(function () {
+function initNavbarSearch() {
   const mountPoint = document.getElementById("navbar-search");
   if (
     !mountPoint ||
@@ -113,20 +113,10 @@ import { createSearchCore } from "./searchCore.js";
                   <h2 id="navbar-search-modal-title" class="modal-title">{{ t.navbar_search }}</h2>
                   <div class="modal-controls">
                     <button
-                      class="modal-reset dashboard-clear"
-                      type="button"
-                      v-if="query"
-                      :title="t.dashboard_clear"
-                      :aria-label="t.dashboard_clear"
-                      @click="clearQuery">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
-                        <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854z"/>
-                      </svg>
-                    </button>
-                    <button
                       class="modal-close"
                       type="button"
-                      :aria-label="t.dashboard_clear"
+                      :title="t.navbar_search_close"
+                      :aria-label="t.navbar_search_close"
                       @click="closeModal">
                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
                         <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
@@ -252,4 +242,12 @@ import { createSearchCore } from "./searchCore.js";
       </div>
     `,
   }).mount("#navbar-search");
-})();
+}
+
+// The script is included in <head>, so wait for the #navbar-search mount point
+// in <body> to exist before mounting.
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", initNavbarSearch);
+} else {
+  initNavbarSearch();
+}
