@@ -93,6 +93,9 @@ EASYDOC_DEPLOY_SFTP_PASSWORD=
 EASYDOC_DEPLOY_SFTP_REMOTE_PATH=/var/www/vhost/doc.yourdomain.tld/public/some-doc
 # Local directory to upload (defaults to the built output: www).
 EASYDOC_DEPLOY_SFTP_LOCAL_DIR=www
+# Optional: upload searchIndex.json to a separate remote path (file path if it
+# ends in ".json", otherwise a directory to place searchIndex.json into).
+EASYDOC_DEPLOY_SFTP_SEARCH_INDEX_REMOTE_PATH=/var/www/vhost/doc.yourdomain.tld/private/search
 ```
 
 ## Manual & Reference & Demo

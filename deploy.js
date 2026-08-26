@@ -61,6 +61,7 @@ async function deploySftp() {
   const localDir = process.env.EASYDOC_DEPLOY_SFTP_LOCAL_DIR
     ? path.resolve(baseDir, process.env.EASYDOC_DEPLOY_SFTP_LOCAL_DIR)
     : distDir;
+  const searchIndexRemotePath = process.env.EASYDOC_DEPLOY_SFTP_SEARCH_INDEX_REMOTE_PATH;
 
   // Validate required configuration.
   const missing = [];
@@ -101,6 +102,27 @@ async function deploySftp() {
     // Merge/overwrite: uploads and overwrites files, never deletes remote files.
     await sftp.uploadDir(localDir, remotePath);
     console.log("[deploy] Upload complete.");
+
+    // Optionally upload the full-text search index to a separate remote path.
+    if (searchIndexRemotePath) {
+      const localSearchIndex = path.join(baseDir, "searchIndex.json");
+      if (!fs.existsSync(localSearchIndex)) {
+        console.warn(
+          "[deploy] EASYDOC_DEPLOY_SFTP_SEARCH_INDEX_REMOTE_PATH is set but " +
+            localSearchIndex +
+            " was not found (is full-text search enabled?). Skipping search index upload."
+        );
+      } else {
+        // Treat a path ending in ".json" as a full file path; otherwise as a
+        // directory into which searchIndex.json is placed.
+        const remoteFile = /\.json$/i.test(searchIndexRemotePath)
+          ? searchIndexRemotePath
+          : path.posix.join(searchIndexRemotePath, "searchIndex.json");
+        console.log("[deploy] Uploading " + localSearchIndex + " -> " + remoteFile + " ...");
+        await sftp.put(localSearchIndex, remoteFile);
+        console.log("[deploy] Search index upload complete.");
+      }
+    }
   } catch (err) {
     fail("SFTP deployment failed: " + err.message);
   } finally {

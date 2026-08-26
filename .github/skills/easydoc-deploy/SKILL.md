@@ -41,6 +41,7 @@ the built `www/` directory. There is no opt-out for the build step.
 | `EASYDOC_DEPLOY_SFTP_PASSPHRASE` | no | Passphrase for the private key |
 | `EASYDOC_DEPLOY_SFTP_PASSWORD` | one of | Used only if no private key is provided |
 | `EASYDOC_DEPLOY_SFTP_LOCAL_DIR` | no | Directory to upload; defaults to `www` |
+| `EASYDOC_DEPLOY_SFTP_SEARCH_INDEX_REMOTE_PATH` | no | If set, upload `searchIndex.json` here. A value ending in `.json` is a full remote file path; otherwise it is a remote directory the file is placed into. Only uploaded when full-text search is enabled and the file exists. |
 
 Provide **either** a private key or a password. If both are set, the private key wins.
 
@@ -48,6 +49,9 @@ Provide **either** a private key or a password. If both are set, the private key
 
 - Upload is **merge/overwrite**: existing remote files are overwritten and new files
   added, but remote files are never deleted.
+- If `EASYDOC_DEPLOY_SFTP_SEARCH_INDEX_REMOTE_PATH` is set, `searchIndex.json` is
+  uploaded to that path after the site upload (skipped with a warning if the file is
+  missing, e.g. when full-text search is disabled).
 - The build must succeed (exit code 0) or deployment aborts.
 - The password is never printed to the console.
 
