@@ -1122,18 +1122,27 @@ body>.page:first-child {
   ul.contains-task-list {
     list-style-type: none;
     padding: 0 !important;
+
+    .task-list-item {
+      line-height: 1.5;
+    }
   }
 
   input[type=checkbox].task-list-item-checkbox {
-    width: 1.5rem;
-    height: 1.5rem;
+    width: 1.25rem;
+    height: 1.25rem;
     position: relative;
-    background-color: var(--clr-base-d100);
-    border-radius: 6px;
-    border: 2px solid var(--clr-base-d50);
+    // background-color: var(--clr-base-d100);
+    background-color: var(--clr-base-d260);
+    // border-radius: 6px;
+    border-radius: 4px;
+    // border: 2px solid var(--clr-base-d50);
+    // border: 2px solid var(--clr-brand-second);
+    border: 2px solid var(--clr-code);
     display: inline-block;
     vertical-align: middle;
-    margin: 0.25rem 0.25rem 0.25rem 0;
+    // margin: 0.25rem 0.25rem 0.25rem 0;
+    margin: 0rem .25rem 0.25rem 0;
     -webkit-user-select: none;
     -moz-user-select: none;
      -ms-user-select: none;
