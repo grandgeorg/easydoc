@@ -1,6 +1,6 @@
 ---
 name: easydoc-auto-index
-description: "Use when working on EasyDoc's auto-generated index page or its Vue dashboard — the EASYDOC_GENERATE_AUTO_INDEX / EASYDOC_AUTO_INDEX_POSITION / EASYDOC_AUTO_INDEX_SHOW_DASHBOARD / EASYDOC_AUTO_INDEX_SHOW_TAG_NAVIGATOR options, the marker block patched into docs/index.md, dashboard.js search behaviour (tags, title, filename, fulltext scores), or the Vue.js loading override."
+description: "Use when working on EasyDoc's auto-generated index page or its Vue dashboard — the EASYDOC_GENERATE_AUTO_INDEX / EASYDOC_AUTO_INDEX_POSITION / EASYDOC_AUTO_INDEX_SHOW_DASHBOARD  options, the marker block patched into docs/index.md, dashboard.js search behaviour (tags, title, filename, fulltext scores), or the Vue.js loading override."
 ---
 
 # EasyDoc auto index & dashboard
@@ -16,7 +16,6 @@ into it.
 | `EASYDOC_AUTO_INDEX_POSITION` | `prepend` | `prepend` \| `append`. Where the block is inserted **on first insert only**. |
 | `EASYDOC_AUTO_INDEX_SHOW_DASHBOARD` | `false` | Inject the dashboard mount point + script. |
 | `EASYDOC_AUTO_INDEX_INIT_SHOW_ALL` | `false` | Initial state of the dashboard's "show all pages" switch. Reaches the browser as `easydocMeta.config.auto_index_init_show_all`. |
-| `EASYDOC_AUTO_INDEX_SHOW_TAG_NAVIGATOR` | `false` | Reserved — **not implemented**. The tag navigator is a modal; this option is for a future inline variant. |
 
 All four are parsed with an `envBool()` helper: `String(v).toLowerCase() === "true"`.
 Do **not** use bare `Boolean(process.env.X)` — `Boolean("false")` is `true`.
