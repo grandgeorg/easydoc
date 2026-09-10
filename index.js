@@ -547,7 +547,7 @@ fs.readdir(docsDir, (err, files) => {
 
   renderQueue.forEach((item) => {
     let navigation = "";
-    let pagesnav = "";
+    let pagenav = "";
     if (item.withNav) {
       navigation = pug.renderFile(path.join(templateDir, "nav.pug"), {
         nav: nav.nav,
@@ -556,7 +556,7 @@ fs.readdir(docsDir, (err, files) => {
         file: item.file,
       });
       if (generateAutoIndex) {
-        pagesnav = pug.renderFile(path.join(templateDir, "pagesnav.pug"), {
+        pagenav = pug.renderFile(path.join(templateDir, "pagesnav.pug"), {
           pages: pagesNav,
           lang: item.lang,
           t: t[item.lang],
@@ -565,7 +565,7 @@ fs.readdir(docsDir, (err, files) => {
       }
     }
     item.args.sitenav = navigation;
-    item.args.pagesnav = pagesnav;
+    item.args.pagesnav = pagenav;
     fs.writeFileSync(path.join(distDir, item.file), pug.renderFile(layout, item.args));
   });
 
