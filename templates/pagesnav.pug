@@ -5,6 +5,10 @@ details.pagesnav-details
       each item in pages
         li
           if item.file === file
-            a(href=item.file class="active") #{item.title}
+            a(href=item.file class="active")
+              div.page-title #{item.title}
+              div.page-filename #{item.file}
           else
-            a(href=item.file) #{item.title}
+            a(href=item.file)
+              div.page-title #{item.title}
+              div.page-filename #{item.file}

@@ -719,6 +719,13 @@ body a.navbar__brand[href]:not([tabindex^="-"]):focus {
   }
   ul {
     padding: 0.75rem 0;
+    li a {
+      line-height: 1.25;
+      .page-filename {
+        font-size: 0.75rem;
+        font-weight: 600;
+      }
+    }
   }
 }
 
