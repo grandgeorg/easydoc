@@ -34,9 +34,19 @@ function initNavbarSearch() {
         isOpen.value = false;
       }
 
-      // Leaving the empty input means there is nothing to show — dismiss the modal.
+      // A pointer-down inside the modal blurs the input before the click lands,
+      // so suppress the blur-close for that one event.
+      let pointerInModal = false;
+
+      function onModalPointerDown() {
+        pointerInModal = true;
+        window.setTimeout(function () {
+          pointerInModal = false;
+        }, 0);
+      }
+
       function onInputBlur() {
-        if (!core.query.value) {
+        if (!core.query.value && !pointerInModal) {
           closeModal();
         }
       }
@@ -80,6 +90,7 @@ function initNavbarSearch() {
         openModal,
         closeModal,
         onInputBlur,
+        onModalPointerDown,
         onBackdropClick,
       });
     },
@@ -116,7 +127,7 @@ function initNavbarSearch() {
         </button>
 
         <Teleport to="body">
-          <div class="modal open navbar-search-modal" v-if="isOpen" @click="onBackdropClick">
+          <div class="modal open navbar-search-modal" v-if="isOpen" @pointerdown="onModalPointerDown" @click="onBackdropClick">
             <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="navbar-search-modal-title">
               <div class="modal-content">
                 <div class="modal-header">
