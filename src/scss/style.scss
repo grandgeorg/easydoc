@@ -391,12 +391,13 @@ html[data-theme="light"] {
     margin-right: 0.75rem;
     padding: 0.35rem 0.35rem;
     font-stretch: semi-expanded;
-    font-size: 1rem;
+    // font-size: 1rem;
+    font-size: clamp(0.75rem, 3.3333vw, 1rem);
     line-height: 1.125;
     text-decoration: none;
     border-radius: 6px;
     @media (max-width: 369px) {
-      font-size: 0.85rem;
+      // font-size: 0.85rem;
       margin-right: 0;
     }
     @media (min-width: 402px) {
