@@ -1944,7 +1944,7 @@ html[data-theme="light"] {
 
 .tag-navigation.dashboard-pages {
   .page-card {
-    flex: 0 1 26ch;
+    flex: 1 1 26ch;
   }
 }
 
@@ -2168,16 +2168,17 @@ html[data-theme="light"] {
 }
 
 // keep the navbar (and its search input) usable above the modal backdrop
-body.navbar-search-open .navbar {
-  z-index: 1100;
-}
+// body.navbar-search-open .navbar {
+//   z-index: 1100;
+// }
 
 .navbar-search-modal {
   align-items: flex-start;
-  padding-top: $navbar-height;
+  // padding-top: $navbar-height;
+  margin-top: $navbar-height;
   .modal-dialog {
-    max-width: 900px;
-    margin: 1rem auto;
+    max-width: 100%;
+    margin: 0 0 2.5rem;
   }
 }
 

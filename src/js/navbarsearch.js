@@ -23,7 +23,7 @@ function initNavbarSearch() {
 
   createApp({
     setup() {
-      const core = createSearchCore(Vue, t, lang, { syncUrl: false, initShowAll: false });
+      const core = createSearchCore(Vue, t, lang, { syncUrl: false, initShowAll: true });
       const isOpen = ref(false);
 
       function openModal() {
@@ -42,9 +42,9 @@ function initNavbarSearch() {
       });
 
       // Lift the navbar above the modal backdrop so the input stays usable.
-      watch(isOpen, function (open) {
-        document.body.classList.toggle("navbar-search-open", open);
-      });
+      // watch(isOpen, function (open) {
+      //   document.body.classList.toggle("navbar-search-open", open);
+      // });
 
       function onBackdropClick(event) {
         if (event.target === event.currentTarget) {
@@ -64,7 +64,7 @@ function initNavbarSearch() {
 
       onBeforeUnmount(function () {
         document.removeEventListener("keydown", onKeydown);
-        document.body.classList.remove("navbar-search-open");
+        // document.body.classList.remove("navbar-search-open");
       });
 
       return Object.assign({}, core, {
@@ -105,7 +105,7 @@ function initNavbarSearch() {
           </svg>
         </button>
 
-        <teleport to="body">
+        <Teleport to="body">
           <div class="modal open navbar-search-modal" v-if="isOpen" @click="onBackdropClick">
             <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="navbar-search-modal-title">
               <div class="modal-content">
@@ -238,7 +238,7 @@ function initNavbarSearch() {
               </div>
             </div>
           </div>
-        </teleport>
+        </Teleport>
       </div>
     `,
   }).mount("#navbar-search");
