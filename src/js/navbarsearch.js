@@ -34,8 +34,16 @@ function initNavbarSearch() {
         isOpen.value = false;
       }
 
+      // Leaving the empty input means there is nothing to show — dismiss the modal.
+      function onInputBlur() {
+        if (!core.query.value) {
+          closeModal();
+        }
+      }
+
       // Typing into the navbar input reveals the results modal.
       watch(core.query, function (value) {
+        // console.log("Navbar search query changed:", value);
         if (value) {
           isOpen.value = true;
         }
@@ -71,6 +79,7 @@ function initNavbarSearch() {
         isOpen,
         openModal,
         closeModal,
+        onInputBlur,
         onBackdropClick,
       });
     },
@@ -92,7 +101,8 @@ function initNavbarSearch() {
           :placeholder="t.navbar_search"
           :aria-label="t.navbar_search"
           v-model="query"
-          @focus="openModal">
+          @focus="openModal"
+          @blur="onInputBlur">
         <button
           class="dashboard-clear navbar-search-clear"
           type="button"
