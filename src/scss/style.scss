@@ -1021,6 +1021,9 @@ body>.page:first-child {
     code {
       display: block;
     }
+    &.pt-1 {
+      padding-top: 1em;
+    }
   }
   code[class*="language-"],
   pre[class*="language-"] pre,
@@ -1177,6 +1180,22 @@ body>.page:first-child {
     scroll-margin-top: $navbar-height + 16px;
   }
 
+}
+
+// page content only
+.page > .content {
+  input[type="text"],
+  input[type="password"],
+  input[type="email"],
+  textarea {
+    padding: 0.25rem 0.5rem;
+    color: var(--clr-base-l200);
+    background-color: var(--clr-base-d550);
+    border: 1px solid var(--clr-base-d250);
+    border-radius: 6px;
+    font-family: "Fira Code",Consolas,Monaco,"Andale Mono","Ubuntu Mono",monospace;
+    font-size: 1em;
+  }
 }
 
 // footer
