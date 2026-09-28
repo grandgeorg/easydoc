@@ -2416,4 +2416,8 @@ html[data-theme="light"] {
   code[class*=language-], pre[class*=language-] {
     font-size: 0.75rem !important;
   }
+  hr.pbra {
+    border-top: 1px solid #fff;
+    page-break-after: always;
+  }
 }
