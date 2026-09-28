@@ -59,6 +59,10 @@ if (!fs.existsSync(distDir)) {
     path.join(distDir, "assets", "fonts", "EncodeSans.woff2")
   );
   fs.copyFileSync(
+    path.join(__dirname, "www", "assets", "fonts", "fira-code.woff2"),
+    path.join(distDir, "assets", "fonts", "fira-code.woff2")
+  );
+  fs.copyFileSync(
     path.join(__dirname, "www", "assets", "js", "app.min.js"),
     path.join(distDir, "assets", "js", "app.min.js")
   );
