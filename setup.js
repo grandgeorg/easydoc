@@ -153,7 +153,7 @@ if (!fs.existsSync(path.join(baseDir, "searchApi.js"))) {
 if (!fs.existsSync(path.join(baseDir, "package.json"))) {
   const packageJson = {
     name: "easydoc",
-    version: "1.2.0",
+    version: "1.4.0",
     author: "EasyDoc",
     description: "",
     keywords: [],
@@ -165,10 +165,10 @@ if (!fs.existsSync(path.join(baseDir, "package.json"))) {
       deploy: "node " + deployFile
     },
     devDependencies: {
-      "cors": "^2.8.5",
+      "cors": "^2.8.6",
       "elasticlunr": "^0.9.5",
-      "express": "^4.18.2",
-      "nodemon": "^3.1.7"
+      "express": "^5.2.1",
+      "nodemon": "^3.1.14"
     }
   };
 
