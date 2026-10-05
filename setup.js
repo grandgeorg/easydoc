@@ -1,6 +1,7 @@
 "use strict";
 const path = require("path");
 const fs = require("fs");
+const { updatableAssets, faviconAssets, copyAssets } = require("./assets.js");
 // console.log(process.argv);
 // console.log(__dirname);
 // console.log(process.cwd());
@@ -12,6 +13,7 @@ const navFile = path.join(baseDir, "nav.js");
 const vscodeDir = path.join(baseDir, ".vscode");
 const indexFile = path.join(__dirname, "index.js");
 const deployFile = path.join(__dirname, "deploy.js");
+const updateFile = path.join(__dirname, "update.js");
 
 // check if .env file exists
 if (!fs.existsSync(path.join(baseDir, ".env"))) {
@@ -37,83 +39,10 @@ if (!fs.existsSync(navFile)) {
 // check if dist directory exists
 if (!fs.existsSync(distDir)) {
   fs.mkdirSync(distDir);
-  fs.mkdirSync(path.join(distDir, "assets"));
-  fs.mkdirSync(path.join(distDir, "assets", "css"));
-  fs.mkdirSync(path.join(distDir, "assets", "fonts"));
-  fs.mkdirSync(path.join(distDir, "assets", "js"));
-  fs.mkdirSync(path.join(distDir, "assets", "img"));
-  fs.mkdirSync(path.join(distDir, "assets", "img", "icons"));
   fs.mkdirSync(path.join(distDir, "img"));
 
   // copy assets
-  fs.copyFileSync(
-    path.join(__dirname, "www", "assets", "css", "style.min.css"),
-    path.join(distDir, "assets", "css", "style.min.css")
-  );
-  fs.copyFileSync(
-    path.join(__dirname, "www", "assets", "css", "prism.min.css"),
-    path.join(distDir, "assets", "css", "prism.min.css")
-  );
-  fs.copyFileSync(
-    path.join(__dirname, "www", "assets", "fonts", "EncodeSans.woff2"),
-    path.join(distDir, "assets", "fonts", "EncodeSans.woff2")
-  );
-  fs.copyFileSync(
-    path.join(__dirname, "www", "assets", "fonts", "fira-code.woff2"),
-    path.join(distDir, "assets", "fonts", "fira-code.woff2")
-  );
-  fs.copyFileSync(
-    path.join(__dirname, "www", "assets", "js", "app.min.js"),
-    path.join(distDir, "assets", "js", "app.min.js")
-  );
-  fs.copyFileSync(
-    path.join(__dirname, "www", "assets", "js", "prism.js"),
-    path.join(distDir, "assets", "js", "prism.js")
-  );
-  fs.copyFileSync(
-    path.join(__dirname, "www", "assets", "js", "flowchart.min.js"),
-    path.join(distDir, "assets", "js", "flowchart.min.js")
-  );
-  fs.copyFileSync(
-    path.join(__dirname, "www", "assets", "js", "raphael.min.js"),
-    path.join(distDir, "assets", "js", "raphael.min.js")
-  );
-  fs.copyFileSync(
-    path.join(__dirname, "www", "assets", "js", "clipboard.min.js"),
-    path.join(distDir, "assets", "js", "clipboard.min.js")
-  );
-  fs.copyFileSync(
-    path.join(__dirname, "www", "assets", "js", "vue.global.prod.js"),
-    path.join(distDir, "assets", "js", "vue.global.prod.js")
-  );
-  fs.copyFileSync(
-    path.join(__dirname, "www", "assets", "js", "dashboard.min.js"),
-    path.join(distDir, "assets", "js", "dashboard.min.js")
-  );
-  fs.copyFileSync(
-    path.join(__dirname, "www", "assets", "js", "navbarsearch.min.js"),
-    path.join(distDir, "assets", "js", "navbarsearch.min.js")
-  );
-  fs.copyFileSync(
-    path.join(__dirname, "www", "assets", "js", "mermaid.tiny.min.js"),
-    path.join(distDir, "assets", "js", "mermaid.tiny.min.js")
-  );
-  fs.copyFileSync(
-    path.join(__dirname, "www", "assets", "img", "icons", "favicon-192x192.png"),
-    path.join(distDir, "assets", "img", "icons", "favicon-192x192.png")
-  );
-  fs.copyFileSync(
-    path.join(__dirname, "www", "assets", "img", "icons", "favicon-512x512.png"),
-    path.join(distDir, "assets", "img", "icons", "favicon-512x512.png")
-  );
-  fs.copyFileSync(
-    path.join(__dirname, "www", "assets", "img", "icons", "favicon.ico"),
-    path.join(distDir, "assets", "img", "icons", "favicon.ico")
-  );
-  fs.copyFileSync(
-    path.join(__dirname, "www", "assets", "img", "icons", "favicon.svg"),
-    path.join(distDir, "assets", "img", "icons", "favicon.svg")
-  );
+  copyAssets(updatableAssets.concat(faviconAssets), distDir);
 }
 
 // check if .vscode directory exists
@@ -162,7 +91,8 @@ if (!fs.existsSync(path.join(baseDir, "package.json"))) {
       build: "node " + indexFile,
       watch: "nodemon " + indexFile,
       search: "node searchApi.js",
-      deploy: "node " + deployFile
+      deploy: "node " + deployFile,
+      update: "node " + updateFile
     },
     devDependencies: {
       "cors": "^2.8.6",

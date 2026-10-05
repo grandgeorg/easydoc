@@ -109,6 +109,19 @@ npm run watch
 npm run build
 ```
 
+## Updating
+
+After pulling a newer EasyDoc version, refresh the JS, CSS and font assets in your documentation project:
+
+```bash
+# run from your documentation project directory
+npm run update
+# or, for projects set up before the update script existed
+node /path/where/you/cloned/and/installed/easydoc/update.js
+```
+
+Existing files in `www/assets/` (CSS, JS, fonts) are overwritten with EasyDoc's versions; favicons are left untouched.
+
 ::: details 🖿 easydoc directory structure
 ```filetree
 🗁 easydoc
