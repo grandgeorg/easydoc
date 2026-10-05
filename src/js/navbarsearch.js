@@ -35,14 +35,21 @@ function initNavbarSearch() {
       }
 
       // A pointer-down inside the modal blurs the input before the click lands,
-      // so suppress the blur-close for that one event.
+      // so suppress the blur-close until that interaction ends. On touch devices
+      // the blur only fires after the finger is lifted (emulated mousedown), so
+      // the flag must survive until the click / pointercancel, not just one tick.
       let pointerInModal = false;
+
+      function resetPointerInModal() {
+        pointerInModal = false;
+      }
 
       function onModalPointerDown() {
         pointerInModal = true;
-        window.setTimeout(function () {
-          pointerInModal = false;
-        }, 0);
+      }
+
+      function onModalPointerEnd() {
+        window.setTimeout(resetPointerInModal, 0);
       }
 
       function onInputBlur() {
@@ -78,10 +85,14 @@ function initNavbarSearch() {
 
       onMounted(function () {
         document.addEventListener("keydown", onKeydown);
+        // Capture phase runs before the modal's own pointerdown handler, so any
+        // pointer-down outside the modal clears a stale flag.
+        document.addEventListener("pointerdown", resetPointerInModal, true);
       });
 
       onBeforeUnmount(function () {
         document.removeEventListener("keydown", onKeydown);
+        document.removeEventListener("pointerdown", resetPointerInModal, true);
         // document.body.classList.remove("navbar-search-open");
       });
 
@@ -91,6 +102,7 @@ function initNavbarSearch() {
         closeModal,
         onInputBlur,
         onModalPointerDown,
+        onModalPointerEnd,
         onBackdropClick,
       });
     },
@@ -128,7 +140,7 @@ function initNavbarSearch() {
         </button>
 
         <Teleport to="body">
-          <div class="modal open navbar-search-modal" v-if="isOpen" @pointerdown="onModalPointerDown" @click="onBackdropClick">
+          <div class="modal open navbar-search-modal" v-if="isOpen" @pointerdown="onModalPointerDown" @pointercancel="onModalPointerEnd" @click.capture="onModalPointerEnd" @click="onBackdropClick">
             <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="navbar-search-modal-title">
               <div class="modal-content">
                 <div class="modal-header">
