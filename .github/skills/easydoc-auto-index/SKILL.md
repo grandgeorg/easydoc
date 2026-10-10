@@ -109,10 +109,12 @@ cannot resurrect when the same token is typed again.
 
 ### Fulltext
 
-`searchApi.js` uses `bool: "AND"`, so **one request per token**, unioned client-side —
-a single multi-token request would AND the tokens and break the inclusive-OR rule, and
-per-token scores would be unavailable. A page's score is the **highest** score across
-tokens. Format to 2 decimals in a `.score-chip`.
+`searchApi.js` (MiniSearch, `combineWith: "AND"`, prefix + `fuzzy: 0.2`) ANDs the terms
+of a query, so the client sends **one request per token** and unions the hits — a single
+multi-token request would AND the tokens and break the inclusive-OR rule, and per-token
+scores would be unavailable. Hits are MiniSearch's native results; match them to pages
+by `result.id` (the page file). A page's score is the **highest** score across tokens.
+Format to 2 decimals in a `.score-chip`.
 
 The API is a separate server (`npm run search`, port 3000) and is normally unreachable on
 a deployed static site. Unreachable ⇒ silent fallback to local matching + a muted note in

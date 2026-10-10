@@ -181,7 +181,7 @@ export function createSearchCore(Vue, t, lang, options) {
         return;
       }
       const hit = hits.find(function (result) {
-        return result.ref === file;
+        return result.id === file;
       });
       if (hit && hit.score > score) {
         score = hit.score;
@@ -195,7 +195,7 @@ export function createSearchCore(Vue, t, lang, options) {
     return Boolean(
       hits &&
         hits.some(function (result) {
-          return result.ref === file;
+          return result.id === file;
         })
     );
   }

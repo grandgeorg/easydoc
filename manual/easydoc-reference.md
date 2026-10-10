@@ -96,7 +96,7 @@ tocIncludeLevel: [1, 2, 3, 4]
 : Completely disable the navigation bar.
 
 ```.env: EASYDOC_ENABLE_FULLTEXT_SEARCH```
-: Enable fulltext search with Elasticlunr.js
+: Enable fulltext search with MiniSearch
 
 ```.env: EASYDOC_SEARCH_API_URL```
 : URL of the search API to use for fulltext search.

@@ -32,10 +32,10 @@ the target unless there is a clear reason (`searchApi.js` is the historical exce
 |------|------|
 | `index.js` | Build: reads `docs/*.md`, renders via `markdown-it` + `templates/*.pug`, writes HTML + `www/meta.js` (config, translations, pages, tags), copies images/pdf/zip/js, and optionally writes `searchIndex.json`. |
 | `setup.js` | Scaffolds a target project: copies `.env`, `nav.js`, `www/` assets, `.vscode/settings.json`, and templates from `setup/`; generates `package.json`. |
-| `update.js` | Run from a scaffolded project (`npm run update`): overwrites the target's `www/assets` JS/CSS/fonts with EasyDoc's versions; favicons untouched. |
+| `update.js` | Run from a scaffolded project (`npm run update`): overwrites the target's `www/assets` JS/CSS/fonts with EasyDoc's versions (favicons untouched), refreshes the target's `searchApi.js`, and swaps a legacy `elasticlunr` dependency for `minisearch` in its `package.json`. |
 | `assets.js` | Shared asset list + `copyAssets()` used by `setup.js` and `update.js`. Add new shipped assets here. |
 | `deploy.js` | Always runs the build first, then dispatches on `EASYDOC_DEPLOY_TYPE` (default `sftp`). SFTP upload via `ssh2-sftp-client`. |
-| `searchApi.js` | Optional Express + `elasticlunr` full‑text search server on port 3000. |
+| `searchApi.js` | Optional Express + `minisearch` full‑text search server on port 3000. |
 | `nav.js` | Site navigation config (`exports.nav = [...]`). |
 | `lang/langs.js` | UI translations (`en`, `de`). Add languages here. |
 | `templates/` | `pug` templates: `layout.pug`, `nav.pug`, `pagesnav.pug`. |

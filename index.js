@@ -5,7 +5,7 @@ const fs = require("fs");
 const pug = require("pug");
 const fm = require("front-matter");
 const t = require("./lang/langs.js");
-const elasticlunr = require("elasticlunr");
+const MiniSearch = require("minisearch");
 
 const baseDir = process.cwd();
 const docsDir = path.join(baseDir, "docs");
@@ -102,13 +102,9 @@ const generateAutoIndex = envBool("EASYDOC_GENERATE_AUTO_INDEX");
 const autoIndexDashboard = generateAutoIndex && envBool("EASYDOC_AUTO_INDEX_SHOW_DASHBOARD");
 const navbarSearch = envBool("EASYDOC_NAVBAR_SEARCH");
 
-const searchIndex = elasticlunr(function () {
-  this.addField("title");
-  this.addField("date");
-  this.addField("tags");
-  this.addField("body");
-  this.addField("file_name");
-  this.setRef("file");
+const searchIndex = new MiniSearch({
+  fields: ["title", "tags", "body", "file_name"],
+  idField: "file",
 });
 
 const md = require("markdown-it")({
@@ -479,9 +475,8 @@ fs.readdir(docsDir, (err, files) => {
         },
       });
       if (withFulltextSearch) {
-        searchIndex.addDoc({
+        searchIndex.add({
           title: title,
-          date: stats.mtime,
           tags: tags.join(" "),
           body: fmData.body,
           file_name: fileOut,

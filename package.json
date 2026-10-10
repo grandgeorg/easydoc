@@ -29,8 +29,8 @@
   },
   "devDependencies": {
     "cors": "^2.8.6",
-    "elasticlunr": "^0.9.5",
     "express": "^5.2.1",
+    "minisearch": "^7.2.0",
     "nodemon": "^3.1.14",
     "sass": "^1.105.0",
     "webpack": "^5.111.1",

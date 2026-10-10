@@ -120,7 +120,9 @@ npm run update
 node /path/where/you/cloned/and/installed/easydoc/update.js
 ```
 
-Existing files in `www/assets/` (CSS, JS, fonts) are overwritten with EasyDoc's versions; favicons are left untouched.
+Existing files in `www/assets/` (CSS, JS, fonts) are overwritten with EasyDoc's versions; favicons are left untouched. Your project's `searchApi.js` is replaced with EasyDoc's current version as well. If your `package.json` still lists `elasticlunr` (the full-text search engine used before MiniSearch), it is replaced with `minisearch`; run `npm install` afterwards.
+
+`npm audit` may report a high-severity `braces` advisory (GHSA-vfj7-8cjw-p6xm) via `nodemon` → `chokidar`. No patched `braces` release exists yet. It only affects the local `npm run watch` tool, whose glob patterns come from your own `nodemon.json`. Do **not** run `npm audit fix --force`: it downgrades nodemon to 1.x. `npm audit --omit=dev` shows the production-relevant result.
 
 ::: details 🖿 easydoc directory structure
 ```filetree
