@@ -97,7 +97,7 @@ if (!fs.existsSync(path.join(baseDir, "package.json"))) {
     devDependencies: {
       "cors": "^2.8.6",
       "elasticlunr": "^0.9.5",
-      "express": "^5.2.1",
+      "express": "^5.3.0",
       "nodemon": "^3.1.14"
     }
   };
