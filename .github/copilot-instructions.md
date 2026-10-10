@@ -94,3 +94,7 @@ logs the password. Full details live in the `easydoc-deploy` skill
   then write a file‑level plan before coding.
 - Verify JS changes with `node --check <file>.js`; verify scaffolding by running
   `setup.js` in a throwaway temp directory.
+
+## Ignore these directories
+
+- `data/`
