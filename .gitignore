@@ -1,4 +1,7 @@
 /data
 /node_modules
 /test
+/ai
+/src
 test.js
+searchIndex.json
