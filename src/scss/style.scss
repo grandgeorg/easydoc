@@ -101,9 +101,12 @@ html[data-theme="light"] {
   // --clr-link: #0c92de;
   // --clr-link-d200: #279bdf;
   // --clr-code: #732197;
+  // --clr-base-mark-active: #4ea2ff;
+  // --clr-base-mark-hover: #a1c7f0;
+  // --clr-base-l50: #a1afb9;
 
   --clr-base: #0068d9;
-  --clr-base-l50: #a1afb9;
+  --clr-base-l50: #1d64d8;
   --clr-base-l75: #64748b;
   --clr-base-l100: #1550b8;
   --clr-base-l150: #8b8f95;
@@ -135,9 +138,7 @@ html[data-theme="light"] {
   --clr-base-d600: #eef2f7;
   --clr-base-d700: #ffffff;
 
-  // --clr-base-mark-active: #4ea2ff;
   --clr-base-mark-active: #1d64d8;
-  // --clr-base-mark-hover: #a1c7f0;
   --clr-base-mark-hover: #dbe6fa;
 
   --clr-base-sl-d500: #b2b6ba;
@@ -2394,6 +2395,11 @@ html[data-theme="light"] {
 :where(html[data-theme="light"]) {
   .navbar {
     background-color: var(--clr-base-d700);
+  }
+  .navbar__controls {
+    button.burger:not([disabled]):not([tabindex^="-"]):focus .burger__line {
+      background-color: var(--clr-on-accent);
+    }
   }
   .navigation-drawer {
     background-color: var(--clr-base-d480);
