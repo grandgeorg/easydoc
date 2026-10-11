@@ -1,10 +1,11 @@
 ---
-title: EasyDoc
+title: EasyDoc 🔴🔵
 tags:
   - markdown
   - javascript
   - documentation
   - tool
+  - easydoc
 tocIncludeLevel: [1, 2, 3]
 # disableBrand: true
 # disableToc: true
@@ -18,6 +19,8 @@ tocIncludeLevel: [1, 2, 3]
 ![EasyDoc](img/easydoc-banner.png)
 
 A powerful technical documentation tool that generates completely local HTML pages and websites from markdown files. {.text-center}
+
+---
   
 ##### _created by:_ {.text-center}
 
@@ -172,7 +175,8 @@ Existing files in `www/assets/` (CSS, JS, fonts) are overwritten with EasyDoc's 
 
 
 --------------------------------------------------------------------------------
-For configuration and further usage refer to the [EasyDoc Reference](easydoc-reference.html) {.text-center}
+
+**For configuration and further usage refer to the [EasyDoc Reference](easydoc-reference.html)** {.alert .alert-tip .text-center}
 
 --------------------------------------------------------------------------------
 
@@ -196,3 +200,49 @@ For the most convenient use do the following:
     <source src="video/workflow.mp4" type="video/mp4">
   </video>
 :::
+
+## Deployment
+
+You can deploy your generated documentation to a server using:
+
+```bash
+npm run deploy
+# Deployment (runs `npm run build`, then uploads the built site).
+```
+
+Make sure to configure the deployment settings in the `.env` file before running the deploy command.
+
+The deployment process will build your documentation and then upload it to the specified server using the configured method.
+
+### SFTP Deployment
+
+For now the only supported deployment method is `SFTP`. You can configure the SFTP settings in the `.env` file.
+
+```ini
+# --- Deployment ---
+EASYDOC_DEPLOY_TYPE=sftp
+
+EASYDOC_DEPLOY_SFTP_HOST=yourdomain.tld
+EASYDOC_DEPLOY_SFTP_PORT=22
+EASYDOC_DEPLOY_SFTP_USERNAME=user
+
+# Use a private key (preferred) OR a password.
+EASYDOC_DEPLOY_SFTP_PRIVATE_KEY=/path/to/id_rsa
+EASYDOC_DEPLOY_SFTP_PASSPHRASE=
+EASYDOC_DEPLOY_SFTP_PASSWORD=
+
+# Remote directory the site is uploaded into.
+EASYDOC_DEPLOY_SFTP_REMOTE_PATH=/var/www/vhost/doc.yourdomain.tld/public/some-doc
+# Local directory to upload (defaults to the built output: www).
+EASYDOC_DEPLOY_SFTP_LOCAL_DIR=www
+
+# Optional: upload the full-text search index (searchIndex.json) to a separate
+# remote path. If the value ends in ".json" it is treated as the full remote file
+# path; otherwise it is treated as a remote directory that searchIndex.json is
+# placed into. Only uploaded when full-text search is enabled and the file exists.
+EASYDOC_DEPLOY_SFTP_SEARCH_INDEX_REMOTE_PATH=/var/www/vhost/doc.yourdomain.tld/private/search
+```
+
+---
+
+For more information on deployment, refer to the [EasyDoc Reference](easydoc-reference.html#t--global-configuration).

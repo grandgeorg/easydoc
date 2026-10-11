@@ -1,6 +1,6 @@
 ---
-title: EasyDoc Reference
-tags: [documentation, manual, reference, markdown]
+tags: ["documentation", "manual", "reference", "markdown", "easydoc"]
+title: EasyDoc Reference 🔴🔵
 tocIncludeLevel: [1, 2, 3]
 ---
 
@@ -19,27 +19,85 @@ tocIncludeLevel: [1, 2, 3]
 EASYDOC_LANG_FALLBACK=en
 EASYDOC_TITLE_FALLBACK=Documentation
 
-EASYDOC_BRAND_URL=https://grandgeorg.de
-EASYDOC_BRAND_NAME=Grandgeorg
-EASYDOC_BRAND_SECONDARY=Websolutions
+EASYDOC_BRAND_URL=https://yourdomain.tld
+EASYDOC_BRAND_NAME=Yourcompany
+EASYDOC_BRAND_SECONDARY=Yourproject
 
 EASYDOC_TOC_INCLUDELEVEL=[1,2,3,4]
 
 # EASYDOC_DISABLE_BRAND=true
 # EASYDOC_DISABLE_TOC=true
 # EASYDOC_DISABLE_SITE_NAV=true
-# EASYDOC_DISABLE_TAG_NAVIGATOR=true
+
+# Tag navigator is considered to be deprecated.
+EASYDOC_DISABLE_TAG_NAVIGATOR=true
+
 # EASYDOC_DISABLE_NAVIGATION_BAR=true
-# EASYDOC_ENABLE_FULLTEXT_SEARCH=false
-# EASYDOC_SEARCH_API_URL=http://localhost:3000
+
 # EASYDOC_LOAD_VUEJS=false
 # EASYDOC_LOAD_MERMAID=false
+
+# --- search ---
+# Live search input in the navbar.
+# forces Vue.js to be loaded on every page.
+EASYDOC_NAVBAR_SEARCH=true
+
+# Full-text search configuration.
+EASYDOC_ENABLE_FULLTEXT_SEARCH=true
+
+# URL the browser calls for fulltext search. 
+# In production use a same-origin path behind a reverse proxy, 
+# e.g. EASYDOC_SEARCH_API_URL=/api/ (trailing slash required).
+EASYDOC_SEARCH_API_URL=http://localhost:3000/
+
+# --- Auto index ---
+# Master switch for auto index. Patches a generated block into docs/index.md,
+# creating the file if it does not exist yet.
+EASYDOC_GENERATE_AUTO_INDEX=true
+
+# Where the block is inserted the FIRST time: prepend (after the front matter) or append.
+# Later builds only replace what is between the markers and leave the block in place.
+EASYDOC_AUTO_INDEX_POSITION=prepend
+
+# Render the Vue dashboard (search over tags, title, filename and fulltext).
+# Forces Vue.js to be loaded on the index page.
+EASYDOC_AUTO_INDEX_SHOW_DASHBOARD=true
+
+# Initial state of the dashboard's "show all pages" switch. When false the page
+# list stays empty until something is typed into the search field.
+EASYDOC_AUTO_INDEX_INIT_SHOW_ALL=false
+
+
+# --- Deployment ---
+# Deployment type. Currently supported: sftp
+EASYDOC_DEPLOY_TYPE=sftp
+
+# SFTP deployment (runs `npm run build`, then uploads the built site).
+EASYDOC_DEPLOY_SFTP_HOST=yourdomain.tld
+EASYDOC_DEPLOY_SFTP_PORT=22
+EASYDOC_DEPLOY_SFTP_USERNAME=user
+
+# Use a private key (preferred) OR a password.
+EASYDOC_DEPLOY_SFTP_PRIVATE_KEY=/path/to/id_rsa
+EASYDOC_DEPLOY_SFTP_PASSPHRASE= SECRET
+# EASYDOC_DEPLOY_SFTP_PASSWORD=
+
+# Remote directory the site is uploaded into.
+EASYDOC_DEPLOY_SFTP_REMOTE_PATH=/var/www/vhost/doc.yourdomain.tld/public/some-doc
+# Local directory to upload (defaults to the built output: www).
+# EASYDOC_DEPLOY_SFTP_LOCAL_DIR=www
+
+# Optional: upload the full-text search index (searchIndex.json) to a separate
+# remote path. If the value ends in ".json" it is treated as the full remote file
+# path; otherwise it is treated as a remote directory that searchIndex.json is
+# placed into. Only uploaded when full-text search is enabled and the file exists.
+EASYDOC_DEPLOY_SFTP_SEARCH_INDEX_REMOTE_PATH=/var/www/vhost/doc.yourdomain.tld/private/search
 ```
 
 ### 📄 Per page overrides in front matter
 ##### ```docs/*.md``` files
 
-```none
+```markdown
 ---
 lang: de
 title: Page Title
@@ -48,7 +106,7 @@ tags:
   - tag2
 brandURL: https://domain.tld
 brandName: My Project
-brandSecondary: Reserach
+brandSecondary: Research
 tocIncludeLevel: [1, 2, 3, 4]
 # disableBrand: true
 # disableToc: true
@@ -1120,6 +1178,47 @@ Here are some **funny** details.
 ```
 :::
 
+
+### Alerts
+
+::: details Alert Info
+
+This is an informational alert. Here is a [link for you][def]
+{.alert .alert-info}
+
+```markdown
+This is an informational alert. Here is a [link for you][def]
+{.alert .alert-info}
+```
+:::
+
+::: details Alert tip
+
+This is a tip alert. Here is a [link for you][def].{.alert .alert-tip}
+
+```markdown
+This is a tip alert. Here is a [link for you][def].{.alert .alert-tip}
+```
+:::
+
+::: details Alert warning
+
+This is a warning alert. Here is a [link for you][def].{.alert .alert-warning}
+
+```markdown
+This is a warning alert.{.alert .alert-warning}
+```
+:::
+
+::: details Alert danger
+
+This is a danger alert. Here is a [link for you][def].{.alert .alert-danger}
+
+```markdown
+This is a danger alert. Here is a [link for you][def].{.alert .alert-danger}
+```
+:::
+
 ## Syntax Highlighting
 
 EasyDoc uses [Prism](https://prismjs.com/) to highlight syntax in code blocks.
@@ -1304,7 +1403,7 @@ Add class ```.linkable-line-numbers``` to make lines selectable.
 ```js {.line-numbers .linkable-line-numbers}
 ```
 
-⚠️ You may **not** want to use ```.linkable-line-numbers``` together with ```data-line``` attribute, as the linked line marker will overwrite the highlighted marker, when the line is clicked. {.custom-conatiner .warning style="padding:1em;"}
+⚠️ You may **not** want to use ```.linkable-line-numbers``` together with ```data-line``` attribute, as the linked line marker will overwrite the highlighted marker, when the line is clicked. {.custom-container .warning style="padding:1em;"}
 
 ---
 :::
