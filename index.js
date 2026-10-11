@@ -127,13 +127,13 @@ function getCustomContainer(name) {
         // opening tags
         if (m && m[1]) {
           return `
-            <div class="custom-conatiner ${name}${className}" tabindex="0">
-              <div class="custom-conatiner-title ${name}-title">${md.utils.escapeHtml(m[1])}</div>
-              <div class="custom-conatiner-body ${name}-body">\n`;
+            <div class="custom-container ${name}${className}" tabindex="0">
+              <div class="custom-container-title ${name}-title">${md.utils.escapeHtml(m[1])}</div>
+              <div class="custom-container-body ${name}-body">\n`;
         } else {
           return `
-            <div class="custom-conatiner ${name}${className}">
-              <div class="custom-conatiner-body ${name}-body">\n`;
+            <div class="custom-container ${name}${className}">
+              <div class="custom-container-body ${name}-body">\n`;
         }
       } else {
         // closing tags
