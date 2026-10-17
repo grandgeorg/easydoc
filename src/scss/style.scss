@@ -1402,8 +1402,9 @@ body>.page:first-child {
   --cc-line-link: #b15c15;
   --cc-line-bg: #2d1d10;
 
+  position: relative;
   margin: 1rem 0;
-  padding: 0.35rem 1rem 0.35rem 0.5rem;
+  padding: 0.35rem 1rem 0.35rem 1.75rem;
   border-width: 2px;
   border-style: solid;
   border-radius: 6px;
@@ -1431,9 +1432,11 @@ body>.page:first-child {
     &::before {
       content: "ℹ️";
       display: inline-block;
+      position: absolute;
+      top: 0.25rem;
+      left: 0.25rem;
       height: 1rem;
       margin-right: 0.5rem;
-      margin-top: -1px;
     }
   }
   &.alert-tip {
@@ -1449,9 +1452,11 @@ body>.page:first-child {
       content: "📗";
       // content: "💡";
       display: inline-block;
+      position: absolute;
+      top: 0.25rem;
+      left: 0.25rem;
       height: 1rem;
       margin-right: 0.5rem;
-      margin-top: -1px;
     }
   }
   &.alert-warning {
@@ -1466,9 +1471,11 @@ body>.page:first-child {
     &::before {
       content: "⚠️";
       display: inline-block;
+      position: absolute;
+      top: 0.25rem;
+      left: 0.25rem;
       height: 1rem;
       margin-right: 0.5rem;
-      margin-top: -1px;
     }
   }
   &.alert-danger {
@@ -1483,9 +1490,11 @@ body>.page:first-child {
     &::before {
       content: "🚨";
       display: inline-block;
+      position: absolute;
+      top: 0.25rem;
+      left: 0.25rem;
       height: 1rem;
       margin-right: 0.5rem;
-      margin-top: -1px;
     }
   }
   &.alert-line {
