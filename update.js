@@ -34,6 +34,13 @@ if (!fs.existsSync(searchApiFile) || !fs.readFileSync(searchApiFile).equals(sear
   console.log((existed ? "updated: " : "added:   ") + "searchApi.js");
 }
 
+// overrides.css belongs to the project, so it is only created when missing
+const overridesFile = path.join(baseDir, "overrides.css");
+if (!fs.existsSync(overridesFile)) {
+  fs.copyFileSync(path.join(__dirname, "setup", "_overrides.css"), overridesFile);
+  console.log("added:   overrides.css");
+}
+
 // searchApi.js uses minisearch since EasyDoc replaced elasticlunr
 const packageFile = path.join(baseDir, "package.json");
 if (fs.existsSync(packageFile)) {

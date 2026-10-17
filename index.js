@@ -2,6 +2,7 @@
 
 const path = require("path");
 const fs = require("fs");
+const crypto = require("crypto");
 const pug = require("pug");
 const fm = require("front-matter");
 const t = require("./lang/langs.js");
@@ -101,6 +102,21 @@ const withFulltextSearch = envBool("EASYDOC_ENABLE_FULLTEXT_SEARCH");
 const generateAutoIndex = envBool("EASYDOC_GENERATE_AUTO_INDEX");
 const autoIndexDashboard = generateAutoIndex && envBool("EASYDOC_AUTO_INDEX_SHOW_DASHBOARD");
 const navbarSearch = envBool("EASYDOC_NAVBAR_SEARCH");
+const disableThemeOverrides = envBool("EASYDOC_DISABLE_THEME_OVERRIDES");
+
+// ./overrides.css is copied into the output on every build; a stale copy is
+// removed when the source is gone so it is neither linked nor deployed
+const overridesSrc = path.join(baseDir, "overrides.css");
+const overridesDest = path.join(distDir, "assets", "css", "overrides.css");
+let themeOverridesVersion = null;
+if (fs.existsSync(overridesSrc)) {
+  const overridesCss = fs.readFileSync(overridesSrc);
+  fs.mkdirSync(path.dirname(overridesDest), { recursive: true });
+  fs.writeFileSync(overridesDest, overridesCss);
+  themeOverridesVersion = crypto.createHash("md5").update(overridesCss).digest("hex").slice(0, 8);
+} else if (fs.existsSync(overridesDest)) {
+  fs.unlinkSync(overridesDest);
+}
 
 const searchIndex = new MiniSearch({
   fields: ["title", "tags", "body", "file_name"],
@@ -382,6 +398,9 @@ fs.readdir(docsDir, (err, files) => {
       if (autoIndexDashboard && file === "index.md") {
         loadVueJs = true;
       }
+      const pageDisableThemeOverrides = fmData.attributes.disableThemeOverrides !== undefined
+        ? Boolean(fmData.attributes.disableThemeOverrides)
+        : disableThemeOverrides;
       if (navbarSearch) {
         loadVueJs = true;
       }
@@ -471,6 +490,8 @@ fs.readdir(docsDir, (err, files) => {
             loadVueJs: loadVueJs,
             loadMermaid: loadMermaid,
             navbarSearch: navbarSearch,
+            themeOverrides: Boolean(themeOverridesVersion) && !pageDisableThemeOverrides,
+            themeOverridesVersion: themeOverridesVersion,
           },
         },
       });

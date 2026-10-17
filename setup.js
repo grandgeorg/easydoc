@@ -78,6 +78,14 @@ if (!fs.existsSync(path.join(baseDir, "searchApi.js"))) {
   );
 }
 
+// check if overrides.css file exists
+if (!fs.existsSync(path.join(baseDir, "overrides.css"))) {
+  fs.copyFileSync(
+    path.join(__dirname, "setup", "_overrides.css"),
+    path.join(baseDir, "overrides.css")
+  );
+}
+
 // check if package.json file exists
 if (!fs.existsSync(path.join(baseDir, "package.json"))) {
   const packageJson = {

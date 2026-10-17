@@ -1,0 +1,48 @@
+/*
+ * EasyDoc custom theme overrides
+ *
+ * This file is copied to www/assets/css/overrides.css on every build and loaded
+ * after EasyDoc's own CSS, so your rules win over the defaults.
+ * `npm run update` never overwrites it. Delete it (or set
+ * EASYDOC_DISABLE_THEME_OVERRIDES=true in .env) to stop loading it.
+ *
+ * Uncomment and adapt the examples below.
+ */
+
+/* Site-wide colors per theme */
+/*
+html[data-theme=dark] {
+  --clr-brand: #f30;
+  --clr-brand-second: #267dff;
+  --clr-base: #267dff;
+  --clr-link: #2196f3;
+  --clr-link-d200: #2085d8;
+  --clr-code: #1b95b9;
+}
+html[data-theme=light] {
+  --clr-brand: #f30;
+  --clr-brand-second: #06c;
+  --clr-base: #0068d9;
+  --clr-link: #0b5bd3;
+  --clr-link-d200: #0a47a8;
+  --clr-code: #6d28d9;
+}
+*/
+
+/*
+ * Other overridable variables (see src/scss/style.scss in EasyDoc):
+ *   --clr-base-l50 ... --clr-base-l500   lighter shades (text in dark theme)
+ *   --clr-base-d50 ... --clr-base-d700   darker shades (backgrounds in dark theme)
+ *   --clr-base-mark-active, --clr-base-mark-hover
+ *   --clr-on-accent
+ */
+
+/* Brand color in the navbar only */
+/*
+html[data-theme=dark] .navbar {
+  --clr-brand: #00ee00;
+}
+html[data-theme=light] .navbar {
+  --clr-brand: #006600;
+}
+*/

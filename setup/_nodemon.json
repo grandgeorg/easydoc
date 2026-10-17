@@ -2,8 +2,8 @@
   "verbose": true,
   "restartable": "r",
   "ignore": [".git", "node_modules/**/node_modules"],
-  "watch": ["docs/", ".env", "nav.js"],
-  "ext": "md js env",
+  "watch": ["docs/", ".env", "nav.js", "overrides.css"],
+  "ext": "md js env css",
   "env": {
     "NODE_ENV": "production"
   },

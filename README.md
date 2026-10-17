@@ -61,7 +61,23 @@ npm run watch
 npm run build
 ```
 
+## Custom Theme Overrides
+
+Put your own CSS into `overrides.css` in your documentation project's root (`setup.js` and `npm run update` create a commented-out starter if it is missing). On every build it is copied to `www/assets/css/overrides.css` and loaded after EasyDoc's own CSS, so your rules win. The theme colors are CSS custom properties per theme, e.g.:
+
+```css
+html[data-theme=dark] .navbar {
+  --clr-brand: #00ee00;
+}
+html[data-theme=light] .navbar {
+  --clr-brand: #006600;
+}
+```
+
+The stylesheet is only linked when `overrides.css` exists, with a content hash (`?v=…`) so browsers pick up changes. `npm run update` never overwrites it. Set `EASYDOC_DISABLE_THEME_OVERRIDES=true` in `.env` to stop loading it, or use `disableThemeOverrides: true` / `false` in a page's front matter to override that per page. Projects set up before this feature can add `"overrides.css"` to `watch` (and `css` to `ext`) in their `nodemon.json` so `npm run watch` rebuilds on changes.
+
 ## Updating
+
 
 After pulling a newer EasyDoc version, refresh the JS, CSS and font assets in your documentation project:
 

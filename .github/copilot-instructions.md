@@ -30,9 +30,9 @@ the target unless there is a clear reason (`searchApi.js` is the historical exce
 
 | File | Role |
 |------|------|
-| `index.js` | Build: reads `docs/*.md`, renders via `markdown-it` + `templates/*.pug`, writes HTML + `www/meta.js` (config, translations, pages, tags), copies images/pdf/zip/js, and optionally writes `searchIndex.json`. |
-| `setup.js` | Scaffolds a target project: copies `.env`, `nav.js`, `www/` assets, `.vscode/settings.json`, and templates from `setup/`; generates `package.json`. |
-| `update.js` | Run from a scaffolded project (`npm run update`): overwrites the target's `www/assets` JS/CSS/fonts with EasyDoc's versions (favicons untouched), refreshes the target's `searchApi.js`, and swaps a legacy `elasticlunr` dependency for `minisearch` in its `package.json`. |
+| `index.js` | Build: reads `docs/*.md`, renders via `markdown-it` + `templates/*.pug`, writes HTML + `www/meta.js` (config, translations, pages, tags), copies images/pdf/zip/js, copies the project's `overrides.css` to `www/assets/css/` (linked after EasyDoc's CSS with a `?v=<hash>`; stale copy removed when the source is gone), and optionally writes `searchIndex.json`. |
+| `setup.js` | Scaffolds a target project: copies `.env`, `nav.js`, `www/` assets, `.vscode/settings.json`, and templates from `setup/` (incl. a starter `overrides.css`); generates `package.json`. |
+| `update.js` | Run from a scaffolded project (`npm run update`): overwrites the target's `www/assets` JS/CSS/fonts with EasyDoc's versions (favicons untouched), refreshes the target's `searchApi.js`, creates a starter `overrides.css` only if missing (never overwrites it), and swaps a legacy `elasticlunr` dependency for `minisearch` in its `package.json`. |
 | `assets.js` | Shared asset list + `copyAssets()` used by `setup.js` and `update.js`. Add new shipped assets here. |
 | `deploy.js` | Always runs the build first, then dispatches on `EASYDOC_DEPLOY_TYPE` (default `sftp`). SFTP upload via `ssh2-sftp-client`. |
 | `searchApi.js` | Optional Express + `minisearch` full‑text search server on port 3000. |
@@ -40,7 +40,7 @@ the target unless there is a clear reason (`searchApi.js` is the historical exce
 | `lang/langs.js` | UI translations (`en`, `de`). Add languages here. |
 | `templates/` | `pug` templates: `layout.pug`, `nav.pug`, `pagesnav.pug`. |
 | `src/js`, `src/scss` | Front‑end source; bundled with webpack (`npm run js`). |
-| `setup/` | Template files copied into scaffolded projects (`_gitignore`, `_nodemon.json`, `_searchApi.js`, `_vscode_settings.json`). |
+| `setup/` | Template files copied into scaffolded projects (`_gitignore`, `_nodemon.json`, `_overrides.css`, `_searchApi.js`, `_vscode_settings.json`). |
 | `www/` | Build output / distributable assets. |
 | `.env` | All runtime config (`EASYDOC_*`), loaded with `dotenv`. |
 
@@ -60,7 +60,7 @@ Everything is configured through `EASYDOC_*` variables loaded via `dotenv` (see 
 commented template in `.env`). Global values are overridable **per page** through
 Markdown front matter (e.g. `title`, `lang`, `tags`, `tocIncludeLevel`, `disableToc`,
 `disableSiteNav`, `disableTagNavigator`, `disableNavigationBar`, `loadMermaid`,
-`loadVueJs`, `brandURL`/`brandName`/`brandSecondary`). When adding a new option, expose
+`loadVueJs`, `disableThemeOverrides`, `brandURL`/`brandName`/`brandSecondary`). When adding a new option, expose
 it in `.env` (commented example), read it in `index.js`, and honor the front‑matter
 override where it makes sense.
 
