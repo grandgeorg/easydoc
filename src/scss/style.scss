@@ -209,6 +209,10 @@ hr {
   border: none;
   border-top: 1px solid var(--clr-base-d250);
   margin: 2rem auto;
+  display: block;
+  &.pbra {
+    display: none;
+  }
 }
 
 table {
@@ -1429,6 +1433,7 @@ body>.page:first-child {
       display: inline-block;
       height: 1rem;
       margin-right: 0.5rem;
+      margin-top: -1px;
     }
   }
   &.alert-tip {
@@ -1446,6 +1451,7 @@ body>.page:first-child {
       display: inline-block;
       height: 1rem;
       margin-right: 0.5rem;
+      margin-top: -1px;
     }
   }
   &.alert-warning {
@@ -1462,6 +1468,7 @@ body>.page:first-child {
       display: inline-block;
       height: 1rem;
       margin-right: 0.5rem;
+      margin-top: -1px;
     }
   }
   &.alert-danger {
@@ -1478,6 +1485,7 @@ body>.page:first-child {
       display: inline-block;
       height: 1rem;
       margin-right: 0.5rem;
+      margin-top: -1px;
     }
   }
   &.alert-line {
@@ -2488,9 +2496,21 @@ html[data-theme="light"] {
 @media print {
   html, body {
     background-color: #ffffff;
+    color: #000000;
   }
   .navbar {
-    display: none;
+    // display: none;
+    position: relative;
+    z-index: 1;
+    justify-content: center;
+    // margin-bottom: 1rem;
+    background-color: #ffffff;
+    // border-color: #e2e8f0;
+    border-bottom: 0;
+    // disable all subelements except navbar__brand:
+    & > *:not(.navbar__brand) {
+      display: none;
+    }
   }
   .page {
     margin: 0;
@@ -2504,9 +2524,18 @@ html[data-theme="light"] {
       max-width: none;
       padding: 0 1px;
     }
+    > .mtime {
+      padding-bottom: 0.5rem;
+      margin-bottom: 0.5rem;
+      border-bottom: 1px solid #e2e8f0 !important;
+      // border-bottom: 1px solid #f30 !important;
+      color: #333333;
+      text-align: center;
+    }
     > .content {
       h1 {
         font-weight: 400;
+        color: #000000;
       }
     }
     > .footer {
@@ -2519,9 +2548,9 @@ html[data-theme="light"] {
   div.code-toolbar>.toolbar {
     display: none;
   }
-  .page>.content div.code-toolbar {
-    page-break-inside: avoid;
-  }
+  // .page>.content div.code-toolbar {
+  //   page-break-inside: avoid;
+  // }
   // .page>.content :not(pre)>code[class*=language-], .page>.content pre[class*=language-] {
   //   page-break-inside: avoid;
   // }
@@ -2529,6 +2558,7 @@ html[data-theme="light"] {
     font-size: 0.75rem !important;
   }
   hr.pbra {
+    display: block;
     border-top: 1px solid #ffffff;
     page-break-after: always;
   }
