@@ -59,7 +59,7 @@ npm run deploy   # build, then deploy (SFTP)
 Everything is configured through `EASYDOC_*` variables loaded via `dotenv` (see the
 commented template in `.env`). Global values are overridable **per page** through
 Markdown front matter (e.g. `title`, `lang`, `tags`, `tocIncludeLevel`, `disableToc`,
-`disableSiteNav`, `disableTagNavigator`, `disableNavigationBar`, `loadMermaid`,
+`disableSiteNav`, `disableTagNavigator`, `disableNavigationBar`, `loadMermaid`, `disableFlowchart`,
 `loadVueJs`, `disableThemeOverrides`, `brandURL`/`brandName`/`brandSecondary`). When adding a new option, expose
 it in `.env` (commented example), read it in `index.js`, and honor the front‑matter
 override where it makes sense.

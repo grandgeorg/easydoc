@@ -392,6 +392,9 @@ fs.readdir(docsDir, (err, files) => {
       let loadMermaid = fmData.attributes.loadMermaid !== undefined
         ? Boolean(fmData.attributes.loadMermaid)
         : envBool("EASYDOC_LOAD_MERMAID");
+      let disableFlowchart = fmData.attributes.disableFlowchart !== undefined
+        ? Boolean(fmData.attributes.disableFlowchart)
+        : envBool("EASYDOC_DISABLE_FLOWCHART");
       let loadVueJs = fmData.attributes.loadVueJs !== undefined
         ? Boolean(fmData.attributes.loadVueJs)
         : envBool("EASYDOC_LOAD_VUEJS");
@@ -489,6 +492,7 @@ fs.readdir(docsDir, (err, files) => {
             disableBurger: disableBurger,
             loadVueJs: loadVueJs,
             loadMermaid: loadMermaid,
+            disableFlowchart: disableFlowchart,
             navbarSearch: navbarSearch,
             themeOverrides: Boolean(themeOverridesVersion) && !pageDisableThemeOverrides,
             themeOverridesVersion: themeOverridesVersion,

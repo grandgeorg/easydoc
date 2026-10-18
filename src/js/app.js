@@ -255,6 +255,10 @@
     }
 
     function addFlowcharts(params) {
+      // flowchart.js is not loaded when disableFlowchart is set; leave the raw source visible
+      if (typeof flowchart === "undefined") {
+        return;
+      }
       const flowcharts = document.querySelectorAll(".flowchart");
       let chart;
       flowcharts.forEach((fl, idx) => {

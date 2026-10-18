@@ -36,6 +36,7 @@ EASYDOC_DISABLE_TAG_NAVIGATOR=true
 
 # EASYDOC_LOAD_VUEJS=false
 # EASYDOC_LOAD_MERMAID=false
+# EASYDOC_DISABLE_FLOWCHART=true
 
 # --- search ---
 # Live search input in the navbar.
@@ -115,6 +116,7 @@ tocIncludeLevel: [1, 2, 3, 4]
 # disableNavigationBar: true
 # loadVueJs: true
 # loadMermaid: true
+# disableFlowchart: true
 ---
 ```
 
@@ -164,6 +166,9 @@ tocIncludeLevel: [1, 2, 3, 4]
 
 ```.env: EASYDOC_LOAD_MERMAID``` | ```frontmatter: loadMermaid```
 : Load MermaidJs for flowcharts and diagrams.
+
+```.env: EASYDOC_DISABLE_FLOWCHART``` | ```frontmatter: disableFlowchart```
+: Do not load flowchart.js (and Raphael). Enabled by default; when disabled, ```@flowstart``` blocks show their raw source.
 
 ```frontmatter: tags```
 : Tags for the page, used in tag navigator and search.
