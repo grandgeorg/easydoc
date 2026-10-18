@@ -389,9 +389,9 @@ fs.readdir(docsDir, (err, files) => {
       }
       let title = fmData.attributes.title ? fmData.attributes.title : process.env.EASYDOC_TITLE_FALLBACK;
 
-      let loadMermaid = fmData.attributes.loadMermaid
+      let loadMermaid = fmData.attributes.loadMermaid !== undefined
         ? Boolean(fmData.attributes.loadMermaid)
-        : Boolean(process.env.EASYDOC_LOAD_MERMAID);
+        : envBool("EASYDOC_LOAD_MERMAID");
       let loadVueJs = fmData.attributes.loadVueJs !== undefined
         ? Boolean(fmData.attributes.loadVueJs)
         : envBool("EASYDOC_LOAD_VUEJS");
@@ -404,22 +404,22 @@ fs.readdir(docsDir, (err, files) => {
       if (navbarSearch) {
         loadVueJs = true;
       }
-      let disableBrand = fmData.attributes.disableBrand
+      let disableBrand = fmData.attributes.disableBrand !== undefined
         ? Boolean(fmData.attributes.disableBrand)
-        : Boolean(process.env.EASYDOC_DISABLE_BRAND);
+        : envBool("EASYDOC_DISABLE_BRAND");
       let navbarClass = disableBrand ? "no_brand" : "";
-      let disableToc = fmData.attributes.disableToc
+      let disableToc = fmData.attributes.disableToc !== undefined
         ? Boolean(fmData.attributes.disableToc)
-        : Boolean(process.env.EASYDOC_DISABLE_TOC);
-      let disableSiteNav = fmData.attributes.disableSiteNav
+        : envBool("EASYDOC_DISABLE_TOC");
+      let disableSiteNav = fmData.attributes.disableSiteNav !== undefined
         ? Boolean(fmData.attributes.disableSiteNav)
-        : Boolean(process.env.EASYDOC_DISABLE_SITE_NAV);
-      let disableTagNavigator = fmData.attributes.disableTagNavigator
+        : envBool("EASYDOC_DISABLE_SITE_NAV");
+      let disableTagNavigator = fmData.attributes.disableTagNavigator !== undefined
         ? Boolean(fmData.attributes.disableTagNavigator)
-        : Boolean(process.env.EASYDOC_DISABLE_TAG_NAVIGATOR);
-      let disableNavigationBar = fmData.attributes.disableNavigationBar
+        : envBool("EASYDOC_DISABLE_TAG_NAVIGATOR");
+      let disableNavigationBar = fmData.attributes.disableNavigationBar !== undefined
         ? Boolean(fmData.attributes.disableNavigationBar)
-        : Boolean(process.env.EASYDOC_DISABLE_NAVIGATION_BAR);
+        : envBool("EASYDOC_DISABLE_NAVIGATION_BAR");
       if (disableBrand && disableToc && disableSiteNav && disableTagNavigator) {
         disableNavigationBar = true;
       }
@@ -591,32 +591,14 @@ fs.readdir(docsDir, (err, files) => {
     brand_url: process.env.EASYDOC_BRAND_URL,
     brand_name: process.env.EASYDOC_BRAND_NAME,
     brand_secondary: process.env.EASYDOC_BRAND_SECONDARY,
-    disable_brand:
-      String(process.env.EASYDOC_DISABLE_BRAND).toLowerCase() === "false"
-        ? false
-        : Boolean(process.env.EASYDOC_DISABLE_BRAND),
-    disable_toc:
-      String(process.env.EASYDOC_DISABLE_TOC).toLowerCase() === "false"
-        ? false
-        : Boolean(process.env.EASYDOC_DISABLE_TOC),
-    disable_site_nav:
-      String(process.env.EASYDOC_DISABLE_SITE_NAV).toLowerCase() === "false"
-        ? false
-        : Boolean(process.env.EASYDOC_DISABLE_SITE_NAV),
-    disable_tag_navigator:
-      String(process.env.EASYDOC_DISABLE_TAG_NAVIGATOR).toLowerCase() === "false"
-        ? false
-        : Boolean(process.env.EASYDOC_DISABLE_TAG_NAVIGATOR),
-    disable_navigation_bar:
-      String(process.env.EASYDOC_DISABLE_NAVIGATION_BAR).toLowerCase() === "false"
-        ? false
-        : Boolean(process.env.EASYDOC_DISABLE_NAVIGATION_BAR),
+    disable_brand: envBool("EASYDOC_DISABLE_BRAND"),
+    disable_toc: envBool("EASYDOC_DISABLE_TOC"),
+    disable_site_nav: envBool("EASYDOC_DISABLE_SITE_NAV"),
+    disable_tag_navigator: envBool("EASYDOC_DISABLE_TAG_NAVIGATOR"),
+    disable_navigation_bar: envBool("EASYDOC_DISABLE_NAVIGATION_BAR"),
     // disable_burger: Boolean(process.env.EASYDOC_DISABLE_BURGER),
     toc_include_level: tocIncludeLevel,
-    enable_fulltext_search:
-      String(process.env.EASYDOC_ENABLE_FULLTEXT_SEARCH).toLowerCase() === "false"
-        ? false
-        : Boolean(process.env.EASYDOC_ENABLE_FULLTEXT_SEARCH),
+    enable_fulltext_search: withFulltextSearch,
     easydoc_search_api_url: process.env.EASYDOC_SEARCH_API_URL,
     auto_index_init_show_all: envBool("EASYDOC_AUTO_INDEX_INIT_SHOW_ALL"),
     navbar_search: envBool("EASYDOC_NAVBAR_SEARCH"),
