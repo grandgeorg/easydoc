@@ -1846,7 +1846,6 @@ html[data-theme="light"] {
 .tag-cloud-filter,
 .tag-cloud-sort,
 .page-filter,
-.page-filter-fulltext,
 .tag-navigation-sort {
   display: flex;
 }
@@ -1895,14 +1894,6 @@ html[data-theme="light"] {
   }
 }
 
-.page-filter-fulltext.active {
-  flex-grow: 1;
-
-  label svg {
-    color: var(--clr-base);
-  }
-}
-
 .filter-input {
   margin: 0;
   padding: 0.5rem 1rem;
@@ -1929,7 +1920,8 @@ html[data-theme="light"] {
   color: var(--clr-base-l200);
   line-height: 1;
   background-color: var(--clr-base-d550);
-  border: 1px solid var(--clr-base-d400);
+  // border: 1px solid var(--clr-base-d400);
+  border: 1px solid var(--clr-base-d250);
   border-top-right-radius: 6px;
   border-bottom-right-radius: 6px;
   &:focus {

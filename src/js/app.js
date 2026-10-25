@@ -13,7 +13,6 @@
         currentInputIsMouse: false,
         filename: window.location.pathname.substring(window.location.pathname.lastIndexOf('/') + 1) || "index.html",
         lang: document.documentElement.lang || "en",
-        fulltextSearch: (localStorage.getItem("fulltextSearch") === "true") ? true : false,
       },
       nav: {
         isOpen: false,
@@ -32,7 +31,6 @@
         filter: "",
         sortby: "title",
         order: "asc",
-        fulltextFilter: "",
       },
       pageCards: [],
       easydocCookieConsent: localStorage.getItem("easydocCookieConsent") || false,
@@ -171,10 +169,6 @@
     function dispatchNavigation() {
       if (!elMenuToggle) {
         return;
-      }
-
-      if (!state.meta.config.easydoc_search_api_url) {
-        state.meta.config.easydoc_search_api_url = "/api/";
       }
 
       elMenuToggle.addEventListener("click", toggleBurger, false);
@@ -598,7 +592,6 @@
           filter: state.tagPages.filter,
           sortby: state.tagPages.sortby,
           order: state.tagPages.order,
-          fulltextFilter: state.tagPages.fulltextFilter,
         }));
       }
     }
@@ -625,66 +618,6 @@
       });
       state.pageCards.forEach((pageCard) => {
         pageCard.dispatchEvent(filterEvent);
-      });
-    }
-
-    async function filterByFulltext(query) {
-      if (!query || query.length < 1) {
-        filterByFulltextReset();
-        return;
-      }
-      const results = await fetch(`${state.meta.config.easydoc_search_api_url}?q=${query}`);
-      const json = await results.json();
-      const searchEvent = new CustomEvent("filterByFulltext", {
-        detail: {
-          results: json,
-        },
-      });
-      state.pageCards.forEach((pageCard) => {
-        pageCard.dispatchEvent(searchEvent);
-      });
-
-      // This works but is not the best way to do it:
-
-      // add score data to pageCards
-      state.pageCards.forEach((pageCard) => {
-        const hit = json.find((result) => "page-" + result.ref === pageCard.id);
-        if (hit) {
-          pageCard.dataset.score = hit.score;
-        } else {
-          pageCard.dataset.score = 0;
-        }
-      });
-      // sort pageCards by score
-      state.pageCards.sort((a, b) => {
-        const scoreA = parseFloat(a.dataset.score);
-        const scoreB = parseFloat(b.dataset.score);
-        return scoreB - scoreA;
-      });
-
-      // console.log(state.pageCards);
-
-      // remove all pageCards from DOM
-      const pageCardsContainer = document.querySelector(".tag-navigation");
-      if (pageCardsContainer) {
-        pageCardsContainer.innerHTML = "";
-      }
-      // add pageCards to DOM
-      state.pageCards.forEach((pageCard) => {
-        pageCardsContainer.appendChild(pageCard);
-      });
-
-    }
-
-    function filterByFulltextReset() {
-      const resetEvent = new CustomEvent("filterByFulltext", {
-        detail: {
-          results: [],
-          noQuery: true,
-        },
-      });
-      state.pageCards.forEach((pageCard) => {
-        pageCard.dispatchEvent(resetEvent);
       });
     }
 
@@ -1118,85 +1051,6 @@
           tagNavigationSort.appendChild(tagNavigationOrderContainer);
           tagNavigationHeader.appendChild(tagNavigationSort);
 
-          // full text search
-          const pageFilterFulltextLabel = document.createElement("label");
-          const pageFilterFulltextInput = document.createElement("input");
-          if (state.meta.config.enable_fulltext_search) {
-            const pageFilterFulltext = document.createElement("div");
-            pageFilterFulltext.setAttribute("class", "page-filter-fulltext");
-
-            // page filter fulltext label
-            pageFilterFulltextLabel.setAttribute("for", "page-filter-fulltext-input");
-            pageFilterFulltextLabel.setAttribute("class", "filter-label");
-            pageFilterFulltextLabel.setAttribute("title", state.meta.t[state.global.lang].filter_pages_fulltext_on);
-            pageFilterFulltextLabel.innerHTML = icons.globe;
-            pageFilterFulltextLabel.addEventListener("click", function (e) {
-              // toggle fulltext search
-              // add state to global
-              state.global.fulltextSearch = !state.global.fulltextSearch;
-              localStorage.setItem("fulltextSearch", state.global.fulltextSearch);
-
-              if (state.global.fulltextSearch) {
-                pageFilterFulltext.classList.add("active");
-                pageFilterFulltextLabel.setAttribute("title", state.meta.t[state.global.lang].filter_pages_fulltext_off);
-                pageFilterFulltextInput.removeAttribute("hidden");
-                pageFilterInput.value = "";
-                if (state.tagPages.fulltextFilter.length > 0) {
-                  pageFilterFulltextInput.value = state.tagPages.fulltextFilter;
-                }
-                filterTagNavigation();
-                updateTagNavigation();
-                filterTagCloud();
-                filterByFulltext(pageFilterFulltextInput.value);
-                pageFilter.classList.add("hidden");
-                tagNavigationSort.classList.add("hidden");
-              } else {
-                pageFilterFulltext.classList.remove("active");
-                pageFilterFulltextLabel.setAttribute("title", state.meta.t[state.global.lang].filter_pages_fulltext_on);
-                pageFilterFulltextInput.setAttribute("hidden", "true");
-                if (state.tagPages.filter.length > 0) {
-                  pageFilterInput.value = state.tagPages.filter;
-                }
-                filterByFulltextReset();
-                updateTagNavigation();
-                filterTagCloud();
-                if (pageFilterInput.value.length > 0) {
-                  filterTagNavigation();
-                }
-                pageFilter.classList.remove("hidden");
-                tagNavigationSort.classList.remove("hidden");
-              }
-            });
-
-            // page filter fulltext input
-            pageFilterFulltextInput.setAttribute("type", "text");
-            pageFilterFulltextInput.setAttribute("id", "page-filter-fulltext-input");
-            pageFilterFulltextInput.setAttribute("class", "filter-input");
-            pageFilterFulltextInput.setAttribute("placeholder", state.meta.t[state.global.lang].filter_pages_fulltext_placeholder);
-            pageFilterFulltextInput.setAttribute("autocomplete", "off");
-            pageFilterFulltextInput.setAttribute("autocorrect", "off");
-            pageFilterFulltextInput.setAttribute("autocapitalize", "off");
-            pageFilterFulltextInput.setAttribute("spellcheck", "false");
-            pageFilterFulltextInput.setAttribute("hidden", "true");
-            pageFilterFulltextInput.addEventListener("input", debounce(function (e) {
-              filterByFulltext(e.target.value);
-              updateTagNavigationState({ fulltextFilter: e.target.value });
-            }, 250));
-            if (state.tagPages.fulltextFilter && state.tagPages.fulltextFilter.length > 0) {
-              pageFilterFulltextInput.value = state.tagPages.fulltextFilter;
-            }
-
-            // append
-            pageFilterFulltext.appendChild(pageFilterFulltextLabel);
-            pageFilterFulltext.appendChild(pageFilterFulltextInput);
-            tagNavigationHeader.appendChild(pageFilterFulltext);
-          } else {
-            // remove fulltext search
-            pageFilterFulltextLabel.remove();
-            pageFilterFulltextInput.remove();
-          }
-
-
           // page cards navigation a.k.a. tag navigation
           state.meta.pages.sort(function (a, b) {
             return sortPageCards(state.tagPages.sortby, state.tagPages.order, a, b);
@@ -1251,30 +1105,6 @@
                 },
                 false
               );
-
-              if (state.meta.config.enable_fulltext_search) {
-                pageCard.addEventListener(
-                  "filterByFulltext",
-                  function (e) {
-                    if (e.detail.noQuery) {
-                      pageCard.classList.remove("filter-hidden");
-                    } else {
-                      let show = false;
-                      e.detail.results.forEach(function (result) {
-                        if (result.ref === page.file) {
-                          show = true;
-                        }
-                      });
-                      if (show) {
-                        pageCard.classList.remove("filter-hidden");
-                      } else {
-                        pageCard.classList.add("filter-hidden");
-                      }
-                    }
-                  },
-                  false
-                );
-              }
 
               if (page.tags && Array.isArray(page.tags) && page.tags.length > 0) {
                 const tags = document.createElement("div");
@@ -1340,11 +1170,6 @@
             tagElements.forEach((tagElement) => {
               tagElement.classList.remove("active");
             });
-            if (state.meta.config.enable_fulltext_search) {
-              pageFilterFulltextInput.value = "";
-              filterByFulltextReset();
-              state.tagPages.fulltextFilter = "";
-            }
 
             pageFilterInput.value = "";
             updateTagNavigationState({ filter: "" }, "filter");
@@ -1385,12 +1210,6 @@
           if (!state.easydocCookieConsent) {
             cookieConsent();
           }
-
-          if (state.meta.config.enable_fulltext_search && state.global.fulltextSearch) {
-            state.global.fulltextSearch = !state.global.fulltextSearch;
-            pageFilterFulltextLabel.dispatchEvent(new Event("click"));
-          }
-
         });
       }
     }

@@ -96,7 +96,7 @@ export function createSearchCore(Vue, t, lang, options) {
       : Boolean(easydocMeta.config.auto_index_init_show_all);
 
   const fulltextEnabled = Boolean(easydocMeta.config.enable_fulltext_search);
-  const apiUrl = easydocMeta.config.easydoc_search_api_url;
+  const apiUrl = easydocMeta.config.easydoc_search_api_url || "/api/";
   const formatDate = makeFormatDate(lang);
   const currentFile =
     window.location.pathname.substring(window.location.pathname.lastIndexOf("/") + 1) ||
