@@ -98,6 +98,9 @@ export function createSearchCore(Vue, t, lang, options) {
   const fulltextEnabled = Boolean(easydocMeta.config.enable_fulltext_search);
   const apiUrl = easydocMeta.config.easydoc_search_api_url;
   const formatDate = makeFormatDate(lang);
+  const currentFile =
+    window.location.pathname.substring(window.location.pathname.lastIndexOf("/") + 1) ||
+    "index.html";
 
   const initialQuery = syncUrl ? new URL(window.location.href).searchParams.get("q") || "" : "";
   const query = ref(initialQuery);
@@ -407,6 +410,7 @@ export function createSearchCore(Vue, t, lang, options) {
 
   return {
     t,
+    currentFile,
     query,
     tokens,
     results,

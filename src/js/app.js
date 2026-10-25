@@ -11,7 +11,7 @@
       global: {
         lastActiveElement: Element | null,
         currentInputIsMouse: false,
-        filename: window.location.pathname.substring(window.location.pathname.lastIndexOf('/') + 1),
+        filename: window.location.pathname.substring(window.location.pathname.lastIndexOf('/') + 1) || "index.html",
         lang: document.documentElement.lang || "en",
         fulltextSearch: (localStorage.getItem("fulltextSearch") === "true") ? true : false,
       },

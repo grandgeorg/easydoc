@@ -228,7 +228,7 @@ function initNavbarSearch() {
                   <div class="dashboard-empty" v-if="!results.length">{{ emptyMessage }}</div>
 
                   <div class="tag-navigation dashboard-pages" v-else>
-                    <div class="page-card" v-for="item in results" :key="item.page.file">
+                    <div class="page-card" :class="{ current: item.page.file === currentFile }" v-for="item in results" :key="item.page.file">
                       <a :href="item.page.file">
                         <div class="page-card-title">
                           <template v-for="(segment, index) in item.titleSegments" :key="index"
