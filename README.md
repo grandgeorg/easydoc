@@ -1,6 +1,6 @@
 # EasyDoc
 
-![EasyDoc](manual/img/easydoc-banner.png)
+![EasyDoc](manual/img/easydoc-banner.jpg)
 
 EasyDoc is a simple but powerful technical documentation tool that generates completely local HTML pages and websites from markdown files. It offers rich markdown support and code highlighting features, using [markdown-it](https://github.com/markdown-it/markdown-it) and [Prism](https://prismjs.com/) respectively.
 
