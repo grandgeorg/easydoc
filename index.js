@@ -255,6 +255,17 @@ md.use(anchor, {
       .replace(/[^a-z0-9\-]/gi, "");
   },
 });
+
+// Math rendering with markdown-it-math and temml
+const mdItMath = require("markdown-it-math/no-default-renderer").default;
+const temml = require("temml");
+
+md.use(mdItMath, {
+  inlineRenderer: (src) => temml.renderToString(src),
+  blockRenderer: (src) => temml.renderToString(src, { displayMode: true }),
+});
+
+// Table of contents rendering with markdown-it-table-of-contents
 const tocIncludeLevel = process.env.EASYDOC_TOC_INCLUDELEVEL ? process.env.EASYDOC_TOC_INCLUDELEVEL : [1, 2, 3, 4];
 const mdItToc = require("markdown-it-table-of-contents");
 const templateDir = path.join(__dirname, "templates");
