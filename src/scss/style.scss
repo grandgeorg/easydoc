@@ -1240,14 +1240,14 @@ body>.page:first-child {
     font-size: 1em;
     width: 100%;
   }
-  button {
+  .custom button {
     padding: 0.25rem 0.5rem;
     color: var(--clr-base-l200);
     background-color: var(--clr-base-d550);
     border: 2px solid var(--clr-base-d250);
     border-radius: 6px;
     font-size: 1em;
-    width: 100%;
+    // width: 100%;
     cursor: pointer;
     &:hover {
       background-color: var(--clr-base-d600);
