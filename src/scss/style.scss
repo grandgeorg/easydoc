@@ -84,6 +84,15 @@ $navbar-height: 42px;
   --clr-on-accent: #ffffff;
 }
 
+html[data-theme="dark"] {
+  .only-on-dark {
+    display: block !important;
+  }
+  .only-on-light {
+    display: none !important;
+  }
+}
+
 html[data-theme="light"] {
   // --clr-base-l75: #a1afb9;
   // --clr-base-l100: #004a99;
@@ -153,6 +162,13 @@ html[data-theme="light"] {
   --clr-brand-second: #06c;
 
   --clr-on-accent: #ffffff;
+
+  .only-on-dark {
+    display: none !important;
+  }
+  .only-on-light {
+    display: block !important;
+  }
 }
 
 // reboot & basics
@@ -362,6 +378,10 @@ a code {
 
 .mw-80ch {
   max-width: 80ch !important;
+}
+
+.w-100 {
+  width: 100% !important;
 }
 
 .hidden {
@@ -1208,6 +1228,7 @@ body>.page:first-child {
   input[type="text"],
   input[type="password"],
   input[type="email"],
+  input[type="number"],
   textarea {
     padding: 0.25rem 0.5rem;
     color: var(--clr-base-l200);
@@ -1215,6 +1236,15 @@ body>.page:first-child {
     border: 1px solid var(--clr-base-d250);
     border-radius: 6px;
     font-family: "Fira Code",Consolas,Monaco,"Andale Mono","Ubuntu Mono",monospace;
+    font-size: 1em;
+    width: 100%;
+  }
+  button {
+    padding: 0.25rem 0.5rem;
+    color: var(--clr-base-l200);
+    background-color: var(--clr-base-d550);
+    border: 1px solid var(--clr-base-d250);
+    border-radius: 6px;
     font-size: 1em;
     width: 100%;
   }
