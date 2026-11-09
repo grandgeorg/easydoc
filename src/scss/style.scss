@@ -2608,6 +2608,9 @@ html[data-theme="light"] {
     page-break-inside: avoid;
   }
 
+  .page-card {
+    page-break-inside: avoid;
+  }
 
   code[class*=language-], pre[class*=language-] {
     font-size: 0.75rem !important;
