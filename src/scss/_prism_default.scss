@@ -5,7 +5,8 @@ https://prismjs.com/download.html#themes=prism&languages=markup+css+clike+javasc
  * Based on dabblet (http://dabblet.com)
  * @author Lea Verou
  */
-html[data-theme="light"] {
+// Light palette, used for the light theme and for print (regardless of theme).
+@mixin prism-light {
 
 	code[class*="language-"],
 	pre[class*="language-"] {
@@ -341,4 +342,15 @@ html[data-theme="light"] {
 		display: block;
 	}
 
+}
+
+html[data-theme="light"] {
+	@include prism-light;
+}
+
+// The "html" prefix outranks the unprefixed dark rules in prism.scss.
+@media print {
+	html {
+		@include prism-light;
+	}
 }

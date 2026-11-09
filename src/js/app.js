@@ -1381,6 +1381,17 @@
       }
     }
 
+    function print() {
+      const currentTheme = document.documentElement.getAttribute("data-theme");
+      window.addEventListener("beforeprint", function () {
+        document.documentElement.setAttribute("data-theme", "light");
+        document.querySelectorAll('details').forEach(d => d.setAttribute('open', true));
+      });
+      window.addEventListener("afterprint", function () {
+        document.documentElement.setAttribute("data-theme", currentTheme);
+      });
+    }
+
     function main() {
       // let flowchartScript = document.querySelector('script[src="assets/js/flowchart.min.js"]');
       // addIdsToHeadings();
@@ -1395,6 +1406,7 @@
       handleIdsInDetails();
       // add mermaid
       addMermaid();
+      print();
     }
 
     main();

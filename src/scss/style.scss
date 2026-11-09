@@ -2603,8 +2603,40 @@ html[data-theme="light"] {
   // .page>.content :not(pre)>code[class*=language-], .page>.content pre[class*=language-] {
   //   page-break-inside: avoid;
   // }
+
+  .custom-container {
+    page-break-inside: avoid;
+  }
+
+
   code[class*=language-], pre[class*=language-] {
     font-size: 0.75rem !important;
+    line-height: 20.3906px !important;
+    .line-numbers-rows {
+      display: none !important;
+    }
+  }
+  pre[class*=language-].line-numbers {
+    padding-left: 1rem !important;
+  }
+  // code blocks use the light theme values regardless of the active theme
+  .page > .content,
+  .cookie-consent {
+    :not(pre)>code[class*=language-],
+    pre[class*=language-] {
+      background: #ffffff;
+      outline-color: #e2e8f0;
+    }
+    .line-numbers .line-numbers-rows {
+      border-right-color: #b7c0ca;
+      > span:before {
+        color: #8b8f95;
+      }
+    }
+    code[class*=language-filetree],
+    pre[class*=language-filetree] {
+      color: #000000;
+    }
   }
   hr.pbra {
     display: block;
