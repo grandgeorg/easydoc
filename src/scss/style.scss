@@ -1054,6 +1054,16 @@ body>.page:first-child {
     }
   }
 
+  blockquote {
+    margin: 1rem 0;
+    padding: 0.5rem 1.5rem;
+    background: var(--clr-base-d480);
+    border-left: 5px solid var(--clr-base-mark-active);
+    font-style: italic;
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+  }
+
   // code blocks
   pre[class*="language-"] {
     border-radius: 6px;
