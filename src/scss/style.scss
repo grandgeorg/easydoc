@@ -822,10 +822,16 @@ details[open] {
 body>.page:first-child {
   padding-top: 2rem;
 }
-.page > .mtime {
+.page > .page-meta {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0.5rem 1.5rem;
+  // padding: 0.5rem 1.5rem;
+  padding: 0.3rem 1.5rem;
+  display: flex;
+  // justify-content: space-between;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  align-items: center;
   background-color: var(--clr-base-d500);
   font-size: 0.6rem;
   line-height: 1;
@@ -837,6 +843,30 @@ body>.page:first-child {
   border-right: 1px solid var(--clr-base-d400);
   border-bottom: 1px solid var(--clr-base-d420);
   border-left: 1px solid var(--clr-base-d400);
+  .frontmatter {
+    // line-height: 0;
+    line-height: 1;
+    .frontmatter-toggle {
+      background: none;
+      padding: 0;
+      margin: 0;
+      border: none;
+      line-height: 1;
+      cursor: pointer;
+      color: var(--clr-base-l170);
+      &:hover {
+        color: var(--clr-base-l250);
+      }
+      &:focus {
+        outline: none;
+        border: none;
+        color: var(--clr-base-mark-active);
+      }
+      svg {
+        display: block;
+      }
+    }
+  }
 }
 .page > .content,
 .cookie-consent {
@@ -1293,8 +1323,8 @@ body>.page:first-child {
 
 // media min-width
 @media (min-width: 480px) {
-  .page > .mtime {
-    padding: 0.5rem 2.5rem;
+  .page > .page-meta {
+    padding: 0.3rem 2.5rem;
   }
   .page > .content {
     padding: 1rem 2.5rem 1rem;
@@ -2574,7 +2604,7 @@ html[data-theme="light"] {
   .page {
     margin: 0;
     padding: 0;
-    > .mtime,
+    > .page-meta,
     > .content,
     > .footer {
       background-color: #ffffff !important;
@@ -2583,13 +2613,17 @@ html[data-theme="light"] {
       max-width: none;
       padding: 0 1px;
     }
-    > .mtime {
+    > .page-meta {
       padding-bottom: 0.5rem;
       margin-bottom: 0.5rem;
       border-bottom: 1px solid #e2e8f0 !important;
       // border-bottom: 1px solid #f30 !important;
       color: #333333;
       text-align: center;
+      display: block;
+      .frontmatter {
+        display: none;
+      }
     }
     > .content {
       h1 {
