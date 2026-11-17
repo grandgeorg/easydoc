@@ -12,9 +12,9 @@ title: My Title
 # disableNavigationBar: true
 # loadVueJs: true
 # loadMermaid: true
-# tags:
-#   - tag1
-#   - tag2
+tags:
+  - EasyDoc
+  - Documentation
 ---
 
 # My Documentation
