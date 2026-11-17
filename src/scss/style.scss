@@ -848,6 +848,10 @@ body>.page:first-child {
     border-radius: 6px;
     padding: 0.5rem 0.5rem;
     flex: 1 1 150px;
+    display: none;
+    &.is-open {
+      display: block;
+    }
     .page-title {
       font-weight: 600;
       font-size: 0.75rem;

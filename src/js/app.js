@@ -1392,6 +1392,19 @@
       });
     }
 
+    function togglePageInfo() {
+      const toggle = document.getElementById("frontmatter-toggle");
+      const pageInfo = document.getElementById("page-info");
+      if (!toggle || !pageInfo) {
+        return;
+      }
+      toggle.setAttribute("aria-expanded", "false");
+      toggle.addEventListener("click", function () {
+        const isOpen = pageInfo.classList.toggle("is-open");
+        toggle.setAttribute("aria-expanded", String(isOpen));
+      });
+    }
+
     function main() {
       // let flowchartScript = document.querySelector('script[src="assets/js/flowchart.min.js"]');
       // addIdsToHeadings();
@@ -1407,6 +1420,7 @@
       // add mermaid
       addMermaid();
       print();
+      togglePageInfo();
     }
 
     main();
