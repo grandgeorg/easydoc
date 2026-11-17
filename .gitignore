@@ -1,7 +1,10 @@
 /data
 /node_modules
 /test
+/tests
+/test-results
 /ai
 /src
+/e2e
 test.js
 searchIndex.json
