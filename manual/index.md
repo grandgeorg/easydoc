@@ -17,7 +17,8 @@ tocIncludeLevel: [1, 2, 3]
 
 # EasyDoc {.text-center}
 
-![EasyDoc](img/easydoc-banner.jpg)
+![EasyDoc](img/easydoc-banner.jpg){.only-on-dark}
+![EasyDoc](img/easydoc-banner-light.jpg){.only-on-light}
 
 A powerful technical documentation tool that generates completely local HTML pages and websites from markdown files. {.text-center}
 
