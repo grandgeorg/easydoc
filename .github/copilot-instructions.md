@@ -43,6 +43,8 @@ the target unless there is a clear reason (`searchApi.js` is the historical exce
 | `setup/` | Template files copied into scaffolded projects (`_gitignore`, `_nodemon.json`, `_overrides.css`, `_searchApi.js`, `_vscode_settings.json`). |
 | `www/` | Build output / distributable assets. |
 | `.env` | All runtime config (`EASYDOC_*`), loaded with `dotenv`. |
+| `e2e/` | Playwright end‑to‑end specs (`*.spec.js`), the shared `fixtures.js`, the committed test site `e2e/fixture/` (its `www/` is generated), `build-fixture.js`, and the static server `serve.js`. See **Testing**. |
+| `playwright.config.js` | Playwright config: installed Edge (`channel: "msedge"`), `dot` reporter, own server on port 4311. |
 
 ## Commands
 
@@ -52,7 +54,60 @@ npm run watch    # rebuild on change (nodemon)
 npm run js       # webpack bundle of src/js
 npm run search   # start the full-text search API (port 3000)
 npm run deploy   # build, then deploy (SFTP)
+npm run test:e2e # rebuild js + css, build the e2e fixture site, run all browser tests
+npm run test:fixture  # only rebuild the e2e fixture site (e2e/fixture -> e2e/fixture/www)
+npm run serve:test    # serve e2e/fixture/www on http://127.0.0.1:4310/ (arg: other dir)
 ```
+
+## Testing
+
+End‑to‑end tests use `@playwright/test` with the **installed Microsoft Edge**
+(`channel: "msedge"`). Never run `npx playwright install`, install `playwright-core`
+somewhere else, use Python's `http.server`, or add temporary pages to `docs/`.
+Everything needed is already set up.
+
+- **Run after every change** to `src/`, `templates/`, `index.js`, `lang/`, or `assets.js`.
+  Use `--silent` to keep the output short:
+  ```bash
+  npm run --silent test:e2e                                # all specs (~10 s)
+  npm run --silent test:e2e -- e2e/page-info.spec.js       # one spec file
+  npm run --silent test:e2e -- -g "tag"                    # tests whose title matches
+  ```
+  A pass prints about five lines ending in `N passed`. A failure prints the assertion, a
+  code frame, and paths to a screenshot and trace under `test-results/` (git‑ignored).
+  The exit code is reliable, but **don't pipe the command into `Select-Object -First`**:
+  that cuts the run short and hides the exit code. If the run fails with
+  `http://127.0.0.1:4311 is already used`, a leftover server holds the port. Find its PID
+  (`Get-NetTCPConnection -LocalPort 4311`) and stop it with `Stop-Process -Id <PID>`.
+- **The suite is self‑contained:** it rebuilds `www/assets` (webpack + sass), rebuilds
+  `e2e/fixture/www` from the committed fixture (shell `EASYDOC_*` variables are ignored;
+  only `e2e/fixture/.env` counts), and starts its own server on port **4311**
+  (`reuseExistingServer: false`).
+- **Fixture site** (`e2e/fixture/`, committed): `.env`, `nav.js`, `docs/*.md`. Each page
+  exists for a reason stated in its front matter (`index.md` has tags, code and a
+  container; `no-tags.md` has no tags and `lang: de`; `no-page-info.md` sets
+  `disableShowPageInfo: true`). To test a new option or page variant, **add a small
+  page** with the needed front matter here. The smoke spec automatically checks every
+  page in `e2e/fixture/docs/`. Options that only exist in `.env` change the fixture's
+  `.env`, which affects all specs. Check them before changing a value.
+- **Writing specs:** `const { test, expect } = require("./fixtures");` (not
+  `@playwright/test` directly). Every test automatically **fails on any page error or
+  `console.error`**. Use relative URLs (`page.goto("index.html")`), web‑first assertions
+  (`toBeVisible`, `toHaveAttribute`, `expect.poll`), and no fixed `waitForTimeout`.
+  Tests run in parallel with fresh storage (no `localStorage`, so no theme or cookie
+  consent is stored).
+- **Manual or visual checks:** start `npm run serve:test` as an async/background
+  command (`npm run serve:test -- tests/www` serves the user's playground). Open
+  `http://127.0.0.1:4310/` with the VS Code integrated browser tools (open page, read
+  page, screenshot, click) if they're available, and stop the server afterwards. The
+  automated suite uses port 4311, so it never conflicts with this server. The
+  "Microsoft Edge Tools for VS Code" extension is a DevTools UI for people; agents
+  can't use it.
+- **`tests/`** is the user's private, git‑ignored playground (a scaffolded project with
+  manual pages; scripts use `node ../index.js`). Use it only for manual checks; specs
+  must never depend on it.
+- Out of scope so far: `setup.js`/`update.js`/`deploy.js` and the full‑text search API.
+  Verify scaffolding by running `setup.js` in a throwaway temp directory.
 
 ## Configuration (`.env`)
 
@@ -92,8 +147,9 @@ logs the password. Full details live in the `easydoc-deploy` skill
 - For non‑trivial changes (features, refactors, `setup.js`/deploy changes), follow the
   `planning-session` skill: discover the code, ask the user about ambiguous decisions,
   then write a file‑level plan before coding.
-- Verify JS changes with `node --check <file>.js`; verify scaffolding by running
-  `setup.js` in a throwaway temp directory.
+- Verify JS changes with `node --check <file>.js`, then run `npm run --silent test:e2e`
+  for anything that affects the built site (see **Testing**); verify scaffolding by
+  running `setup.js` in a throwaway temp directory.
 
 ## Ignore these directories
 

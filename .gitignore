@@ -1,6 +1,13 @@
 /data
 /node_modules
 /test
+/test
+/tests
+/tests/node_modules
+/tests/package-lock.json
+/e2e/fixture/www
+/test-results
+/playwright-report
 test.js
 searchIndex.json
 /ai

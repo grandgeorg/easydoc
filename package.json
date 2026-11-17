@@ -10,7 +10,10 @@
     "js": "webpack",
     "sass": "sass src/scss/style.scss:www/assets/css/style.min.css src/scss/prism.scss:www/assets/css/prism.min.css --style=compressed --no-source-map",
     "search": "node searchApi.js",
-    "deploy": "node deploy.js"
+    "deploy": "node deploy.js",
+    "test:e2e": "npm run --silent js -- --stats errors-warnings && npm run --silent sass && node e2e/build-fixture.js && playwright test",
+    "test:fixture": "node e2e/build-fixture.js",
+    "serve:test": "node e2e/serve.js"
   },
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -30,6 +33,7 @@
     "temml": "^0.14.0"
   },
   "devDependencies": {
+    "@playwright/test": "^1.65.1",
     "cors": "^2.8.6",
     "express": "^5.2.1",
     "minisearch": "^7.2.0",
