@@ -937,6 +937,9 @@ body>.page:first-child {
         outline: none;
         border: none;
         color: var(--clr-base-mark-active);
+        // svg {
+        //   stroke: var(--clr-on-accent);
+        // }
       }
       svg {
         display: block;
