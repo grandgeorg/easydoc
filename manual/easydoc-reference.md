@@ -33,6 +33,7 @@ EASYDOC_TOC_INCLUDELEVEL=[1,2,3,4]
 EASYDOC_DISABLE_TAG_NAVIGATOR=true
 
 # EASYDOC_DISABLE_NAVIGATION_BAR=true
+# EASYDOC_DISABLE_SHOW_PAGE_INFO=true
 
 # EASYDOC_LOAD_VUEJS=false
 # EASYDOC_LOAD_MERMAID=false
@@ -114,6 +115,7 @@ tocIncludeLevel: [1, 2, 3, 4]
 # disableSiteNav: true
 # disableTagNavigator: true
 # disableNavigationBar: true
+# disableShowPageInfo: true
 # loadVueJs: true
 # loadMermaid: true
 # disableFlowchart: true
@@ -154,6 +156,9 @@ tocIncludeLevel: [1, 2, 3, 4]
 
 ```.env: EASYDOC_DISABLE_NAVIGATION_BAR``` | ```frontmatter: disableNavigationBar```
 : Completely disable the navigation bar.
+
+```.env: EASYDOC_DISABLE_SHOW_PAGE_INFO``` | ```frontmatter: disableShowPageInfo```
+: Remove the page info panel (title, language and tags, opened with the info button next to the last-update date). When navbar search is enabled, clicking a tag in the panel adds it to the search.
 
 ```.env: EASYDOC_ENABLE_FULLTEXT_SEARCH```
 : Enable fulltext search with MiniSearch

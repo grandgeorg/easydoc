@@ -434,6 +434,9 @@ fs.readdir(docsDir, (err, files) => {
       let disableNavigationBar = fmData.attributes.disableNavigationBar !== undefined
         ? Boolean(fmData.attributes.disableNavigationBar)
         : envBool("EASYDOC_DISABLE_NAVIGATION_BAR");
+      let disableShowPageInfo = fmData.attributes.disableShowPageInfo !== undefined
+        ? Boolean(fmData.attributes.disableShowPageInfo)
+        : envBool("EASYDOC_DISABLE_SHOW_PAGE_INFO");
       if (disableBrand && disableToc && disableSiteNav && disableTagNavigator) {
         disableNavigationBar = true;
       }
@@ -501,6 +504,10 @@ fs.readdir(docsDir, (err, files) => {
             disableTagNavigator: disableTagNavigator,
             disableNavigationBar: disableNavigationBar,
             disableBurger: disableBurger,
+            disableShowPageInfo: disableShowPageInfo,
+            tags: tags,
+            // Tag chips in page info drive the navbar search, which needs the navbar.
+            pageInfoTagSearch: navbarSearch && !disableNavigationBar,
             loadVueJs: loadVueJs,
             loadMermaid: loadMermaid,
             disableFlowchart: disableFlowchart,

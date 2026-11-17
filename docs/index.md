@@ -10,6 +10,7 @@ title: My Title
 # disableSiteNav: true
 # disableTagNavigator: true
 # disableNavigationBar: true
+# disableShowPageInfo: true
 # loadVueJs: true
 # loadMermaid: true
 tags:

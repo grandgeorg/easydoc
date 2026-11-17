@@ -1398,7 +1398,6 @@
       if (!toggle || !pageInfo) {
         return;
       }
-      toggle.setAttribute("aria-expanded", "false");
       toggle.addEventListener("click", function () {
         const isOpen = pageInfo.classList.toggle("is-open");
         toggle.setAttribute("aria-expanded", String(isOpen));

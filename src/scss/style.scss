@@ -843,20 +843,48 @@ body>.page:first-child {
   border-right: 1px solid var(--clr-base-d400);
   border-bottom: 1px solid var(--clr-base-d420);
   border-left: 1px solid var(--clr-base-d400);
+  // Collapsed via grid rows (0fr -> 1fr) so the height animates to its natural size.
   .page-info {
-    border: 1px solid var(--clr-base-d400);
-    border-radius: 6px;
-    padding: 0.5rem 0.5rem;
-    flex: 1 1 150px;
-    display: none;
+    display: grid;
+    grid-template-rows: 0fr;
+    flex: 1 1 0;
+    min-width: 0;
+    opacity: 0;
+    visibility: hidden;
+    transition:
+      grid-template-rows 0.3s ease,
+      opacity 0.3s ease,
+      visibility 0s linear 0.3s;
     &.is-open {
-      display: block;
+      grid-template-rows: 1fr;
+      flex-basis: 150px;
+      opacity: 1;
+      visibility: visible;
+      transition:
+        grid-template-rows 0.3s ease,
+        opacity 0.3s ease,
+        visibility 0s linear 0s;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      &,
+      &.is-open {
+        transition: none;
+      }
+    }
+    .page-info-inner {
+      min-height: 0;
+      overflow: hidden;
+    }
+    .page-info-body {
+      border: 1px solid var(--clr-base-d400);
+      border-radius: 6px;
+      padding: 0.5rem 0.5rem;
     }
     .page-title {
       font-weight: 600;
-      font-size: 0.75rem;
-      margin-bottom: 0.25rem;
-      text-align: left;
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+      text-align: center;
     }
     .page-lang {
       display: flex;
@@ -867,6 +895,27 @@ body>.page:first-child {
       .page-lang-icon {
         width: 1em;
         height: 1em;
+      }
+    }
+    .page-tags {
+      border-top: 1px solid var(--clr-base-d400);
+      padding-top: 0.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.35rem;
+      margin-top: 0.5rem;
+      .tag {
+        display: inline-flex;
+        align-items: center;
+        font-family: inherit;
+        font-size: 0.75rem;
+      }
+      span.tag {
+        cursor: default;
+        &:hover {
+          background-color: var(--clr-base-d300);
+        }
       }
     }
   }
@@ -1921,7 +1970,8 @@ html[data-theme="light"] {
 // tag cloud & tag navigation
 .tag-cloud,
 .tag-navigation,
-.dashboard-summary {
+.dashboard-summary,
+.page-info {
   .tag {
     background-color: var(--clr-base-d300);
     font-size: 0.875rem;

@@ -12,6 +12,7 @@ tocIncludeLevel: [1, 2, 3]
 # disableSiteNav: true
 # disableTagNavigator: true
 # disableNavigationBar: true
+# disableShowPageInfo: true
 ---
 
 # EasyDoc {.text-center}

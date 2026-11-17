@@ -1,6 +1,6 @@
 "use strict";
 
-import { createSearchCore } from "./searchCore.js";
+import { createSearchCore, tokenize } from "./searchCore.js";
 
 function initNavbarSearch() {
   const mountPoint = document.getElementById("navbar-search");
@@ -83,8 +83,26 @@ function initNavbarSearch() {
         }
       }
 
+      // Tag chips outside the app (page info) add their tag to the query and open
+      // the modal; unlike toggleTag a second click never removes the tag again.
+      function searchTag(tag) {
+        const lcTag = tag.toLowerCase();
+        if (tokenize(core.query.value).indexOf(lcTag) === -1) {
+          core.query.value = `${core.query.value.trim()} ${lcTag}`.trim();
+        }
+        openModal();
+      }
+
+      function onSearchTagClick(event) {
+        const chip = event.target.closest("[data-search-tag]");
+        if (chip) {
+          searchTag(chip.getAttribute("data-search-tag"));
+        }
+      }
+
       onMounted(function () {
         document.addEventListener("keydown", onKeydown);
+        document.addEventListener("click", onSearchTagClick);
         // Capture phase runs before the modal's own pointerdown handler, so any
         // pointer-down outside the modal clears a stale flag.
         document.addEventListener("pointerdown", resetPointerInModal, true);
@@ -92,6 +110,7 @@ function initNavbarSearch() {
 
       onBeforeUnmount(function () {
         document.removeEventListener("keydown", onKeydown);
+        document.removeEventListener("click", onSearchTagClick);
         document.removeEventListener("pointerdown", resetPointerInModal, true);
         // document.body.classList.remove("navbar-search-open");
       });
