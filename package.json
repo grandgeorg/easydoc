@@ -4,6 +4,9 @@
   "description": "Simple markdown to HTML generator",
   "author": "Grandgeorg Websolutions, Viktor Grandgeorg <viktor@grandgeorg.de>",
   "main": "index.js",
+  "engines": {
+    "node": ">=22.15.0"
+  },
   "scripts": {
     "build": "node index.js",
     "watch": "nodemon index.js",

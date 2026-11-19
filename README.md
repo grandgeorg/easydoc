@@ -11,8 +11,8 @@ EasyDoc is fully configurable and customizable, allowing you to tailor global an
 
 ## Requirements
 
-- Node.js
-- npm
+- Node.js 22.15.0 or newer (an active LTS release is recommended)
+- npm (comes with Node.js)
 - git (optional)
 
 ## Install

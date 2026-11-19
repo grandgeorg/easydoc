@@ -1,5 +1,15 @@
 "use strict";
 
+// Some dependencies (e.g. markdown-it-math) are ES modules loaded via require().
+const [nodeMajor, nodeMinor] = process.versions.node.split(".").map(Number);
+if (nodeMajor < 22 || (nodeMajor === 22 && nodeMinor < 15)) {
+  console.error(
+    "EasyDoc requires Node.js 22.15.0 or newer (current: " + process.version + ").\n" +
+    "Please update Node.js (https://nodejs.org/), then run `npm install` again."
+  );
+  process.exit(1);
+}
+
 const path = require("path");
 const fs = require("fs");
 const crypto = require("crypto");
