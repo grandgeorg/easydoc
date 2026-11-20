@@ -22,3 +22,8 @@ const answer = 42;
 :::tip
 A tip container.
 :::
+
+## Test Links
+
+- [Link to no-tags page](no-tags.md)
+- https://google.de
