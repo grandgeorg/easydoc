@@ -26,4 +26,6 @@ A tip container.
 ## Test Links
 
 - [Link to no-tags page](no-tags.md)
+- [Link to no-tags heading](no-tags.md#t-fixture-no-tags)
+- [External Markdown file](https://example.com/readme.md)
 - https://google.de

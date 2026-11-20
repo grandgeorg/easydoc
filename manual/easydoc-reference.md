@@ -435,6 +435,9 @@ Autoconverted link https://grandgeorg.de
 [metager with title](https://metager.de/ "MetaGer")  
 Autoconverted link https://grandgeorg.de  
 ```
+Relative links to Markdown files are converted to the built HTML pages, so
+`[Setup](setup.md#install)` becomes a link to `setup.html#install`. Absolute URLs
+and raw HTML `<a>` tags are left unchanged.
 :::
 
 :::details Images

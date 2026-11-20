@@ -202,6 +202,25 @@ md.use(markdownItAttrs, {
   allowedAttributes: [], // empty array = all attributes are allowed
 });
 
+// Relative links to Markdown sources (e.g. `other.md#anchor`) work in editors,
+// but the built site only contains the .html pages, so point them there.
+const defaultRenderLinkOpen =
+  md.renderer.rules.link_open ||
+  function (tokens, idx, options, env, slf) {
+    return slf.renderToken(tokens, idx, options);
+  };
+md.renderer.rules.link_open = function (tokens, idx, options, env, slf) {
+  const token = tokens[idx];
+  const href = token.attrGet("href");
+  if (href && !/^(?:[a-z][a-z0-9+.-]*:|\/\/)/i.test(href)) {
+    const m = href.match(/^([^?#]*)(.*)$/);
+    if (m[1].endsWith(".md")) {
+      token.attrSet("href", m[1].slice(0, -3) + ".html" + m[2]);
+    }
+  }
+  return defaultRenderLinkOpen(tokens, idx, options, env, slf);
+};
+
 // custom renderer for fenced code blocks
 // @see default render in node_modules/markdown-it/dist/markdown-it.js #L3093
 const defaultRenderFence = md.renderer.rules.fence;
