@@ -342,19 +342,38 @@ a code {
   justify-content: center !important;
 }
 
+.text-left {
+  text-align: left;
+}
 .text-center {
   text-align: center;
 }
-
 .text-right {
   text-align: right;
+}
+.text-justify {
+  text-align: justify;
+}
+.text-truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.text-muted {
+  color: var(--clr-base-l170) !important;
 }
 
 .cp {
   cursor: pointer;
 }
 
-.fs-lg {
+.fs-s, .fs-sm, .small {
+  font-size: 0.875rem !important;
+}
+.fs-m {
+  font-size: 1.25rem !important;
+}
+.fs-l, .fs-lg {
   font-size: 1.5rem !important;
 }
 .fs-xl {
@@ -1278,7 +1297,7 @@ body>.page:first-child {
   pre[class*=language-filetree] {
     color: var(--clr-base-l275);
     font-size: 0.85rem;
-    line-height: 1.25;
+    line-height: 1.5;
     white-space: pre;
   }
 
@@ -1492,6 +1511,9 @@ body>.page:first-child {
       border-bottom: 0;
       text-decoration: underline;
     }
+    hr {
+      border-width: 1px;
+    }
   }
   &.info {
     border-color: var(--cc-info-brd);
@@ -1504,6 +1526,9 @@ body>.page:first-child {
     .info-title {
       background-color: var(--cc-info-bg);
       border-bottom-color: var(--cc-info-brd);
+    }
+    hr {
+      border-color: var(--cc-info-brd);
     }
   }
   &.tip {
@@ -1518,6 +1543,9 @@ body>.page:first-child {
       background-color: var(--cc-tip-bg);
       border-bottom-color: var(--cc-tip-brd);
     }
+    hr {
+      border-color: var(--cc-tip-brd);
+    }
   }
   &.warning {
     border-color: var(--cc-warning-brd);
@@ -1530,6 +1558,9 @@ body>.page:first-child {
     .warning-title {
       background-color: var(--cc-warning-bg);
       border-bottom-color: var(--cc-warning-brd);
+    }
+    hr {
+      border-color: var(--cc-warning-brd);
     }
   }
   &.danger {
@@ -1544,6 +1575,9 @@ body>.page:first-child {
       background-color: var(--cc-danger-bg);
       border-bottom-color: var(--cc-danger-brd);
     }
+    hr {
+      border-color: var(--cc-danger-brd);
+    }
   }
   &.line {
     border-color: var(--cc-line-brd);
@@ -1557,6 +1591,9 @@ body>.page:first-child {
       // background-color: #371c06;
       background-color: var(--cc-line-bg);
       border-bottom-color: var(--cc-line-brd);
+    }
+    hr {
+      border-color: var(--cc-line-brd);
     }
   }
 }
