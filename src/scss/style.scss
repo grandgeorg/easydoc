@@ -413,14 +413,34 @@ a code {
 .brand {
   padding: 0 0.27rem 0 0;
   color: var(--clr-brand);
+  display: inline-block;
+  @media (min-width: 480px) {
+    display: inline;
+  }
 }
 .brand-second {
   padding: 0 0.27rem 0 0;
   color: var(--clr-brand-second);
+  display: inline-block;
+  @media (min-width: 480px) {
+    display: inline;
+  }
 }
 html[data-theme="light"] {
   .brand, .brand-second {
       font-weight: 500;
+  }
+}
+
+// github button
+.navbar-github-btn {
+  color:var(--clr-base-l500);
+  svg {
+    fill: currentColor;
+    box-sizing: content-box;
+    width: 24px;
+    height: 24px;
+    padding: 8px 6px 0;
   }
 }
 
