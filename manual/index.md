@@ -63,6 +63,7 @@ A powerful technical documentation tool that generates completely local HTML pag
 ::: details Built in Navigation
 - Table of contents on pages
 - Individual site navigation
+- Pages navigation (list of all pages)
 - Tag Navigator module
 :::
 

@@ -34,6 +34,7 @@ EASYDOC_DISABLE_TAG_NAVIGATOR=true
 
 # EASYDOC_DISABLE_NAVIGATION_BAR=true
 # EASYDOC_DISABLE_SHOW_PAGE_INFO=true
+# EASYDOC_DISABLE_PAGES_NAVIGATION=true
 
 # EASYDOC_LOAD_VUEJS=false
 # EASYDOC_LOAD_MERMAID=false
@@ -159,6 +160,9 @@ tocIncludeLevel: [1, 2, 3, 4]
 
 ```.env: EASYDOC_DISABLE_SHOW_PAGE_INFO``` | ```frontmatter: disableShowPageInfo```
 : Remove the page info panel (title, language and tags, opened with the info button next to the last-update date). When navbar search is enabled, clicking a tag in the panel adds it to the search.
+
+```.env: EASYDOC_DISABLE_PAGES_NAVIGATION```
+: Remove the pages navigation, a collapsible list of all pages (sorted by title) shown below the site navigation. It is never rendered on pages where the site navigation is disabled. Global only, no front matter override.
 
 ```.env: EASYDOC_ENABLE_FULLTEXT_SEARCH```
 : Enable fulltext search with MiniSearch

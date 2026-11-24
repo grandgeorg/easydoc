@@ -54,8 +54,10 @@ forever. Always verify with two consecutive builds and an unchanged `docs/index.
 `templates/pagesnav.pug` renders a collapsed `<details>` (summary `t.pages`) listing every
 page, sorted by title ascending, with the current file marked `class="active"` — the same
 markup contract as `nav.pug`. `layout.pug` prints it into `.sitenav.pagesnav` directly
-after `.sitenav`. It is rendered only when `EASYDOC_GENERATE_AUTO_INDEX` is on **and** the
-site nav is not disabled (`withNav` in the render queue).
+after `.sitenav`. It is **independent of `EASYDOC_GENERATE_AUTO_INDEX`** (it used to be
+bound to it): it is rendered unless `EASYDOC_DISABLE_PAGES_NAVIGATION=true` (global only,
+no front-matter override), and only when the site nav is not disabled (`withNav` in the
+render queue).
 
 ### Deferred rendering
 
