@@ -7,6 +7,58 @@
   "use strict";
   document.addEventListener("DOMContentLoaded", function () {
 
+    const STORAGE_NS = "easydoc.";
+
+    const storage = {
+      get: function (key) {
+        try {
+          return localStorage.getItem(STORAGE_NS + key);
+        } catch (e) {
+          return null;
+        }
+      },
+      set: function (key, value) {
+        try {
+          localStorage.setItem(STORAGE_NS + key, value);
+        } catch (e) {
+          // storage unavailable (e.g. blocked or full)
+        }
+      },
+      remove: function (key) {
+        try {
+          localStorage.removeItem(STORAGE_NS + key);
+        } catch (e) {
+          // storage unavailable
+        }
+      },
+    };
+
+    function migrateLegacyStorage() {
+      const legacyKeys = {
+        theme: "theme",
+        selectedTags: "selectedTags",
+        tagCloud: "tagCloud",
+        tagPages: "tagPages",
+        easydocCookieConsent: "cookieConsent",
+      };
+      try {
+        Object.keys(legacyKeys).forEach(function (legacyKey) {
+          const value = localStorage.getItem(legacyKey);
+          if (value === null) {
+            return;
+          }
+          if (storage.get(legacyKeys[legacyKey]) === null) {
+            storage.set(legacyKeys[legacyKey], value);
+          }
+          localStorage.removeItem(legacyKey);
+        });
+      } catch (e) {
+        // storage unavailable
+      }
+    }
+
+    migrateLegacyStorage();
+
     const state = {
       global: {
         lastActiveElement: Element | null,
@@ -33,7 +85,7 @@
         order: "asc",
       },
       pageCards: [],
-      easydocCookieConsent: localStorage.getItem("easydocCookieConsent") || false,
+      easydocCookieConsent: storage.get("cookieConsent") === "true",
     };
 
     const elMenuToggle = document.querySelector(".burger");
@@ -70,9 +122,31 @@
       };
     }
 
+    function requestConsent() {
+      if (!state.easydocCookieConsent) {
+        cookieConsent();
+      }
+    }
+
+    // The drawer has display:none while closed, so its width is measured by showing it
+    // for a moment (synchronously, it never gets painted).
+    function isWideViewport() {
+      if (!elNavigationDrawer) {
+        return false;
+      }
+      let width = elNavigationDrawer.offsetWidth;
+      if (!width) {
+        const display = elNavigationDrawer.style.display;
+        elNavigationDrawer.style.display = "flex";
+        width = elNavigationDrawer.offsetWidth;
+        elNavigationDrawer.style.display = display;
+      }
+      return width > 0 && window.innerWidth >= width * 2;
+    }
+
     function toggleTheme() {
 
-      let theme = localStorage.getItem("theme");
+      let theme = storage.get("theme");
       document.documentElement.dataset.theme = theme
         ? theme
         : window.matchMedia("(prefers-color-scheme: dark)").matches
@@ -84,12 +158,10 @@
       }
       elThemeToggle.addEventListener("click", function (event) {
         event.preventDefault();
-        if (!state.easydocCookieConsent) {
-          cookieConsent();
-        }
+        requestConsent();
         elThemeToggle.classList.toggle("dark");
         document.documentElement.dataset.theme = document.documentElement.dataset.theme === "light" ? "dark" : "light";
-        localStorage.setItem("theme", document.documentElement.dataset.theme);
+        storage.set("theme", document.documentElement.dataset.theme);
       });
     }
 
@@ -125,7 +197,7 @@
             window.requestAnimationFrame(function () {
               elNavigationDrawer.style.transform = "translateX(0)";
               if (elContainer) {
-                if (window.innerWidth >= elNavigationDrawer.offsetWidth * 2) {
+                if (isWideViewport()) {
                   elMain.style.marginRight = elNavigationDrawer.offsetWidth + "px";
                 } else {
                   elMain.style.marginRight = 0;
@@ -141,6 +213,49 @@
           }, 500);
         }
       };
+    }
+
+    // Opens the drawer without the slide-in so a restored state doesn't animate on load.
+    function restoreNavigationState() {
+      if (!elNavigationDrawer || storage.get("navDrawerOpen") !== "true" || !isWideViewport()) {
+        return;
+      }
+      state.nav.isOpen = true;
+      elMenuToggle.classList.add("open");
+      elMenuToggle.setAttribute("aria-expanded", true);
+      elNavigationDrawer.style.transition = "none";
+      elMain.style.transition = "none";
+      elNavigationDrawer.style.display = "flex";
+      elNavigationDrawer.style.transform = "translateX(0)";
+      if (elContainer) {
+        elMain.style.marginRight = elNavigationDrawer.offsetWidth + "px";
+      }
+      // force a reflow before re-enabling transitions
+      void elNavigationDrawer.offsetWidth;
+      window.requestAnimationFrame(function () {
+        elNavigationDrawer.style.transition = "";
+        elMain.style.transition = "";
+      });
+    }
+
+    function persistPagesNavState() {
+      const details = document.querySelector("#pagesnav .pagesnav-details");
+      if (!details) {
+        return;
+      }
+      if (storage.get("pagesnavOpen") === "true") {
+        details.setAttribute("open", "open");
+      }
+      const summary = details.querySelector("summary");
+      if (!summary) {
+        return;
+      }
+      // "click" instead of "toggle": print() opens all details, which must not be stored.
+      // The default action hasn't run yet, so the new state is the inverse of the current one.
+      summary.addEventListener("click", function () {
+        storage.set("pagesnavOpen", String(!details.open));
+        requestConsent();
+      });
     }
 
     function toggleMouseUse() {
@@ -171,8 +286,15 @@
         return;
       }
 
-      elMenuToggle.addEventListener("click", toggleBurger, false);
+      elMenuToggle.addEventListener("click", function (event) {
+        toggleBurger(event);
+        if (isWideViewport()) {
+          storage.set("navDrawerOpen", String(state.nav.isOpen));
+          requestConsent();
+        }
+      }, false);
       state.nav.ps.subscribe(toggleNavigation());
+      restoreNavigationState();
 
       const elTocLinks = document.querySelectorAll(".toc a");
       elTocLinks.forEach(function (elTocLink) {
@@ -184,7 +306,7 @@
               behavior: "smooth",
               block: "start",
             });
-            if (window.innerWidth < elNavigationDrawer.offsetWidth * 2) {
+            if (!isWideViewport()) {
               toggleBurger(event);
             }
           });
@@ -509,20 +631,20 @@
 
     function addSelectedTag(tag) {
       state.selectedTags.push(tag);
-      localStorage.setItem("selectedTags", JSON.stringify(state.selectedTags));
+      storage.set("selectedTags", JSON.stringify(state.selectedTags));
     }
 
     function updateSelectedTags(tags, rm) {
       state.selectedTags = tags;
       if (rm === "all") {
-        localStorage.removeItem('selectedTags');
+        storage.remove("selectedTags");
       } else {
-        localStorage.setItem("selectedTags", JSON.stringify(state.selectedTags));
+        storage.set("selectedTags", JSON.stringify(state.selectedTags));
       }
     }
 
     function setSelectedTagsFromLocalStore() {
-      const selectedTags = JSON.parse(localStorage.getItem("selectedTags"));
+      const selectedTags = JSON.parse(storage.get("selectedTags"));
       if (selectedTags) {
         state.selectedTags = selectedTags;
       }
@@ -534,14 +656,14 @@
         ...payload,
       }
       if (rm === "all") {
-        localStorage.removeItem('tagCloud');
+        storage.remove("tagCloud");
       } else if (rm === "filter") {
-        localStorage.setItem("tagCloud", JSON.stringify({
+        storage.set("tagCloud", JSON.stringify({
           sortby: state.tagCloud.sortby,
           order: state.tagCloud.order,
         }));
       } else {
-        localStorage.setItem("tagCloud", JSON.stringify({
+        storage.set("tagCloud", JSON.stringify({
           filter: state.tagCloud.filter,
           sortby: state.tagCloud.sortby,
           order: state.tagCloud.order,
@@ -550,7 +672,7 @@
     }
 
     function setTagCloudStateFromLocalStore() {
-      const tagCloud = JSON.parse(localStorage.getItem("tagCloud"));
+      const tagCloud = JSON.parse(storage.get("tagCloud"));
       if (tagCloud) {
         state.tagCloud = {
           ...state.tagCloud,
@@ -581,14 +703,14 @@
         ...payload,
       }
       if (rm === "all") {
-        localStorage.removeItem('tagPages');
+        storage.remove("tagPages");
       } else if (rm === "filter") {
-        localStorage.setItem("tagPages", JSON.stringify({
+        storage.set("tagPages", JSON.stringify({
           sortby: state.tagPages.sortby,
           order: state.tagPages.order,
         }));
       } else {
-        localStorage.setItem("tagPages", JSON.stringify({
+        storage.set("tagPages", JSON.stringify({
           filter: state.tagPages.filter,
           sortby: state.tagPages.sortby,
           order: state.tagPages.order,
@@ -597,7 +719,7 @@
     }
 
     function setTagNavigationStateFromLocalStore() {
-      const tagPages = JSON.parse(localStorage.getItem("tagPages"));
+      const tagPages = JSON.parse(storage.get("tagPages"));
       if (tagPages) {
         state.tagPages = {
           ...state.tagPages,
@@ -720,7 +842,7 @@
           e.preventDefault();
           e.stopPropagation();
 
-          state.easydocCookieConsent = localStorage.getItem("easydocCookieConsent") || false;
+          state.easydocCookieConsent = storage.get("cookieConsent") === "true";
 
           setSelectedTagsFromLocalStore();
           setTagCloudStateFromLocalStore();
@@ -1207,9 +1329,7 @@
           );
           updateTagNavigation();
 
-          if (!state.easydocCookieConsent) {
-            cookieConsent();
-          }
+          requestConsent();
         });
       }
     }
@@ -1329,7 +1449,7 @@
           e.preventDefault();
           e.stopPropagation();
           state.easydocCookieConsent = true;
-          localStorage.setItem("easydocCookieConsent", true);
+          storage.set("cookieConsent", "true");
           modal.classList.add("willclose");
           setTimeout(() => {
             modal.remove();
@@ -1415,6 +1535,7 @@
       addLightBox();
       dispatchNavigation();
       registerTagNavigation();
+      persistPagesNavState();
       handleIdsInDetails();
       // add mermaid
       addMermaid();

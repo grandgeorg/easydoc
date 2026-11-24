@@ -130,6 +130,9 @@ logs the password. Full details live in the `easydoc-deploy` skill
 ## Conventions
 
 - **CommonJS**, `"use strict";`, `require(...)` — no ES modules.
+- Front‑end `localStorage` keys are prefixed with `easydoc.` through the `storage`
+  helper in `src/js/app.js`; never call `localStorage` directly. Storing a user setting
+  calls `requestConsent()` (cookie‑consent dialog until the user has agreed).
 - 2‑space indent, double‑quoted strings, semicolons, `camelCase`.
 - Markdown extensions live in `index.js`: custom containers (`tip`, `info`, `warning`,
   `danger`, `line`, `details`), a custom fenced‑code renderer (Prism‑friendly, puts
