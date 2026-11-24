@@ -110,6 +110,7 @@ function envBool(name) {
 
 const withFulltextSearch = envBool("EASYDOC_ENABLE_FULLTEXT_SEARCH");
 const generateAutoIndex = envBool("EASYDOC_GENERATE_AUTO_INDEX");
+const disablePagesNavigation = envBool("EASYDOC_DISABLE_PAGES_NAVIGATION");
 const autoIndexDashboard = generateAutoIndex && envBool("EASYDOC_AUTO_INDEX_SHOW_DASHBOARD");
 const navbarSearch = envBool("EASYDOC_NAVBAR_SEARCH");
 const disableThemeOverrides = envBool("EASYDOC_DISABLE_THEME_OVERRIDES");
@@ -622,7 +623,7 @@ fs.readdir(docsDir, (err, files) => {
         t: t[item.lang],
         file: item.file,
       });
-      if (generateAutoIndex) {
+      if (!disablePagesNavigation) {
         pagenav = pug.renderFile(path.join(templateDir, "pagesnav.pug"), {
           pages: pagesNav,
           lang: item.lang,
