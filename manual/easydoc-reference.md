@@ -22,45 +22,101 @@ tocIncludeLevel: [1, 2, 3]
 ##### ```.env``` file
 
 ```ini
+# --- Defaults ---
+# Make sure to set the defaults below as needed.
+
+# Page language used when a page has no `lang` front matter or its language has no
+# UI translation in lang/langs.js (currently: en, de).
 EASYDOC_LANG_FALLBACK=en
+
+# Page title used when a page has no `title` front matter.
 EASYDOC_TITLE_FALLBACK=Documentation
 
+# Brand link shown in the navigation bar and the footer: target URL, main name and
+# a secondary (subtitle) text. 
+# Per page front matter: brandURL, brandName, brandSecondary.
 EASYDOC_BRAND_URL=https://yourdomain.tld
 EASYDOC_BRAND_NAME=Yourcompany
 EASYDOC_BRAND_SECONDARY=Yourproject
 
+# Heading levels included in the table of contents.
+# per page front matter: tocIncludeLevel.
 EASYDOC_TOC_INCLUDELEVEL=[1,2,3,4]
 
+# --- Switches (Enable/Disable) ---
+
+# Hide the brand link in the navigation bar and the footer.
+# per page front matter: disableBrand.
 # EASYDOC_DISABLE_BRAND=true
+
+# Hide the table of contents in the navigation drawer.
+# per page front matter: disableToc.
 # EASYDOC_DISABLE_TOC=true
+
+# Hide the site navigation (configured in nav.js) in the navigation drawer.
+# per page front matter: disableSiteNav.
 # EASYDOC_DISABLE_SITE_NAV=true
 
+# Hide the tag navigator button in the navigation bar.
+# per page front matter: disableTagNavigator.
 # Tag navigator is considered to be deprecated.
 EASYDOC_DISABLE_TAG_NAVIGATOR=true
 
+# Remove the whole top navigation bar incl. brand, theme toggle and navigation drawer.
+# per page front matter: disableNavigationBar.
+# Also applied automatically when brand, TOC, site nav and tag navigator are all disabled.
 # EASYDOC_DISABLE_NAVIGATION_BAR=true
+
+# Page info panel (title, language, tags) toggled by the info button in the page meta bar.
+# When navbar search is enabled, clicking a tag in the panel adds it to the search.
+# Set to true to remove the panel and its button.
+# per page front matter: disableShowPageInfo.
 # EASYDOC_DISABLE_SHOW_PAGE_INFO=true
+
+# Pages navigation: collapsible list of all pages (sorted by title) shown below the
+# site navigation. Set to true to remove it. Not rendered when the site nav is disabled.
+# Global only, no front matter override.
 # EASYDOC_DISABLE_PAGES_NAVIGATION=true
 
-# EASYDOC_LOAD_VUEJS=false
-# EASYDOC_LOAD_MERMAID=false
+# flowchart.js (and Raphael) are loaded by default; set to true to skip them.
+# When disabled, ```@flowstart``` blocks show their raw source.
+# per page front matter: disableFlowchart.
 # EASYDOC_DISABLE_FLOWCHART=true
 
+# Custom theme overrides: ./overrides.css is copied to www/assets/css/ and loaded
+# after EasyDoc's CSS. Set to true to stop loading it.
+# per page front matter: disableThemeOverrides.
+# EASYDOC_DISABLE_THEME_OVERRIDES=true
+
+
+# --- Loading ---
+# Enforce loading of external libraries like Vue.js and Mermaid.js if needed.
+# Load Vue.js on every page.
+# per page front matter: loadVueJs.
+# Forced on by the navbar search and, on the index page, by the auto index dashboard.
+EASYDOC_LOAD_VUEJS=true
+# Load Mermaid.js to render ```mermaid diagrams ...```.
+# per page front matter: loadMermaid.
+EASYDOC_LOAD_MERMAID=true
+
+
 # --- search ---
-# Live search input in the navbar.
+# Live search input in the navbar. Reuses the dashboard search inside a modal and
 # forces Vue.js to be loaded on every page.
 EASYDOC_NAVBAR_SEARCH=true
 
-# Full-text search configuration.
+# Fulltext search: the build writes searchIndex.json, which is served by the
+# search API (`npm run search`) and queried by the dashboard / navbar search.
+# Uses MiniSearch (https://github.com/lucaong/minisearch/)
 EASYDOC_ENABLE_FULLTEXT_SEARCH=true
 
-# URL the browser calls for fulltext search. 
-# In production use a same-origin path behind a reverse proxy, 
-# e.g. EASYDOC_SEARCH_API_URL=/api/ (trailing slash required).
+# URL the browser calls for fulltext search. In production use a same-origin path
+# behind a reverse proxy, e.g. /api/ (trailing slash required).
 EASYDOC_SEARCH_API_URL=http://localhost:3000/
 
+
 # --- Auto index ---
-# Master switch for auto index. Patches a generated block into docs/index.md,
+# Master switch. Patches a generated block into docs/index.md,
 # creating the file if it does not exist yet.
 EASYDOC_GENERATE_AUTO_INDEX=true
 
@@ -74,7 +130,7 @@ EASYDOC_AUTO_INDEX_SHOW_DASHBOARD=true
 
 # Initial state of the dashboard's "show all pages" switch. When false the page
 # list stays empty until something is typed into the search field.
-EASYDOC_AUTO_INDEX_INIT_SHOW_ALL=false
+EASYDOC_AUTO_INDEX_INIT_SHOW_ALL=true
 
 
 # --- Deployment ---
@@ -88,7 +144,7 @@ EASYDOC_DEPLOY_SFTP_USERNAME=user
 
 # Use a private key (preferred) OR a password.
 EASYDOC_DEPLOY_SFTP_PRIVATE_KEY=/path/to/id_rsa
-EASYDOC_DEPLOY_SFTP_PASSPHRASE= SECRET
+EASYDOC_DEPLOY_SFTP_PASSPHRASE=SECRET
 # EASYDOC_DEPLOY_SFTP_PASSWORD=
 
 # Remote directory the site is uploaded into.
@@ -123,71 +179,18 @@ tocIncludeLevel: [1, 2, 3, 4]
 # disableTagNavigator: true
 # disableNavigationBar: true
 # disableShowPageInfo: true
+# disableThemeOverrides: true
 # loadVueJs: true
 # loadMermaid: true
 # disableFlowchart: true
 ---
 ```
 
-:::details Configuration parameters
+Tags also accept the following format:
 
-.env: ```EASYDOC_LANG_FALLBACK``` | frontmatter: ```lang```
-: Language of the document and EsayDoc language (see ```lang/langs.js```)
-
-```.env: EASYDOC_TITLE_FALLBACK``` | ```frontmatter: title```
-: Title of the document
-
-```.env: EASYDOC_BRAND_URL``` | ```frontmatter: brandURL```
-: URL the brand link should point to.
-
-```.env: EASYDOC_BRAND_NAME``` | ```frontmatter: brandName```
-: Main brand claim string (default style in red).
-
-```.env: EASYDOC_BRAND_SECONDARY``` | ```frontmatter: brandSecondary```
-: Secondary brand claim string (default style in blue).
-
-```.env: EASYDOC_TOC_INCLUDELEVEL``` | ```frontmatter: tocIncludeLevel```
-: Header include level for table of contents.
-
-```.env: EASYDOC_DISABLE_BRAND``` | ```frontmatter: disableBrand```
-: Disable brand claim and link in navbar and footer.
-
-```.env: EASYDOC_DISABLE_TOC``` | ```frontmatter: disableToc```
-: Disable table of contents.
-
-```.env: EASYDOC_DISABLE_SITE_NAV``` | ```frontmatter: disableSiteNav```
-: Disable site navigation.
-
-```.env: EASYDOC_DISABLE_TAG_NAVIGATOR``` | ```frontmatter: disableTagNavigator```
-: Disable tag navigator.
-
-```.env: EASYDOC_DISABLE_NAVIGATION_BAR``` | ```frontmatter: disableNavigationBar```
-: Completely disable the navigation bar.
-
-```.env: EASYDOC_DISABLE_SHOW_PAGE_INFO``` | ```frontmatter: disableShowPageInfo```
-: Remove the page info panel (title, language and tags, opened with the info button next to the last-update date). When navbar search is enabled, clicking a tag in the panel adds it to the search.
-
-```.env: EASYDOC_DISABLE_PAGES_NAVIGATION```
-: Remove the pages navigation, a collapsible list of all pages (sorted by title) shown below the site navigation. It is never rendered on pages where the site navigation is disabled. Global only, no front matter override.
-
-```.env: EASYDOC_ENABLE_FULLTEXT_SEARCH```
-: Enable fulltext search with MiniSearch
-
-```.env: EASYDOC_SEARCH_API_URL```
-: URL of the search API to use for fulltext search.
-
-```.env: EASYDOC_LOAD_VUEJS``` | ```frontmatter: loadVueJs```
-: Load VueJs.
-
-```.env: EASYDOC_LOAD_MERMAID``` | ```frontmatter: loadMermaid```
-: Load MermaidJs for flowcharts and diagrams.
-
-```.env: EASYDOC_DISABLE_FLOWCHART``` | ```frontmatter: disableFlowchart```
-: Do not load flowchart.js (and Raphael). Enabled by default; when disabled, ```@flowstart``` blocks show their raw source.
-
-```frontmatter: tags```
-: Tags for the page, used in tag navigator and search.
-:::
+```markdown
+tags: ["tag1", "tag2"]
+```
 
 ### 📜 Site Navigation
 Define individual menu items for site navigation.
@@ -210,9 +213,11 @@ exports.nav = [
 ```filetree
 🗁 easydoc
  ├🗀 .git
+ ├🗀 .github 🤖
  ├🗀 .vscode
  ├🟢 docs
  │ └🗏 index.md 🖤
+ ├🗀 e2e 🧪
  ├🗀 lang 🖊️
  ├🗁 manual 📌
  │ ├🗀 assets
@@ -233,11 +238,22 @@ exports.nav = [
  ├🗏 .env ✏️
  ├🗏 .gitignore
  ├🗏 .hintrc
+ ├🗏 .npmrc
+ ├🗏 assets.js
+ ├🗏 CLAUDE.md 🤖
+ ├🗏 deploy.js 🖊️
  ├🗏 index.js 🖊️
+ ├🗏 LICENSE
  ├🗏 nav.js ✏️
  ├🗏 nodemon.json
  ├🗏 package.json
  ├🗏 package-lock.json
+ ├🗏 playwright.config.js 🧪
+ ├🗏 searchApi.js
+ ├🗏 setup.js 🖊️
+ ├🗏 setup.js 🖊️
+ ├🗏 update.js 🖊️
+ ├🗏 README.md
  └🗏 webpack.config.js
 
 ╭──────────────────────────═━┈💬┈━═──────────────────────────╮
@@ -245,6 +261,8 @@ exports.nav = [
 │  🔵 output directory. Html files will be generated here.   │
 │  ✏️ configure EasyDoc                                      │
 │  🖊️ change EasyDoc                                         │
+│  🧪 Testing EasyDoc                                        │
+│  🤖 Docs for AI Agents                                     │
 │  📌 It's me. You are reading these documents right now.    │
 │  🖤 Remove these documentation files for a blank start.    │
 ╰──────────────────────────═━┈💬┈━═──────────────────────────╯
