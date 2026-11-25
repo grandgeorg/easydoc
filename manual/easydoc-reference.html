@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><title>EasyDoc Reference 🔴🔵</title><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="stylesheet" href="assets/css/style.min.css"><link rel="stylesheet" href="assets/css/prism.min.css"><script src="assets/js/clipboard.min.js"></script><script src="assets/js/prism.js"></script><script src="assets/js/raphael.min.js"></script><script src="assets/js/flowchart.min.js"></script><script src="assets/js/mermaid.tiny.min.js"></script><script src="assets/js/app.min.js"></script><script src="meta.js"></script><script src="assets/js/vue.global.prod.js"></script><script src="assets/js/navbarsearch.min.js"></script><link rel="icon" type="image/x-icon" href="assets/img/icons/favicon.ico"><link rel="icon" type="image/svg+xml" href="assets/img/icons/favicon.svg"><link rel="apple-touch-icon" sizes="192x192" href="assets/img/icons/favicon-192x192.png"><link rel="apple-touch-icon" sizes="512x512" href="assets/img/icons/favicon-512x512.png"></head><body><div class="navbar"><a class="navbar__brand" href="https://grandgeorg.github.io/easydoc/"><span class="brand">Grandgeorg</span><span class="brand-second">Websolutions</span></a><div class="navbar-search-container" id="navbar-search"></div><div class="navbar__controls"><button class="theme-toggle" aria-label="switch between light and dark theme" title="switch between light and dark theme"></button><button class="burger" aria-expanded="false" aria-label="navigation menu"><span class="burger__line burger__line-1" aria-hidden="true" focusable="false"></span><span class="burger__line burger__line-2" aria-hidden="true" focusable="false"></span><span class="burger__line burger__line-3" aria-hidden="true" focusable="false"></span></button></div></div><nav class="navigation-drawer" aria-label="Main menu"><h3 class="nav-title text-center">Table of Contents</h3><div class="toc"><div class="table-of-contents"><ul><li><a href="#t-easydoc-reference">EasyDoc Reference</a><ul><li><a href="#t-configuration">Configuration</a><ul><li><a href="#t--global-configuration">📜 Global Configuration</a></li><li><a href="#t--per-page-overrides-in-front-matter">📜 Per page overrides in front matter</a></li><li><a href="#t--site-navigation">📜 Site Navigation</a></li><li><a href="#t-search-api--deployment">Search API &amp; Deployment</a></li></ul></li><li><a href="#t-markdown">Markdown</a><ul><li><a href="#t-typography--elements">Typography &amp; Elements</a></li><li><a href="#t-markdown-plugins">Markdown Plugins</a></li><li><a href="#t-custom-containers">Custom containers</a></li><li><a href="#t-alerts">Alerts</a></li><li><a href="#t-utility-classes">Utility Classes</a></li><li><a href="#t-custom-style-examples">Custom Style Examples</a></li></ul></li><li><a href="#t-syntax-highlighting">Syntax Highlighting</a><ul><li><a href="#t-prism-plugins">Prism Plugins</a></li><li><a href="#t-syntax-highlighting-examples">Syntax Highlighting Examples</a></li><li><a href="#t-icons">Icons</a></li></ul></li></ul></li></ul></div></div><div class="sitenav"><h3 class="nav-title text-center">Navigation</h3><ul><li><a href="index.html">EasyDoc 🔴🔵</a></li><li><a class="active" href="easydoc-reference.html">EasyDoc Reference 🔴🔵</a></li></ul></div><div class="sitenav pagesnav" id="pagesnav"><details class="pagesnav-details"><summary class="nav-title text-center">Pages</summary><ul><li><a href="index.html"><div class="page-title">EasyDoc 🔴🔵</div><div class="page-filename">index.html</div></a></li><li><a class="active" href="easydoc-reference.html"><div class="page-title">EasyDoc Reference 🔴🔵</div><div class="page-filename">easydoc-reference.html</div></a></li></ul></details></div></nav><main class="page"><div class="page-meta"><div class="page-info" id="page-info"><div class="page-info-inner"><div class="page-info-body"><div class="page-title">EasyDoc Reference 🔴🔵</div><div class="page-lang"><svg class="page-lang-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m7.5-6.923c-.67.204-1.335.82-1.887 1.855q-.215.403-.395.872c.705.157 1.472.257 2.282.287zM4.249 3.539q.214-.577.481-1.078a7 7 0 0 1 .597-.933A7 7 0 0 0 3.051 3.05q.544.277 1.198.49zM3.509 7.5c.036-1.07.188-2.087.436-3.008a9 9 0 0 1-1.565-.667A6.96 6.96 0 0 0 1.018 7.5zm1.4-2.741a12.3 12.3 0 0 0-.4 2.741H7.5V5.091c-.91-.03-1.783-.145-2.591-.332M8.5 5.09V7.5h2.99a12.3 12.3 0 0 0-.399-2.741c-.808.187-1.681.301-2.591.332zM4.51 8.5c.035.987.176 1.914.399 2.741A13.6 13.6 0 0 1 7.5 10.91V8.5zm3.99 0v2.409c.91.03 1.783.145 2.591.332.223-.827.364-1.754.4-2.741zm-3.282 3.696q.18.469.395.872c.552 1.035 1.218 1.65 1.887 1.855V11.91c-.81.03-1.577.13-2.282.287zm.11 2.276a7 7 0 0 1-.598-.933 9 9 0 0 1-.481-1.079 8.4 8.4 0 0 0-1.198.49 7 7 0 0 0 2.276 1.522zm-1.383-2.964A13.4 13.4 0 0 1 3.508 8.5h-2.49a6.96 6.96 0 0 0 1.362 3.675c.47-.258.995-.482 1.565-.667m6.728 2.964a7 7 0 0 0 2.275-1.521 8.4 8.4 0 0 0-1.197-.49 9 9 0 0 1-.481 1.078 7 7 0 0 1-.597.933M8.5 11.909v3.014c.67-.204 1.335-.82 1.887-1.855q.216-.403.395-.872A12.6 12.6 0 0 0 8.5 11.91zm3.555-.401c.57.185 1.095.409 1.565.667A6.96 6.96 0 0 0 14.982 8.5h-2.49a13.4 13.4 0 0 1-.437 3.008M14.982 7.5a6.96 6.96 0 0 0-1.362-3.675c-.47.258-.995.482-1.565.667.248.92.4 1.938.437 3.008zM11.27 2.461q.266.502.482 1.078a8.4 8.4 0 0 0 1.196-.49 7 7 0 0 0-2.275-1.52c.218.283.418.597.597.932m-.488 1.343a8 8 0 0 0-.395-.872C9.835 1.897 9.17 1.282 8.5 1.077V4.09c.81-.03 1.577-.13 2.282-.287z"></path></svg><div class="page-lang-text">EN</div></div><div class="page-tags"><button class="tag" type="button" data-search-tag="documentation" title="Search for this tag"><svg class="bi bi-tag" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M6 4.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm-1 0a.5.5 0 1 0-1 0 .5.5 0 0 0 1 0z"></path><path d="M2 1h4.586a1 1 0 0 1 .707.293l7 7a1 1 0 0 1 0 1.414l-4.586 4.586a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 1 6.586V2a1 1 0 0 1 1-1zm0 5.586 7 7L13.586 9l-7-7H2v4.586z"></path></svg>documentation</button><button class="tag" type="button" data-search-tag="manual" title="Search for this tag"><svg class="bi bi-tag" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M6 4.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm-1 0a.5.5 0 1 0-1 0 .5.5 0 0 0 1 0z"></path><path d="M2 1h4.586a1 1 0 0 1 .707.293l7 7a1 1 0 0 1 0 1.414l-4.586 4.586a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 1 6.586V2a1 1 0 0 1 1-1zm0 5.586 7 7L13.586 9l-7-7H2v4.586z"></path></svg>manual</button><button class="tag" type="button" data-search-tag="reference" title="Search for this tag"><svg class="bi bi-tag" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M6 4.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm-1 0a.5.5 0 1 0-1 0 .5.5 0 0 0 1 0z"></path><path d="M2 1h4.586a1 1 0 0 1 .707.293l7 7a1 1 0 0 1 0 1.414l-4.586 4.586a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 1 6.586V2a1 1 0 0 1 1-1zm0 5.586 7 7L13.586 9l-7-7H2v4.586z"></path></svg>reference</button><button class="tag" type="button" data-search-tag="markdown" title="Search for this tag"><svg class="bi bi-tag" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M6 4.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm-1 0a.5.5 0 1 0-1 0 .5.5 0 0 0 1 0z"></path><path d="M2 1h4.586a1 1 0 0 1 .707.293l7 7a1 1 0 0 1 0 1.414l-4.586 4.586a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 1 6.586V2a1 1 0 0 1 1-1zm0 5.586 7 7L13.586 9l-7-7H2v4.586z"></path></svg>markdown</button><button class="tag" type="button" data-search-tag="easydoc" title="Search for this tag"><svg class="bi bi-tag" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M6 4.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm-1 0a.5.5 0 1 0-1 0 .5.5 0 0 0 1 0z"></path><path d="M2 1h4.586a1 1 0 0 1 .707.293l7 7a1 1 0 0 1 0 1.414l-4.586 4.586a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 1 6.586V2a1 1 0 0 1 1-1zm0 5.586 7 7L13.586 9l-7-7H2v4.586z"></path></svg>easydoc</button></div></div></div></div><div class="frontmatter"><button class="frontmatter-toggle" id="frontmatter-toggle" type="button" aria-label="Show page info" title="Show page info" aria-controls="page-info" aria-expanded="false"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2"></path></svg></button></div><div class="mtime"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><circle cx="8" cy="8" r="7.5" fill="none" stroke="currentColor"></circle><path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71z"></path></svg><div class="mtime-text">Last Update Wednesday, November 25, 2026 at 4:27:47 PM</div></div></div><div class="content"><h1 class="text-center" id="t-easydoc-reference" tabindex="-1"><a class="header-anchor" href="#t-easydoc-reference">EasyDoc Reference</a></h1>
+<!DOCTYPE html><html lang="en"><head><title>EasyDoc Reference 🔴🔵</title><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="stylesheet" href="assets/css/style.min.css"><link rel="stylesheet" href="assets/css/prism.min.css"><script src="assets/js/clipboard.min.js"></script><script src="assets/js/prism.js"></script><script src="assets/js/raphael.min.js"></script><script src="assets/js/flowchart.min.js"></script><script src="assets/js/mermaid.tiny.min.js"></script><script src="assets/js/app.min.js"></script><script src="meta.js"></script><script src="assets/js/vue.global.prod.js"></script><script src="assets/js/navbarsearch.min.js"></script><link rel="icon" type="image/x-icon" href="assets/img/icons/favicon.ico"><link rel="icon" type="image/svg+xml" href="assets/img/icons/favicon.svg"><link rel="apple-touch-icon" sizes="192x192" href="assets/img/icons/favicon-192x192.png"><link rel="apple-touch-icon" sizes="512x512" href="assets/img/icons/favicon-512x512.png"></head><body><div class="navbar"><a class="navbar__brand" href="https://grandgeorg.github.io/easydoc/"><span class="brand">Grandgeorg</span><span class="brand-second">Websolutions</span></a><div class="navbar-search-container" id="navbar-search"></div><div class="navbar__controls"><button class="theme-toggle" aria-label="switch between light and dark theme" title="switch between light and dark theme"></button><button class="burger" aria-expanded="false" aria-label="navigation menu"><span class="burger__line burger__line-1" aria-hidden="true" focusable="false"></span><span class="burger__line burger__line-2" aria-hidden="true" focusable="false"></span><span class="burger__line burger__line-3" aria-hidden="true" focusable="false"></span></button></div></div><nav class="navigation-drawer" aria-label="Main menu"><h3 class="nav-title text-center">Table of Contents</h3><div class="toc"><div class="table-of-contents"><ul><li><a href="#t-easydoc-reference">EasyDoc Reference</a><ul><li><a href="#t-configuration">Configuration</a><ul><li><a href="#t--global-configuration">📜 Global Configuration</a></li><li><a href="#t--per-page-overrides-in-front-matter">📜 Per page overrides in front matter</a></li><li><a href="#t--site-navigation">📜 Site Navigation</a></li><li><a href="#t-search-api--deployment">Search API &amp; Deployment</a></li></ul></li><li><a href="#t-markdown">Markdown</a><ul><li><a href="#t-typography--elements">Typography &amp; Elements</a></li><li><a href="#t-markdown-plugins">Markdown Plugins</a></li><li><a href="#t-custom-containers">Custom containers</a></li><li><a href="#t-alerts">Alerts</a></li><li><a href="#t-utility-classes">Utility Classes</a></li><li><a href="#t-custom-style-examples">Custom Style Examples</a></li></ul></li><li><a href="#t-syntax-highlighting">Syntax Highlighting</a><ul><li><a href="#t-prism-plugins">Prism Plugins</a></li><li><a href="#t-syntax-highlighting-examples">Syntax Highlighting Examples</a></li><li><a href="#t-icons">Icons</a></li></ul></li></ul></li></ul></div></div><div class="sitenav"><h3 class="nav-title text-center">Navigation</h3><ul><li><a href="index.html">EasyDoc 🔴🔵</a></li><li><a class="active" href="easydoc-reference.html">EasyDoc Reference 🔴🔵</a></li></ul></div><div class="sitenav pagesnav" id="pagesnav"><details class="pagesnav-details"><summary class="nav-title text-center">Pages</summary><ul><li><a href="index.html"><div class="page-title">EasyDoc 🔴🔵</div><div class="page-filename">index.html</div></a></li><li><a class="active" href="easydoc-reference.html"><div class="page-title">EasyDoc Reference 🔴🔵</div><div class="page-filename">easydoc-reference.html</div></a></li></ul></details></div></nav><main class="page"><div class="page-meta"><div class="page-info" id="page-info"><div class="page-info-inner"><div class="page-info-body"><div class="page-title">EasyDoc Reference 🔴🔵</div><div class="page-lang"><svg class="page-lang-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m7.5-6.923c-.67.204-1.335.82-1.887 1.855q-.215.403-.395.872c.705.157 1.472.257 2.282.287zM4.249 3.539q.214-.577.481-1.078a7 7 0 0 1 .597-.933A7 7 0 0 0 3.051 3.05q.544.277 1.198.49zM3.509 7.5c.036-1.07.188-2.087.436-3.008a9 9 0 0 1-1.565-.667A6.96 6.96 0 0 0 1.018 7.5zm1.4-2.741a12.3 12.3 0 0 0-.4 2.741H7.5V5.091c-.91-.03-1.783-.145-2.591-.332M8.5 5.09V7.5h2.99a12.3 12.3 0 0 0-.399-2.741c-.808.187-1.681.301-2.591.332zM4.51 8.5c.035.987.176 1.914.399 2.741A13.6 13.6 0 0 1 7.5 10.91V8.5zm3.99 0v2.409c.91.03 1.783.145 2.591.332.223-.827.364-1.754.4-2.741zm-3.282 3.696q.18.469.395.872c.552 1.035 1.218 1.65 1.887 1.855V11.91c-.81.03-1.577.13-2.282.287zm.11 2.276a7 7 0 0 1-.598-.933 9 9 0 0 1-.481-1.079 8.4 8.4 0 0 0-1.198.49 7 7 0 0 0 2.276 1.522zm-1.383-2.964A13.4 13.4 0 0 1 3.508 8.5h-2.49a6.96 6.96 0 0 0 1.362 3.675c.47-.258.995-.482 1.565-.667m6.728 2.964a7 7 0 0 0 2.275-1.521 8.4 8.4 0 0 0-1.197-.49 9 9 0 0 1-.481 1.078 7 7 0 0 1-.597.933M8.5 11.909v3.014c.67-.204 1.335-.82 1.887-1.855q.216-.403.395-.872A12.6 12.6 0 0 0 8.5 11.91zm3.555-.401c.57.185 1.095.409 1.565.667A6.96 6.96 0 0 0 14.982 8.5h-2.49a13.4 13.4 0 0 1-.437 3.008M14.982 7.5a6.96 6.96 0 0 0-1.362-3.675c-.47.258-.995.482-1.565.667.248.92.4 1.938.437 3.008zM11.27 2.461q.266.502.482 1.078a8.4 8.4 0 0 0 1.196-.49 7 7 0 0 0-2.275-1.52c.218.283.418.597.597.932m-.488 1.343a8 8 0 0 0-.395-.872C9.835 1.897 9.17 1.282 8.5 1.077V4.09c.81-.03 1.577-.13 2.282-.287z"></path></svg><div class="page-lang-text">EN</div></div><div class="page-tags"><button class="tag" type="button" data-search-tag="documentation" title="Search for this tag"><svg class="bi bi-tag" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M6 4.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm-1 0a.5.5 0 1 0-1 0 .5.5 0 0 0 1 0z"></path><path d="M2 1h4.586a1 1 0 0 1 .707.293l7 7a1 1 0 0 1 0 1.414l-4.586 4.586a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 1 6.586V2a1 1 0 0 1 1-1zm0 5.586 7 7L13.586 9l-7-7H2v4.586z"></path></svg>documentation</button><button class="tag" type="button" data-search-tag="manual" title="Search for this tag"><svg class="bi bi-tag" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M6 4.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm-1 0a.5.5 0 1 0-1 0 .5.5 0 0 0 1 0z"></path><path d="M2 1h4.586a1 1 0 0 1 .707.293l7 7a1 1 0 0 1 0 1.414l-4.586 4.586a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 1 6.586V2a1 1 0 0 1 1-1zm0 5.586 7 7L13.586 9l-7-7H2v4.586z"></path></svg>manual</button><button class="tag" type="button" data-search-tag="reference" title="Search for this tag"><svg class="bi bi-tag" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M6 4.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm-1 0a.5.5 0 1 0-1 0 .5.5 0 0 0 1 0z"></path><path d="M2 1h4.586a1 1 0 0 1 .707.293l7 7a1 1 0 0 1 0 1.414l-4.586 4.586a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 1 6.586V2a1 1 0 0 1 1-1zm0 5.586 7 7L13.586 9l-7-7H2v4.586z"></path></svg>reference</button><button class="tag" type="button" data-search-tag="markdown" title="Search for this tag"><svg class="bi bi-tag" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M6 4.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm-1 0a.5.5 0 1 0-1 0 .5.5 0 0 0 1 0z"></path><path d="M2 1h4.586a1 1 0 0 1 .707.293l7 7a1 1 0 0 1 0 1.414l-4.586 4.586a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 1 6.586V2a1 1 0 0 1 1-1zm0 5.586 7 7L13.586 9l-7-7H2v4.586z"></path></svg>markdown</button><button class="tag" type="button" data-search-tag="easydoc" title="Search for this tag"><svg class="bi bi-tag" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M6 4.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm-1 0a.5.5 0 1 0-1 0 .5.5 0 0 0 1 0z"></path><path d="M2 1h4.586a1 1 0 0 1 .707.293l7 7a1 1 0 0 1 0 1.414l-4.586 4.586a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 1 6.586V2a1 1 0 0 1 1-1zm0 5.586 7 7L13.586 9l-7-7H2v4.586z"></path></svg>easydoc</button></div></div></div></div><div class="frontmatter"><button class="frontmatter-toggle" id="frontmatter-toggle" type="button" aria-label="Show page info" title="Show page info" aria-controls="page-info" aria-expanded="false"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2"></path></svg></button></div><div class="mtime"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><circle cx="8" cy="8" r="7.5" fill="none" stroke="currentColor"></circle><path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71z"></path></svg><div class="mtime-text">Last Update Wednesday, November 25, 2026 at 4:57:26 PM</div></div></div><div class="content"><h1 class="text-center" id="t-easydoc-reference" tabindex="-1"><a class="header-anchor" href="#t-easydoc-reference">EasyDoc Reference</a></h1>
 <p class="text-center">🔴🔵</p>
 <hr>
 <p class="text-center"><a href="https://github.com/grandgeorg/easydoc"><img src="https://img.shields.io/badge/github-EasyDoc-blue?logo=github" alt="EasyDoc on GitHub" class="d-inline-block" style="margin: 0 0.25rem 0 0;"></a>
@@ -410,6 +410,7 @@ origins, e.g. the site on <code>https://doc.yourdomain.tld</code> and the API on
 </code></pre><p>Builds the site, uploads <code>www/</code> to <code>EASYDOC_DEPLOY_SFTP_REMOTE_PATH</code> and <code>searchIndex.json</code>
 to <code>EASYDOC_DEPLOY_SFTP_SEARCH_INDEX_REMOTE_PATH</code>. pm2 sees the new index and restarts the
 search API. You don’t need to log in to the server.</p>
+<hr>
 <h2 id="t-markdown" tabindex="-1"><a class="header-anchor" href="#t-markdown">Markdown</a></h2>
 <h3 id="t-typography--elements" tabindex="-1"><a class="header-anchor" href="#t-typography--elements">Typography &amp; Elements</a></h3>
 <details><summary>Typographic replacements</summary>
@@ -417,7 +418,7 @@ search API. You don’t need to log in to the server.</p>
 ellipsis … ellipsis … ellipsis … ellipsis … ellipsis …<br>
 !!! ??? ,  – —<br>
 “Smartypants, double quotes” and ‘single quotes’</p>
-<pre class="language-markdown" id="codeblock-224"><code>(c) (C) (r) (R) (tm) (TM) +-  
+<pre class="language-markdown" id="codeblock-225"><code>(c) (C) (r) (R) (tm) (TM) +-  
 ellipsis .. ellipsis ... ellipsis ..... ellipsis ..... ellipsis ....  
 !!!!!! ???? ,,  -- ---  
 &quot;Smartypants, double quotes&quot; and 'single quotes'
@@ -428,7 +429,7 @@ ellipsis .. ellipsis ... ellipsis ..... ellipsis ..... ellipsis ....
 <em>This is italic text</em><br>
 <em>This is italic text</em><br>
 <s>Strikethrough</s></p>
-<pre class="language-markdown" id="codeblock-230"><code>**This is bold text**  
+<pre class="language-markdown" id="codeblock-231"><code>**This is bold text**  
 __This is bold text__  
 *This is italic text*  
 _This is italic text_  
@@ -444,7 +445,7 @@ _This is italic text_
 </blockquote>
 </blockquote>
 </blockquote>
-<pre class="language-markdown" id="codeblock-248"><code>&gt; Blockquotes can also be nested...
+<pre class="language-markdown" id="codeblock-249"><code>&gt; Blockquotes can also be nested...
 &gt;&gt; ...by using additional greater-than signs right next to each other...
 &gt; &gt; &gt; ...or with spaces between arrows.
 </code></pre></details>
@@ -469,7 +470,7 @@ _This is italic text_
 </li>
 <li>Very easy!</li>
 </ul>
-<pre class="language-markdown" id="codeblock-299"><code>+ Create a list by starting a line with `+`, `-`, or `*`
+<pre class="language-markdown" id="codeblock-300"><code>+ Create a list by starting a line with `+`, `-`, or `*`
 + Sub-lists are made by indenting 2 spaces:
   - Marker character change forces new list start:
     - Ac tristique libero volutpat at
@@ -500,7 +501,7 @@ _This is italic text_
 <li>scelerisque ut mollis sed</li>
 <li>faucibus orci luctus</li>
 </ol>
-<pre class="language-markdown" id="codeblock-371"><code>1. Lorem ipsum dolor sit amet
+<pre class="language-markdown" id="codeblock-372"><code>1. Lorem ipsum dolor sit amet
 2. Consectetur adipiscing elit
 
 Lists can be interrupted and then resumed
@@ -539,7 +540,7 @@ with lazy continuation.</dd>
 <dd>Definition 2a</dd>
 <dd>Definition 2b</dd>
 </dl>
-<pre class="language-markdown" id="codeblock-443"><code>Some Definition Title 1
+<pre class="language-markdown" id="codeblock-444"><code>Some Definition Title 1
 : Type: `string`
 : Default: `empty`
 : Some description
@@ -614,7 +615,7 @@ Term 2
 </tr>
 </tbody>
 </table>
-<pre class="language-markdown" id="codeblock-549"><code>| Option | Description | active |
+<pre class="language-markdown" id="codeblock-550"><code>| Option | Description | active |
 | ------ | ----------- |:------:|
 | data   | path to data files to supply the data that will be passed into templates. | ✅ |
 | engine | engine to be used for processing templates. Handlebars is the default. | ❌ |
@@ -632,7 +633,7 @@ Right aligned columns
 <p><a href="https://metager.de/">metager</a><br>
 <a href="https://metager.de/" title="MetaGer">metager with title</a><br>
 Autoconverted link <a href="https://grandgeorg.de">https://grandgeorg.de</a></p>
-<pre class="language-markdown" id="codeblock-555"><code>[metager](https://metager.de/)  
+<pre class="language-markdown" id="codeblock-556"><code>[metager](https://metager.de/)  
 [metager with title](https://metager.de/ &quot;MetaGer&quot;)  
 Autoconverted link https://grandgeorg.de  
 </code></pre><p>Relative links to Markdown files are converted to the built HTML pages, so
@@ -644,7 +645,7 @@ and raw HTML <code>&lt;a&gt;</code> tags are left unchanged.</p>
 <p><img src="img/test-blue-1920x1080.png" alt="Test blue and transparent"></p>
 <h5 class="text-center" id="t-small-with-title" tabindex="-1"><a class="header-anchor" href="#t-small-with-title">Small with title</a></h5>
 <p><img src="img/test-green-320x180.png" alt="Test green and transparent" title="Test Image small"></p>
-<pre class="language-markdown" id="codeblock-573"><code>##### Fullsize {.text-center}
+<pre class="language-markdown" id="codeblock-574"><code>##### Fullsize {.text-center}
 ![Test blue and transparent](img/test-blue-1920x1080.png)
 ##### Small with title {.text-center}
 ![Test green and transparent](img/test-green-320x180.png &quot;Test Image small&quot;)
@@ -653,7 +654,7 @@ and raw HTML <code>&lt;a&gt;</code> tags are left unchanged.</p>
 <details class="closeOnLoad" open><summary>flowcharts</summary>
 <p>Refer to the documentation from <a href="https://flowchart.js.org/">flowchart.js</a></p>
 <h4 id="t-example-1" tabindex="-1"><a class="header-anchor" href="#t-example-1">Example 1</a></h4>
-<div class="flowchart" id="flowchart_585">st=>start: Start
+<div class="flowchart" id="flowchart_586">st=>start: Start
 e=>end: The End
 op1=>operation: My Operation|current
 sub1=>subroutine: My Subroutine
@@ -664,7 +665,7 @@ st->op1->cond
 cond(yes)->io->e
 cond(no)->sub1(right)->op1</div>
 <h4 id="t-example-2" tabindex="-1"><a class="header-anchor" href="#t-example-2">Example 2</a></h4>
-<div class="flowchart" id="flowchart_589">st=>start: Start:>https://grandgeorg.de[blank]
+<div class="flowchart" id="flowchart_590">st=>start: Start:>https://grandgeorg.de[blank]
 e=>end:>https://grandgeorg.de
 op1=>operation: My Operation
 sub1=>subroutine: My Subroutine
@@ -678,7 +679,7 @@ cond(yes)->io->e
 cond(no)->para
 para(path1, bottom)->sub1(right)->op1
 para(path2, top)->op1</div>
-<pre class="language-markdown" id="codeblock-590"><code>#### Example 1
+<pre class="language-markdown" id="codeblock-591"><code>#### Example 1
 
 @flowstart
 st=&gt;start: Start
@@ -715,7 +716,7 @@ para(path2, top)-&gt;op1
 <details class="closeOnLoad" open><summary>mermaid</summary>
 <p>Refer to the documentation from <a href="https://mermaid.js.org/">Mermaid</a></p>
 <h4 id="t-flowchart---network-diagram---theme-dark-default-in-easydocs" tabindex="-1"><a class="header-anchor" href="#t-flowchart---network-diagram---theme-dark-default-in-easydocs">Flowchart - Network Diagram - Theme “dark” (default in easydocs)</a></h4>
-<pre class="mermaid" id="mermaid-599">graph TD
+<pre class="mermaid" id="mermaid-600">graph TD
     subgraph "`**Internet**`"
         A[Client PC]
     end
@@ -849,7 +850,7 @@ graph TD
   }
 </style>
 <h4 id="t-journey" tabindex="-1"><a class="header-anchor" href="#t-journey">Journey</a></h4>
-<pre class="mermaid" id="mermaid-618">journey
+<pre class="mermaid" id="mermaid-619">journey
     title My working day
     section Go to work
       Make tea: 5: Me
@@ -974,11 +975,11 @@ gantt
   }
 </style>
 <h4 id="t-sequence-diagram" tabindex="-1"><a class="header-anchor" href="#t-sequence-diagram">Sequence Diagram</a></h4>
-<pre class="mermaid" id="mermaid-637">sequenceDiagram
+<pre class="mermaid" id="mermaid-638">sequenceDiagram
     Alice->>John: Hello John, how are you?
     John-->>Alice: Great!
     Alice-)John: See you later!</pre><h4 id="t-class-diagram" tabindex="-1"><a class="header-anchor" href="#t-class-diagram">Class Diagram</a></h4>
-<pre class="mermaid" id="mermaid-641">---
+<pre class="mermaid" id="mermaid-642">---
 title: Animal example
 ---
 classDiagram
@@ -1004,7 +1005,7 @@ classDiagram
         +bool is_wild
         +run()
     }</pre><h4 id="t-state-diagram" tabindex="-1"><a class="header-anchor" href="#t-state-diagram">State Diagram</a></h4>
-<pre class="mermaid" id="mermaid-645">---
+<pre class="mermaid" id="mermaid-646">---
 title: Simple sample
 ---
 stateDiagram-v2
@@ -1015,14 +1016,14 @@ stateDiagram-v2
     Moving --> Still
     Moving --> Crash
     Crash --> [*]</pre><h4 id="t-entity-relationship-diagram" tabindex="-1"><a class="header-anchor" href="#t-entity-relationship-diagram">Entity Relationship Diagram</a></h4>
-<pre class="mermaid" id="mermaid-649">---
+<pre class="mermaid" id="mermaid-650">---
 title: Order example
 ---
 erDiagram
     CUSTOMER ||--o{ ORDER : places
     ORDER ||--|{ LINE-ITEM : contains
     CUSTOMER }|..|{ DELIVERY-ADDRESS : uses</pre><h4 id="t-pie-chart" tabindex="-1"><a class="header-anchor" href="#t-pie-chart">Pie Chart</a></h4>
-<pre class="mermaid" id="mermaid-653">---
+<pre class="mermaid" id="mermaid-654">---
 config:
   pie:
     textPosition: 0.5
@@ -1035,7 +1036,7 @@ pie showData
     "Potassium" : 50.05
     "Magnesium" : 10.01
     "Iron" :  5</pre><h4 id="t-quadrant-chart" tabindex="-1"><a class="header-anchor" href="#t-quadrant-chart">Quadrant Chart</a></h4>
-<pre class="mermaid" id="mermaid-657">quadrantChart
+<pre class="mermaid" id="mermaid-658">quadrantChart
     title Reach and engagement of campaigns
     x-axis Low Reach --> High Reach
     y-axis Low Engagement --> High Engagement
@@ -1049,7 +1050,7 @@ pie showData
     Campaign D: [0.78, 0.34]
     Campaign E: [0.40, 0.34]
     Campaign F: [0.35, 0.78]</pre><h4 id="t-requirement-diagram" tabindex="-1"><a class="header-anchor" href="#t-requirement-diagram">Requirement Diagram</a></h4>
-<pre class="mermaid" id="mermaid-661">requirementDiagram
+<pre class="mermaid" id="mermaid-662">requirementDiagram
 
     requirement test_req {
     id: 1
@@ -1063,7 +1064,7 @@ pie showData
     }
 
     test_entity - satisfies -> test_req</pre><h4 id="t-gitgraph-diagram" tabindex="-1"><a class="header-anchor" href="#t-gitgraph-diagram">GitGraph Diagram</a></h4>
-<pre class="mermaid" id="mermaid-665">---
+<pre class="mermaid" id="mermaid-666">---
 title: Example Git diagram
 ---
 gitGraph
@@ -1077,7 +1078,7 @@ gitGraph
    merge develop
    commit
    commit</pre><h4 id="t-timeline-diagram" tabindex="-1"><a class="header-anchor" href="#t-timeline-diagram">Timeline Diagram</a></h4>
-<pre class="mermaid" id="mermaid-669">timeline
+<pre class="mermaid" id="mermaid-670">timeline
     title History of Social Media Platform
     2002 : LinkedIn
     2004 : Facebook
@@ -1096,7 +1097,7 @@ gitGraph
     2021 : Facebook rebranded to Meta
     2022 : Twitter acquired by Elon Musk
     2023 : Threads launched by Meta</pre><h4 id="t-timeline-diagram-with-rapping-of-text" tabindex="-1"><a class="header-anchor" href="#t-timeline-diagram-with-rapping-of-text">Timeline Diagram with rapping of text</a></h4>
-<pre class="mermaid" id="mermaid-673">timeline
+<pre class="mermaid" id="mermaid-674">timeline
         title England's History Timeline
         section Stone Age
           7600 BC : Britain's oldest known house was built in Orkney, Scotland
@@ -1118,7 +1119,7 @@ gitGraph
 <li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox"> Neptune</li>
 <li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox"> Comet Haley</li>
 </ul>
-<pre class="language-markdown" id="codeblock-723"><code>- [ ] Mercury
+<pre class="language-markdown" id="codeblock-724"><code>- [ ] Mercury
 - [x] Venus
 - [x] Earth (Orbit/Moon)
 - [x] Mars
@@ -1130,7 +1131,7 @@ gitGraph
 </code></pre></details>
 <details><summary>Footnotes</summary>
 <p>Here is a footnote reference,<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup> and another.<sup class="footnote-ref"><a href="#fn2" id="fnref2">[2]</a></sup></p>
-<pre class="language-markdown" id="codeblock-729"><code>Here is a footnote reference,[^1] and another.[^longnote]
+<pre class="language-markdown" id="codeblock-730"><code>Here is a footnote reference,[^1] and another.[^longnote]
 
 [^1]: Here is the footnote.
 [^longnote]: Here's one with multiple lines  
@@ -1140,7 +1141,7 @@ gitGraph
 <details><summary>Attributes</summary>
 <p class="text-center">Place any HTML-attribute after a block</p>
 <p class="text-right" id="attributes-sample-id" tabindex="0">Here is another focusable block</p>
-<pre class="language-markdown" id="codeblock-738"><code>Place any HTML-attribute after a block {.text-center}
+<pre class="language-markdown" id="codeblock-739"><code>Place any HTML-attribute after a block {.text-center}
 
 Here is another focusable block {.text-right #attributes-sample-id tabindex=&quot;0&quot;}
 </code></pre></details>
@@ -1154,7 +1155,7 @@ Here is another focusable block {.text-right #attributes-sample-id tabindex=&quo
 Here is a <a href="https://grandgeorg.de">link for you</a></p>
 </div>
 </div>
-<pre class="language-markdown" id="codeblock-751"><code>::: info 📘 This is an info title
+<pre class="language-markdown" id="codeblock-752"><code>::: info 📘 This is an info title
 🗲 FYI - so that you know ...  
 Here is a [link for you][def]
 :::
@@ -1167,7 +1168,7 @@ Here is a [link for you][def]
 Here is a <a href="https://grandgeorg.de">link for you</a></p>
 </div>
 </div>
-<pre class="language-markdown" id="codeblock-760"><code>::: tip 📗 This is a tip title
+<pre class="language-markdown" id="codeblock-761"><code>::: tip 📗 This is a tip title
 FYI - so that you know ...  
 Here is a [link for you][def]
 :::
@@ -1180,7 +1181,7 @@ Here is a [link for you][def]
 Here is a <a href="https://grandgeorg.de">link for you</a></p>
 </div>
 </div>
-<pre class="language-markdown" id="codeblock-769"><code>::: warning ⚠️ This is a warning title
+<pre class="language-markdown" id="codeblock-770"><code>::: warning ⚠️ This is a warning title
 **Here be dragons 🦎**  
 Here is a [link for you][def]
 :::
@@ -1194,7 +1195,7 @@ Here is a [link for you][def]
 <p>Here is a <a href="https://grandgeorg.de">link for you</a></p>
 </div>
 </div>
-<pre class="language-markdown" id="codeblock-781"><code>::: danger ❗️ This is a danger title
+<pre class="language-markdown" id="codeblock-782"><code>::: danger ❗️ This is a danger title
 **Attention! you are going to die ...**  
 ... just kidding! 😉
 
@@ -1209,7 +1210,7 @@ Here is a [link for you][def]
 Here is a <a href="https://grandgeorg.de">link for you</a></p>
 </div>
 </div>
-<pre class="language-markdown" id="codeblock-790"><code>::: line 💬 This is a line title
+<pre class="language-markdown" id="codeblock-791"><code>::: line 💬 This is a line title
 FYI - so that you know ...  
 Here is a [link for you][def]
 :::
@@ -1222,7 +1223,7 @@ Here is a [link for you][def]
 <li>Detail 3</li>
 </ul>
 </details>
-<pre class="language-markdown" id="codeblock-816"><code>::: details Click on this summary to see the details
+<pre class="language-markdown" id="codeblock-817"><code>::: details Click on this summary to see the details
 Here are some **funny** details.
 - Detail 1
 - Detail 2
@@ -1230,7 +1231,7 @@ Here are some **funny** details.
 :::
 </code></pre><h4 id="t-filetree-syntax-type" tabindex="-1"><a class="header-anchor" href="#t-filetree-syntax-type">Filetree Syntax Type</a></h4>
 <details><summary>filetree syntax type example with unicode characters &amp; emojis</summary>
-<pre class="language-filetree" id="codeblock-821"><code> 🖿 /etc/apache2/  
+<pre class="language-filetree" id="codeblock-822"><code> 🖿 /etc/apache2/  
   ┊
   ├🗁 sites-available
   │ ├🗏 subdomain-one.domain.tld.conf
@@ -1260,20 +1261,20 @@ Here are some **funny** details.
 <h3 id="t-alerts" tabindex="-1"><a class="header-anchor" href="#t-alerts">Alerts</a></h3>
 <details><summary>Alert Info</summary>
 <p class="alert alert-info">This is an informational alert. Here is a <a href="https://grandgeorg.de">link for you</a></p>
-<pre class="language-markdown" id="codeblock-830"><code>This is an informational alert. Here is a [link for you][def]
+<pre class="language-markdown" id="codeblock-831"><code>This is an informational alert. Here is a [link for you][def]
 {.alert .alert-info}
 </code></pre></details>
 <details><summary>Alert tip</summary>
 <p class="alert alert-tip">This is a tip alert. Here is a <a href="https://grandgeorg.de">link for you</a>.</p>
-<pre class="language-markdown" id="codeblock-836"><code>This is a tip alert. Here is a [link for you][def].{.alert .alert-tip}
+<pre class="language-markdown" id="codeblock-837"><code>This is a tip alert. Here is a [link for you][def].{.alert .alert-tip}
 </code></pre></details>
 <details><summary>Alert warning</summary>
 <p class="alert alert-warning">This is a warning alert. Here is a <a href="https://grandgeorg.de">link for you</a>.</p>
-<pre class="language-markdown" id="codeblock-842"><code>This is a warning alert.{.alert .alert-warning}
+<pre class="language-markdown" id="codeblock-843"><code>This is a warning alert.{.alert .alert-warning}
 </code></pre></details>
 <details><summary>Alert danger</summary>
 <p class="alert alert-danger">This is a danger alert. Here is a <a href="https://grandgeorg.de">link for you</a>.</p>
-<pre class="language-markdown" id="codeblock-848"><code>This is a danger alert. Here is a [link for you][def].{.alert .alert-danger}
+<pre class="language-markdown" id="codeblock-849"><code>This is a danger alert. Here is a [link for you][def].{.alert .alert-danger}
 </code></pre></details>
 <h3 id="t-utility-classes" tabindex="-1"><a class="header-anchor" href="#t-utility-classes">Utility Classes</a></h3>
 <details><summary>Font Sizes</summary>
@@ -1359,7 +1360,7 @@ Here are some **funny** details.
 <p class="text-muted"><strong>Muted text</strong> example</p>
 </details>
 <details><summary>Miscellaneous</summary>
-<pre class="language-css" id="codeblock-1014"><code>.d-block {
+<pre class="language-css" id="codeblock-1015"><code>.d-block {
   display: block !important;
 }
 
@@ -1449,7 +1450,7 @@ hr.pbra {
 <li style="margin-bottom:1em;">Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc, quis gravida magna mi a libero. Fusce vulputate eleifend sapien. Vestibulum purus quam, scelerisque ut, mollis sed, nonummy id, metus. Nullam accumsan lorem in dui. Cras ultricies mi eu turpis hendrerit fringilla.</li>
 </ul>
 <hr>
-<pre class="language-markdown" id="codeblock-1041"><code>- Lorem ipsum dolor sit amet...{style=&quot;margin-bottom:1em;&quot;}
+<pre class="language-markdown" id="codeblock-1042"><code>- Lorem ipsum dolor sit amet...{style=&quot;margin-bottom:1em;&quot;}
 - Cum sociis natoque penatibus...{style=&quot;margin-bottom:1em;&quot;}
 - Duis leo. Sed fringilla mauris...{style=&quot;margin-bottom:1em;&quot;}
 
@@ -1503,7 +1504,7 @@ hr.pbra {
 <h3 id="t-prism-plugins" tabindex="-1"><a class="header-anchor" href="#t-prism-plugins">Prism Plugins</a></h3>
 <h5 id="t-line-numbers" tabindex="-1"><a class="header-anchor" href="#t-line-numbers">Line Numbers</a></h5>
 <details><summary>Line Numbers Example</summary>
-<pre class="line-numbers language-js" data-start="1000" id="codeblock-1235"><code>(function () {
+<pre class="line-numbers language-js" data-start="1000" id="codeblock-1236"><code>(function () {
   &quot;use strict&quot;;
   document.addEventListener(&quot;DOMContentLoaded&quot;, function () {
     const state = {
@@ -1536,12 +1537,12 @@ hr.pbra {
 })();
 </code></pre><p>Specify the data-start (Number) attribute for line numbers.<br>
 The above example uses <code>.line-numbers</code> class and <code>data-start=&quot;1000&quot;</code>.</p>
-<pre class="language-markdown" id="codeblock-1239"><code>```js {.line-numbers data-start=&quot;1000&quot;}
+<pre class="language-markdown" id="codeblock-1240"><code>```js {.line-numbers data-start=&quot;1000&quot;}
 </code></pre></details>
 <p>Refer to the manual at <a href="https://prismjs.com/plugins/line-numbers/">Prism Plugins - Line Numbers</a></p>
 <h5 id="t-line-highlight--linkable-line-numbers" tabindex="-1"><a class="header-anchor" href="#t-line-highlight--linkable-line-numbers">Line Highlight &amp; Linkable Line Numbers</a></h5>
 <details><summary>Line Highlight Example</summary>
-<pre class="line-numbers language-js" data-line="8,24-25" id="codeblock-1248"><code>(function () {
+<pre class="line-numbers language-js" data-line="8,24-25" id="codeblock-1249"><code>(function () {
   &quot;use strict&quot;;
   document.addEventListener(&quot;DOMContentLoaded&quot;, function () {
     const state = {
@@ -1574,10 +1575,10 @@ The above example uses <code>.line-numbers</code> class and <code>data-start=&qu
 })();
 </code></pre><p>Specify the data-line attribute to highlight lines.<br>
 The above example uses <code>data-line=&quot;8,24-25&quot;</code>.</p>
-<pre class="language-markdown" id="codeblock-1252"><code>```js {.line-numbers data-line=&quot;8,24-25&quot;}
+<pre class="language-markdown" id="codeblock-1253"><code>```js {.line-numbers data-line=&quot;8,24-25&quot;}
 </code></pre></details>
 <details><summary>Linkable Line Numbers</summary>
-<pre class="line-numbers linkable-line-numbers language-js" id="codeblock-1255"><code>(function () {
+<pre class="line-numbers linkable-line-numbers language-js" id="codeblock-1256"><code>(function () {
   &quot;use strict&quot;;
   document.addEventListener(&quot;DOMContentLoaded&quot;, function () {
     const state = {
@@ -1609,20 +1610,20 @@ The above example uses <code>data-line=&quot;8,24-25&quot;</code>.</p>
   });
 })();
 </code></pre><p>Add class <code>.linkable-line-numbers</code> to make lines selectable.</p>
-<pre class="language-markdown" id="codeblock-1259"><code>```js {.line-numbers .linkable-line-numbers}
+<pre class="language-markdown" id="codeblock-1260"><code>```js {.line-numbers .linkable-line-numbers}
 </code></pre><p class="custom-container warning" style="padding:1em;">⚠️ You may <strong>not</strong> want to use <code>.linkable-line-numbers</code> together with <code>data-line</code> attribute, as the linked line marker will overwrite the highlighted marker, when the line is clicked.</p>
 <hr>
 </details>
 <p>Refer to the manual at <a href="https://prismjs.com/plugins/line-highlight/">Prism Plugins - Line Highlight</a></p>
 <h5 id="t-commad-line" tabindex="-1"><a class="header-anchor" href="#t-commad-line">Commad Line</a></h5>
 <details><summary>Command Line Example</summary>
-<pre class="command-line language-sh" data-user="root" data-host="someserver.tld" data-output="4" id="codeblock-1272"><code>apt-get update
+<pre class="command-line language-sh" data-user="root" data-host="someserver.tld" data-output="4" id="codeblock-1273"><code>apt-get update
 apt-get upgrade
 apt-get --assume-yes install curl vim mc htop imagemagick git nodejs npm
 ... some output from last command
 </code></pre><p>Add class <code>.command-line</code> to code block.<br>
 You may specify <code>data-user</code>and <code>data-host</code> as well as the lines for the output with the <code>data-output</code> attribute.</p>
-<pre class="language-markdown" id="codeblock-1276"><code>```sh {.command-line data-user=&quot;root&quot; data-host=&quot;someserver.tld&quot; data-output=&quot;4&quot;}
+<pre class="language-markdown" id="codeblock-1277"><code>```sh {.command-line data-user=&quot;root&quot; data-host=&quot;someserver.tld&quot; data-output=&quot;4&quot;}
 </code></pre></details>
 <p>Refer to the manual at <a href="https://prismjs.com/plugins/command-line/">Prism Plugins - Commad Line</a></p>
 <h5 id="t-show-language" tabindex="-1"><a class="header-anchor" href="#t-show-language">Show Language</a></h5>
@@ -2651,7 +2652,7 @@ networks:
 <hr>
 </details>
 <details><summary>emojis in code</summary>
-<pre class="language-filetree" id="codeblock-1608"><code>
+<pre class="language-filetree" id="codeblock-1609"><code>
 files
 📄 📝 📑 📜 📃 🧾
 
@@ -2791,7 +2792,7 @@ misc
 
 </code></pre></details>
 <details><summary>unicode characters in code</summary>
-<pre class="language-filetree" id="codeblock-1611"><code>unicode characters
+<pre class="language-filetree" id="codeblock-1612"><code>unicode characters
 
 files
 🗋 🗌 🗍 · 🗎 🗏 🖹 🗐 🖺 🖻 · 🗅 🗆 🗇 · 🗈 🗉 🗊 · 🗑

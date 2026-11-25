@@ -455,6 +455,8 @@ Builds the site, uploads `www/` to `EASYDOC_DEPLOY_SFTP_REMOTE_PATH` and `search
 to `EASYDOC_DEPLOY_SFTP_SEARCH_INDEX_REMOTE_PATH`. pm2 sees the new index and restarts the
 search API. You don't need to log in to the server.
 
+---
+
 ## Markdown
 
 ### Typography & Elements
