@@ -271,6 +271,190 @@ exports.nav = [
 
 ### Search API & Deployment
 
+Fulltext search is made of four parts:
+
+1. `npm run build` writes `searchIndex.json` into the project root (not into `www/`).
+2. `npm run deploy` uploads `www/` to the public web root and `searchIndex.json` to a
+   private directory on the server.
+3. `searchApi.js`, a small Express + MiniSearch service, runs in that private directory
+   under pm2 and listens on `127.0.0.1` only.
+4. The web server proxies a same‑origin path (e.g. `/some-doc/api/`) to the service. The
+   dashboard and the navbar search call `EASYDOC_SEARCH_API_URL?q=<term>`.
+
+#### Local `.env`
+
+```ini
+EASYDOC_ENABLE_FULLTEXT_SEARCH=true
+# Same-origin path that the web server proxies to the search API (trailing slash required).
+# For local testing with `npm run search` use http://localhost:3000/ instead.
+EASYDOC_SEARCH_API_URL=/some-doc/api/
+
+EASYDOC_DEPLOY_SFTP_REMOTE_PATH=/var/www/vhost/doc.yourdomain.tld/public/some-doc
+EASYDOC_DEPLOY_SFTP_SEARCH_INDEX_REMOTE_PATH=/var/www/vhost/doc.yourdomain.tld/private/api/some-doc
+```
+
+#### Search API environment variables
+
+| Variable | Default | Purpose |
+|----------|---------|---------|
+| `EASYDOC_SEARCH_API_PORT` | `3000` | Port the API listens on. Use a different port for each documentation site. |
+| `EASYDOC_SEARCH_API_HOST` | `127.0.0.1` | Interface to bind to. Keep loopback so the API is only reachable through the reverse proxy. |
+| `EASYDOC_SEARCH_API_CORS_ORIGIN` | *(unset: any origin, `*`)* | Restrict CORS to one origin, e.g. `https://doc.yourdomain.tld`. Only relevant when the site and the API are on **different** origins. |
+
+::: warning ⚠️ Not read from `.env`
+`searchApi.js` reads these variables from the **process environment** only. It does
+not load `.env`. On the server, set them in the `env` block of `ecosystem.config.js`
+(see below). Locally, set them in the shell before `npm run search`.
+:::
+
+#### Server directory layout
+
+```filetree
+🗁 /var/www/vhost/doc.yourdomain.tld
+ ├🗁 public
+ │ └🗁 some-doc               ← EASYDOC_DEPLOY_SFTP_REMOTE_PATH (built site)
+ └🗁 private                  ← not reachable from the web
+   └🗁 api
+     └🗁 some-doc             ← EASYDOC_DEPLOY_SFTP_SEARCH_INDEX_REMOTE_PATH
+       ├🗀 logs
+       ├🗀 node_modules
+       ├🗏 ecosystem.config.js
+       ├🗏 package.json
+       ├🗏 searchApi.js        ← copy from your scaffolded project
+       └🗏 searchIndex.json    ← uploaded by npm run deploy
+```
+
+The API only needs three runtime dependencies. Use a minimal `package.json` instead of
+the scaffolded one; it doesn't need `nodemon` or the build scripts:
+
+```json
+{
+  "name": "easydoc-search-some-doc",
+  "private": true,
+  "dependencies": {
+    "cors": "^2.8.6",
+    "express": "^5.3.0",
+    "minisearch": "^7.2.0"
+  }
+}
+```
+
+```sh
+cd /var/www/vhost/doc.yourdomain.tld/private/api/some-doc
+mkdir -p logs
+npm install --omit=dev
+```
+
+::: tip 📗 Keep searchApi.js in sync
+`npm run update` refreshes the scaffolded project's `searchApi.js`. Upload it to the server
+again afterwards and restart the app (`pm2 restart easydoc-search-some-doc`).
+:::
+
+#### pm2 process (`ecosystem.config.js`)
+
+```js
+module.exports = {
+  apps: [
+    {
+      name: "easydoc-search-some-doc",
+      script: "searchApi.js",
+      cwd: "/var/www/vhost/doc.yourdomain.tld/private/api/some-doc",
+      instances: 1,
+      exec_mode: "fork",
+      autorestart: true,
+      max_memory_restart: "256M",
+      // the index is loaded once at startup: restart when deploy uploads a new one
+      watch: ["searchIndex.json"],
+      // give the SFTP upload time to finish before restarting
+      watch_delay: 3000,
+      ignore_watch: ["node_modules", "logs"],
+      env: {
+        NODE_ENV: "production",
+        EASYDOC_SEARCH_API_HOST: "127.0.0.1",
+        EASYDOC_SEARCH_API_PORT: 3110
+      },
+      error_file: "/var/www/vhost/doc.yourdomain.tld/private/api/some-doc/logs/error.log",
+      out_file: "/var/www/vhost/doc.yourdomain.tld/private/api/some-doc/logs/out.log",
+      time: true
+    }
+  ]
+};
+```
+
+```sh
+pm2 start ecosystem.config.js
+pm2 save                     # remember the process list
+pm2 startup                  # once per server: prints a command that restores the list on boot
+pm2 install pm2-logrotate    # once per server: keeps logs/ from growing forever
+
+curl "http://127.0.0.1:3110/?q=test"   # quick check, returns JSON
+pm2 logs easydoc-search-some-doc
+```
+
+::: info 📘 Notes
+- Run pm2 as an unprivileged user that owns the directory, not as root.
+- One app per documentation site, each with its own `name`, `cwd` and port.
+- If the restart happens on a partially uploaded index, `searchApi.js` exits with an
+  error and pm2 starts it again once the file is complete.
+- All paths in `ecosystem.config.js` (`cwd`, `error_file`, `out_file`) must point to
+  the same directory.
+:::
+
+#### Reverse proxy
+
+The trailing slashes matter. They strip the `/some-doc/api/` prefix, so the API receives
+`/?q=…`.
+
+##### Apache
+
+Requires `mod_proxy` and `mod_proxy_http` (`a2enmod proxy proxy_http`). Put these lines in
+the site's vhost, **before** any broader `ProxyPass` (e.g. `ProxyPass /`), because Apache
+uses the first match.
+
+```apacheconf
+ProxyPass        /some-doc/api/ http://127.0.0.1:3110/ connectiontimeout=5 timeout=30 retry=0
+ProxyPassReverse /some-doc/api/ http://127.0.0.1:3110/
+```
+
+##### Nginx
+
+Inside the site's `server { … }` block:
+
+```nginx
+location /some-doc/api/ {
+    proxy_pass http://127.0.0.1:3110/;
+    proxy_connect_timeout 5s;
+    proxy_send_timeout 30s;
+    proxy_read_timeout 30s;
+    proxy_set_header Host $host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto $scheme;
+}
+```
+
+#### CORS
+
+When the API is proxied under the same origin as the site (as above), the browser makes
+a same‑origin request and CORS doesn't apply. You don't need
+`EASYDOC_SEARCH_API_CORS_ORIGIN` and you don't need a `Header set Access-Control-Allow-Origin`
+in the vhost for the search. Without the variable, `searchApi.js` already sends
+`Access-Control-Allow-Origin: *`.
+
+Set `EASYDOC_SEARCH_API_CORS_ORIGIN` only when the site and the API are on different
+origins, e.g. the site on `https://doc.yourdomain.tld` and the API on
+`https://api.yourdomain.tld`. Set it to the site's origin instead of `*`.
+
+#### Deploy workflow
+
+```sh
+npm run deploy
+```
+
+Builds the site, uploads `www/` to `EASYDOC_DEPLOY_SFTP_REMOTE_PATH` and `searchIndex.json`
+to `EASYDOC_DEPLOY_SFTP_SEARCH_INDEX_REMOTE_PATH`. pm2 sees the new index and restarts the
+search API. You don't need to log in to the server.
+
 ## Markdown
 
 ### Typography & Elements
