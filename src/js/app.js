@@ -450,6 +450,10 @@
     function addLightBox() {
       const images = document.querySelectorAll("img");
       images.forEach((image) => {
+        // Linked images keep their link behavior instead of opening the lightbox.
+        if (image.closest("a[href]")) {
+          return;
+        }
         image.addEventListener("click", function (e) {
           e.preventDefault();
 

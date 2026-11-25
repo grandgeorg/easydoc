@@ -9,7 +9,7 @@ test.describe("navbar search", () => {
 
     await page.locator("#navbar-search-input").fill("fixture");
     await expect(modal).toBeVisible();
-    await expect(modal.locator(".page-card")).toHaveCount(3);
+    await expect(modal.locator(".page-card")).toHaveCount(4);
 
     await page.keyboard.press("Escape");
     await expect(modal).toBeHidden();
