@@ -22,9 +22,13 @@ tocIncludeLevel: [1, 2, 3]
 
 A powerful technical documentation tool that generates completely local HTML pages and websites from markdown files. {.text-center}
 
+[![EasyDoc on GitHub](https://img.shields.io/badge/github-EasyDoc-blue?logo=github){.d-inline-block style="margin: 0 0.25rem 0 0;"}](https://github.com/grandgeorg/easydoc)
+[![LICENSE](https://img.shields.io/github/license/grandgeorg/easydoc?color=green){.d-inline-block}](https://github.com/grandgeorg/easydoc/blob/master/LICENSE)
+{.text-center}
+
 ---
   
-##### _created by:_ {.text-center}
+##### _created by_ {.text-center}
 
 <!-- BRAND HTML -->
 <a class="brand-link" href="https://grandgeorg.de">

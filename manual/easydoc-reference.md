@@ -10,9 +10,15 @@ tocIncludeLevel: [1, 2, 3]
 
 ---
 
+[![EasyDoc on GitHub](https://img.shields.io/badge/github-EasyDoc-blue?logo=github){.d-inline-block style="margin: 0 0.25rem 0 0;"}](https://github.com/grandgeorg/easydoc)
+[![LICENSE](https://img.shields.io/github/license/grandgeorg/easydoc?color=green){.d-inline-block}](https://github.com/grandgeorg/easydoc/blob/master/LICENSE)
+{.text-center}
+
+---
+
 ## Configuration
 
-### 📄 Global Configuration 
+### 📜 Global Configuration 
 ##### ```.env``` file
 
 ```ini
@@ -97,7 +103,7 @@ EASYDOC_DEPLOY_SFTP_REMOTE_PATH=/var/www/vhost/doc.yourdomain.tld/public/some-do
 EASYDOC_DEPLOY_SFTP_SEARCH_INDEX_REMOTE_PATH=/var/www/vhost/doc.yourdomain.tld/private/search
 ```
 
-### 📄 Per page overrides in front matter
+### 📜 Per page overrides in front matter
 ##### ```docs/*.md``` files
 
 ```markdown
@@ -125,7 +131,7 @@ tocIncludeLevel: [1, 2, 3, 4]
 
 :::details Configuration parameters
 
-```.env: EASYDOC_LANG_FALLBACK``` | ```frontmatter: lang```
+.env: ```EASYDOC_LANG_FALLBACK``` | frontmatter: ```lang```
 : Language of the document and EsayDoc language (see ```lang/langs.js```)
 
 ```.env: EASYDOC_TITLE_FALLBACK``` | ```frontmatter: title```
@@ -183,7 +189,7 @@ tocIncludeLevel: [1, 2, 3, 4]
 : Tags for the page, used in tag navigator and search.
 :::
 
-### 📄 Site Navigation
+### 📜 Site Navigation
 Define individual menu items for site navigation.
 
 ##### ```nav.js``` example file
@@ -1238,7 +1244,7 @@ This is a danger alert. Here is a [link for you][def].{.alert .alert-danger}
 
 ### Utility Classes
 
-::: details Font Size Utility Classes
+::: details Font Sizes
 
 | Class | Font Size |
 |-------|-----------|
@@ -1263,7 +1269,7 @@ Double Extra Large Fontsize{.fs-xxl}
 
 :::
 
-::: details Text Alignment Utility Classes
+::: details Text
 
 | Class | Description |
 |-------|-------------|
@@ -1292,7 +1298,91 @@ _Text Alignment Examples:_
 
 :::
 
-### Custom Styles
+::: details Miscellaneous
+
+```css
+.d-block {
+  display: block !important;
+}
+
+.d-inline-block {
+  display: inline-block !important;
+}
+
+.d-flex {
+  display: flex !important;
+}
+
+.d-inline-flex {
+  display: inline-flex !important;
+}
+
+.d-none, .hidden {
+  display: none !important;
+}
+
+.justify-content-center {
+  justify-content: center !important;
+}
+
+.align-items-center {
+  align-items: center !important;
+}
+
+.mw-800 {
+  max-width: 800px !important;
+}
+
+.mw-80ch {
+  max-width: 80ch !important;
+}
+
+.w-100 {
+  width: 100% !important;
+}
+
+.cp {
+  cursor: pointer;
+}
+
+/* dark / light mode specific styles */
+
+html[data-theme="dark"] {
+  .only-on-dark {
+    display: block !important;
+  }
+  .only-on-light {
+    display: none !important;
+  }
+}
+
+html[data-theme="light"] {
+  .only-on-dark {
+    display: none !important;
+  }
+  .only-on-light {
+    display: block !important;
+  }
+}
+
+/* print specific styles */
+
+hr.pbra {
+  display: none;
+}
+
+@media print {
+  hr.pbra {
+    display: block;
+    border-top: 1px solid #ffffff;
+    page-break-after: always;
+  }
+}
+
+```
+:::
+
+### Custom Style Examples
 
 ::: tip
 
@@ -1313,7 +1403,6 @@ _Text Alignment Examples:_
 
 {style="column-gap:1em;columns:25ch 3;list-style-type:none;padding-left:0;"}
 ```
-
 :::
 
 ## Syntax Highlighting
