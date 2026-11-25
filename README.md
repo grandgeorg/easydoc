@@ -108,26 +108,9 @@ The deployment process will build your documentation and then upload it to the s
 
 For now the only supported deployment method is SFTP. You can configure the SFTP settings in the `.env` file.
 
-```ini
-EASYDOC_DEPLOY_TYPE=sftp
+Refer to EasyDoc's reference for detailed information on configuring deployment settings: [EasyDoc reference](https://grandgeorg.github.io/easydoc/easydoc-reference.html#deployment).
 
-# SFTP deployment (runs `npm run build`, then uploads the built site).
-EASYDOC_DEPLOY_SFTP_HOST=example.com
-EASYDOC_DEPLOY_SFTP_PORT=22
-EASYDOC_DEPLOY_SFTP_USERNAME=user
-# Use a private key (preferred) OR a password.
-EASYDOC_DEPLOY_SFTP_PRIVATE_KEY=/path/to/id_rsa
-EASYDOC_DEPLOY_SFTP_PASSPHRASE=
-# Use a password auth instead of a private key.
-EASYDOC_DEPLOY_SFTP_PASSWORD=
-# Remote directory the site is uploaded into.
-EASYDOC_DEPLOY_SFTP_REMOTE_PATH=/var/www/vhost/doc.yourdomain.tld/public/some-doc
-# Local directory to upload (defaults to the built output: www).
-EASYDOC_DEPLOY_SFTP_LOCAL_DIR=www
-# Optional: upload searchIndex.json to a separate remote path (file path if it
-# ends in ".json", otherwise a directory to place searchIndex.json into).
-EASYDOC_DEPLOY_SFTP_SEARCH_INDEX_REMOTE_PATH=/var/www/vhost/doc.yourdomain.tld/private/search
-```
+If you want to use the search API, check the documentation for the **Search API & Deployment** settings in the [EasyDoc reference](https://grandgeorg.github.io/easydoc/easydoc-reference.html#t-search-api--deployment).
 
 ## Manual & Reference & Demo
 

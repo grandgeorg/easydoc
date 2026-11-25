@@ -111,7 +111,7 @@ EASYDOC_NAVBAR_SEARCH=true
 EASYDOC_ENABLE_FULLTEXT_SEARCH=true
 
 # URL the browser calls for fulltext search. In production use a same-origin path
-# behind a reverse proxy, e.g. /api/ (trailing slash required).
+# behind a reverse proxy, e.g. /some-doc/api/ (trailing slash required).
 EASYDOC_SEARCH_API_URL=http://localhost:3000/
 
 
@@ -156,7 +156,7 @@ EASYDOC_DEPLOY_SFTP_REMOTE_PATH=/var/www/vhost/doc.yourdomain.tld/public/some-do
 # remote path. If the value ends in ".json" it is treated as the full remote file
 # path; otherwise it is treated as a remote directory that searchIndex.json is
 # placed into. Only uploaded when full-text search is enabled and the file exists.
-EASYDOC_DEPLOY_SFTP_SEARCH_INDEX_REMOTE_PATH=/var/www/vhost/doc.yourdomain.tld/private/search
+EASYDOC_DEPLOY_SFTP_SEARCH_INDEX_REMOTE_PATH=/var/www/vhost/doc.yourdomain.tld/private/api/some-doc
 ```
 
 ### 📜 Per page overrides in front matter
@@ -268,6 +268,8 @@ exports.nav = [
 ╰──────────────────────────═━┈💬┈━═──────────────────────────╯
 ```
 :::
+
+### Search API & Deployment
 
 ## Markdown
 
