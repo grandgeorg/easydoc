@@ -323,23 +323,31 @@ a code {
 // utilities
 
 .d-block {
-  display: block;
+  display: block !important;
 }
 
 .d-inline-block {
-  display: inline-block;
+  display: inline-block !important;
 }
 
 .d-flex {
-  display: flex;
+  display: flex !important;
 }
 
 .d-inline-flex {
-  display: inline-flex;
+  display: inline-flex !important;
+}
+
+.d-none, .hidden {
+  display: none !important;
 }
 
 .justify-content-center {
   justify-content: center !important;
+}
+
+.align-items-center {
+  align-items: center !important;
 }
 
 .text-left {
@@ -363,10 +371,6 @@ a code {
   color: var(--clr-base-l170) !important;
 }
 
-.cp {
-  cursor: pointer;
-}
-
 .fs-s, .fs-sm, .small {
   font-size: 0.875rem !important;
 }
@@ -381,6 +385,10 @@ a code {
 }
 .fs-xxl {
   font-size: 2.5rem !important;
+}
+
+.cp {
+  cursor: pointer;
 }
 
 // bi svg icons
@@ -403,9 +411,6 @@ a code {
   width: 100% !important;
 }
 
-.hidden {
-  display: none !important;
-}
 
 // layout
 
