@@ -225,31 +225,8 @@ The deployment process will build your documentation and then upload it to the s
 
 For now the only supported deployment method is `SFTP`. You can configure the SFTP settings in the `.env` file.
 
-```ini
-# --- Deployment ---
-EASYDOC_DEPLOY_TYPE=sftp
+If you want to use the search API, check the documentation for the [**Search API & Deployment**](easydoc-reference.html#t-search-api--deployment) settings in the [EasyDoc reference](easydoc-reference.html#t-search-api--deployment).
 
-EASYDOC_DEPLOY_SFTP_HOST=yourdomain.tld
-EASYDOC_DEPLOY_SFTP_PORT=22
-EASYDOC_DEPLOY_SFTP_USERNAME=user
-
-# Use a private key (preferred) OR a password.
-EASYDOC_DEPLOY_SFTP_PRIVATE_KEY=/path/to/id_rsa
-EASYDOC_DEPLOY_SFTP_PASSPHRASE=
-EASYDOC_DEPLOY_SFTP_PASSWORD=
-
-# Remote directory the site is uploaded into.
-EASYDOC_DEPLOY_SFTP_REMOTE_PATH=/var/www/vhost/doc.yourdomain.tld/public/some-doc
-# Local directory to upload (defaults to the built output: www).
-EASYDOC_DEPLOY_SFTP_LOCAL_DIR=www
-
-# Optional: upload the full-text search index (searchIndex.json) to a separate
-# remote path. If the value ends in ".json" it is treated as the full remote file
-# path; otherwise it is treated as a remote directory that searchIndex.json is
-# placed into. Only uploaded when full-text search is enabled and the file exists.
-EASYDOC_DEPLOY_SFTP_SEARCH_INDEX_REMOTE_PATH=/var/www/vhost/doc.yourdomain.tld/private/search
-```
+For more information on deployment, refer to the [EasyDoc Reference](easydoc-reference.html#codeblock-20.112).
 
 ---
-
-For more information on deployment, refer to the [EasyDoc Reference](easydoc-reference.html#t--global-configuration).

@@ -21,7 +21,7 @@ tocIncludeLevel: [1, 2, 3]
 ### 📜 Global Configuration 
 ##### ```.env``` file
 
-```ini
+```ini {.line-numbers .linkable-line-numbers}
 # --- Defaults ---
 # Make sure to set the defaults below as needed.
 

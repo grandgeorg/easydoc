@@ -108,13 +108,13 @@ The deployment process will build your documentation and then upload it to the s
 
 For now the only supported deployment method is SFTP. You can configure the SFTP settings in the `.env` file.
 
-Refer to EasyDoc's reference for detailed information on configuring deployment settings: [EasyDoc reference](https://grandgeorg.github.io/easydoc/easydoc-reference.html#t-configuration).
+Refer to EasyDoc's reference for detailed information on configuring deployment settings: [EasyDoc reference](https://grandgeorg.github.io/easydoc/easydoc-reference.html#codeblock-20.112).
 
-If you want to use the search API, check the documentation for the **Search API & Deployment** settings in the [EasyDoc reference](https://grandgeorg.github.io/easydoc/easydoc-reference.html#t-search-api--deployment).
+For search API integration, check the documentation for the [**Search API & Deployment**](https://grandgeorg.github.io/easydoc/easydoc-reference.html#t-search-api--deployment) settings in the [EasyDoc&nbsp;reference](https://grandgeorg.github.io/easydoc/easydoc-reference.html#t-search-api--deployment).
 
 ## Manual & Reference & Demo
 
 The manual and reference are generated with EasyDoc itself, so you can see how it looks like.
 
-- Find more information in the [EasyDoc manual](https://grandgeorg.github.io/easydoc/).  
+- Find more information in the [EasyDoc short manual](https://grandgeorg.github.io/easydoc/).  
 - For configuration and further usage refer to the [EasyDoc reference](https://grandgeorg.github.io/easydoc/easydoc-reference.html).
