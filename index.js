@@ -276,10 +276,13 @@ md.renderer.rules.fence = function (tokens, idx, options, env, slf) {
   }
 };
 const anchor = require("markdown-it-anchor");
+// Unset -> "t-"; an empty value (EASYDOC_HEADING_ID_PREFIX=) disables the prefix.
+const headingIdPrefix =
+  process.env.EASYDOC_HEADING_ID_PREFIX !== undefined ? process.env.EASYDOC_HEADING_ID_PREFIX : "t-";
 md.use(anchor, {
   permalink: anchor.permalink.headerLink(),
   slugify: function (s) {
-    return String("t-" + s)
+    return String(headingIdPrefix + s)
       .toLowerCase()
       .replace(/\s+/g, "-")
       .replace(/[^a-z0-9\-]/gi, "");

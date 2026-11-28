@@ -43,6 +43,11 @@ EASYDOC_BRAND_SECONDARY=Yourproject
 # per page front matter: tocIncludeLevel.
 EASYDOC_TOC_INCLUDELEVEL=[1,2,3,4]
 
+# Prefix for heading IDs / anchors, e.g. "## Install" -> id="t-install".
+# Defaults to "t-" when unset; leave the value empty to use no prefix.
+# Global only, no front matter override.
+# EASYDOC_HEADING_ID_PREFIX=t-
+
 # --- Switches (Enable/Disable) ---
 
 # Hide the brand link in the navigation bar and the footer.
