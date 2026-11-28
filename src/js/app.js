@@ -128,6 +128,21 @@
       }
     }
 
+    // Resolves "#some-id" via getElementById: IDs like "1-overview" are not valid CSS
+    // selectors, so querySelector would throw.
+    function getHashTarget(href) {
+      if (!href || href.charAt(0) !== "#" || href.length < 2) {
+        return null;
+      }
+      let id = href.slice(1);
+      try {
+        id = decodeURIComponent(id);
+      } catch (e) {
+        // keep the raw id
+      }
+      return document.getElementById(id);
+    }
+
     // The drawer has display:none while closed, so its width is measured by showing it
     // for a moment (synchronously, it never gets painted).
     function isWideViewport() {
@@ -298,7 +313,7 @@
 
       const elTocLinks = document.querySelectorAll(".toc a");
       elTocLinks.forEach(function (elTocLink) {
-        const elTarget = document.querySelector(elTocLink.getAttribute("href"));
+        const elTarget = getHashTarget(elTocLink.getAttribute("href"));
         if (elTarget) {
           elTocLink.addEventListener("click", function (event) {
             event.preventDefault();
@@ -327,7 +342,7 @@
         }
 
         elTocLinks.forEach(function (elTocLink) {
-          const elTarget = document.querySelector(elTocLink.getAttribute("href"));
+          const elTarget = getHashTarget(elTocLink.getAttribute("href"));
           if (elTarget) {
               const rect = elTarget.getBoundingClientRect();
               if (rect.top > topOffset && rect.top < window.innerHeight && rect.bottom > topOffset && rect.bottom < window.innerHeight) {
@@ -1374,7 +1389,7 @@
       const hashedElement = id ? document.getElementById(id) : null;
       const closeOnLoad = document.querySelectorAll(".closeOnLoad");
       closeOnLoad.forEach((element) => {
-        if (element.tagName === "DETAILS" && element.hasAttribute("open") && (!id || !element.querySelector("#" + id))) {
+        if (element.tagName === "DETAILS" && element.hasAttribute("open") && (!hashedElement || !element.contains(hashedElement))) {
           element.removeAttribute("open");
           element.classList.remove("closeOnLoad");
         }
@@ -1398,8 +1413,8 @@
           e.preventDefault();
           const href = e.target.getAttribute("href");
           window.location.hash = href;
-          const element = document.querySelector(href);
-          const details = element.closest("details");
+          const element = getHashTarget(href);
+          const details = element ? element.closest("details") : null;
           // console.log(href);
           if (element && details) {
             details.setAttribute("open", "open");
